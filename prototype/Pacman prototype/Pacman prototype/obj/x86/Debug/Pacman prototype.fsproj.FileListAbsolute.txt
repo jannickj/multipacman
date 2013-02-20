@@ -1,0 +1,6 @@
+C:\Users\jannick\Bachelor Project\prototype\Pacman prototype\Pacman prototype\bin\Debug\Pacman_prototype.XML
+C:\Users\jannick\Bachelor Project\prototype\Pacman prototype\Pacman prototype\bin\Debug\Pacman_prototype.exe
+C:\Users\jannick\Bachelor Project\prototype\Pacman prototype\Pacman prototype\bin\Debug\Pacman_prototype.pdb
+C:\Users\jannick\Bachelor Project\prototype\Pacman prototype\Pacman prototype\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\jannick\Bachelor Project\prototype\Pacman prototype\Pacman prototype\obj\x86\Debug\Pacman_prototype.exe
+C:\Users\jannick\Bachelor Project\prototype\Pacman prototype\Pacman prototype\obj\x86\Debug\Pacman_prototype.pdb
