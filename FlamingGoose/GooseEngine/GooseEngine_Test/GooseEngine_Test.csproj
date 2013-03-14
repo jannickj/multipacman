@@ -52,6 +52,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AgentTest.cs" />
+    <Compile Include="Entities\MapEntities\TileTest.cs" />
+    <Compile Include="Percepts\VisionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameEngineTest.cs" />
     <Compile Include="GameWorldTest.cs" />

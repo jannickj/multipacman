@@ -8,5 +8,6 @@ namespace GooseEngine.Entities.MapEntities
 {
     public class Wall : Tile
     {
+       
     }
 }

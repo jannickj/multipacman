@@ -14,11 +14,21 @@ namespace GooseEngine.Actions
     {
         private Enum.Direction direction;
         public override event EventHandler Completed;
+        private Entity entity;
+        private float speed;
 
-        public Move(Unit unit, Enum.Direction direction) : base(unit)
+        /// <summary>
+        /// Initializes a move action, which is used to move entities in a gameworld</summary>
+        /// <param name="entity"> The entity that gets moved</param>
+        /// <param name="direction"> the direction of the move</param>
+        /// <param name="speed"> the speed in tiles per second, -1 is instantaneous</param>
+        public Move(Entity entity, Enum.Direction direction, float speed): base(entity)
         {
             // TODO: Complete member initialization
+            this.entity = entity;
             this.direction = direction;
+            this.speed = speed;
+        
         }
        
 

@@ -14,6 +14,16 @@ namespace GooseEngine
             // TODO: Complete member initialization
             this.world = world;
         }
-        
+
+
+        public void Enqueue(Entity entity, GameAction action)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Execute()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

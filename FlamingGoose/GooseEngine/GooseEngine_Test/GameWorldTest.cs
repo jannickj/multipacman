@@ -5,7 +5,7 @@ using System.Linq;
 using GooseEngine;
 using GooseEngine.Descriptions;
 using GooseEngine.Entities.MapEntities;
-using GooseEngine.Perceptions;
+using GooseEngine.Percepts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GooseEngine.Entities.Units;
 
@@ -56,7 +56,7 @@ namespace GooseEngine_Test
         }
 
         [TestMethod]
-        public void GetEntityPosition_OneAgentInWorld_ReturnThatAgent()
+        public void GetEntityPosition_OneAgentInWorld_ReturnThatAgentPosition()
         {
 
             GameWorld world = new GameWorld(ters);

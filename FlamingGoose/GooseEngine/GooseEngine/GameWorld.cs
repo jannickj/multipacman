@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using GooseEngine.Entities.MapEntities;
-using GooseEngine.Perceptions;
+using GooseEngine.Percepts;
 
 namespace GooseEngine
 {
@@ -24,12 +24,12 @@ namespace GooseEngine
             throw new NotImplementedException();
         }
 
-        public void AddEntity(Point point, Entities.Units.Agent agent)
+        public void AddEntity(Point point, Entity entity)
         {
             throw new NotImplementedException();
         }
 
-        public Point GetEntityPosition(Entities.Units.Agent agent)
+        public Point GetEntityPosition(Entity entity)
         {
             throw new NotImplementedException();
         }

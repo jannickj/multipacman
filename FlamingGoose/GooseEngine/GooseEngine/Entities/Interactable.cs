@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GooseEngine.Entities
 {
-    public abstract class Interactable
+    public abstract class Interactable : Entity
     {
     }
 }

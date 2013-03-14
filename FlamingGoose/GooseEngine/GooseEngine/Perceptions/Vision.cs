@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GooseEngine.Perceptions
+namespace GooseEngine.Percepts
 {
-    public class Vision : Perception
+    public class Vision : Percept
     {
         private List<KeyValuePair<Point, Entity>> entities = new List<KeyValuePair<Point, Entity>>();
 
