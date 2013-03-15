@@ -15,7 +15,7 @@ namespace GooseEngine
 
         }
 
-        internal abstract Fire();
+        internal abstract void Fire();
 
     }
 }

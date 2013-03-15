@@ -8,5 +8,12 @@ namespace GooseEngine.Entities
 {
     public abstract class Unit : Entity
     {
+        public override bool Blocking
+        {
+            get
+            {
+                return true;
+            }
+        }
     }
 }

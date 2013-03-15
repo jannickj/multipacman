@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GooseEngine.Entities.MapEntities
 {
-    public class Terrain : Tile
+    public class ImpassableWall : Wall
     {
+        
     }
 }

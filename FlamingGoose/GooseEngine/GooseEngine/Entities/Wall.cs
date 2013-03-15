@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace GooseEngine.Entities.MapEntities
 {
-    public class Wall : Tile
+    public class Wall : Entity
     {
-       
+        public override bool Blocking
+        {
+            get
+            {
+                return true;
+            }
+        }
     }
 }

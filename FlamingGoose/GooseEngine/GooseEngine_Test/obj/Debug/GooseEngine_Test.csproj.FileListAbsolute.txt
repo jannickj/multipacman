@@ -3,3 +3,5 @@ C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngine_Test\bin\
 C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngine_Test\obj\Debug\GooseEngine_Test.csprojResolveAssemblyReference.cache
 C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngine_Test\obj\Debug\GooseEngine_Test.dll
 C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngine_Test\obj\Debug\GooseEngine_Test.pdb
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngine_Test\bin\Debug\GooseEngine.dll
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngine_Test\bin\Debug\GooseEngine.pdb

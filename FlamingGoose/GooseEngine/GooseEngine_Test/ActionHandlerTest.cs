@@ -13,26 +13,14 @@ namespace GooseEngine_Test
     [TestClass]
     public class ActionHandlerTest
     {
-        GameWorld world;
+        
 
-        [TestInitialize]
-        public void Initialize()
-        {
-            int grid_size = 5;
-            Tile[,] ters = new Tile[grid_size, grid_size];
-            for (int i = 0; i < grid_size; i++)
-            {
-                for (int j = 0; j < grid_size; j++)
-                {
-                    ters[i, j] = new Terrain();
-                }
-            }
-            world = new GameWorld(ters);
-        }
 
         [TestMethod]
         public void Move_AgentInMiddleOfMap_ItMoves()
         {
+            GameMap map = new GameMap(2, 2);
+            GameWorld world = new GameWorld(map);
             ActionHandler actionhandler = new ActionHandler(world);
             Agent agent = new Agent();
             world.AddEntity(new Point(2, 2), agent);

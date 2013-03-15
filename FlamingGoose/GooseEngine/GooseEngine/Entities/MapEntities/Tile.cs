@@ -1,27 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
 namespace GooseEngine.Entities.MapEntities
 {
-    public abstract class Tile : Entity
+    public class Tile
     {
+        private LinkedList<Entity> entities = new LinkedList<Entity>();
+
         public void AddEntity(Entity entity)
         {
-            throw new NotImplementedException();
+            entities.AddFirst(entity);
+        }
+
+        public void RemoveEntity(Entity entity)
+        {
+            entities.Remove(entity);
         }
 
         public bool CanContain(Entity entity)
         {
-            throw new NotImplementedException();
+            foreach (Entity xent in entities)
+            {
+                if (xent.Blocking && entity.Blocking || xent.IsBlocking(entity))
+                    return false;
+            }
+            return true;
         }
 
-        public IEnumerable<Entity> Entities
+        public ICollection<Entity> Entities
         {
             get
             {
-                throw new NotImplementedException();
+                return entities.ToList();
             }
         }
 

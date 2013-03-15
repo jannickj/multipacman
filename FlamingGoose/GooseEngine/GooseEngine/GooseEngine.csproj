@@ -42,8 +42,10 @@
     <Compile Include="Action.cs" />
     <Compile Include="ActionHandler.cs" />
     <Compile Include="Actions\Move.cs" />
+    <Compile Include="Data\Grid.cs" />
     <Compile Include="Descriptions\MapDescription.cs" />
     <Compile Include="Descriptions\TileDescription.cs" />
+    <Compile Include="Entities\ImpassableWall.cs" />
     <Compile Include="Entities\Interactable.cs" />
     <Compile Include="Entities\Interactables\PowerUp.cs" />
     <Compile Include="Entities\Unit.cs" />
@@ -52,13 +54,13 @@
     <Compile Include="Entity.cs" />
     <Compile Include="Enum\Direction.cs" />
     <Compile Include="GameEngine.cs" />
+    <Compile Include="GameMap.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="Perception.cs" />
     <Compile Include="Perceptions\Vision.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\MapEntities\Terrain.cs" />
     <Compile Include="Entities\MapEntities\Tile.cs" />
-    <Compile Include="Entities\MapEntities\Wall.cs" />
+    <Compile Include="Entities\Wall.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Events\" />

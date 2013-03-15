@@ -14,7 +14,7 @@ namespace GooseEngine_Test.Entities.MapEntities
         public void GetEntities_tileWithAnAgent_ReturnThatAgent()
         {
             Agent a = new Agent();
-            Terrain t = new Terrain();
+            Tile t = new Tile();
             t.AddEntity(a);
 
             Agent expected = a;
@@ -26,15 +26,17 @@ namespace GooseEngine_Test.Entities.MapEntities
         public void CanContain_aWall_ReturnsFalse()
         {
             Agent a = new Agent();
+            Tile t = new Tile();
             Wall wall = new Wall();
-            Assert.IsFalse(wall.CanContain(a));
+            t.AddEntity(wall);
+            Assert.IsFalse(t.CanContain(a));
         }
 
         [TestMethod]
         public void CanContain_emptyTerrain_Returnstrue()
         {
             Agent a = new Agent();
-            Terrain t = new Terrain();
+            Tile t = new Tile();
             Assert.IsTrue(t.CanContain(a));
         }
 
@@ -44,7 +46,7 @@ namespace GooseEngine_Test.Entities.MapEntities
             Agent a = new Agent();
             PowerUp p = new PowerUp();
             PowerUp p2 = new PowerUp();
-            Terrain t = new Terrain();
+            Tile t = new Tile();
             t.AddEntity(p);
             Assert.IsTrue(t.CanContain(a));
             Assert.IsTrue(t.CanContain(p2));
@@ -56,7 +58,7 @@ namespace GooseEngine_Test.Entities.MapEntities
             Agent a = new Agent();
             Agent b = new Agent();
             PowerUp p = new PowerUp();
-            Terrain t = new Terrain();
+            Tile t = new Tile();
             t.AddEntity(a);
             Assert.IsFalse(t.CanContain(b));
             Assert.IsTrue(t.CanContain(p));

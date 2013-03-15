@@ -10,18 +10,23 @@ namespace GooseEngine
 {
     public class GameWorld
     {
-        private Tile[,] tiles;
+        private GameMap map;
 
 
-        public GameWorld(Tile[,] tiles)
+        public GameWorld(GameMap map)
         {
             // TODO: Complete member initialization
-            this.tiles = tiles;
+            this.map = map;
         }
 
         public Vision View(Point p, int range)
         {
-            throw new NotImplementedException();
+            Vision v = new Vision();
+
+            
+
+            return v;
+
         }
 
         public void AddEntity(Point point, Entity entity)

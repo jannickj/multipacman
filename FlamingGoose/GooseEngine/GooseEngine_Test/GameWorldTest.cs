@@ -14,32 +14,19 @@ namespace GooseEngine_Test
     [TestClass]
     public class GameWorldTest
     {
-        Tile[,] ters;
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            int grid_size = 5;
-            ters = new Tile[grid_size, grid_size];
-            for (int i = 0; i < grid_size; i++)
-            {
-                for (int j = 0; j < grid_size; j++)
-                {
-                    ters[i, j] = new Terrain();
-                }
-            }
-        }
+        
 
         [TestMethod]
         public void GetVisibleTiles_WallBlockingNW_ReturnNoVisionNW()
         {
-            
+
+            GameMap map = new GameMap(2, 2);
             Wall SEwall = new Wall();
            
-            ters[1, 1] = new Wall();
-            ters[4, 4] = SEwall;
-            
-            GameWorld gm = new GameWorld(ters);
+            map[1, 1].AddEntity(new Wall());
+            map[4, 4].AddEntity(SEwall);
+
+            GameWorld gm = new GameWorld(map);
 
             Vision v = gm.View(new Point(2,2),2);
 
@@ -58,8 +45,8 @@ namespace GooseEngine_Test
         [TestMethod]
         public void GetEntityPosition_OneAgentInWorld_ReturnThatAgentPosition()
         {
-
-            GameWorld world = new GameWorld(ters);
+            GameMap map = new GameMap(2, 2);
+            GameWorld world = new GameWorld(map);
 
             Agent agent = new Agent();
             world.AddEntity(new Point(1, 4), agent);
