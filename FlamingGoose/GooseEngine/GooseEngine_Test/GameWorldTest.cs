@@ -20,7 +20,7 @@ namespace GooseEngine_Test
         public void GetVisibleTiles_WallBlockingNW_ReturnNoVisionNW()
         {
 
-            GameMap map = new GameMap(2, 2);
+            GameMap map = new GameMap(new Size(2, 2));
             Wall SEwall = new Wall();
            
             map[1, 1].AddEntity(new Wall());
@@ -45,7 +45,7 @@ namespace GooseEngine_Test
         [TestMethod]
         public void GetEntityPosition_OneAgentInWorld_ReturnThatAgentPosition()
         {
-            GameMap map = new GameMap(2, 2);
+            GameMap map = new GameMap(new Size(2, 2));
             GameWorld world = new GameWorld(map);
 
             Agent agent = new Agent();

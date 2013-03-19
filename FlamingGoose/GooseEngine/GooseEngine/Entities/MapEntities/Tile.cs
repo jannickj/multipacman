@@ -24,7 +24,7 @@ namespace GooseEngine.Entities.MapEntities
         {
             foreach (Entity xent in entities)
             {
-                if (xent.Blocking && entity.Blocking || xent.IsBlocking(entity))
+                if (xent.IsMovementBlocking(entity))
                     return false;
             }
             return true;

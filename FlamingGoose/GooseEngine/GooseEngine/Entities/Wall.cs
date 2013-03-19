@@ -8,12 +8,14 @@ namespace GooseEngine.Entities.MapEntities
 {
     public class Wall : Entity
     {
-        public override bool Blocking
+        public override bool IsMovementBlocking(Entity entity)
         {
-            get
-            {
-                return true;
-            }
+            return true;
+        }
+
+        public override bool IsVisionBlocking(Entity entity)
+        {
+            return true;
         }
     }
 }

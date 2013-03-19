@@ -21,7 +21,7 @@ namespace GooseEngine
 
         public Vision View(Point p, int range)
         {
-            Vision v = new Vision();
+            Vision v = new Vision(map[p.X,p.Y,range]);
 
             
 

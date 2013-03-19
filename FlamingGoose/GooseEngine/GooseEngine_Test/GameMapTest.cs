@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Drawing;
+using System.Linq;
 using GooseEngine;
+using GooseEngine.Data;
+using GooseEngine.Entities.MapEntities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GooseEngine_Test
@@ -10,11 +14,18 @@ namespace GooseEngine_Test
 
        
         [TestMethod]
-        public void getAdjacent_AdjacentToOuterBounds_ReturnArray()
+        public void getGrid_AdjacentToOuterBounds_ReturnsImpassableWalls()
         {
 
-            GameMap map = new GameMap(2,2);
-            int i = 1;
+            GameMap map = new GameMap(new Size(2,2));
+
+            Grid<Tile> g = map[-2, -2, 1];
+
+
+            object actual = g[0, 0].Entities.First();
+            Type expected = typeof(ImpassableWall);
+
+            Assert.IsInstanceOfType(actual, expected);
             
             
             

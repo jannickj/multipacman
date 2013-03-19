@@ -19,7 +19,7 @@ namespace GooseEngine_Test
         [TestMethod]
         public void Move_AgentInMiddleOfMap_ItMoves()
         {
-            GameMap map = new GameMap(2, 2);
+            GameMap map = new GameMap(new Size(2, 2));
             GameWorld world = new GameWorld(map);
             ActionHandler actionhandler = new ActionHandler(world);
             Agent agent = new Agent();

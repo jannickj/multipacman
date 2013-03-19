@@ -57,28 +57,28 @@ namespace GooseEngine
             get
             {
                 int startx = center.X - range;
-                startx = startx < 0 ? 0 : startx;
+                //startx = startx < 0 ? 0 : startx;
                 
                 int starty = center.Y - range;
-                starty = starty < 0 ? 0 : starty;
+                //starty = starty < 0 ? 0 : starty;
 
                 int rsize = range * 2 + 1;
-                int rsizeX = rsize > burstSize.Width + x ? burstSize.Width + x : rsize;
-                int rsizeY = rsize > burstSize.Height + y ? burstSize.Height + y : rsize;
+                //int rsizeX = rsize > burstSize.Width + x ? burstSize.Width + x : rsize;
+                //int rsizeY = rsize > burstSize.Height + y ? burstSize.Height + y : rsize;
 
                 Tile[,] r = new Tile[rsize, rsize];
 
-                for (int i = 0; i < rsizeX; i++)
+                for (int i = 0; i < rsize; i++)
                 {
-                    for (int j = 0; j < rsizeY; j++)
+                    for (int j = 0; j < rsize; j++)
                     {
                         r[i, j] = this[i + startx, j + starty];
                     }
                 }
 
-                
+                int gridc = rsize/2;
 
-                Grid<Tile> grid = new Grid<Tile>(r,new Point(x,y)
+                Grid<Tile> grid = new Grid<Tile>(r, new Point(gridc, gridc));
 
                 return grid;
 

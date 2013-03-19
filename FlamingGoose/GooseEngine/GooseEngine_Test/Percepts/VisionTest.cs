@@ -20,7 +20,7 @@ namespace GooseEngine_Test.Percepts
         [TestMethod]
         public void WriteXml_visionWithAgentAndPowerInSight_ThoseTwoWithRelativeCoordsAndTheSurroundingEmptyTiles()
         {
-            GameMap map = new GameMap(2, 2);
+            GameMap map = new GameMap(new Size(2, 2));
             Agent a = new Agent();
             PowerUp p = new PowerUp();
             

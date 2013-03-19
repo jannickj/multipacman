@@ -7,18 +7,15 @@ namespace GooseEngine
 {
     public abstract class Entity
     {
-        public virtual bool Blocking
+
+        public virtual bool IsMovementBlocking(Entity entity)
         {
-            get
-            {
-                return false;
-            }
+            return false;
         }
 
-        public virtual bool IsBlocking(Entity entity)
+        public virtual bool IsVisionBlocking(Entity entity)
         {
-            return Blocking;
+            return false;
         }
-
     }
 }
