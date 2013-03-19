@@ -1,14 +1,11 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace GooseEngine_Test
 {
-    [TestClass]
+    [TestFixture]
     public class GameEngineTest
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+        
     }
 }

@@ -4,16 +4,17 @@ using System.Linq;
 using GooseEngine;
 using GooseEngine.Data;
 using GooseEngine.Entities.MapEntities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
 
 namespace GooseEngine_Test
 {
-    [TestClass]
+    [TestFixture]
     public class GameMapTest
     {
 
        
-        [TestMethod]
+        [Test]
         public void getGrid_AdjacentToOuterBounds_ReturnsImpassableWalls()
         {
 
@@ -23,10 +24,8 @@ namespace GooseEngine_Test
 
 
             object actual = g[0, 0].Entities.First();
-            Type expected = typeof(ImpassableWall);
 
-            Assert.IsInstanceOfType(actual, expected);
-            
+            Assert.IsInstanceOf<ImpassableWall>(actual);
             
             
         }

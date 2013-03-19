@@ -11,22 +11,24 @@ namespace GooseEngine.Percepts
 {
     public class Vision : Percept
     {
-        private List<KeyValuePair<Point, Entity>> entities = new List<KeyValuePair<Point, Entity>>();
+        private List<KeyValuePair<Point, Tile>> visableTiles = new List<KeyValuePair<Point, Tile>>();
         private Grid<Tile> grid;
 
         public Vision(Grid<Tile> grid)
         {
             this.grid = grid;
 
+            
+
         
         }
 
-        public ICollection<KeyValuePair<Point, Entity>> Entities
+        public ICollection<KeyValuePair<Point, Tile>> VisibleTiles
         {
             get
             {
               
-                return entities; 
+                return visableTiles; 
             }
             
 

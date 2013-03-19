@@ -6,17 +6,17 @@ using GooseEngine;
 using GooseEngine.Descriptions;
 using GooseEngine.Entities.MapEntities;
 using GooseEngine.Percepts;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GooseEngine.Entities.Units;
+using NUnit.Framework;
 
 namespace GooseEngine_Test
 {
-    [TestClass]
+    [TestFixture]
     public class GameWorldTest
     {
         
 
-        [TestMethod]
+        [Test]
         public void GetVisibleTiles_WallBlockingNW_ReturnNoVisionNW()
         {
 
@@ -32,17 +32,17 @@ namespace GooseEngine_Test
 
            
             int expected_count = 0;
-            int actual_count = v.Entities.Where(p => p.Key.Equals(new Point(1, 1))).Count();
+            int actual_count = v.VisibleTiles.Where(p => p.Key.Equals(new Point(1, 1))).Count();
             Assert.AreEqual(expected_count, actual_count);
 
             Entity expected = SEwall;
-            Entity actual = v.Entities.Where(p => p.Key.Equals(new Point(4, 4))).Select(p => p.Value).First();
+            Entity actual = v.VisibleTiles.Where(p => p.Key.Equals(new Point(4, 4))).Select(p => p.Value.Entities.First()).First();
             Assert.AreEqual(expected, actual);
 
 
         }
 
-        [TestMethod]
+        [Test]
         public void GetEntityPosition_OneAgentInWorld_ReturnThatAgentPosition()
         {
             GameMap map = new GameMap(new Size(2, 2));

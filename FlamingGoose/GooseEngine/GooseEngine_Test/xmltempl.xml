@@ -1,0 +1,46 @@
+<percept>
+	<vision>
+		<tile type="terrain">
+			<x> 0 </x>
+			<y> 1 </y>
+			<contained>
+				<unit type="agent">
+					<name> Karl </name>
+				</unit>
+				<powerup type="speed" />
+			</contained>
+		</tile>
+		<tile type="terrain">
+			<x> -1 </x>
+			<y> 1 </y>
+		</tile>
+		<tile type="terrain">
+			<x> 1 </x>
+			<y> 1 </y>
+		</tile>
+		<tile type="terrain">
+			<x> -1 </x>
+			<y> 0 </y>
+		</tile>
+		<tile type="terrain">
+			<x> 0 </x>
+			<y> 0 </y>
+		</tile>
+		<tile type="terrain">
+			<x> 1 </x>
+			<y> 0 </y>
+		</tile>
+		<tile type="terrain">
+			<x> -1 </x>
+			<y> -1 </y>
+		</tile>
+		<tile type="terrain">
+			<x> 0 </x>
+			<y> -1 </y>
+		</tile>
+		<tile type="terrain">
+			<x> 1 </x>
+			<y> -1 </y>
+		</tile>
+	</vision>
+</percept>

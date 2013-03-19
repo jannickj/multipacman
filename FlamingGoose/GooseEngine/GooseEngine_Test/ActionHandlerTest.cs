@@ -6,17 +6,18 @@ using GooseEngine.Actions;
 using GooseEngine.Entities.MapEntities;
 using GooseEngine.Entities.Units;
 using GooseEngine.Enum;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
 
 namespace GooseEngine_Test
 {
-    [TestClass]
+    [TestFixture]
     public class ActionHandlerTest
     {
         
 
 
-        [TestMethod]
+        [Test]
         public void Move_AgentInMiddleOfMap_ItMoves()
         {
             GameMap map = new GameMap(new Size(2, 2));

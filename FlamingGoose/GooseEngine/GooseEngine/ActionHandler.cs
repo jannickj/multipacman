@@ -13,6 +13,7 @@ namespace GooseEngine
         {
             // TODO: Complete member initialization
             this.world = world;
+            
         }
 
 

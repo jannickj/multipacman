@@ -8,16 +8,20 @@ using GooseEngine.Entities.Interactables;
 using GooseEngine.Entities.MapEntities;
 using GooseEngine.Entities.Units;
 using GooseEngine.Percepts;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
 
 namespace GooseEngine_Test.Percepts
 {
-    [TestClass]
+    [TestFixture]
     public class VisionTest
     {
+
+
+        //public void ConstructVision_ 
         
 
-        [TestMethod]
+        [Test]
         public void WriteXml_visionWithAgentAndPowerInSight_ThoseTwoWithRelativeCoordsAndTheSurroundingEmptyTiles()
         {
             GameMap map = new GameMap(new Size(2, 2));

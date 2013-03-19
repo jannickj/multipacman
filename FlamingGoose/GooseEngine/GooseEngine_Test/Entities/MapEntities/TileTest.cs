@@ -3,14 +3,15 @@ using System.Linq;
 using GooseEngine.Entities.Interactables;
 using GooseEngine.Entities.MapEntities;
 using GooseEngine.Entities.Units;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
 
 namespace GooseEngine_Test.Entities.MapEntities
 {
-    [TestClass]
+    [TestFixture]
     public class TileTest
     {
-        [TestMethod]
+        [Test]
         public void GetEntities_tileWithAnAgent_ReturnThatAgent()
         {
             Agent a = new Agent();
@@ -22,7 +23,7 @@ namespace GooseEngine_Test.Entities.MapEntities
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void CanContain_aWall_ReturnsFalse()
         {
             Agent a = new Agent();
@@ -32,7 +33,7 @@ namespace GooseEngine_Test.Entities.MapEntities
             Assert.IsFalse(t.CanContain(a));
         }
 
-        [TestMethod]
+        [Test]
         public void CanContain_emptyTerrain_Returnstrue()
         {
             Agent a = new Agent();
@@ -40,7 +41,7 @@ namespace GooseEngine_Test.Entities.MapEntities
             Assert.IsTrue(t.CanContain(a));
         }
 
-        [TestMethod]
+        [Test]
         public void CanContain_TerrainWithPowerUp_Returnstrue()
         {
             Agent a = new Agent();
@@ -52,7 +53,7 @@ namespace GooseEngine_Test.Entities.MapEntities
             Assert.IsTrue(t.CanContain(p2));
         }
 
-        [TestMethod]
+        [Test]
         public void CanContain_terrainWithAnAgent_Returnsfalse()
         {
             Agent a = new Agent();
