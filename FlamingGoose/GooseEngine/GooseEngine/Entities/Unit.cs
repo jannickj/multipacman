@@ -9,18 +9,14 @@ namespace GooseEngine.Entities
 {
     public abstract class Unit : Entity
     {
-        private bool IMMOVEMENTBLOCKING = false;
+        
 
         public Unit()
         {
-            AddMovementPred(p => p is PowerUp);
-            AddMovementPred(p => !this.IMMOVEMENTBLOCKING);
+            AddWillBlock_MovementRule(p => p is Unit);
+            
         }
 
-        public override bool IsMovementBlocking(Entity entity)
-        {
-            
-            return true;
-        }
+        
     }
 }
