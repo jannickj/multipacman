@@ -27,7 +27,7 @@ namespace GameEngine.ActionManagement
             throw new NotImplementedException();
         }
 
-        public void Queue(GooseEngine.ActionManagement.Actions.MoveAction mv)
+        public void Queue(GameAction action)
         {
             throw new NotImplementedException();
         }

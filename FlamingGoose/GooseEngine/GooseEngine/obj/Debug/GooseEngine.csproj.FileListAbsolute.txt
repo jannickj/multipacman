@@ -1,6 +1,5 @@
 C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngine\bin\Debug\GooseEngine.dll
 C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngine\bin\Debug\GooseEngine.pdb
-C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngine\obj\Debug\GooseEngine.csprojResolveAssemblyReference.cache
 C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngine\obj\Debug\GooseEngine.dll
 C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngine\obj\Debug\GooseEngine.pdb
 C:\Users\jannick\Bachelor_project\FlamingGoose\GooseEngine\GooseEngine\bin\Debug\GooseEngine.dll
