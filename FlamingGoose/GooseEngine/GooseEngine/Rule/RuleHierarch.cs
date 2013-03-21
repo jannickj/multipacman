@@ -32,7 +32,11 @@ namespace GooseEngine.Rule
         {
             Conclusion c = null;
             
-            object o = hiarch.FirstOrDefault(kp => !((c = kp.Value.Conclude(t)) is DontCareConclusion));
+            object o = hiarch.FirstOrDefault(kp => 
+            {
+                c = kp.Value.Conclude(t);
+                return !(c is DontCareConclusion);
+            });
             if (o == null)
                 return new DontCareConclusion();
             return c;

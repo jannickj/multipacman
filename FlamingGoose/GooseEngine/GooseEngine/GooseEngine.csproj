@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GooseEngine</RootNamespace>
     <AssemblyName>GooseEngine</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,10 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Action.cs" />
+    <Compile Include="ActionManagement\Events\UnitHasMovedEvent.cs" />
+    <Compile Include="ActionManagement\GameAction.cs" />
     <Compile Include="ActionHandler.cs" />
-    <Compile Include="Actions\Move.cs" />
+    <Compile Include="ActionManagement\Actions\MoveAction.cs" />
+    <Compile Include="ActionManagement\Events\UnitIsMovingEvent.cs" />
+    <Compile Include="ActionManagement\GameEvent.cs" />
+    <Compile Include="ActionManagement\GameTimer.cs" />
     <Compile Include="Data\Grid.cs" />
+    <Compile Include="Data\Vector.cs" />
     <Compile Include="Descriptions\MapDescription.cs" />
     <Compile Include="Descriptions\TileDescription.cs" />
     <Compile Include="Entities\ImpassableWall.cs" />
@@ -55,6 +61,7 @@
     <Compile Include="Enum\Direction.cs" />
     <Compile Include="Exceptions\EntityException.cs" />
     <Compile Include="GameEngine.cs" />
+    <Compile Include="ActionManagement\GameEventManager.cs" />
     <Compile Include="GameMap.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="Perception.cs" />
@@ -64,7 +71,7 @@
     <Compile Include="Entities\Wall.cs" />
     <Compile Include="Rule\Conclusion.cs" />
     <Compile Include="Rule\DontCareConclusion.cs" />
-    <Compile Include="Rule\Exceptions\MulticonclusionException.cs" />
+    <Compile Include="Rule\Exceptions\MultiConclusionException.cs" />
     <Compile Include="Rule\RuleHierarch.cs" />
     <Compile Include="Rule\TransformationRule.cs" />
   </ItemGroup>

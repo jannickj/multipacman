@@ -15,6 +15,7 @@ namespace GooseEngine
         private Point center;
         private Size size;
         private Size burstSize;
+        private ImpassableWall outofmapzone = new ImpassableWall();
 
         public GameMap(Size burstSize)
         {
@@ -41,7 +42,7 @@ namespace GooseEngine
                 if(center.X + x > burstSize.Width || center.X + x < 0 || center.Y + y > burstSize.Height || center.Y + y < 0 )
                 {
                     Tile t = new Tile();
-                    t.AddEntity(new ImpassableWall());
+                    t.AddEntity(outofmapzone);
                     return t;
                 }
                 return tiles[center.X + x, center.Y + y];

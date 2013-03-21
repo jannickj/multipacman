@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace GooseEngine.Entities.MapEntities
 {
-    public class ImpassableWall : Wall
+    public class ImpassableWall : Entity
     {
-        
+        public ImpassableWall()
+        {
+            InitializeRuleLayer();
+            AddWillBlock_MovementRule(_ => true);
+
+        }
     }
 }
