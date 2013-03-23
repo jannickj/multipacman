@@ -10,8 +10,8 @@ namespace GooseEngine.Entities.MapEntities
     {
         public ImpassableWall()
         {
-            InitializeRuleLayer();
-            AddWillBlock_MovementRule(_ => true);
+            AddRuleSuperior<ImpassableWall>();
+            AddWillBlock_MovementRule<ImpassableWall>(_ => true);
 
         }
     }

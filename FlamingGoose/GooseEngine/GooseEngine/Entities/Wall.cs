@@ -13,8 +13,8 @@ namespace GooseEngine.Entities.MapEntities
 
         public Wall()
         {
-            InitializeRuleLayer();
-            AddWillBlock_MovementRule(_ => true);
+            AddRuleSuperior<Wall>();
+            AddWillBlock_MovementRule<Wall>(_ => true);
            
 
             

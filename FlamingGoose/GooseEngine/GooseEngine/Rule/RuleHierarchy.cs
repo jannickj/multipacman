@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GooseEngine.Rule
 {
-    public class RuleHierarch<P,T>
+    public class RuleHierarchy<P,T>
     {
         private LinkedList<KeyValuePair<P, TransformationRule<T>>> hiarch = new LinkedList<KeyValuePair<P,TransformationRule<T>>>();
         private Dictionary<P, TransformationRule<T>> lookup = new Dictionary<P, TransformationRule<T>>();

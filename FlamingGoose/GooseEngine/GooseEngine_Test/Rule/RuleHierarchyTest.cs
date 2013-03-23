@@ -7,14 +7,14 @@ using NUnit.Framework;
 namespace GooseEngine_Test.Rule
 {
     [TestFixture]
-    public class RuleHierarchTest
+    public class RuleHierarchyTest
     {
         [Test]
         public void Conclude_aLowPriorityAndAHighPrioryWithCondictionaryConclusions_ConcludeBasedOnTheHighPrioritiesRules()
         {
             TransformationRule<int> lowpriority = new TransformationRule<int>();
             TransformationRule<int> highpriority = new TransformationRule<int>();
-            RuleHierarch<string, int> hierarch = new RuleHierarch<string, int>();
+            RuleHierarchy<string, int> hierarch = new RuleHierarchy<string, int>();
             hierarch.AddLayer("low priority", lowpriority);
             hierarch.AddLayer("high priority", highpriority);
 
@@ -32,7 +32,7 @@ namespace GooseEngine_Test.Rule
         {
             TransformationRule<int> lowpriority = new TransformationRule<int>();
             TransformationRule<int> highpriority = new TransformationRule<int>();
-            RuleHierarch<string, int> hierarch = new RuleHierarch<string, int>();
+            RuleHierarchy<string, int> hierarch = new RuleHierarchy<string, int>();
             hierarch.AddLayer("low priority", lowpriority);
             hierarch.AddLayer("high priority", highpriority);
 
@@ -49,7 +49,7 @@ namespace GooseEngine_Test.Rule
         {
             TransformationRule<int> lowpriority = new TransformationRule<int>();
             TransformationRule<int> highpriority = new TransformationRule<int>();
-            RuleHierarch<string, int> hierarch = new RuleHierarch<string, int>();
+            RuleHierarchy<string, int> hierarch = new RuleHierarchy<string, int>();
             hierarch.AddLayer("low priority", lowpriority);
             hierarch.AddLayer("high priority", highpriority);
 

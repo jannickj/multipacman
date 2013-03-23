@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Timers;
 using GameEngine.ActionManagement;
-using GooseEngine.ActionManagement.Events;
+using GooseEngine.GameManagement.Events;
 using GooseEngine.Data;
 using GooseEngine.Entities;
+using GooseEngine.Interfaces;
 
-namespace GooseEngine.ActionManagement.Actions
+namespace GooseEngine.GameManagement.Actions
 {
     public class MoveAction : GameAction
     {
@@ -23,19 +24,23 @@ namespace GooseEngine.ActionManagement.Actions
 
         }
 
-        protected override void Execute(GameEventManager gem)
+        protected override void Execute(IGameManager gem)
         {
-            UnitIsMovingEvent before = new UnitIsMovingEvent();
+            UnitMovePreEvent before = new UnitMovePreEvent();
             gem.Raise(before);
             GameTimer gt = new GameTimer(() =>
             {
                 //move unit with world
-                gem.Raise(new UnitHasMovedEvent());
+                gem.Raise(new UnitMovePostEvent());
+
+                this.Complete();
+
             });
 
-            if(!before.IsInterrupted)
+            if(!before.IsStopped)
                 gt.StartSingle(1);
            
         }
+
     }
 }

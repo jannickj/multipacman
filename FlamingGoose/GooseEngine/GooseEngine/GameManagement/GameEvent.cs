@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GooseEngine.ActionManagement
+namespace GooseEngine.GameManagement
 {
     public class GameEvent
     {

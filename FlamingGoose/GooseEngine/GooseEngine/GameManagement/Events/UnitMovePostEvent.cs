@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GooseEngine.ActionManagement.Events
+namespace GooseEngine.GameManagement.Events
 {
-    public class UnitHasMovedEvent : GameEvent
+    public class UnitMovePostEvent : GameEvent
     {
     }
 }

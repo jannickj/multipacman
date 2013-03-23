@@ -9,11 +9,18 @@ namespace GooseEngine.Entities
 {
     public abstract class Unit : Entity
     {
-        
+        private int health = 1;
+
+        public int Health
+        {
+            get { return health; }
+            set { health = value; }
+        }
 
         public Unit()
         {
-            AddWillBlock_MovementRule(p => p is Unit);
+            this.AddRuleSuperior<Unit>();
+            AddWillBlock_MovementRule<Unit>(p => p is Unit);
             
         }
 

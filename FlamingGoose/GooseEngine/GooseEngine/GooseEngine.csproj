@@ -40,13 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionManagement\Events\UnitHasMovedEvent.cs" />
-    <Compile Include="ActionManagement\GameAction.cs" />
+    <Compile Include="GameManagement\Actions\DamageUnitTarget.cs" />
+    <Compile Include="GameManagement\Events\UnitTakesDamagePostEvent.cs" />
+    <Compile Include="GameManagement\Events\UnitTakesDamagePreEvent.cs" />
+    <Compile Include="GameManagement\Events\UnitMovePostEvent.cs" />
+    <Compile Include="GameManagement\GameAction.cs" />
     <Compile Include="ActionHandler.cs" />
-    <Compile Include="ActionManagement\Actions\MoveAction.cs" />
-    <Compile Include="ActionManagement\Events\UnitIsMovingEvent.cs" />
-    <Compile Include="ActionManagement\GameEvent.cs" />
-    <Compile Include="ActionManagement\GameTimer.cs" />
+    <Compile Include="GameManagement\Actions\MoveAction.cs" />
+    <Compile Include="GameManagement\Events\UnitMoveBeforeEvent.cs" />
+    <Compile Include="GameManagement\GameEvent.cs" />
+    <Compile Include="GameManagement\GameTimer.cs" />
+    <Compile Include="GameManagement\MultiTrigger.cs" />
+    <Compile Include="GameManagement\Trigger.cs" />
+    <Compile Include="Data\DictionaryList.cs" />
     <Compile Include="Data\Grid.cs" />
     <Compile Include="Data\Vector.cs" />
     <Compile Include="Descriptions\MapDescription.cs" />
@@ -61,9 +67,10 @@
     <Compile Include="Enum\Direction.cs" />
     <Compile Include="Exceptions\EntityException.cs" />
     <Compile Include="GameEngine.cs" />
-    <Compile Include="ActionManagement\GameEventManager.cs" />
+    <Compile Include="GameManagement\GameManager.cs" />
     <Compile Include="GameMap.cs" />
     <Compile Include="GameWorld.cs" />
+    <Compile Include="Interfaces\IGameManager.cs" />
     <Compile Include="Perception.cs" />
     <Compile Include="Perceptions\Vision.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,12 +79,11 @@
     <Compile Include="Rule\Conclusion.cs" />
     <Compile Include="Rule\DontCareConclusion.cs" />
     <Compile Include="Rule\Exceptions\MultiConclusionException.cs" />
-    <Compile Include="Rule\RuleHierarch.cs" />
+    <Compile Include="Rule\RuleHierarchy.cs" />
     <Compile Include="Rule\TransformationRule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Events\" />
-    <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

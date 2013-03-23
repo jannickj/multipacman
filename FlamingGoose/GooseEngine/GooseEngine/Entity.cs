@@ -10,7 +10,7 @@ namespace GooseEngine
     public abstract class Entity
     {
         private Conclusion[] conclusions = new Conclusion[2];
-        private RuleHierarch<Type, Entity> movementRules = new RuleHierarch<Type, Entity>();
+        private RuleHierarchy<Type, Entity> movementRules = new RuleHierarchy<Type, Entity>();
         private LinkedList<Predicate<Entity>> visionBlockRules = new LinkedList<Predicate<Entity>>();
 
         public Entity()
@@ -19,31 +19,31 @@ namespace GooseEngine
             conclusions[1] = new Conclusion("Blocking");
         }
 
-        protected void InitializeRuleLayer()
+        protected void AddRuleSuperior<Superior>() where Superior : Entity 
         {
-            movementRules.AddLayer(this.GetType(), new TransformationRule<Entity>());
+            movementRules.AddLayer(typeof(Superior), new TransformationRule<Entity>());
         }
 
 
-        private void addrule(RuleHierarch<Type, Entity> h, Predicate<Entity> p, Conclusion c)
+        private void addrule(RuleHierarchy<Type, Entity> h, Predicate<Entity> p, Conclusion c, Type member)
         {
             TransformationRule<Entity> rules;
-            if (h.TryGetRule(this.GetType(), out rules))
+            if (h.TryGetRule(member, out rules))
             {
                 rules.AddPremise(p, c);
             }
             else
-                throw new EntityException(this, "Rules have not been initialized");
+                throw new EntityException(this, "Rules have not been initialized, for this member: \""+member.Name+"\". Use AddRuleSuperior Method to add this member in the decision tree");
         }
 
-        protected void AddWillNotBlock_MovementRule(Predicate<Entity> p)
+        protected void AddWillNotBlock_MovementRule<Member>(Predicate<Entity> otherMember) where Member : Entity
         {
-            addrule(movementRules, p, conclusions[0]);
+            addrule(movementRules, otherMember, conclusions[0], typeof(Member));
         }
 
-        protected void AddWillBlock_MovementRule(Predicate<Entity> p)
+        protected void AddWillBlock_MovementRule<Member>(Predicate<Entity> otherMember) where Member : Entity
         {
-            addrule(movementRules, p, conclusions[1]);
+            addrule(movementRules, otherMember, conclusions[1], typeof(Member));
         }
 
 
