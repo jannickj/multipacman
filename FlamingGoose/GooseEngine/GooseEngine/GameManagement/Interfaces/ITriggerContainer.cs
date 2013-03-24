@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GooseEngine.GameManagement
+namespace GooseEngine.GameManagement.Interfaces
 {
-    public class GameEvent : EventArgs
+    interface ITriggerContainer
     {
+
     }
 }

@@ -8,5 +8,7 @@ namespace GooseEngine.Entities.Units
 {
     public class Agent : Unit
     {
+
+        
     }
 }

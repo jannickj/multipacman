@@ -39,6 +39,7 @@ namespace GooseEngine_Test.Rule
             rule.AddPremise(i => i == 1, new Conclusion("Not Correct"));
 
             bool exceptionthrown = false;
+            Exception exception = null;
             try
             {
                 rule.Conclude(1);
@@ -46,9 +47,11 @@ namespace GooseEngine_Test.Rule
             catch(MultiConclusionException e)
             {
                 exceptionthrown = true;
+                exception = e;
             }
 
             Assert.IsTrue(exceptionthrown);
+            Assert.IsInstanceOf<MultiConclusionException>(exception);
         }
     }
 }

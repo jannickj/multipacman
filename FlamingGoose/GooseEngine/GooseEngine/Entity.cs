@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GooseEngine.Data;
 using GooseEngine.Exceptions;
+using GooseEngine.GameManagement;
 using GooseEngine.Rule;
 
 namespace GooseEngine
@@ -12,6 +14,9 @@ namespace GooseEngine
         private Conclusion[] conclusions = new Conclusion[2];
         private RuleHierarchy<Type, Entity> movementRules = new RuleHierarchy<Type, Entity>();
         private LinkedList<Predicate<Entity>> visionBlockRules = new LinkedList<Predicate<Entity>>();
+        private TriggerManager triggers = new TriggerManager();
+
+        internal event EventHandler<GameEvent> TriggerRaised;
 
         public Entity()
         {
@@ -64,6 +69,23 @@ namespace GooseEngine
         public virtual bool IsVisionBlocking(Entity entity)
         {
             return false;
+        }
+
+        public void Register(Trigger trigger)
+        {
+            this.triggers.Register(trigger);
+        }
+
+        public void Deregister(Trigger trigger)
+        {
+            this.triggers.Deregister(trigger);
+        }
+
+        internal void Raise(GameEvent evt)
+        {
+            this.triggers.Raise(evt);
+            if (this.TriggerRaised != null)
+                this.TriggerRaised(this, evt);
         }
     }
 }

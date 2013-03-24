@@ -9,29 +9,13 @@ using GooseEngine.Interfaces;
 
 namespace GameEngine.ActionManagement
 {
-    public class GameManager : IGameManager
+    internal class GameManager : IGameManager
     {
-        private DictionaryList<Type, Trigger> triggers = new DictionaryList<Type, Trigger>();
+       
+        private HashSet<Entity> trackedEntities = new HashSet<Entity>();
         private HashSet<GameAction> runningActions = new HashSet<GameAction>();
-
-        internal void RaiseInternal(GameEvent evt)
-        {
-            ICollection<Trigger> trigered = triggers.Get(evt.GetType());
-            foreach (Trigger t in trigered)
-            {
-                if (t.CheckCondition(evt))
-                    t.Execute(evt);
-            }
-        }
-
-        public void Register(Trigger t)
-        {
-            foreach (Type evt in t.Events)
-            {
-                triggers.Add(evt, t);
-            }
-        }
-
+        private TriggerManager triggerManager = new TriggerManager();
+        
         public void Execute(GameAction action)
         {
             runningActions.Add(action);
@@ -47,6 +31,37 @@ namespace GameEngine.ActionManagement
             }
         }
 
+        public void Raise(GameEvent evt)
+        {
+            triggerManager.Raise(evt);
+        }        
+
+        public void AddEntity(Entity entity)
+        {
+            this.trackedEntities.Add(entity);
+
+            entity.TriggerRaised += entity_TriggerRaised;
+        }
+
+        public void RemoveEntity(Entity entity)
+        {
+            this.trackedEntities.Remove(entity);
+
+            entity.TriggerRaised -= entity_TriggerRaised;
+        }
+
+        public void Register(Trigger trigger)
+        {
+            this.triggerManager.Register(trigger);
+        }
+
+        public void Deregister(Trigger trigger)
+        {
+            this.triggerManager.Deregister(trigger);
+        }
+
+        #region EVENTS
+
         void action_Completed(object sender, EventArgs e)
         {
             GameAction ga = (GameAction)sender;
@@ -55,9 +70,11 @@ namespace GameEngine.ActionManagement
 
         }
 
-        public void Raise(GameEvent evt)
+        void entity_TriggerRaised(object sender, GameEvent e)
         {
-            this.RaiseInternal(evt);
+            this.Raise(e);
         }
+
+        #endregion
     }
 }

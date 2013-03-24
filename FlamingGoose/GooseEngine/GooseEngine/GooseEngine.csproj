@@ -45,11 +45,11 @@
     <Compile Include="GameManagement\Events\UnitTakesDamagePreEvent.cs" />
     <Compile Include="GameManagement\Events\UnitMovePostEvent.cs" />
     <Compile Include="GameManagement\GameAction.cs" />
-    <Compile Include="ActionHandler.cs" />
     <Compile Include="GameManagement\Actions\MoveAction.cs" />
     <Compile Include="GameManagement\Events\UnitMoveBeforeEvent.cs" />
     <Compile Include="GameManagement\GameEvent.cs" />
     <Compile Include="GameManagement\GameTimer.cs" />
+    <Compile Include="GameManagement\Interfaces\ITriggerContainer.cs" />
     <Compile Include="GameManagement\MultiTrigger.cs" />
     <Compile Include="GameManagement\Trigger.cs" />
     <Compile Include="Data\DictionaryList.cs" />
@@ -68,6 +68,7 @@
     <Compile Include="Exceptions\EntityException.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="GameManagement\GameManager.cs" />
+    <Compile Include="GameManagement\TriggerManager.cs" />
     <Compile Include="GameMap.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="Interfaces\IGameManager.cs" />

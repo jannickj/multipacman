@@ -13,6 +13,7 @@ using GooseEngine.Entities.MapEntities;
 using GooseEngine.Entities.Units;
 using GooseEngine.Enum;
 using NUnit.Framework;
+using GooseEngine.Interfaces;
 
 
 namespace GooseEngine_Test
@@ -22,9 +23,10 @@ namespace GooseEngine_Test
     {
         
         [Test]
-        public void ExecuteDamageUnitTargetAction_UnitDealsDamageToAnotherUnit_TheOtherUnitTakesDamage()
+        public void ExecuteActionWithSpecificTargetEvent_UnitDealsDamageToAnotherUnit_TheOtherUnitTakesDamage()
         {
-            GameManager gem = new GameManager();
+            
+            IGameManager gem = new GameManager();
             Agent expectedDealer = new Agent();
             Agent expectedTaker = new Agent();
             int expectedDmg = 10;
@@ -37,7 +39,8 @@ namespace GooseEngine_Test
             Trigger t = new Trigger<UnitTakesDamagePostEvent>(e => { actualDealer = e.Source; actualTaker = e.Target; actualDmg = e.Damage; });
             GameAction ga = new DamageUnitTarget(expectedDealer, expectedTaker, expectedDmg);
             
-            gem.Register(t);
+            expectedTaker.Register(t);
+            gem.AddEntity(expectedTaker);
 
             gem.Execute(ga);
 
@@ -48,9 +51,9 @@ namespace GooseEngine_Test
         }
 
         [Test]
-        public void ExecuteDamageUnitTargetAction_UnitDealsDamageToAnotherUnitWithDamagePrevetionImplemented_TheTargetUnitTakesNoDamage()
+        public void ExecuteActionWithSpecificTargetEvent_UnitDealsDamageToAnotherUnitWithDamagePrevetionImplemented_TheTargetUnitTakesNoDamage()
         {
-            GameManager gem = new GameManager();
+            IGameManager gem = new GameManager();
             Agent expectedDealer = new Agent();
             Agent expectedTaker = new Agent();
             int dmg = 10;
@@ -67,8 +70,9 @@ namespace GooseEngine_Test
             Trigger postT = new Trigger<UnitTakesDamagePostEvent>(e => { actualDealer = e.Source; actualTaker = e.Target; actualDmg = e.Damage; });
             GameAction ga = new DamageUnitTarget(expectedDealer, expectedTaker, dmg);
 
-            gem.Register(preT);
-            gem.Register(postT);
+            expectedTaker.Register(preT);
+            expectedTaker.Register(postT);
+            gem.AddEntity(expectedTaker);
 
             gem.Execute(ga);
 
@@ -77,6 +81,110 @@ namespace GooseEngine_Test
             Assert.AreEqual(expectedDmg, actualDmg);
 
         }
+
+        [Test]
+        public void ExecuteActionWithGlobalTrigger_UnitDealsDamageToAnotherUnitWithDamage_EventsWasFiredOnBothActions()
+        {
+            IGameManager gem = new GameManager();
+            Agent A = new Agent();
+            Agent B = new Agent();
+            int dmg = int.MaxValue;
+
+            int actualTimesFired = 0;
+
+
+            Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => actualTimesFired++);
+            GameAction ga1 = new DamageUnitTarget(A, B, dmg);
+            GameAction ga2 = new DamageUnitTarget(B, A, dmg);
+            
+            gem.Register(T);
+            gem.AddEntity(A);
+            gem.AddEntity(B);
+
+            gem.Execute(ga1);
+            gem.Execute(ga2);
+
+            int expectedTimeFired = 2;
+
+            Assert.AreEqual(expectedTimeFired, actualTimesFired);
+
+        }
+
+        [Test]
+        public void RemoveTrigger_simpleGlobalTrigger_NoEventFired()
+        {
+            IGameManager gem = new GameManager();
+            Agent A = new Agent();
+            Agent B = new Agent();
+            int dmg = int.MaxValue;
+
+            bool eventFired = false;
+
+
+            Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => eventFired = true);
+            GameAction ga1 = new DamageUnitTarget(A, B, dmg);
+
+
+            gem.Register(T);
+            gem.Deregister(T);
+
+            gem.Execute(ga1);
+
+            Assert.IsFalse(eventFired);
+
+        }
+
+        [Test]
+        public void RemoveTrigger_triggerIsRemovedFromUnit_NoEventFired()
+        {
+            IGameManager gem = new GameManager();
+            Agent A = new Agent();
+            Agent B = new Agent();
+            int dmg = int.MaxValue;
+
+            bool eventFired = false;
+
+
+            Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => eventFired = true);
+            GameAction ga1 = new DamageUnitTarget(A, B, dmg);
+
+
+            B.Register(T);
+            gem.AddEntity(B);
+
+            B.Deregister(T);
+
+            gem.Execute(ga1);
+
+            Assert.IsFalse(eventFired);
+
+        }
+
+
+        [Test]
+        public void AddTrigger_triggerIsAddedToUnitAfterItIsAddedToManagger_EventFired()
+        {
+            IGameManager gem = new GameManager();
+            Agent A = new Agent();
+            Agent B = new Agent();
+            int dmg = int.MaxValue;
+
+            bool eventFired = false;
+
+
+            Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => eventFired = true);
+            GameAction ga1 = new DamageUnitTarget(A, B, dmg);
+
+            gem.AddEntity(B);
+            B.Register(T);
+
+            gem.Execute(ga1);
+
+            Assert.IsTrue(eventFired);
+        }
+
+
+
 
     }
 }

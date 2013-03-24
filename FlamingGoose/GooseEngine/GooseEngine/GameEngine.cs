@@ -10,6 +10,6 @@ namespace GooseEngine
     {
         private GameWorld map;
         private List<Entity> entities = new List<Entity>();
-        private ActionHandler actionHandler;
+  
     }
 }

@@ -26,12 +26,12 @@ namespace GooseEngine.GameManagement.Actions
         protected override void Execute(IGameManager gem)
         {
             UnitTakesDamagePreEvent pre = new UnitTakesDamagePreEvent(source, target, dmg);
-            gem.Raise(pre);
+            target.Raise(pre);
             int actualDamage = pre.ActualDmg;
             int newhp = this.target.Health - actualDamage;
             source.Health = newhp < 0? 0 : newhp;
             UnitTakesDamagePostEvent post = new UnitTakesDamagePostEvent(source, target, dmg, actualDamage);
-            gem.Raise(post);
+            target.Raise(post);
             this.Complete();
         }
 
