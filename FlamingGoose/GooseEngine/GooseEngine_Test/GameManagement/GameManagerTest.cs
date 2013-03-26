@@ -181,6 +181,8 @@ namespace GooseEngine_Test.GameManagement
             gem.Execute(ga1);
 
             Assert.IsTrue(eventFired);
+
+            
         }
 
         [Test]

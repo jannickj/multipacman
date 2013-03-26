@@ -27,8 +27,9 @@ namespace GooseEngine.GameManagement
             {
                 triggers.Add(evt, trigger);
             }
-            trigger.DeregisteredEvent += trigger_DeregisteredEvent;
-            trigger.RegisteredEvent += trigger_RegisteredEvent;
+
+            if (trigger is MultiTrigger)
+                regMulti((MultiTrigger)trigger);
         }
 
         public void Deregister(Trigger trigger)
@@ -37,6 +38,20 @@ namespace GooseEngine.GameManagement
             {
                 triggers.Remove(t, trigger);
             }
+
+            if (trigger is MultiTrigger)
+                deregMulti((MultiTrigger)trigger);
+        }
+
+        private void regMulti(MultiTrigger trigger)
+        {
+            trigger.DeregisteredEvent += trigger_DeregisteredEvent;
+            trigger.RegisteredEvent += trigger_RegisteredEvent;
+        }
+
+        public void deregMulti(MultiTrigger trigger)
+        {
+            
             trigger.DeregisteredEvent -= trigger_DeregisteredEvent;
             trigger.RegisteredEvent -= trigger_RegisteredEvent;
         }

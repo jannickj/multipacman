@@ -3,77 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GooseEngine.Data.GenericEvents;
+using GooseEngine.GameManagement.Interfaces;
 
 namespace GooseEngine.GameManagement
 {
-    public abstract class Trigger
+    public abstract class Trigger : ITrigger
     {
-        internal virtual event ValueHandler<Type> RegisteredEvent;
-        internal virtual event ValueHandler<Type> DeregisteredEvent;
 
         public abstract ICollection<Type> Events
         {
             get;
         }
-        public abstract bool CheckCondition(GameEvent evt);
+
+        internal abstract bool CheckCondition(GameEvent evt);
 
         internal abstract void Execute(GameEvent evt);
-       
+
     }
 
     public class Trigger<T> : Trigger where T : GameEvent 
     {
+
+        private Action<T> action;
+        private Predicate<T> condition;
+        private Type evt = typeof(T);
         
-
-        private ICollection<Predicate<T>> conditions;
-        private ICollection<Action<T>> actions;
-       
-        internal Trigger()
+        public Trigger(Action<T> action)
         {
-            actions = new LinkedList<Action<T>>();
-            conditions = new LinkedList<Predicate<T>>();
-           
+            this.action = action;
+            this.condition = (_ => true);
         }
 
-        public Trigger(Action<T> action) : this()
+        public Trigger(Predicate<T> condition, Action<T> action)
         {
-            actions.Add(action);
+            this.condition = condition;
+            this.action = action;
         }
 
-        public Trigger(Predicate<T> condition, Action<T> action) : this(action)
+        internal override bool CheckCondition(GameEvent evt)
         {
-            this.conditions.Add(condition);
-        }
-
-
-        protected ICollection<Predicate<T>> Conditions
-        {
-            get { return conditions; }
-            set { conditions = value; }
-        }
-
-        protected ICollection<Action<T>> Actions
-        {
-            get { return actions; }
-            set { actions = value; }
-        }
-
-        public override ICollection<Type> Events
-        {
-            get
-            {
-                return new Type[] { typeof(T) };
-            }
-        }
-
-        public override bool CheckCondition(GameEvent evt)
-        {
-            return conditions.All(c => c((T)evt));
+            return condition((T)evt);
         }
 
         internal override void Execute(GameEvent evt)
         {
-            actions.All(a => { a((T)evt); return true; });
+            action((T)evt);
+        }
+
+        public override ICollection<Type> Events
+        {
+            get 
+            {
+                return new Type[] { evt };
+            }
         }
     }
 }
