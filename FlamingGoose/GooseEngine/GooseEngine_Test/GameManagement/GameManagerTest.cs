@@ -16,7 +16,7 @@ using NUnit.Framework;
 using GooseEngine.Interfaces;
 
 
-namespace GooseEngine_Test
+namespace GooseEngine_Test.GameManagement
 {
     [TestFixture]
     public class GameManagerTest
@@ -181,6 +181,58 @@ namespace GooseEngine_Test
             gem.Execute(ga1);
 
             Assert.IsTrue(eventFired);
+        }
+
+        [Test]
+        public void AddEventToUnit_containMultiTrigger_TheAddedEventGetsFired()
+        {
+
+            GameManager gem = new GameManager();
+            Agent A = new Agent();
+
+            gem.AddEntity(A);
+
+            bool eventfired = false;
+
+            MultiTrigger mt = new MultiTrigger();
+
+            A.Register(mt);
+
+            mt.AddAction<GameEvent>(e => eventfired = true);
+
+            mt.RegisterEvent<UnitTakesDamagePostEvent>();
+
+            A.Raise(new UnitTakesDamagePostEvent(null, null, 0, 0));
+
+            Assert.IsTrue(eventfired);
+
+        }
+
+        [Test]
+        public void RemoveEventFromUnit_containMultiTrigger_TheEventGetsRemovedAndIsNotFired()
+        {
+
+            GameManager gem = new GameManager();
+
+            Agent A = new Agent();
+
+            gem.AddEntity(A);
+
+            bool eventfired = false;
+
+            MultiTrigger mt = new MultiTrigger();
+            mt.AddAction<GameEvent>(e => eventfired = true);
+            mt.RegisterEvent<UnitTakesDamagePostEvent>();
+
+            A.Register(mt);
+
+            mt.DeregisterEvent<UnitTakesDamagePostEvent>();
+
+
+            A.Raise(new UnitTakesDamagePostEvent(null, null, 0, 0));
+
+            Assert.IsFalse(eventfired);
+
         }
 
 

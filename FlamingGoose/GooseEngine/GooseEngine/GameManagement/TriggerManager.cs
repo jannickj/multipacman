@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GooseEngine.Data;
+using GooseEngine.Data.GenericEvents;
 
 namespace GooseEngine.GameManagement
 {
@@ -26,6 +27,8 @@ namespace GooseEngine.GameManagement
             {
                 triggers.Add(evt, trigger);
             }
+            trigger.DeregisteredEvent += trigger_DeregisteredEvent;
+            trigger.RegisteredEvent += trigger_RegisteredEvent;
         }
 
         public void Deregister(Trigger trigger)
@@ -34,6 +37,20 @@ namespace GooseEngine.GameManagement
             {
                 triggers.Remove(t, trigger);
             }
+            trigger.DeregisteredEvent -= trigger_DeregisteredEvent;
+            trigger.RegisteredEvent -= trigger_RegisteredEvent;
+        }
+
+
+        void trigger_RegisteredEvent(object sender, ValueEvent<Type> value)
+        {
+            triggers.Add(value.Value, (Trigger)sender);
+        }
+
+
+        void trigger_DeregisteredEvent(object sender, ValueEvent<Type> value)
+        {
+            triggers.Remove(value.Value, (Trigger)sender);
         }
     }
 }

@@ -44,8 +44,9 @@
   <ItemGroup>
     <Compile Include="AgentTest.cs" />
     <Compile Include="Entities\MapEntities\TileTest.cs" />
-    <Compile Include="GameManagerTest.cs" />
+    <Compile Include="GameManagement\GameManagerTest.cs" />
     <Compile Include="GameEngineTest.cs" />
+    <Compile Include="GameManagement\TriggerManagerTest.cs" />
     <Compile Include="GameMapTest.cs" />
     <Compile Include="GameWorldTest.cs" />
     <Compile Include="Percepts\VisionTest.cs" />

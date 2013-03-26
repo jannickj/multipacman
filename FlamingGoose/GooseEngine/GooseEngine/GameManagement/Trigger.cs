@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GooseEngine.Data.GenericEvents;
 
 namespace GooseEngine.GameManagement
 {
     public abstract class Trigger
     {
+        internal virtual event ValueHandler<Type> RegisteredEvent;
+        internal virtual event ValueHandler<Type> DeregisteredEvent;
+
         public abstract ICollection<Type> Events
         {
             get;
@@ -19,6 +23,8 @@ namespace GooseEngine.GameManagement
 
     public class Trigger<T> : Trigger where T : GameEvent 
     {
+        
+
         private ICollection<Predicate<T>> conditions;
         private ICollection<Action<T>> actions;
        
