@@ -39,7 +39,7 @@ namespace GooseEngine
         {
             get
             {
-                if(center.X + x > burstSize.Width || center.X + x < 0 || center.Y + y > burstSize.Height || center.Y + y < 0 )
+                if(center.X + x > burstSize.Width + 1 || center.X + x < 0 || center.Y + y > burstSize.Height + 1 || center.Y + y < 0 )
                 {
                     Tile t = new Tile();
                     t.AddEntity(outofmapzone);
@@ -57,11 +57,13 @@ namespace GooseEngine
         {
             get
             {
-                int startx = center.X - range;
-                //startx = startx < 0 ? 0 : startx;
+				int startx = x - range;
+//                int startx = center.X - range;
+//                //startx = startx < 0 ? 0 : startx;
                 
-                int starty = center.Y - range;
-                //starty = starty < 0 ? 0 : starty;
+				int starty = y - range;
+//                int starty = center.Y - range;
+//                //starty = starty < 0 ? 0 : starty;
 
                 int rsize = range * 2 + 1;
                 //int rsizeX = rsize > burstSize.Width + x ? burstSize.Width + x : rsize;

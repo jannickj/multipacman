@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace GooseEngine.Data
 {
@@ -16,6 +17,12 @@ namespace GooseEngine.Data
             this.y = y;
 
         }
+
+		public Vector(Point origin, Point destination)
+		{
+			x = destination.X - origin.X;
+			y = destination.Y - origin.Y;
+		}
 
         public int X
         {

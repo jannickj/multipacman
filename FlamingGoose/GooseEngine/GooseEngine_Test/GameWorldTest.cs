@@ -28,7 +28,7 @@ namespace GooseEngine_Test
 
             GameWorld gm = new GameWorld(map);
 
-            Vision v = gm.View(new Point(2,2),2);
+            Vision v = gm.View(new Point(2,2),2, new Player());
 
            
             int expected_count = 0;

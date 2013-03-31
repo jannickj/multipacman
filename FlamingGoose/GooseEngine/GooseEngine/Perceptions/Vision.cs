@@ -13,16 +13,53 @@ namespace GooseEngine.Percepts
     {
         private List<KeyValuePair<Point, Tile>> visibleTiles = new List<KeyValuePair<Point, Tile>>();
         private Grid<Tile> grid;
+		private Entity owner;
 
-        public Vision(Grid<Tile> grid)
+        public Vision(Grid<Tile> grid, Entity owner)
         {
             this.grid = grid;
+			this.owner = owner;
+			FindVisibleTiles ();
         }
+
+		public Entity Owner {
+			get { return owner;}
+		}
 
         public ICollection<KeyValuePair<Point, Tile>> VisibleTiles {
 			get { return visibleTiles; }
-			private set;
         }
+
+		private void FindVisibleTiles2()
+		{
+			HashSet<Point> explored = new HashSet<Point> ();
+			HashSet<Point> frontier = new HashSet<Point> ();
+//			Point current = grid.Center;
+			frontier.Add (grid.Center);
+
+			foreach (Point f in frontier) {
+				frontier.Remove(f);
+				explored.Add(f);
+			
+				foreach (Point p in grid.getAdjacent(f)) {
+					if (isTileVisible(p)) 
+					{
+						visibleTiles.Add(new KeyValuePair<Point, Tile>(p, grid[p.X,p.Y]));
+						
+						if (!grid[p.X, p.Y].IsVisionBlocking (owner) && !explored.Contains(p))
+							frontier.Add(p);
+					}
+				}
+			}
+		}
+
+		private void FindVisibleTiles()
+		{
+			for (int x = 0; x < grid.Size.Width; x++)
+				for (int y = 0; y < grid.Size.Height; y++)
+					if (isTileVisible (new Point (x, y)))
+						visibleTiles.Add (new KeyValuePair<Point, Tile> (new Point (x, y), grid [x, y]));
+		}
 
 		private bool isTileVisible(Point tile)
 		{
@@ -32,17 +69,48 @@ namespace GooseEngine.Percepts
 				new Point(0,1), 
 				new Point(1,1) };
 
-			IEnumerable<Point> centerCorners = cornerize.Select (corner => corner + grid.Center); // should be done only once for efficiency
-			IEnumerable<Point> tileCorners = cornerize.Select (corner => corner + grid.Center);
+			IEnumerable<Point> centerCorners = cornerize.Select (corner => corner + new Size(grid.Center)); // should be done only once for efficiency
+			IEnumerable<Point> tileCorners = cornerize.Select (corner => corner + new Size(tile));
 
-			// check if ANY corner of the center tile connects to ALL corners of the destination tile
-			return centerCorners.Any (cc => tileCorners.All (tc => connectCorner (cc, tc)));
+			if (grid [tile.X, tile.Y].IsVisionBlocking (owner)) {
+				// if the destination tile is vision blocking, we check if ANY corner of the center tile connects to any two corners of the destination tile
+				return centerCorners.Any (cc => tileCorners.Count (tc => connectCorner (cc, tc)) >= 2);
+			} else {
+				// otherwise, check if ANY corner of the center tile connects to ALL corners of the destination tile
+				return centerCorners.Any (cc => tileCorners.All (tc => connectCorner (cc, tc)));
+			}
 		}
 
 		private bool connectCorner(Point origin, Point destination)
 		{
-			for (int i = Math.Min(origin.X, destination.X); i < Math.Max(origin.X, destination.X); i++) {
+			Vector v = new Vector (origin, destination);
+			foreach (Point p in walkAlongVector(v)) {
+				Point transp = origin + new Size(p);
+				bool blocking = grid[transp.X, transp.Y].IsVisionBlocking(owner);
+				if ( grid[transp.X, transp.Y].IsVisionBlocking(owner))
+					return false;
+			}
 
+			return true;
+		}
+
+		private IEnumerable<Point> walkAlongVector(Vector v)
+		{
+			double linepiece = Math.Abs ((double)v.Y / (double)v.X);
+			for (int i = 0; i < Math.Abs(v.X); i++) {
+				int start = (int)Math.Floor (i * linepiece);
+				int stop = (int)Math.Ceiling ((i + 1) * linepiece);
+				for (int j = start; j < stop; j++) {
+					int x = i, y = j;
+
+					// if any of the vector's coordinates are negative, offsets change:
+					if (v.X < 0)
+						x = (-1 * x) - 1;
+					if (v.Y < 0)
+						y = (-1 * y) - 1;
+
+					yield return new Point (x, y);
+				}
 			}
 		}
 

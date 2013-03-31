@@ -19,12 +19,9 @@ namespace GooseEngine
             this.map = map;
         }
 
-        public Vision View(Point p, int range)
+        public Vision View(Point p, int range, Entity entity)
         {
-            Vision v = new Vision(map[p.X,p.Y,range]);
-
-            
-
+            Vision v = new Vision(map[p.X,p.Y,range], entity);
             return v;
 
         }

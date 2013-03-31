@@ -38,5 +38,10 @@ namespace GooseEngine.Entities.MapEntities
             }
         }
 
+		public bool IsVisionBlocking(Entity entity)
+		{
+			return entities.Any (e => e.IsVisionBlocking(entity));
+		}
+
     }
 }
