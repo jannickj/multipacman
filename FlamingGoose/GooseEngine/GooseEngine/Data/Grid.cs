@@ -11,7 +11,15 @@ namespace GooseEngine.Data
     {
         private T[,] data;
         private Size size;
-		public Point Center { get; private set; }
+        private Point center;
+       
+		public Point Center 
+        {
+            get
+            {
+                return center;
+            }
+        }
 
         public T this[int x, int y]
         {
@@ -32,7 +40,7 @@ namespace GooseEngine.Data
         public Grid(T[,] data, Point center)
         {
             this.data = data;
-            Center = center;
+            this.center = center;
             size = new Size(data.GetLength(0), data.GetLength(1));
            
         }

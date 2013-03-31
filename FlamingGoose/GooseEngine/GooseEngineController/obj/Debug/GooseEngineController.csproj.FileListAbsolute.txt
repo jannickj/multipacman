@@ -1,0 +1,7 @@
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngineController\bin\Debug\GooseEngineController.dll
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngineController\bin\Debug\GooseEngineController.pdb
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngineController\bin\Debug\GooseEngine.dll
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngineController\bin\Debug\GooseEngine.pdb
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngineController\obj\Debug\GooseEngineController.csprojResolveAssemblyReference.cache
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngineController\obj\Debug\GooseEngineController.dll
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngineController\obj\Debug\GooseEngineController.pdb

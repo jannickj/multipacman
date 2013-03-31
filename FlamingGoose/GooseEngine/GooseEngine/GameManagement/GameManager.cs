@@ -7,7 +7,7 @@ using GooseEngine.GameManagement;
 using GooseEngine.Data;
 using GooseEngine.Interfaces;
 
-namespace GameEngine.ActionManagement
+namespace GooseEngine.ActionManagement
 {
     internal class GameManager : IGameManager
     {
@@ -15,12 +15,46 @@ namespace GameEngine.ActionManagement
         private HashSet<Entity> trackedEntities = new HashSet<Entity>();
         private HashSet<GameAction> runningActions = new HashSet<GameAction>();
         private TriggerManager triggerManager = new TriggerManager();
-        
-        public void Execute(GameAction action)
+        private Queue<GameAction> awaitingActions = new Queue<GameAction>();
+        private GameWorld world;
+
+
+        internal GameManager()
         {
-            runningActions.Add(action);
-            action.Completed += action_Completed;
-            action.Fire(this);
+
+        }
+
+        public GameManager(GameWorld world)
+        {
+            this.world = world;
+        }
+        
+        public void ExecuteActions()
+        {
+            List<GameAction> actions;
+            lock(this)
+            {
+                actions = awaitingActions.ToList();
+                awaitingActions.Clear();
+            }
+
+            foreach (GameAction action in actions)
+            {
+                runningActions.Add(action);
+                action.Completed += action_Completed;
+                action.World = this.world;
+                action.Fire(this);
+            }
+        }
+
+        public void Queue(GameAction action)
+        {
+            lock (this)
+            {
+                awaitingActions.Enqueue(action);
+                
+            }
+
         }
 
         public ICollection<GameAction> RunningActions
@@ -60,6 +94,11 @@ namespace GameEngine.ActionManagement
             this.triggerManager.Deregister(trigger);
         }
 
+        public GameTimer CreateTimer(Action action)
+        {
+            return new GameTimer(action);
+        }
+
         #region EVENTS
 
         void action_Completed(object sender, EventArgs e)
@@ -76,5 +115,6 @@ namespace GameEngine.ActionManagement
         }
 
         #endregion
+
     }
 }

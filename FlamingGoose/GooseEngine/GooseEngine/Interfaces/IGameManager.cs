@@ -14,10 +14,12 @@ namespace GooseEngine.Interfaces
 
         void RemoveEntity(Entity entity);
 
-        void Execute(GameAction action);
+        void Queue(GameAction action);
 
         void Register(Trigger trigger);
 
         void Deregister(Trigger trigger);
+
+        GameTimer CreateTimer(Action action);
     }
 }

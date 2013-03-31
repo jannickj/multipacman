@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using GameEngine;
-using GameEngine.ActionManagement;
 using GooseEngine;
+using GooseEngine.ActionManagement;
 using GooseEngine.GameManagement;
 using GooseEngine.GameManagement.Actions;
 using GooseEngine.GameManagement.Events;
@@ -42,7 +41,7 @@ namespace GooseEngine_Test.GameManagement
             expectedTaker.Register(t);
             gem.AddEntity(expectedTaker);
 
-            gem.Execute(ga);
+            gem.Queue(ga);
 
             Assert.AreEqual(expectedDealer, actualDealer);
             Assert.AreEqual(expectedTaker, actualTaker);
@@ -74,7 +73,7 @@ namespace GooseEngine_Test.GameManagement
             expectedTaker.Register(postT);
             gem.AddEntity(expectedTaker);
 
-            gem.Execute(ga);
+            gem.Queue(ga);
 
             Assert.AreEqual(expectedDealer, actualDealer);
             Assert.AreEqual(expectedTaker, actualTaker);
@@ -101,8 +100,8 @@ namespace GooseEngine_Test.GameManagement
             gem.AddEntity(A);
             gem.AddEntity(B);
 
-            gem.Execute(ga1);
-            gem.Execute(ga2);
+            gem.Queue(ga1);
+            gem.Queue(ga2);
 
             int expectedTimeFired = 2;
 
@@ -128,7 +127,7 @@ namespace GooseEngine_Test.GameManagement
             gem.Register(T);
             gem.Deregister(T);
 
-            gem.Execute(ga1);
+            gem.Queue(ga1);
 
             Assert.IsFalse(eventFired);
 
@@ -154,7 +153,7 @@ namespace GooseEngine_Test.GameManagement
 
             B.Deregister(T);
 
-            gem.Execute(ga1);
+            gem.Queue(ga1);
 
             Assert.IsFalse(eventFired);
 
@@ -178,7 +177,7 @@ namespace GooseEngine_Test.GameManagement
             gem.AddEntity(B);
             B.Register(T);
 
-            gem.Execute(ga1);
+            gem.Queue(ga1);
 
             Assert.IsTrue(eventFired);
 

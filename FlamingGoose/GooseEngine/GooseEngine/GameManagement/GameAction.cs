@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GameEngine.ActionManagement;
+using GooseEngine.ActionManagement;
 using GooseEngine.Interfaces;
 
 namespace GooseEngine.GameManagement
 {
     public abstract class GameAction
-    {        
+    {
+        private GameWorld world;
+
         public GameAction()
         { 
 
@@ -30,5 +32,17 @@ namespace GooseEngine.GameManagement
                 Completed(this, new EventArgs());
         }
 
+
+        internal GameWorld World
+        {
+            get
+            {
+                return world;
+            }
+            set
+            {
+                this.world = value;
+            }
+        }
     }
 }
