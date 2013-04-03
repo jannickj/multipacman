@@ -10,24 +10,29 @@ namespace iilang
 		public override string XmlTag { get {return "number";} }
 		public double Value { get; private set; }
 		
-		public EisNumeral (double value)
+		public EisNumeral (Double value)
 		{
 			Value = value;
 		}
 		
 		public EisNumeral()
 		{
-			Value = 0;
+			Value = Double.NaN;
 		}
 		
 		public override void WriteXml(XmlWriter writer)
 		{
+			if (Double.IsNaN (Value))
+				throw new MissingXmlAttributeException ("Error: Value not set.");
+
 			writer.WriteAttributeString ("value", Value.ToString());
 		}
 		
 		public override void ReadXml (XmlReader reader)
 		{
 			reader.MoveToContent ();
+			if (reader.AttributeCount == 0)
+				throw new MissingXmlAttributeException (@"Missing XML attribute ""value"".");
 			Value = Convert.ToDouble (reader ["value"]);
 			reader.Read ();
 		}

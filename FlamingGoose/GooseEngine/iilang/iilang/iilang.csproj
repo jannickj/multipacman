@@ -51,7 +51,11 @@
     <Compile Include="EisMultiParameter.cs" />
     <Compile Include="EisParameter.cs" />
     <Compile Include="EisIILangElement.cs" />
+    <Compile Include="Exceptions\MissingXmlAttributeException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
 </Project>

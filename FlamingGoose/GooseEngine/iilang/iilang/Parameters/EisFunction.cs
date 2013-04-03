@@ -28,6 +28,8 @@ namespace iilang
 
 		public override void WriteXml(XmlWriter writer)
 		{
+			if (String.IsNullOrEmpty (Name)) 
+				throw new MissingXmlAttributeException (@"String ""Name"" must not be empty");
 			writer.WriteAttributeString ("name", Name);
 
 			base.WriteXml (writer);
@@ -36,6 +38,8 @@ namespace iilang
 		public override void ReadXml (System.Xml.XmlReader reader)
 		{
 			reader.MoveToContent ();
+			if (reader.AttributeCount == 0)
+				throw new MissingXmlAttributeException (@"Missing XML attribute ""name"".");
 			Name = reader ["name"];
 			base.ReadXml (reader);
 		}
