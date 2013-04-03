@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using GooseEngine.ActionManagement;
 using GooseEngine.GameManagement;
+using GooseEngine.GameManagement.Events;
 using GooseEngine.Interfaces;
 
 namespace GooseEngine
@@ -13,31 +14,28 @@ namespace GooseEngine
     public class GameEngine
     {
         private GameManager manager;
+        private bool stopEngine;
 
         public GameEngine(IGameManager manager)
         {
             this.manager = (GameManager)manager;
+            this.manager.Register(new Trigger<EngineCloseEvent>(_ => stopEngine = true));
+
 
         }
 
         public void Start()
         {
-            while (true)
+            stopEngine = false;
+
+            while (!stopEngine)
             {
-                update();
+                Thread.Sleep(System.Threading.Timeout.Infinite);
+                manager.ExecuteActions();
+
             }
 
         }
-
-        private void update()
-        {
-            manager.ExecuteActions();
-            Thread.Sleep(System.Threading.Timeout.Infinite);
-        }
-
-
-
-
   
     }
 }

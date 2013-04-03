@@ -7,6 +7,9 @@ using GooseEngine.Entities.Units;
 using NUnit.Framework;
 using GooseEngine.GameManagement.Actions;
 using System.Collections.Generic;
+using GooseEngine.GameManagement;
+using GooseEngine.GameManagement.Events;
+using GooseEngine.Data;
 
 namespace GooseEngine_Test
 {
@@ -27,9 +30,15 @@ namespace GooseEngine_Test
 
             Thread thread = new Thread(new ThreadStart(() => engine.Start()));
 
-            MoveUnit move = new MoveUnit(a, new GooseEngine.Data.Vector(0,1), 0.01);
+            MoveUnit move = new MoveUnit(a, new Vector(0,1), 0.01);
+
+            manager.Register(new Trigger<UnitMovePostEvent>(_ => manager.Queue(new CloseEngine())));
 
             manager.Queue(move);
+
+            thread.Start();
+
+            Assert.True(thread.Join(500));
 
 
 

@@ -42,13 +42,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\GenericEvents\ValueEvent.cs" />
+    <Compile Include="GameManagement\Actions\CloseEngine.cs" />
     <Compile Include="GameManagement\Actions\DamageUnitTarget.cs" />
+    <Compile Include="GameManagement\Events\EngineCloseEvent.cs" />
     <Compile Include="GameManagement\Events\UnitTakesDamagePostEvent.cs" />
     <Compile Include="GameManagement\Events\UnitTakesDamagePreEvent.cs" />
     <Compile Include="GameManagement\Events\UnitMovePostEvent.cs" />
     <Compile Include="GameManagement\GameAction.cs" />
-    <Compile Include="GameManagement\Actions\MoveAction.cs" />
-    <Compile Include="GameManagement\Events\UnitMoveBeforeEvent.cs" />
+    <Compile Include="GameManagement\Actions\MoveUnit.cs" />
+    <Compile Include="GameManagement\Events\UnitMovePreEvent.cs" />
     <Compile Include="GameManagement\GameEvent.cs" />
     <Compile Include="GameManagement\GameTimer.cs" />
     <Compile Include="GameManagement\Interfaces\ITrigger.cs" />

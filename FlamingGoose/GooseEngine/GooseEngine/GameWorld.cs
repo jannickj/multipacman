@@ -26,9 +26,9 @@ namespace GooseEngine
 
         }
 
-        public void AddEntity(Point point, Entity entity)
+        public void AddEntity(Point p, Entity entity)
         {
-            throw new NotImplementedException();
+            map[p.X, p.Y].AddEntity(entity);
         }
 
         public Point GetEntityPosition(Entity entity)
