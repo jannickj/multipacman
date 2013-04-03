@@ -58,7 +58,16 @@ namespace GooseEngine.Percepts
 			for (int x = 0; x < grid.Size.Width; x++)
 				for (int y = 0; y < grid.Size.Height; y++)
 					if (isTileVisible (new Point (x, y)))
-						visibleTiles.Add (new KeyValuePair<Point, Tile> (new Point (x, y), grid [x, y]));
+						visibleTiles.Add (new KeyValuePair<Point, Tile> (new Point (x, y) - new Size(grid.Center), grid [x, y]));
+		}
+
+		public List<KeyValuePair<Point,Tile>> AllTiles()
+		{
+			List<KeyValuePair<Point,Tile>> tiles = new List<KeyValuePair<Point, Tile>> ();
+			for (int x = 0; x < grid.Size.Width; x++)
+				for (int y = 0; y < grid.Size.Height; y++)
+					tiles.Add (new KeyValuePair<Point, Tile> (new Point (x, y) - new Size(grid.Center), grid [x, y]));
+			return tiles;
 		}
 
 		private bool isTileVisible(Point tile)
