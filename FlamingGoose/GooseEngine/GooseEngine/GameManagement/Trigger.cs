@@ -12,7 +12,7 @@ namespace GooseEngine.GameManagement
 
         public abstract ICollection<Type> Events
         {
-            get;
+            get; 
         }
 
         internal abstract bool CheckCondition(GameEvent evt);
