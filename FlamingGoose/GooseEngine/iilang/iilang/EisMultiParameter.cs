@@ -27,11 +27,11 @@ namespace iilang
 			if (reader.IsEmptyElement) {
 				reader.Read ();
 			}
-			
+
+			reader.ReadStartElement();
+			reader.MoveToContent();
+
 			while (reader.MoveToContent() == XmlNodeType.Element) {
-				
-				reader.ReadStartElement();
-				reader.MoveToContent();
 				
 				EisParameter p = EisParameter.fromString(reader.LocalName);
 				p.ReadXml(reader);

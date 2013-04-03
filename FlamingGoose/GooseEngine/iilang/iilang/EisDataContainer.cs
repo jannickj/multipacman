@@ -27,6 +27,8 @@ namespace iilang
 		public override void ReadXml (System.Xml.XmlReader reader)
 		{
 			reader.MoveToContent ();
+			if (reader.AttributeCount == 0)
+				throw new MissingXmlAttributeException (@"Missing XML attribute ""value"".");
 			Name = reader ["name"];
 
 			if (reader.IsEmptyElement) {
@@ -51,6 +53,9 @@ namespace iilang
 
 		public override void WriteXml (System.Xml.XmlWriter writer)
 		{
+			if (String.IsNullOrEmpty (Name))
+				throw new MissingXmlAttributeException (@"String ""Name"" must not be empty");
+
 			writer.WriteAttributeString ("name", Name);
 			foreach (EisParameter p in Parameters) {
 				writer.WriteStartElement(ChildXmlTag);

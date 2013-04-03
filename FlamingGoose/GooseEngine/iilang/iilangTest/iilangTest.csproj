@@ -42,7 +42,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContainerTest.cs" />
-    <Compile Include="ParameterTest.cs" />
+    <Compile Include="XmlSerializationTest.cs" />
+    <Compile Include="XmlDeserializationTest.cs" />
   </ItemGroup>
 </Project>

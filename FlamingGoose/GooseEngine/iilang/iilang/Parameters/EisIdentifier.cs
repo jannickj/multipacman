@@ -17,12 +17,13 @@ namespace iilang
 		}
 
 		public EisIdentifier()
-		{
-			Value = "null";
-		}
+		{ }
 
 		public override void WriteXml(XmlWriter writer)
 		{
+			if (String.IsNullOrEmpty (Value))
+				throw new MissingXmlAttributeException ("Error: Value not set.");
+
 			writer.WriteAttributeString ("value", Value);
 		}
 
