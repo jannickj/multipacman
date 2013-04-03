@@ -4,22 +4,23 @@ using System.Xml.Serialization;
 using System.Xml.Linq;
 using System.Collections;
 using System.Xml;
+using System.Linq;
 
 namespace iilang
 {
 	[XmlRoot("function")]
-	public class Function : MultiParameter
+	public class EisFunction : EisMultiParameter
 	{
 		public override string XmlTag{ get { return "function"; } }
 		public string Name { get; protected set; }
 //		public List<Parameter> Parameters { get; private set; }
 
-		public Function () 
+		public EisFunction () : base()
 		{ 
 //			Parameters = new List<Parameter> ();
 		}
 
-		public Function(String name, params Parameter[] ps)
+		public EisFunction(String name, params EisParameter[] ps) : base(ps)
 		{
 			Name = name;
 //			Parameters = new List<Parameter> (ps);
@@ -29,11 +30,7 @@ namespace iilang
 		{
 			writer.WriteAttributeString ("name", Name);
 
-			foreach (IILangElement p in Parameters) {
-				writer.WriteStartElement(p.XmlTag);
-				p.WriteXml(writer);
-				writer.WriteEndElement();
-			}
+			base.WriteXml (writer);
 		}
 
 		public override void ReadXml (System.Xml.XmlReader reader)
@@ -41,6 +38,15 @@ namespace iilang
 			reader.MoveToContent ();
 			Name = reader ["name"];
 			base.ReadXml (reader);
+		}
+
+		public override bool Equals (object obj)
+		{
+			if (this.GetType () != obj.GetType())
+				return false;
+			
+			EisFunction fun = (EisFunction)obj;
+			return (Parameters.SequenceEqual (fun.Parameters) && Name.Equals(fun.Name));
 		}
 	}
 }

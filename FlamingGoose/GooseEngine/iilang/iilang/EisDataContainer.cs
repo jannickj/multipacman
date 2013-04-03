@@ -2,23 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using System.Xml;
+using System.Linq;
 
 namespace iilang
 {
-	public abstract class DataContainer : IILangElement
+	public abstract class EisDataContainer : EisIILangElement
 	{
 		public abstract string ChildXmlTag{ get; }
 		public string Name { get; private set; }
-		public List<Parameter> Parameters { get; private set; }
+		public List<EisParameter> Parameters { get; private set; }
 
-		public DataContainer () {
-			Parameters = new List<Parameter> ();
+		public EisDataContainer () {
+			Parameters = new List<EisParameter> ();
 		}
 
-		public DataContainer (String name, Parameter[] ps)
+		public EisDataContainer (String name, EisParameter[] ps)
 		{
 			Name = name;
-			Parameters = new List<Parameter> (ps);
+			Parameters = new List<EisParameter> (ps);
 		}
 
 		#region implemented abstract members of IILangElement
@@ -38,7 +39,7 @@ namespace iilang
 					reader.ReadStartElement();
 					reader.MoveToContent();
 
-					Parameter p = Parameter.fromString(reader.LocalName);
+					EisParameter p = EisParameter.fromString(reader.LocalName);
 					p.ReadXml(reader);
 					Parameters.Add(p);
 					reader.Read();
@@ -51,7 +52,7 @@ namespace iilang
 		public override void WriteXml (System.Xml.XmlWriter writer)
 		{
 			writer.WriteAttributeString ("name", Name);
-			foreach (Parameter p in Parameters) {
+			foreach (EisParameter p in Parameters) {
 				writer.WriteStartElement(ChildXmlTag);
 				writer.WriteStartElement(p.XmlTag);
 				p.WriteXml(writer);
@@ -61,6 +62,15 @@ namespace iilang
 		}
 
 		#endregion
+
+		public override bool Equals (object obj)
+		{
+			if (this.GetType () != obj.GetType())
+				return false;
+			
+			EisDataContainer dc = (EisDataContainer)obj;
+			return (Parameters.SequenceEqual (dc.Parameters) && Name.Equals(dc.Name));
+		}
 	}
 
 }

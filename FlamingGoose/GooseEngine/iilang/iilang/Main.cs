@@ -28,7 +28,7 @@ namespace iilang
 //			Console.WriteLine (e);
 
 			
-			XmlSerializer ser = new XmlSerializer (typeof(Percept));
+			XmlSerializer ser = new XmlSerializer (typeof(EisPercept));
 			XDocument xwriter = new XDocument ();
 			XDocument xreader = XDocument.Parse(
 				@"<percept name=""hej"">

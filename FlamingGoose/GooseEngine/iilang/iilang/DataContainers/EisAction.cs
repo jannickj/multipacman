@@ -5,16 +5,17 @@ namespace iilang
 {
 
 	[XmlRoot("action")]
-	public class Action : DataContainer
+	public class EisAction : EisDataContainer
 	{
 		public override string XmlTag { get { return "action"; } }
 		public override string ChildXmlTag { get { return "actionParameter"; } }
 		
-		public Action () {
+		public EisAction () {
 		}
 		
-		public Action (string name, params Parameter[] ps) 
+		public EisAction (string name, params EisParameter[] ps) 
 		: base (name, ps) { }
+
 	}
 
 }

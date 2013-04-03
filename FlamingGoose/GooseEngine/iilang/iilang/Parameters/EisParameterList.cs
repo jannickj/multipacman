@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml;
+using System.Collections;
+using System.Linq;
 
 namespace iilang
 {
 	[XmlRoot("parameterList")]
-	public class ParameterList : MultiParameter
+	public class EisParameterList : EisMultiParameter
 	{
 		public override string XmlTag{ get { return "parameterList"; } }
 //		public List<Parameter> Parameters { get; private set; }
 
-		public ParameterList () {
-//			Parameters = new List<Parameter> ();
-		}
+		public EisParameterList () 
+			: base() 
+		{ }
 
-		public ParameterList (params Parameter[] ps)
-		{
-//			Parameters = new List<Parameter> (ps);
-		}
+		public EisParameterList (params EisParameter[] ps) 
+			: base(ps) 
+		{ }
 
 		#region implemented abstract members of IILangElement
 
@@ -31,14 +32,19 @@ namespace iilang
 
 		public override void WriteXml (System.Xml.XmlWriter writer)
 		{
-			foreach (IILangElement p in Parameters) {
-				writer.WriteStartElement(p.XmlTag);
-				p.WriteXml(writer);
-				writer.WriteEndElement();
-			}
+			base.WriteXml (writer);
 		}
 
 		#endregion
+
+		public override bool Equals (object obj)
+		{
+			if (this.GetType () != obj.GetType())
+				return false;
+
+			EisParameterList pl = (EisParameterList)obj;
+			return (Parameters.SequenceEqual (pl.Parameters));
+		}
 	}
 }
 

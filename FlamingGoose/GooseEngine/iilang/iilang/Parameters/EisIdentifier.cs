@@ -6,17 +6,17 @@ using System.Xml;
 namespace iilang
 {
 	[XmlRoot("identifier")]
-	public class Identifier : Parameter
+	public class EisIdentifier : EisParameter
 	{
 		public override string XmlTag { get {return "identifier";} }
 		public string Value { get; private set; }
 
-		public Identifier (string value)
+		public EisIdentifier (string value)
 		{
 			Value = value;
 		}
 
-		public Identifier()
+		public EisIdentifier()
 		{
 			Value = "null";
 		}
@@ -31,6 +31,15 @@ namespace iilang
 			reader.MoveToContent ();
 			Value = reader ["value"];
 			reader.Read ();
+		}
+
+		public override bool Equals (object obj)
+		{
+			if (this.GetType () != obj.GetType())
+				return false;
+
+			EisIdentifier id = (EisIdentifier)obj;
+			return (Value == id.Value);
 		}
 	}
 }

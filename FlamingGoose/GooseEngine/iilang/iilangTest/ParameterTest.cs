@@ -13,10 +13,10 @@ namespace iilangTest
 		[Test()]
 		public void IdentifierToXml ()
 		{
-			Identifier actual_src = new Identifier ("test_id");
+			EisIdentifier actual_src = new EisIdentifier ("test_id");
 			XDocument actual = new XDocument ();
 
-			XmlSerializer serializer = new XmlSerializer(typeof(Identifier));
+			XmlSerializer serializer = new XmlSerializer(typeof(EisIdentifier));
 			serializer.Serialize (actual.CreateWriter (), actual_src);
 
 			XDocument expected = XDocument.Parse (
@@ -29,10 +29,10 @@ namespace iilangTest
 		[Test()]
 		public void NumeralToXml_SingleNumeral42_ReturnXmlCorrectXml () 
 		{
-			Numeral actual_src = new Numeral (42);
+			EisNumeral actual_src = new EisNumeral (42);
 			XDocument actual = new XDocument ();
 			
-			XmlSerializer serializer = new XmlSerializer(typeof(Numeral));
+			XmlSerializer serializer = new XmlSerializer(typeof(EisNumeral));
 			serializer.Serialize (actual.CreateWriter (), actual_src);
 			
 			XDocument expected = XDocument.Parse (
@@ -45,10 +45,10 @@ namespace iilangTest
 		[Test()]
 		public void FunctionWithContentToXml_ReturnXmlWithContentAsChildren ()
 		{
-			Function actual_src = new Function( "test_fun", new Numeral(42) );
+			EisFunction actual_src = new EisFunction( "test_fun", new EisNumeral(42) );
 			XDocument actual = new XDocument ();
 			
-			XmlSerializer serializer = new XmlSerializer(typeof(Function));
+			XmlSerializer serializer = new XmlSerializer(typeof(EisFunction));
 			serializer.Serialize (actual.CreateWriter (), actual_src);
 			
 			XDocument expected = XDocument.Parse (
@@ -69,10 +69,10 @@ namespace iilangTest
 		[Test()]
 		public void ParameterListWithContentToXml_ReturnXmlWithContentAsChildren ()
 		{
-			ParameterList actual_src = new ParameterList (new Identifier ("test_id"), new Numeral (42));
+			EisParameterList actual_src = new EisParameterList (new EisIdentifier ("test_id"), new EisNumeral (42));
 			XDocument actual = new XDocument ();
 			
-			XmlSerializer serializer = new XmlSerializer(typeof(ParameterList));
+			XmlSerializer serializer = new XmlSerializer(typeof(EisParameterList));
 			serializer.Serialize (actual.CreateWriter (), actual_src);
 			
 			XDocument expected = XDocument.Parse (

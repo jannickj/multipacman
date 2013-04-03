@@ -35,21 +35,22 @@
     <Reference Include="nunit.framework" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Parameters\ParameterList.cs" />
-    <Compile Include="Parameters\Numeral.cs" />
-    <Compile Include="Parameters\Function.cs" />
-    <Compile Include="Parameters\Identifier.cs" />
-    <Compile Include="DataContainers\Percept.cs" />
-    <Compile Include="MultiParameter.cs" />
-    <Compile Include="SingleParameter.cs" />
-    <Compile Include="IILangElement.cs" />
-    <Compile Include="DataContainer.cs" />
-    <Compile Include="Parameter.cs" />
-    <Compile Include="DataContainers\Action.cs" />
+    <Compile Include="DataContainers\EisAction.cs" />
+    <Compile Include="DataContainers\EisPercept.cs" />
+    <Compile Include="Parameters\EisFunction.cs" />
+    <Compile Include="Parameters\EisIdentifier.cs" />
+    <Compile Include="Parameters\EisNumeral.cs" />
+    <Compile Include="Parameters\EisParameterList.cs" />
+    <Compile Include="EisDataContainer.cs" />
+    <Compile Include="EisMultiParameter.cs" />
+    <Compile Include="EisParameter.cs" />
+    <Compile Include="EisIILangElement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

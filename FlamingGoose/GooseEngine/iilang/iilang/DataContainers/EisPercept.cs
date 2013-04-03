@@ -6,15 +6,15 @@ using System.Xml.Serialization;
 namespace iilang
 {
 	[XmlRoot("percept")]
-	public class Percept : DataContainer
+	public class EisPercept : EisDataContainer
 	{
 		public override string XmlTag { get { return "percept"; } }
 		public override string ChildXmlTag { get { return "perceptParameter"; } }
 
-		public Percept () {
+		public EisPercept () {
 		}
 
-		public Percept (string name, params Parameter[] ps) 
+		public EisPercept (string name, params EisParameter[] ps) 
 		: base (name, ps) { }
 
 //		public XElement toXml ()

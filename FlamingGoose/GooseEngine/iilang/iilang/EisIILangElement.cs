@@ -3,11 +3,11 @@ using System.Xml.Serialization;
 
 namespace iilang
 {
-	public abstract class IILangElement : IXmlSerializable
+	public abstract class EisIILangElement : IXmlSerializable
 	{
 		public abstract string XmlTag{ get; }
 
-		public IILangElement () {
+		public EisIILangElement () {
 		
 		}
 
