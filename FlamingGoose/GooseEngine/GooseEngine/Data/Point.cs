@@ -43,7 +43,7 @@ namespace GooseEngine.Data
 
 		public static Point operator -(Point p, Vector v)
 		{
-			return new Point (p.X + v.X, p.Y + v.Y);
+			return new Point (p.X - v.X, p.Y - v.Y);
 		}
 		
 		public static Point operator -(Vector v, Point p)
