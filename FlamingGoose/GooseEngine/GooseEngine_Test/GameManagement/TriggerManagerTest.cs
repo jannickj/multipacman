@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using GooseEngine;
 using GooseEngine.ActionManagement;
 using GooseEngine.GameManagement;

@@ -21,5 +21,10 @@ namespace GooseEngine.Interfaces
         void Deregister(Trigger trigger);
 
         GameTimer CreateTimer(Action action);
+
+        GameWorld World
+        {
+            get;
+        }
     }
 }

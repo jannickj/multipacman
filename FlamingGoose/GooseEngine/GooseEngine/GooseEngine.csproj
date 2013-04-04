@@ -34,7 +34,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -42,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\GenericEvents\ValueEvent.cs" />
+    <Compile Include="Data\Size.cs" />
     <Compile Include="GameManagement\Actions\CloseEngine.cs" />
     <Compile Include="GameManagement\Actions\DamageUnitTarget.cs" />
     <Compile Include="GameManagement\Events\EngineCloseEvent.cs" />

@@ -99,6 +99,14 @@ namespace GooseEngine.ActionManagement
             return new GameTimer(action);
         }
 
+        public GameWorld World
+        {
+            get
+            {
+                return this.world;
+            }
+        }
+
         #region EVENTS
 
         void action_Completed(object sender, EventArgs e)

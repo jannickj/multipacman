@@ -21,6 +21,7 @@ namespace GooseEngine
             this.manager = (GameManager)manager;
             this.manager.Register(new Trigger<EngineCloseEvent>(_ => stopEngine = true));
 
+           
 
         }
 

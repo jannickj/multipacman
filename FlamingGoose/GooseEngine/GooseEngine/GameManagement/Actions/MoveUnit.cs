@@ -13,7 +13,9 @@ namespace GooseEngine.GameManagement.Actions
 {
     public class MoveUnit : GameAction
     {
-
+        Unit unit;
+        Vector direction;
+        double time;
 
          ///<summary>
          ///Initializes a move action, which is used to move entities in a gameworld</summary>
@@ -23,7 +25,9 @@ namespace GooseEngine.GameManagement.Actions
          ///<param name="time"> the time in miliseconds that the move takes</param>
         public MoveUnit(Unit unit, Vector direction, double time)
         {
-
+            this.unit = unit;
+            this.direction = direction;
+            this.time = time;
         }
 
         protected override void Execute(IGameManager gem)
@@ -32,7 +36,8 @@ namespace GooseEngine.GameManagement.Actions
             gem.Raise(before);
             GameTimer gt = gem.CreateTimer(() =>
             {
-                //move unit with world
+                Point newloc = gem.World.GetEntityPosition(unit) + new Size(direction.ToPoint());
+                gem.World.SetEntityLocation(newloc, unit);
                 gem.Raise(new UnitMovePostEvent());
 
                 this.Complete();

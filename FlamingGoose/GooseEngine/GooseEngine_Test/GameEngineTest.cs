@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Threading;
 using GooseEngine.ActionManagement;
 using GooseEngine;
@@ -18,7 +17,7 @@ namespace GooseEngine_Test
     {
         
         [Test]
-        public void runningGame_TimedAction_TimedActionGets()
+        public void runningGame_MoveActionStarted_MoveActionCompletes()
         {
             GameWorld world = new GameWorld(new GameMap(new Size(2, 2)));
 

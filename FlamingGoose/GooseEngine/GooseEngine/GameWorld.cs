@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using GooseEngine.Entities.MapEntities;
@@ -11,6 +10,7 @@ namespace GooseEngine
     public class GameWorld
     {
         private GameMap map;
+        private Dictionary<Entity, Point> entlocs = new Dictionary<Entity, Point>();
 
 
         public GameWorld(GameMap map)
@@ -26,14 +26,21 @@ namespace GooseEngine
 
         }
 
-        public void AddEntity(Point p, Entity entity)
+        public void AddEntity(Point loc, Entity entity)
         {
-            map[p.X, p.Y].AddEntity(entity);
+            entlocs.Add(entity, loc);
+            map[loc.X, loc.Y].AddEntity(entity);
         }
 
         public Point GetEntityPosition(Entity entity)
         {
             throw new NotImplementedException();
+        }
+
+        internal void SetEntityLocation(Point loc, Entity entity)
+        {
+            
+            map[loc.X, loc.Y].AddEntity(entity);
         }
     }
 }
