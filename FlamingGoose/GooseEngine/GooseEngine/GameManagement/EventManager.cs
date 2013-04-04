@@ -5,11 +5,11 @@ using System.Text;
 using GooseEngine;
 using GooseEngine.GameManagement;
 using GooseEngine.Data;
-using GooseEngine.Interfaces;
+using System.Threading;
 
 namespace GooseEngine.ActionManagement
 {
-    internal class GameManager : IGameManager
+    public class EventManager 
     {
        
         private HashSet<Entity> trackedEntities = new HashSet<Entity>();
@@ -19,12 +19,12 @@ namespace GooseEngine.ActionManagement
         private GameWorld world;
 
 
-        internal GameManager()
+        internal EventManager()
         {
 
         }
 
-        public GameManager(GameWorld world)
+        public EventManager(GameWorld world)
         {
             this.world = world;
         }
@@ -52,6 +52,7 @@ namespace GooseEngine.ActionManagement
             lock (this)
             {
                 awaitingActions.Enqueue(action);
+                
                 
             }
 

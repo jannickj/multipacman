@@ -6,7 +6,8 @@ using System.Linq;
 
 namespace iilang
 {
-	public abstract class EisDataContainer : EisIILangElement
+#pragma warning disable
+    public abstract class EisDataContainer : EisIILangElement
 	{
 		public abstract string ChildXmlTag{ get; }
 		public string Name { get; private set; }

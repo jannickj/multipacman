@@ -5,7 +5,8 @@ using System.Xml;
 
 namespace iilang
 {
-	[XmlRoot("identifier")]
+#pragma warning disable
+    [XmlRoot("identifier")]
 	public class EisIdentifier : EisParameter
 	{
 		public override string XmlTag { get {return "identifier";} }

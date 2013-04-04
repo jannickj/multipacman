@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GooseEngine.ActionManagement;
-using GooseEngine.Interfaces;
 
 namespace GooseEngine.GameManagement
 {
@@ -19,12 +18,12 @@ namespace GooseEngine.GameManagement
 
         public event EventHandler Completed;
 
-        internal void Fire(IGameManager gem)
+        internal void Fire(EventManager gem)
         {
             this.Execute(gem);
         }
 
-        protected abstract void Execute(IGameManager gem);
+        protected abstract void Execute(EventManager gem);
 
         protected void Complete()
         {

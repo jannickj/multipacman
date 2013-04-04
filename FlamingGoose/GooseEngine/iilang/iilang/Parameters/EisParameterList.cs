@@ -8,7 +8,8 @@ using System.Linq;
 
 namespace iilang
 {
-	[XmlRoot("parameterList")]
+#pragma warning disable
+    [XmlRoot("parameterList")]
 	public class EisParameterList : EisMultiParameter
 	{
 		public override string XmlTag{ get { return "parameterList"; } }

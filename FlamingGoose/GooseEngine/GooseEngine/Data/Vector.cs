@@ -34,9 +34,15 @@ namespace GooseEngine.Data
             get { return y; }
         }
 
-        public Point ToPoint()
+        public Vector Direction
         {
-            return new Point(x, y);
+            get
+            {
+                int newX = x == 0 ? 0 : x/x;
+                int newY = x == 0 ? 0 : y/y;
+
+                return new Vector(newX, newY); 
+            }
         }
     }
 }

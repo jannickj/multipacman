@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 using GooseEngine.ActionManagement;
 using GooseEngine.GameManagement;
 using GooseEngine.GameManagement.Events;
-using GooseEngine.Interfaces;
 
 namespace GooseEngine
 {
     public class GameEngine
     {
-        private GameManager manager;
+        private EventManager manager;
         private bool stopEngine;
 
-        public GameEngine(IGameManager manager)
+        public GameEngine(EventManager manager)
         {
-            this.manager = (GameManager)manager;
+            this.manager = (EventManager)manager;
             this.manager.Register(new Trigger<EngineCloseEvent>(_ => stopEngine = true));
 
            

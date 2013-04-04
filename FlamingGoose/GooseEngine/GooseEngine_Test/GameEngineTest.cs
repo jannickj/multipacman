@@ -21,7 +21,7 @@ namespace GooseEngine_Test
         {
             GameWorld world = new GameWorld(new GameMap(new Size(2, 2)));
 
-            GameManager manager = new GameManager(world);
+            EventManager manager = new EventManager(world);
             Agent a = new Agent();
             world.AddEntity(new Point(0, 0), a);
             manager.AddEntity(a);

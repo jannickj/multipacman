@@ -5,3 +5,5 @@ C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilang\obj\x86
 C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilang\bin\Debug\iilang.exe
 C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilang\obj\x86\Debug\iilang.csprojResolveAssemblyReference.cache
 C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilang\obj\x86\Debug\iilang.exe
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilang\bin\Debug\GooseEngine.dll
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilang\bin\Debug\GooseEngine.pdb

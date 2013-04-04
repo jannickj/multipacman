@@ -11,7 +11,6 @@ using GooseEngine.Entities.MapEntities;
 using GooseEngine.Entities.Units;
 using GooseEngine.Enum;
 using NUnit.Framework;
-using GooseEngine.Interfaces;
 
 
 namespace GooseEngine_Test.GameManagement

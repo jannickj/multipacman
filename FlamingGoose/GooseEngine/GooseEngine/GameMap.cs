@@ -44,11 +44,11 @@ namespace GooseEngine
                     t.AddEntity(outofmapzone);
                     return t;
                 }
-                return tiles[center.X + x, center.Y + y];
+                return tiles[center.X + x, center.Y - y];
             }
             set
             {
-                tiles[center.X + x, center.Y + y] = value;
+                tiles[center.X + x, center.Y - y] = value;
             }
         }
 

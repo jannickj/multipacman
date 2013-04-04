@@ -4,7 +4,8 @@ using System.Xml;
 
 namespace iilang
 {
-	[XmlRoot("number")]
+#pragma warning disable
+    [XmlRoot("number")]
 	public class EisNumeral : EisParameter
 	{
 		public override string XmlTag { get {return "number";} }

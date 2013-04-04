@@ -7,7 +7,6 @@ using GooseEngine.ActionManagement;
 using GooseEngine.GameManagement.Events;
 using GooseEngine.Data;
 using GooseEngine.Entities;
-using GooseEngine.Interfaces;
 
 namespace GooseEngine.GameManagement.Actions
 {
@@ -26,11 +25,11 @@ namespace GooseEngine.GameManagement.Actions
         public MoveUnit(Unit unit, Vector direction, double time)
         {
             this.unit = unit;
-            this.direction = direction;
+            this.direction = direction.Direction;
             this.time = time;
         }
 
-        protected override void Execute(IGameManager gem)
+        protected override void Execute(EventManager gem)
         {
             UnitMovePreEvent before = new UnitMovePreEvent();
             gem.Raise(before);

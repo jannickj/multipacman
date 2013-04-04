@@ -5,7 +5,6 @@ using System.Text;
 using GooseEngine.ActionManagement;
 using GooseEngine.Entities;
 using GooseEngine.GameManagement.Events;
-using GooseEngine.Interfaces;
 
 namespace GooseEngine.GameManagement.Actions
 {
@@ -23,7 +22,7 @@ namespace GooseEngine.GameManagement.Actions
         }
 
 
-        protected override void Execute(IGameManager gem)
+        protected override void Execute(EventManager gem)
         {
             UnitTakesDamagePreEvent pre = new UnitTakesDamagePreEvent(source, target, dmg);
             target.Raise(pre);

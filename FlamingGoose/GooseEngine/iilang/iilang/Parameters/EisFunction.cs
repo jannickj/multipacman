@@ -8,7 +8,8 @@ using System.Linq;
 
 namespace iilang
 {
-	[XmlRoot("function")]
+#pragma warning disable 
+    [XmlRoot("function")]
 	public class EisFunction : EisMultiParameter
 	{
 		public override string XmlTag{ get { return "function"; } }

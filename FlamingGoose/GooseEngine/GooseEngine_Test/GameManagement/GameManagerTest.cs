@@ -11,7 +11,6 @@ using GooseEngine.Entities.MapEntities;
 using GooseEngine.Entities.Units;
 using GooseEngine.Enum;
 using NUnit.Framework;
-using GooseEngine.Interfaces;
 
 
 namespace GooseEngine_Test.GameManagement
@@ -24,7 +23,7 @@ namespace GooseEngine_Test.GameManagement
         public void ExecuteActionWithSpecificTargetEvent_UnitDealsDamageToAnotherUnit_TheOtherUnitTakesDamage()
         {
             
-            IGameManager gem = new GameManager();
+            EventManager gem = new EventManager();
             Agent expectedDealer = new Agent();
             Agent expectedTaker = new Agent();
             int expectedDmg = 10;
@@ -51,7 +50,7 @@ namespace GooseEngine_Test.GameManagement
         [Test]
         public void ExecuteActionWithSpecificTargetEvent_UnitDealsDamageToAnotherUnitWithDamagePrevetionImplemented_TheTargetUnitTakesNoDamage()
         {
-            IGameManager gem = new GameManager();
+            EventManager gem = new EventManager();
             Agent expectedDealer = new Agent();
             Agent expectedTaker = new Agent();
             int dmg = 10;
@@ -83,7 +82,7 @@ namespace GooseEngine_Test.GameManagement
         [Test]
         public void ExecuteActionWithGlobalTrigger_UnitDealsDamageToAnotherUnitWithDamage_EventsWasFiredOnBothActions()
         {
-            IGameManager gem = new GameManager();
+            EventManager gem = new EventManager();
             Agent A = new Agent();
             Agent B = new Agent();
             int dmg = int.MaxValue;
@@ -111,7 +110,7 @@ namespace GooseEngine_Test.GameManagement
         [Test]
         public void RemoveTrigger_simpleGlobalTrigger_NoEventFired()
         {
-            IGameManager gem = new GameManager();
+            EventManager gem = new EventManager();
             Agent A = new Agent();
             Agent B = new Agent();
             int dmg = int.MaxValue;
@@ -135,7 +134,7 @@ namespace GooseEngine_Test.GameManagement
         [Test]
         public void RemoveTrigger_triggerIsRemovedFromUnit_NoEventFired()
         {
-            IGameManager gem = new GameManager();
+            EventManager gem = new EventManager();
             Agent A = new Agent();
             Agent B = new Agent();
             int dmg = int.MaxValue;
@@ -162,7 +161,7 @@ namespace GooseEngine_Test.GameManagement
         [Test]
         public void AddTrigger_triggerIsAddedToUnitAfterItIsAddedToManagger_EventFired()
         {
-            IGameManager gem = new GameManager();
+            EventManager gem = new EventManager();
             Agent A = new Agent();
             Agent B = new Agent();
             int dmg = int.MaxValue;
@@ -187,7 +186,7 @@ namespace GooseEngine_Test.GameManagement
         public void AddEventToUnit_containMultiTrigger_TheAddedEventGetsFired()
         {
 
-            GameManager gem = new GameManager();
+            EventManager gem = new EventManager();
             Agent A = new Agent();
 
             gem.AddEntity(A);
@@ -212,7 +211,7 @@ namespace GooseEngine_Test.GameManagement
         public void RemoveEventFromUnit_containMultiTrigger_TheEventGetsRemovedAndIsNotFired()
         {
 
-            GameManager gem = new GameManager();
+            EventManager gem = new EventManager();
 
             Agent A = new Agent();
 
