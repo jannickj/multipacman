@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using GooseEngine.Entities.MapEntities;
 using GooseEngine.Percepts;
+using GooseEngine.Data;
 
 namespace GooseEngine
 {
