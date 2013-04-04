@@ -87,6 +87,7 @@
     <Compile Include="Rule\RuleHierarchy.cs" />
     <Compile Include="Rule\TransformationRule.cs" />
     <Compile Include="Rule\Exceptions\MulticonclusionException.cs" />
+    <Compile Include="Data\Point.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Events\" />
