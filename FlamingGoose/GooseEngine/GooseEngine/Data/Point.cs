@@ -6,8 +6,8 @@ namespace GooseEngine.Data
 	{
 		private int x, y;
 
-		int X { get { return x; } }
-		int Y { get { return y; } }
+		public int X { get { return x; } }
+		public int Y { get { return y; } }
 
 		public Point (int x, int y)
 		{
