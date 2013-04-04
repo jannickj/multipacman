@@ -7,6 +7,7 @@ using GooseEngine.Entities.MapEntities;
 using GooseEngine.Percepts;
 using GooseEngine.Entities.Units;
 using NUnit.Framework;
+using GooseEngine.Data;
 
 namespace GooseEngine_Test
 {

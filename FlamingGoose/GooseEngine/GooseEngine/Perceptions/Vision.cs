@@ -57,7 +57,7 @@ namespace GooseEngine.Percepts
 			for (int x = 0; x < grid.Size.Width; x++)
 				for (int y = 0; y < grid.Size.Height; y++)
 					if (isTileVisible (new Point (x, y)))
-						visibleTiles.Add (new KeyValuePair<Point, Tile> (new Point (x, y) - new Size(grid.Center), grid [x, y]));
+						visibleTiles.Add (new KeyValuePair<Point, Tile> (new Point (x, y) - grid.Center, grid [x, y]));
 		}
 
 		public List<KeyValuePair<Point,Tile>> AllTiles()
@@ -65,7 +65,7 @@ namespace GooseEngine.Percepts
 			List<KeyValuePair<Point,Tile>> tiles = new List<KeyValuePair<Point, Tile>> ();
 			for (int x = 0; x < grid.Size.Width; x++)
 				for (int y = 0; y < grid.Size.Height; y++)
-					tiles.Add (new KeyValuePair<Point, Tile> (new Point (x, y) - new Size(grid.Center), grid [x, y]));
+					tiles.Add (new KeyValuePair<Point, Tile> (new Point (x, y) - grid.Center, grid [x, y]));
 			return tiles;
 		}
 
@@ -77,8 +77,8 @@ namespace GooseEngine.Percepts
 				new Point(0,1), 
 				new Point(1,1) };
 
-			IEnumerable<Point> centerCorners = cornerize.Select (corner => corner + new Size(grid.Center)); // should be done only once for efficiency
-			IEnumerable<Point> tileCorners = cornerize.Select (corner => corner + new Size(tile));
+			IEnumerable<Point> centerCorners = cornerize.Select (corner => corner + grid.Center); // should be done only once for efficiency
+			IEnumerable<Point> tileCorners = cornerize.Select (corner => corner + tile);
 
 			if (grid [tile.X, tile.Y].IsVisionBlocking (owner)) {
 				// if the destination tile is vision blocking, we check if ANY corner of the center tile connects to any two corners of the destination tile
@@ -93,7 +93,7 @@ namespace GooseEngine.Percepts
 		{
 			Vector v = new Vector (origin, destination);
 			foreach (Point p in walkAlongVector(v)) {
-				Point transp = origin + new Size(p);
+				Point transp = origin + p;
 				bool blocking = grid[transp.X, transp.Y].IsVisionBlocking(owner);
 				if ( grid[transp.X, transp.Y].IsVisionBlocking(owner))
 					return false;

@@ -36,7 +36,7 @@ namespace GooseEngine.GameManagement.Actions
             gem.Raise(before);
             GameTimer gt = gem.CreateTimer(() =>
             {
-                Point newloc = gem.World.GetEntityPosition(unit) + new Size(direction.ToPoint());
+                Point newloc = gem.World.GetEntityPosition(unit) + direction;
                 gem.World.SetEntityLocation(newloc, unit);
                 gem.Raise(new UnitMovePostEvent());
 

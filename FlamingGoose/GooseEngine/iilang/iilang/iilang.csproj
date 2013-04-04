@@ -58,4 +58,10 @@
   <ItemGroup>
     <Folder Include="Exceptions\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\GooseEngine\GooseEngine.csproj">
+      <Project>{1A146465-21F3-44D1-A779-6C4958CBD24B}</Project>
+      <Name>GooseEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
