@@ -6,4 +6,3 @@ C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilangTest\obj
 C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilangTest\obj\Debug\iilangTest.pdb
 C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilangTest\bin\Debug\iilang.exe
 C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilangTest\bin\Debug\nunit.framework.dll
-C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilangTest\bin\Debug\nunit.framework.xml
