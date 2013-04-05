@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using GooseEngine;
-using GooseEngine.ActionManagement;
 using GooseEngine.GameManagement;
 using GooseEngine.GameManagement.Actions;
 using GooseEngine.GameManagement.Events;
@@ -24,6 +23,9 @@ namespace GooseEngine_Test.GameManagement
         {
             
             EventManager gem = new EventManager();
+            ActionManager actman = new ActionManager();
+
+            
             Agent expectedDealer = new Agent();
             Agent expectedTaker = new Agent();
             int expectedDmg = 10;
@@ -39,7 +41,8 @@ namespace GooseEngine_Test.GameManagement
             expectedTaker.Register(t);
             gem.AddEntity(expectedTaker);
 
-            gem.Queue(ga);
+            actman.Queue(ga);
+            actman.ExecuteActions();
 
             Assert.AreEqual(expectedDealer, actualDealer);
             Assert.AreEqual(expectedTaker, actualTaker);
@@ -51,6 +54,8 @@ namespace GooseEngine_Test.GameManagement
         public void ExecuteActionWithSpecificTargetEvent_UnitDealsDamageToAnotherUnitWithDamagePrevetionImplemented_TheTargetUnitTakesNoDamage()
         {
             EventManager gem = new EventManager();
+            ActionManager actman = new ActionManager();
+
             Agent expectedDealer = new Agent();
             Agent expectedTaker = new Agent();
             int dmg = 10;
@@ -71,7 +76,8 @@ namespace GooseEngine_Test.GameManagement
             expectedTaker.Register(postT);
             gem.AddEntity(expectedTaker);
 
-            gem.Queue(ga);
+            actman.Queue(ga);
+            actman.ExecuteActions();
 
             Assert.AreEqual(expectedDealer, actualDealer);
             Assert.AreEqual(expectedTaker, actualTaker);
@@ -83,6 +89,8 @@ namespace GooseEngine_Test.GameManagement
         public void ExecuteActionWithGlobalTrigger_UnitDealsDamageToAnotherUnitWithDamage_EventsWasFiredOnBothActions()
         {
             EventManager gem = new EventManager();
+            ActionManager actman = new ActionManager();
+
             Agent A = new Agent();
             Agent B = new Agent();
             int dmg = int.MaxValue;
@@ -98,8 +106,9 @@ namespace GooseEngine_Test.GameManagement
             gem.AddEntity(A);
             gem.AddEntity(B);
 
-            gem.Queue(ga1);
-            gem.Queue(ga2);
+            actman.Queue(ga1);
+            actman.Queue(ga2);
+            actman.ExecuteActions();
 
             int expectedTimeFired = 2;
 
@@ -111,6 +120,8 @@ namespace GooseEngine_Test.GameManagement
         public void RemoveTrigger_simpleGlobalTrigger_NoEventFired()
         {
             EventManager gem = new EventManager();
+            ActionManager actman = new ActionManager();
+
             Agent A = new Agent();
             Agent B = new Agent();
             int dmg = int.MaxValue;
@@ -125,7 +136,7 @@ namespace GooseEngine_Test.GameManagement
             gem.Register(T);
             gem.Deregister(T);
 
-            gem.Queue(ga1);
+            actman.Queue(ga1);
 
             Assert.IsFalse(eventFired);
 
@@ -135,6 +146,8 @@ namespace GooseEngine_Test.GameManagement
         public void RemoveTrigger_triggerIsRemovedFromUnit_NoEventFired()
         {
             EventManager gem = new EventManager();
+            ActionManager actman = new ActionManager();
+
             Agent A = new Agent();
             Agent B = new Agent();
             int dmg = int.MaxValue;
@@ -151,7 +164,7 @@ namespace GooseEngine_Test.GameManagement
 
             B.Deregister(T);
 
-            gem.Queue(ga1);
+            actman.Queue(ga1);
 
             Assert.IsFalse(eventFired);
 
@@ -162,6 +175,8 @@ namespace GooseEngine_Test.GameManagement
         public void AddTrigger_triggerIsAddedToUnitAfterItIsAddedToManagger_EventFired()
         {
             EventManager gem = new EventManager();
+            ActionManager actman = new ActionManager();
+
             Agent A = new Agent();
             Agent B = new Agent();
             int dmg = int.MaxValue;
@@ -175,7 +190,8 @@ namespace GooseEngine_Test.GameManagement
             gem.AddEntity(B);
             B.Register(T);
 
-            gem.Queue(ga1);
+            actman.Queue(ga1);
+            actman.ExecuteActions();
 
             Assert.IsTrue(eventFired);
 
@@ -187,6 +203,7 @@ namespace GooseEngine_Test.GameManagement
         {
 
             EventManager gem = new EventManager();
+
             Agent A = new Agent();
 
             gem.AddEntity(A);

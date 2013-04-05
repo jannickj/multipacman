@@ -17,7 +17,7 @@ namespace GooseEngine_Test
         
 
         [Test]
-        public void GetVisibleTiles_WallBlockingNW_ReturnNoVisionNW()
+        public void GetVisibleTiles_WallBlockingNE_ReturnNoVisionNE()
         {
 
             GameMap map = new GameMap(new Size(2, 2));

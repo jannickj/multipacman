@@ -1,0 +1,10 @@
+C:\Users\jannick\Bachelor_project\FlamingGoose\GooseEngine\GooseEngineUnity\Temp\bin\Debug\Assembly-CSharp.dll
+C:\Users\jannick\Bachelor_project\FlamingGoose\GooseEngine\GooseEngineUnity\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\Users\jannick\Bachelor_project\FlamingGoose\GooseEngine\GooseEngineUnity\Temp\bin\Debug\UnityEditor.dll
+C:\Users\jannick\Bachelor_project\FlamingGoose\GooseEngine\GooseEngineUnity\Temp\bin\Debug\UnityEngine.dll
+C:\Users\jannick\Bachelor_project\FlamingGoose\GooseEngine\GooseEngineUnity\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\jannick\Bachelor_project\FlamingGoose\GooseEngine\GooseEngineUnity\Temp\bin\Debug\nunit.framework.dll
+C:\Users\jannick\Bachelor_project\FlamingGoose\GooseEngine\GooseEngineUnity\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\jannick\Bachelor_project\FlamingGoose\GooseEngine\GooseEngineUnity\obj\Debug\Assembly-CSharp.dll
+C:\Users\jannick\Bachelor_project\FlamingGoose\GooseEngine\GooseEngineUnity\obj\Debug\Assembly-CSharp.pdb
+C:\Users\jannick\Bachelor_project\FlamingGoose\GooseEngine\GooseEngineUnity\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache

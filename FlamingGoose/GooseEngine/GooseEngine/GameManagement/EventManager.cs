@@ -7,65 +7,19 @@ using GooseEngine.GameManagement;
 using GooseEngine.Data;
 using System.Threading;
 
-namespace GooseEngine.ActionManagement
+namespace GooseEngine.GameManagement
 {
     public class EventManager 
     {
        
         private HashSet<Entity> trackedEntities = new HashSet<Entity>();
-        private HashSet<GameAction> runningActions = new HashSet<GameAction>();
         private TriggerManager triggerManager = new TriggerManager();
-        private Queue<GameAction> awaitingActions = new Queue<GameAction>();
-        private GameWorld world;
-
-
+        
         internal EventManager()
         {
 
         }
-
-        public EventManager(GameWorld world)
-        {
-            this.world = world;
-        }
-        
-        public void ExecuteActions()
-        {
-            List<GameAction> actions;
-            lock(this)
-            {
-                actions = awaitingActions.ToList();
-                awaitingActions.Clear();
-            }
-
-            foreach (GameAction action in actions)
-            {
-                runningActions.Add(action);
-                action.Completed += action_Completed;
-                action.World = this.world;
-                action.Fire(this);
-            }
-        }
-
-        public void Queue(GameAction action)
-        {
-            lock (this)
-            {
-                awaitingActions.Enqueue(action);
-                
-                
-            }
-
-        }
-
-        public ICollection<GameAction> RunningActions
-        {
-            get
-            {
-                return runningActions.ToArray();
-            }
-        }
-
+             
         public void Raise(GameEvent evt)
         {
             triggerManager.Raise(evt);
@@ -95,28 +49,9 @@ namespace GooseEngine.ActionManagement
             this.triggerManager.Deregister(trigger);
         }
 
-        public GameTimer CreateTimer(Action action)
-        {
-            return new GameTimer(action);
-        }
-
-        public GameWorld World
-        {
-            get
-            {
-                return this.world;
-            }
-        }
+        
 
         #region EVENTS
-
-        void action_Completed(object sender, EventArgs e)
-        {
-            GameAction ga = (GameAction)sender;
-            runningActions.Remove(ga);
-            ga.Completed -= action_Completed;
-
-        }
 
         void entity_TriggerRaised(object sender, GameEvent e)
         {

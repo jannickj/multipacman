@@ -45,6 +45,7 @@
     <Compile Include="GameManagement\ActionManager.cs" />
     <Compile Include="GameManagement\Actions\CloseEngine.cs" />
     <Compile Include="GameManagement\Actions\DamageUnitTarget.cs" />
+    <Compile Include="GameManagement\Actions\SimpleAction.cs" />
     <Compile Include="GameManagement\Events\EngineCloseEvent.cs" />
     <Compile Include="GameManagement\Events\UnitTakesDamagePostEvent.cs" />
     <Compile Include="GameManagement\Events\UnitTakesDamagePreEvent.cs" />
@@ -92,7 +93,6 @@
     <Compile Include="Data\Point.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Events\" />
     <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

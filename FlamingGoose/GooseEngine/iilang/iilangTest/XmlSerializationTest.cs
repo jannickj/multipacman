@@ -3,6 +3,10 @@ using NUnit.Framework;
 using iilang;
 using System.Xml.Serialization;
 using System.Xml.Linq;
+using System.Text;
+using System.IO;
+using System.Xml;
+using System.Runtime.Serialization;
 
 namespace iilangTest
 {
@@ -39,17 +43,20 @@ namespace iilangTest
 		[Test()]
 		public void WriteXmlOfNumeralWithValue_XmlRepresentationOfNumeralWithValue () 
 		{
-			EisNumeral actual_src = new EisNumeral (42);
-			XDocument actual = new XDocument ();
+			EisNumeral actual_src = new EisNumeral(42);
+
+            StringBuilder sb = new StringBuilder();
+
+            XmlSerializer serializer = new XmlSerializer(actual_src.GetType());
+            serializer.Serialize(XmlWriter.Create(sb), actual_src);
 			
-			XmlSerializer serializer = new XmlSerializer(typeof(EisNumeral));
-			serializer.Serialize (actual.CreateWriter (), actual_src);
-			
-			XDocument expected = XDocument.Parse (
+			XDocument expected = XDocument.Parse(
 				@"<?xml version=""1.0"" encoding=""utf-16""?>
 				<number value=""42"" />");
+            
+            string actualstr = XDocument.Parse(sb.ToString()).ToString();
 			
-			Assert.AreEqual (expected.ToString (), actual.ToString ());
+			Assert.AreEqual (expected.ToString(), actualstr);
 		}
 
 		[Test()]

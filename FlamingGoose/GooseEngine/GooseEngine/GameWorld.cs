@@ -27,7 +27,7 @@ namespace GooseEngine
 
         }
 
-        public void AddEntity(Point loc, Entity entity)
+        internal void AddEntity(Point loc, Entity entity)
         {
             entlocs.Add(entity, loc);
             map[loc.X, loc.Y].AddEntity(entity);
@@ -35,7 +35,7 @@ namespace GooseEngine
 
         public Point GetEntityPosition(Entity entity)
         {
-            throw new NotImplementedException();
+            return entlocs[entity];
         }
 
         internal void SetEntityLocation(Point loc, Entity entity)

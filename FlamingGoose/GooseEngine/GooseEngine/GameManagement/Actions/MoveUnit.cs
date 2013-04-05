@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Timers;
-using GooseEngine.ActionManagement;
+using GooseEngine.GameManagement;
 using GooseEngine.GameManagement.Events;
 using GooseEngine.Data;
 using GooseEngine.Entities;
@@ -29,22 +29,22 @@ namespace GooseEngine.GameManagement.Actions
             this.time = time;
         }
 
-        protected override void Execute(EventManager gem)
+        protected override void Execute()
         {
             UnitMovePreEvent before = new UnitMovePreEvent();
-            gem.Raise(before);
-            GameTimer gt = gem.CreateTimer(() =>
+            unit.Raise(before);
+            GameTimer gt = this.Factory.CreateTimer(() =>
             {
-                Point newloc = gem.World.GetEntityPosition(unit) + direction;
-                gem.World.SetEntityLocation(newloc, unit);
-                gem.Raise(new UnitMovePostEvent());
+                Point newloc = World.GetEntityPosition(unit) + direction;
+                World.SetEntityLocation(newloc, unit);
+                unit.Raise(new UnitMovePostEvent());
 
                 this.Complete();
 
             });
 
             if(!before.IsStopped)
-                gt.StartSingle(1);
+                gt.StartSingle(time);
            
         }
 

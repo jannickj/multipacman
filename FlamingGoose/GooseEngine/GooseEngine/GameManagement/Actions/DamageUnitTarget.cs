@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GooseEngine.ActionManagement;
+using GooseEngine.GameManagement;
 using GooseEngine.Entities;
 using GooseEngine.GameManagement.Events;
 
@@ -22,7 +22,7 @@ namespace GooseEngine.GameManagement.Actions
         }
 
 
-        protected override void Execute(EventManager gem)
+        protected override void Execute()
         {
             UnitTakesDamagePreEvent pre = new UnitTakesDamagePreEvent(source, target, dmg);
             target.Raise(pre);

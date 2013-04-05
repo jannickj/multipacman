@@ -7,16 +7,18 @@ namespace GooseEngine.GameManagement
 {
     public class GameFactory
     {
-        public GameFactory()
+        private ActionManager actman;
+
+        public GameFactory(ActionManager actman)
         {
-
+            this.actman = actman;
         }
-
-
 
         public GameTimer CreateTimer(Action action)
         {
-            return new GameTimer(action);
+            GameTimer gt = new GameTimer(actman, action);
+            return gt;
         }
+
     }
 }
