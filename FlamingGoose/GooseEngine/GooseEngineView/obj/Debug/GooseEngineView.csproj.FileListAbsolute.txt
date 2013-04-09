@@ -1,0 +1,8 @@
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngineView\obj\Debug\GooseEngineView.csprojResolveAssemblyReference.cache
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngineView\bin\Debug\GooseEngineView.dll
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngineView\bin\Debug\GooseEngineView.pdb
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngineView\bin\Debug\GooseEngine.dll
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngineView\bin\Debug\UnityEngine.dll
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngineView\bin\Debug\GooseEngine.pdb
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngineView\obj\Debug\GooseEngineView.dll
+C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\GooseEngineView\obj\Debug\GooseEngineView.pdb

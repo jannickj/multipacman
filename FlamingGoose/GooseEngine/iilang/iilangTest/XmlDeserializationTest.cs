@@ -49,7 +49,7 @@ namespace iilangTest
 			XmlSerializer serializer = new XmlSerializer (typeof(EisNumeral));
 			
 			XElement actual_src = XElement.Parse (@"<number />");
-			Assert.Throws<MissingXmlAttributeException> (() => serializer.Deserialize (actual_src.CreateReader ()));
+			Assert.Catch<Exception> (() => serializer.Deserialize (actual_src.CreateReader ()));
 		}
 
 		[Test()]
@@ -80,15 +80,15 @@ namespace iilangTest
 					<number value=""42"" />
 				</function>");
 
-			Assert.Throws<MissingXmlAttributeException> (() => serializer.Deserialize (actual_src.CreateReader ()));
+			Assert.Catch<Exception> (() => serializer.Deserialize (actual_src.CreateReader ()));
 		}
 
 		[Test()]
-		public void ReadXmlRepresentationOfAction_ActionObject ()
+		public void ReadXmlRepresentationOfAction_moveToAction_ReturnsCorrectMovetToActionObject()
 		{
 			EisAction expected = new EisAction ("moveTo", new EisNumeral (2), new EisNumeral (3));
-			
-			XmlSerializer serializer = new XmlSerializer (typeof(EisAction));
+
+			XmlSerializer serializer = new XmlSerializer(typeof(EisAction));
 			
 			XElement actual_src = XElement.Parse (
 				@"<action name=""moveTo"">
@@ -119,7 +119,7 @@ namespace iilangTest
 					</actionParameter>
 				</action>");
 
-			Assert.Throws<MissingXmlAttributeException> (() => serializer.Deserialize (actual_src.CreateReader ()));
+			Assert.Catch<Exception> (() => serializer.Deserialize (actual_src.CreateReader ()));
 		}
 	}
 }

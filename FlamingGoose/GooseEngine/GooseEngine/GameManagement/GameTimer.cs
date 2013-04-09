@@ -22,6 +22,7 @@ namespace GooseEngine.GameManagement
             timer.AutoReset = false;
             
             timer.Elapsed += timer_Elapsed;
+            
         }
 
         void timer_Elapsed(object sender, ElapsedEventArgs e)

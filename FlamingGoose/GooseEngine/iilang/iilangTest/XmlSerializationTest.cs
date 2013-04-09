@@ -17,15 +17,17 @@ namespace iilangTest
 		public void WriteXmlOfIdentifierWithValue_XmlRepresentationOfIdentifierWithValue ()
 		{
 			EisIdentifier actual_src = new EisIdentifier ("test_id");
-			XDocument actual = new XDocument ();
+            StringBuilder sb = new StringBuilder();
 			
 			XmlSerializer serializer = new XmlSerializer(typeof(EisIdentifier));
-			serializer.Serialize (actual.CreateWriter (), actual_src);
+			serializer.Serialize (XmlWriter.Create(sb), actual_src);
 			
 			XDocument expected = XDocument.Parse (
 				@"<?xml version=""1.0"" encoding=""utf-16""?>
 				<identifier value=""test_id"" />");
-			
+
+            XDocument actual = XDocument.Parse(sb.ToString());
+
 			Assert.AreEqual (expected.ToString (), actual.ToString ());
 		}
 
@@ -33,11 +35,10 @@ namespace iilangTest
 		public void TryWriteXmlOfIdentifierWithoutValue_ThrowException ()
 		{
 			EisIdentifier actual_src = new EisIdentifier ();
-			XDocument actual = new XDocument ();
 			
 			XmlSerializer serializer = new XmlSerializer(typeof(EisIdentifier));
-			
-			Assert.Throws<MissingXmlAttributeException> (() => serializer.Serialize (actual.CreateWriter (), actual_src));
+ 
+            Assert.Catch<Exception>(() => serializer.Serialize(GenerateWriter(), actual_src));
 		}
 		
 		[Test()]
@@ -63,21 +64,21 @@ namespace iilangTest
 		public void TryWriteXmlOfNumeralWithoutValue_ThrowException ()
 		{
 			EisNumeral actual_src = new EisNumeral ();
-			XDocument actual = new XDocument ();
 			
 			XmlSerializer serializer = new XmlSerializer(typeof(EisNumeral));
 
-			Assert.Throws<MissingXmlAttributeException> (() => serializer.Serialize (actual.CreateWriter (), actual_src));
+            Assert.Catch<Exception>(() => serializer.Serialize(GenerateWriter(), actual_src));
 		}
 
 		[Test()]
 		public void WriteXmlOfParameterListWithContent_ReturnXmlWithContentAsChildren ()
 		{
 			EisParameterList actual_src = new EisParameterList (new EisIdentifier ("test_id"), new EisNumeral (42));
-			XDocument actual = new XDocument ();
-			
+
+            StringBuilder sb = new StringBuilder();
+
 			XmlSerializer serializer = new XmlSerializer(typeof(EisParameterList));
-			serializer.Serialize (actual.CreateWriter (), actual_src);
+			serializer.Serialize (XmlWriter.Create(sb), actual_src);
 			
 			XDocument expected = XDocument.Parse (
 				@"<?xml version=""1.0"" encoding=""utf-16""?>
@@ -85,6 +86,8 @@ namespace iilangTest
 					<identifier value=""test_id"" />
 					<number value=""42"" />
 				</parameterList>");
+
+            XDocument actual = XDocument.Parse(sb.ToString());
 			
 			Assert.AreEqual (expected.ToString (), actual.ToString ());
 		}
@@ -93,17 +96,19 @@ namespace iilangTest
 		public void WriteXmlOfFunctionWithChildren_ReturnXmlWithContentAsChildren ()
 		{
 			EisFunction actual_src = new EisFunction( "test_fun", new EisNumeral(42) );
-			XDocument actual = new XDocument ();
-			
+
+            StringBuilder sb = new StringBuilder();
+
 			XmlSerializer serializer = new XmlSerializer(typeof(EisFunction));
-			serializer.Serialize (actual.CreateWriter (), actual_src);
+			serializer.Serialize (XmlWriter.Create(sb), actual_src);
 			
 			XDocument expected = XDocument.Parse (
 				@"<?xml version=""1.0"" encoding=""utf-16""?>
 				<function name=""test_fun"">
 					<number value=""42"" />
 				</function>");
-			
+            XDocument actual = XDocument.Parse(sb.ToString());
+
 			Assert.AreEqual (expected.ToString (), actual.ToString ());
 		}
 
@@ -111,21 +116,21 @@ namespace iilangTest
 		public void TryWriteXmlOfFunctionWithoutName_ThrowException ()
 		{
 			EisFunction actual_src = new EisFunction();
-			XDocument actual = new XDocument ();
 			
 			XmlSerializer serializer = new XmlSerializer(typeof(EisFunction));
 
-			Assert.Throws<MissingXmlAttributeException> (() => serializer.Serialize (actual.CreateWriter (), actual_src));
+            Assert.Catch<Exception>(() => serializer.Serialize(GenerateWriter(), actual_src));
 		}
 
 		[Test()]
 		public void WriteXmlOfPerceptWithChildren_ReturnXmlWithRepresentation ()
 		{
 			EisPercept actual_src = new EisPercept( "test_percept", new EisNumeral(42), new EisIdentifier("test_id") );
-			XDocument actual = new XDocument ();
+
+            StringBuilder sb = new StringBuilder();
 			
 			XmlSerializer serializer = new XmlSerializer(typeof(EisPercept));
-			serializer.Serialize (actual.CreateWriter (), actual_src);
+			serializer.Serialize (XmlWriter.Create(sb), actual_src);
 			
 			XDocument expected = XDocument.Parse (
 				@"<?xml version=""1.0"" encoding=""utf-16""?>
@@ -137,6 +142,8 @@ namespace iilangTest
 						<identifier value=""test_id"" />
 					</perceptParameter>
 				</percept>");
+
+            XDocument actual = XDocument.Parse(sb.ToString());
 			
 			Assert.AreEqual (expected.ToString (), actual.ToString ());
 		}
@@ -145,13 +152,18 @@ namespace iilangTest
 		public void TryWriteXmlOfPerceptWithoutName_ThrowException ()
 		{
 			EisPercept actual_src = new EisPercept( );
-			XDocument actual = new XDocument ();
 			
 			XmlSerializer serializer = new XmlSerializer(typeof(EisPercept));
 
-			Assert.Throws<MissingXmlAttributeException> (() => serializer.Serialize (actual.CreateWriter (), actual_src));
+            Assert.Catch<Exception>(() => serializer.Serialize(GenerateWriter(), actual_src));
 		}
 
+
+        private static XmlWriter GenerateWriter()
+        {
+            StringBuilder sb = new StringBuilder();
+            return XmlWriter.Create(sb);
+        }
 	}
 }
 

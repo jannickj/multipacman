@@ -24,7 +24,7 @@ namespace iilang
 		{
 			if (String.IsNullOrEmpty (Value))
 				throw new MissingXmlAttributeException ("Error: Value not set.");
-
+            
 			writer.WriteAttributeString ("value", Value);
 		}
 

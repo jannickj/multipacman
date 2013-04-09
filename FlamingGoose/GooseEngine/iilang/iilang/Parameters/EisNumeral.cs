@@ -1,6 +1,7 @@
 using System;
 using System.Xml.Serialization;
 using System.Xml;
+using System.Globalization;
 
 namespace iilang
 {
@@ -34,7 +35,7 @@ namespace iilang
 			reader.MoveToContent ();
 			if (reader.AttributeCount == 0)
 				throw new MissingXmlAttributeException (@"Missing XML attribute ""value"".");
-			Value = Convert.ToDouble (reader ["value"]);
+            Value = Convert.ToDouble(reader["value"], CultureInfo.InvariantCulture);
 			reader.Read ();
 		}
 
