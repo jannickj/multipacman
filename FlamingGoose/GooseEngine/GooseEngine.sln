@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooseEngineController", "Go
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "GooseEngineUnity\Assembly-CSharp.csproj", "{D23D2408-F0F0-C36D-2D83-FBCDF1454426}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooseEngineView", "GooseEngineView\GooseEngineView.csproj", "{7D41D1DE-4947-45D8-8DD7-05EF290576C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,16 @@ Global
 		{D23D2408-F0F0-C36D-2D83-FBCDF1454426}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D23D2408-F0F0-C36D-2D83-FBCDF1454426}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D23D2408-F0F0-C36D-2D83-FBCDF1454426}.Release|x86.ActiveCfg = Release|Any CPU
+		{7D41D1DE-4947-45D8-8DD7-05EF290576C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D41D1DE-4947-45D8-8DD7-05EF290576C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D41D1DE-4947-45D8-8DD7-05EF290576C7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7D41D1DE-4947-45D8-8DD7-05EF290576C7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7D41D1DE-4947-45D8-8DD7-05EF290576C7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7D41D1DE-4947-45D8-8DD7-05EF290576C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D41D1DE-4947-45D8-8DD7-05EF290576C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D41D1DE-4947-45D8-8DD7-05EF290576C7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7D41D1DE-4947-45D8-8DD7-05EF290576C7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7D41D1DE-4947-45D8-8DD7-05EF290576C7}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

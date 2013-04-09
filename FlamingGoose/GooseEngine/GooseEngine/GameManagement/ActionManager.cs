@@ -18,8 +18,9 @@ namespace GooseEngine.GameManagement
 
         public ActionManager()
         {
-
+            
         }
+
 
         internal void ExecuteActions()
         {

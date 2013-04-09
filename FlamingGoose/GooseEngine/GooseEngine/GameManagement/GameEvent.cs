@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GooseEngine.GameManagement
 {
-    public class GameEvent : EventArgs
+    public abstract class GameEvent : EventArgs
     {
     }
 }

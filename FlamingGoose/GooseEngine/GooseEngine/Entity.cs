@@ -11,6 +11,7 @@ namespace GooseEngine
 {
     public abstract class Entity
     {
+        private ActionManager actman;
         private Conclusion[] conclusions = new Conclusion[2];
         private RuleHierarchy<Type, Entity> movementRules = new RuleHierarchy<Type, Entity>();
         private LinkedList<Predicate<Entity>> visionBlockRules = new LinkedList<Predicate<Entity>>();
@@ -79,6 +80,24 @@ namespace GooseEngine
         public void Deregister(Trigger trigger)
         {
             this.triggers.Deregister(trigger);
+        }
+
+        public void QueueAction<T>(EntityGameAction<T> action) where T : Entity
+        {
+            T source = this as T;
+            if (source != null)
+            {
+                action.Source = source;
+                actman.Queue(action);
+            }
+            else
+                throw new UnacceptableActionException(action, this);
+        }
+
+
+        internal ActionManager ActionManager
+        {
+            set { actman = value; }
         }
 
         internal void Raise(GameEvent evt)

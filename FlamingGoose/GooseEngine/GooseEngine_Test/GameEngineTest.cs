@@ -16,7 +16,7 @@ namespace GooseEngine_Test
     {
         
         [Test]
-        public void runningGame_MoveActionStarted_MoveActionCompletes()
+        public void RunningGame_MoveActionStarted_MoveActionCompletes()
         {
             GameWorld world = new GameWorld(new GameMap(new Size(2, 2)));
             
@@ -24,6 +24,7 @@ namespace GooseEngine_Test
             GameFactory factory = new GameFactory(actman);
             EventManager evtman = new EventManager();
             Agent a = new Agent();
+            a.ActionManager = actman;
 
             evtman.AddEntity(a);
             world.AddEntity(new Point(0, 0), a);
@@ -32,7 +33,7 @@ namespace GooseEngine_Test
             Thread thread = new Thread(new ThreadStart(() => engine.Start()));
             thread.Name = "Engine Thread";
 
-            MoveUnit move = new MoveUnit(a, new Vector(0,1), 1);
+            MoveUnit move = new MoveUnit(new Vector(0,1), 1);
 
             evtman.Register(new Trigger<UnitMovePostEvent>(_ => actman.Queue(new CloseEngine())));
 
