@@ -16,6 +16,7 @@ namespace GooseEngineView
 
         public EntityView(GameObject gobj, Entity entity)
         {
+            this.gobj = gobj;
             entity.Register(new Trigger<UnitMovePreEvent>(unit_Move));
            
         }
