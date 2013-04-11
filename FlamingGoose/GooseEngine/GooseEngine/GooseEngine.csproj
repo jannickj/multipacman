@@ -99,11 +99,13 @@
     <Compile Include="GooseObject.cs" />
     <Compile Include="IPercept.cs" />
     <Compile Include="Tile.cs" />
+    <Compile Include="Perceptions\SingleNumeralPercept.cs" />
+    <Compile Include="EIS\Percepts\EISSingleNumeralPercept.cs" />
+    <Compile Include="EIS\EISGameFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="AI\" />
-    <Folder Include="Perceptions\EISPercepts\" />
     <Folder Include="EIS\" />
     <Folder Include="EIS\Percepts\" />
     <Folder Include="Entities\MapEntities\" />

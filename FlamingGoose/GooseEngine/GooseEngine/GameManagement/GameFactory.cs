@@ -28,5 +28,10 @@ namespace GooseEngine.GameManagement
             return new Vision(grid, owner);
         }
 
+		public virtual SingleNumeralPercept CreateSingleNumeralPercept (string name, double value)
+		{
+			return new SingleNumeralPercept (name, value);
+		}
+
     }
 }

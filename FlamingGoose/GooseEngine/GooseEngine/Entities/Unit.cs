@@ -45,7 +45,7 @@ namespace GooseEngine.Entities
 
 		private IPercept HealthPercept ()
 		{
-			throw new NotImplementedException();
+			return Factory.CreateSingleNumeralPercept ("health", this.health);
 		}
 
 		#endregion
