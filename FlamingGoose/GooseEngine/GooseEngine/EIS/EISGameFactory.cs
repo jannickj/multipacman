@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +12,14 @@ namespace GooseEngine.EIS
 {
     public class EISGameFactory : GameFactory
     {
-        public override Vision CreateVision(Grid<Tile> grid, Entity owner)
+		public EISGameFactory(ActionManager actman)
+		{
+			this.actman = actman;
+		}
+
+        public override Vision CreateVisionPercept(Grid<Tile> grid, Entity owner)
         {
-            return base.CreateVision(grid, owner);
+            return base.CreateVisionPercept(grid, owner);
         }
 
 		public override SingleNumeralPercept CreateSingleNumeralPercept (string name, double value)

@@ -40,17 +40,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="DataContainers\EisAction.cs" />
-    <Compile Include="DataContainers\EisPercept.cs" />
-    <Compile Include="Parameters\EisFunction.cs" />
-    <Compile Include="Parameters\EisIdentifier.cs" />
-    <Compile Include="Parameters\EisNumeral.cs" />
-    <Compile Include="Parameters\EisParameterList.cs" />
-    <Compile Include="EisDataContainer.cs" />
-    <Compile Include="EisMultiParameter.cs" />
-    <Compile Include="EisParameter.cs" />
-    <Compile Include="EisIILangElement.cs" />
     <Compile Include="Exceptions\MissingXmlAttributeException.cs" />
+    <Compile Include="DataContainers\IILAction.cs" />
+    <Compile Include="DataContainers\IILPercept.cs" />
+    <Compile Include="Parameters\IILFunction.cs" />
+    <Compile Include="Parameters\IILIdentifier.cs" />
+    <Compile Include="Parameters\IILParameterList.cs" />
+    <Compile Include="Parameters\IILNumeral.cs" />
+    <Compile Include="IILDataContainer.cs" />
+    <Compile Include="IILParameter.cs" />
+    <Compile Include="IILMultiParameter.cs" />
+    <Compile Include="IILElement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

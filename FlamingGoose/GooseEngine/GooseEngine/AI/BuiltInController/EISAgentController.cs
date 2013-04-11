@@ -14,5 +14,14 @@ namespace GooseEngine.AI.BuiltInController
         {
 
         }
+
+		#region implemented abstract members of AgentController
+
+		public override void Start ()
+		{
+			throw new NotImplementedException ();
+		}
+
+		#endregion
     }
 }

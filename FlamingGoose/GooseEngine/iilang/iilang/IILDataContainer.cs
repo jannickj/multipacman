@@ -7,20 +7,31 @@ using System.Linq;
 namespace iilang
 {
 #pragma warning disable
-    public abstract class EisDataContainer : EisIILangElement
+    public abstract class IILDataContainer : IILElement
 	{
 		public abstract string ChildXmlTag{ get; }
 		public string Name { get; private set; }
-		public List<EisParameter> Parameters { get; private set; }
+		public List<IILParameter> Parameters { get; private set; }
 
-		public EisDataContainer () {
-			Parameters = new List<EisParameter> ();
+		public IILDataContainer () {
+			Parameters = new List<IILParameter> ();
 		}
 
-		public EisDataContainer (String name, EisParameter[] ps)
+		public IILDataContainer (String name, IILParameter[] ps)
 		{
 			Name = name;
-			Parameters = new List<EisParameter> (ps);
+			Parameters = new List<IILParameter> (ps);
+		}
+
+		public IILDataContainer (string name, LinkedList<IILParameter> ps)
+		{
+			Name = name;
+			Parameters = ps.ToList ();
+		}
+
+		public void addParameter(IILParameter par)
+		{
+			Parameters.Add (par);
 		}
 
 		#region implemented abstract members of IILangElement
@@ -42,7 +53,7 @@ namespace iilang
 					reader.ReadStartElement();
 					reader.MoveToContent();
 
-					EisParameter p = EisParameter.fromString(reader.LocalName);
+					IILParameter p = IILParameter.fromString(reader.LocalName);
 					p.ReadXml(reader);
 					Parameters.Add(p);
 					reader.Read();
@@ -58,7 +69,7 @@ namespace iilang
 				throw new MissingXmlAttributeException (@"String ""Name"" must not be empty");
 
 			writer.WriteAttributeString ("name", Name);
-			foreach (EisParameter p in Parameters) {
+			foreach (IILParameter p in Parameters) {
 				writer.WriteStartElement(ChildXmlTag);
 				writer.WriteStartElement(p.XmlTag);
 				p.WriteXml(writer);
@@ -74,7 +85,7 @@ namespace iilang
 			if (this.GetType () != obj.GetType())
 				return false;
 			
-			EisDataContainer dc = (EisDataContainer)obj;
+			IILDataContainer dc = (IILDataContainer)obj;
 			return (Parameters.SequenceEqual (dc.Parameters) && Name.Equals(dc.Name));
 		}
 	}

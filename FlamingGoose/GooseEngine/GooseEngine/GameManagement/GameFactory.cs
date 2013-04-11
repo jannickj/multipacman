@@ -10,7 +10,7 @@ namespace GooseEngine.GameManagement
 {
     public class GameFactory
     {
-        private ActionManager actman;
+        internal ActionManager actman;
 
         public GameFactory(ActionManager actman)
         {
@@ -23,7 +23,7 @@ namespace GooseEngine.GameManagement
             return gt;
         }
 
-        public virtual Vision CreateVision(Grid<Tile> grid, Entity owner)
+        public virtual Vision CreateVisionPercept(Grid<Tile> grid, Entity owner)
         {
             return new Vision(grid, owner);
         }

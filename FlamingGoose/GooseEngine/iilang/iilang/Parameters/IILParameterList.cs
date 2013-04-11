@@ -10,16 +10,16 @@ namespace iilang
 {
 #pragma warning disable
     [XmlRoot("parameterList")]
-	public class EisParameterList : EisMultiParameter
+	public class IILParameterList : IILMultiParameter
 	{
 		public override string XmlTag{ get { return "parameterList"; } }
 //		public List<Parameter> Parameters { get; private set; }
 
-		public EisParameterList () 
+		public IILParameterList () 
 			: base() 
 		{ }
 
-		public EisParameterList (params EisParameter[] ps) 
+		public IILParameterList (params IILParameter[] ps) 
 			: base(ps) 
 		{ }
 
@@ -43,7 +43,7 @@ namespace iilang
 			if (this.GetType () != obj.GetType())
 				return false;
 
-			EisParameterList pl = (EisParameterList)obj;
+			IILParameterList pl = (IILParameterList)obj;
 			return (Parameters.SequenceEqual (pl.Parameters));
 		}
 	}
