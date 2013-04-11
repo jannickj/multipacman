@@ -94,6 +94,8 @@
     <Compile Include="Rule\Exceptions\MulticonclusionException.cs" />
     <Compile Include="Data\Point.cs" />
     <Compile Include="AI\AgentController.cs" />
+    <Compile Include="GameManagement\Actions\GetAllPercepts.cs" />
+    <Compile Include="GameManagement\Events\RetreivePerceptsEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
