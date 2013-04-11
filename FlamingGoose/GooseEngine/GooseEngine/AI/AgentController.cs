@@ -29,6 +29,8 @@ namespace GooseEngine
 			action.Completed -= action_Completed;
 		}
 
+        public abstract void Start();
+
         #region EVENTS
         private void  action_Completed (object sender, EventArgs e)
 		{
