@@ -6,7 +6,7 @@ namespace GooseEngine.EIS.Percepts
 {
 	public interface IEISPercept : IPercept
 	{
-		EisPercept toIILang ();
+		IILPercept toIILang ();
 	}
 }
 

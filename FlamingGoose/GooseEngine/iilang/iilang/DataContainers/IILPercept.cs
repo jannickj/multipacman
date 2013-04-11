@@ -6,20 +6,20 @@ using System.Xml.Serialization;
 namespace iilang
 {
 	[XmlRoot("percept")]
-	public class EisPercept : EisDataContainer
+	public class IILPercept : IILDataContainer
 	{
 		public override string XmlTag { get { return "percept"; } }
 		public override string ChildXmlTag { get { return "perceptParameter"; } }
 
-		public EisPercept () {
+		public IILPercept () {
 		}
 
-		public EisPercept (string name, params EisParameter[] ps) 
+		public IILPercept (string name, params IILParameter[] ps) 
 			: base (name, ps) 
 		{ 
 		}
 
-		public EisPercept (string name, LinkedList<EisParameter> ps)
+		public IILPercept (string name, LinkedList<IILParameter> ps)
 		:base (name, ps) 
 		{ 
 		}

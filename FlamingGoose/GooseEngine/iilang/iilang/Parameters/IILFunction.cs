@@ -10,18 +10,18 @@ namespace iilang
 {
 #pragma warning disable 
     [XmlRoot("function")]
-	public class EisFunction : EisMultiParameter
+	public class IILFunction : IILMultiParameter
 	{
 		public override string XmlTag{ get { return "function"; } }
 		public string Name { get; protected set; }
 //		public List<Parameter> Parameters { get; private set; }
 
-		public EisFunction () : base()
+		public IILFunction () : base()
 		{ 
 //			Parameters = new List<Parameter> ();
 		}
 
-		public EisFunction(String name, params EisParameter[] ps) : base(ps)
+		public IILFunction(String name, params IILParameter[] ps) : base(ps)
 		{
 			Name = name;
 //			Parameters = new List<Parameter> (ps);
@@ -50,7 +50,7 @@ namespace iilang
 			if (this.GetType () != obj.GetType())
 				return false;
 			
-			EisFunction fun = (EisFunction)obj;
+			IILFunction fun = (IILFunction)obj;
 			return (Parameters.SequenceEqual (fun.Parameters) && Name.Equals(fun.Name));
 		}
 	}

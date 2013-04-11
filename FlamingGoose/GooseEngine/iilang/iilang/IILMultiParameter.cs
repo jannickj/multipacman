@@ -5,18 +5,18 @@ using System.Xml;
 
 namespace iilang
 {
-	public abstract class EisMultiParameter : EisParameter
+	public abstract class IILMultiParameter : IILParameter
 	{
-		public List<EisParameter> Parameters { get; private set; }
+		public List<IILParameter> Parameters { get; private set; }
 
-		public EisMultiParameter ()
+		public IILMultiParameter ()
 		{
-			Parameters = new List<EisParameter> ();
+			Parameters = new List<IILParameter> ();
 		}
 
-		public EisMultiParameter(EisParameter[] ps)
+		public IILMultiParameter(IILParameter[] ps)
 		{
-			Parameters = new List<EisParameter> (ps);
+			Parameters = new List<IILParameter> (ps);
 		}
 
 
@@ -33,7 +33,7 @@ namespace iilang
 
 			while (reader.MoveToContent() == XmlNodeType.Element) {
 				
-				EisParameter p = EisParameter.fromString(reader.LocalName);
+				IILParameter p = IILParameter.fromString(reader.LocalName);
 				p.ReadXml(reader);
 				Parameters.Add(p);
 			}
@@ -42,7 +42,7 @@ namespace iilang
 
 		public override void WriteXml (System.Xml.XmlWriter writer)
 		{
-			foreach (EisIILangElement p in Parameters) {
+			foreach (IILElement p in Parameters) {
 				writer.WriteStartElement (p.XmlTag);
 				p.WriteXml (writer);
 				writer.WriteEndElement ();

@@ -16,10 +16,10 @@ namespace iilangTest
 		[Test()]
 		public void WriteXmlOfIdentifierWithValue_XmlRepresentationOfIdentifierWithValue ()
 		{
-			EisIdentifier actual_src = new EisIdentifier ("test_id");
+			IILIdentifier actual_src = new IILIdentifier ("test_id");
             StringBuilder sb = new StringBuilder();
 			
-			XmlSerializer serializer = new XmlSerializer(typeof(EisIdentifier));
+			XmlSerializer serializer = new XmlSerializer(typeof(IILIdentifier));
 			serializer.Serialize (XmlWriter.Create(sb), actual_src);
 			
 			XDocument expected = XDocument.Parse (
@@ -34,9 +34,9 @@ namespace iilangTest
 		[Test()]
 		public void TryWriteXmlOfIdentifierWithoutValue_ThrowException ()
 		{
-			EisIdentifier actual_src = new EisIdentifier ();
+			IILIdentifier actual_src = new IILIdentifier ();
 			
-			XmlSerializer serializer = new XmlSerializer(typeof(EisIdentifier));
+			XmlSerializer serializer = new XmlSerializer(typeof(IILIdentifier));
  
             Assert.Catch<Exception>(() => serializer.Serialize(GenerateWriter(), actual_src));
 		}
@@ -44,7 +44,7 @@ namespace iilangTest
 		[Test()]
 		public void WriteXmlOfNumeralWithValue_XmlRepresentationOfNumeralWithValue () 
 		{
-			EisNumeral actual_src = new EisNumeral(42);
+			IILNumeral actual_src = new IILNumeral(42);
 
             StringBuilder sb = new StringBuilder();
 
@@ -63,9 +63,9 @@ namespace iilangTest
 		[Test()]
 		public void TryWriteXmlOfNumeralWithoutValue_ThrowException ()
 		{
-			EisNumeral actual_src = new EisNumeral ();
+			IILNumeral actual_src = new IILNumeral ();
 			
-			XmlSerializer serializer = new XmlSerializer(typeof(EisNumeral));
+			XmlSerializer serializer = new XmlSerializer(typeof(IILNumeral));
 
             Assert.Catch<Exception>(() => serializer.Serialize(GenerateWriter(), actual_src));
 		}
@@ -73,11 +73,11 @@ namespace iilangTest
 		[Test()]
 		public void WriteXmlOfParameterListWithContent_ReturnXmlWithContentAsChildren ()
 		{
-			EisParameterList actual_src = new EisParameterList (new EisIdentifier ("test_id"), new EisNumeral (42));
+			IILParameterList actual_src = new IILParameterList (new IILIdentifier ("test_id"), new IILNumeral (42));
 
             StringBuilder sb = new StringBuilder();
 
-			XmlSerializer serializer = new XmlSerializer(typeof(EisParameterList));
+			XmlSerializer serializer = new XmlSerializer(typeof(IILParameterList));
 			serializer.Serialize (XmlWriter.Create(sb), actual_src);
 			
 			XDocument expected = XDocument.Parse (
@@ -95,11 +95,11 @@ namespace iilangTest
 		[Test()]
 		public void WriteXmlOfFunctionWithChildren_ReturnXmlWithContentAsChildren ()
 		{
-			EisFunction actual_src = new EisFunction( "test_fun", new EisNumeral(42) );
+			IILFunction actual_src = new IILFunction( "test_fun", new IILNumeral(42) );
 
             StringBuilder sb = new StringBuilder();
 
-			XmlSerializer serializer = new XmlSerializer(typeof(EisFunction));
+			XmlSerializer serializer = new XmlSerializer(typeof(IILFunction));
 			serializer.Serialize (XmlWriter.Create(sb), actual_src);
 			
 			XDocument expected = XDocument.Parse (
@@ -115,9 +115,9 @@ namespace iilangTest
 		[Test()]
 		public void TryWriteXmlOfFunctionWithoutName_ThrowException ()
 		{
-			EisFunction actual_src = new EisFunction();
+			IILFunction actual_src = new IILFunction();
 			
-			XmlSerializer serializer = new XmlSerializer(typeof(EisFunction));
+			XmlSerializer serializer = new XmlSerializer(typeof(IILFunction));
 
             Assert.Catch<Exception>(() => serializer.Serialize(GenerateWriter(), actual_src));
 		}
@@ -125,11 +125,11 @@ namespace iilangTest
 		[Test()]
 		public void WriteXmlOfPerceptWithChildren_ReturnXmlWithRepresentation ()
 		{
-			EisPercept actual_src = new EisPercept( "test_percept", new EisNumeral(42), new EisIdentifier("test_id") );
+			IILPercept actual_src = new IILPercept( "test_percept", new IILNumeral(42), new IILIdentifier("test_id") );
 
             StringBuilder sb = new StringBuilder();
 			
-			XmlSerializer serializer = new XmlSerializer(typeof(EisPercept));
+			XmlSerializer serializer = new XmlSerializer(typeof(IILPercept));
 			serializer.Serialize (XmlWriter.Create(sb), actual_src);
 			
 			XDocument expected = XDocument.Parse (
@@ -151,9 +151,9 @@ namespace iilangTest
 		[Test()]
 		public void TryWriteXmlOfPerceptWithoutName_ThrowException ()
 		{
-			EisPercept actual_src = new EisPercept( );
+			IILPercept actual_src = new IILPercept( );
 			
-			XmlSerializer serializer = new XmlSerializer(typeof(EisPercept));
+			XmlSerializer serializer = new XmlSerializer(typeof(IILPercept));
 
             Assert.Catch<Exception>(() => serializer.Serialize(GenerateWriter(), actual_src));
 		}

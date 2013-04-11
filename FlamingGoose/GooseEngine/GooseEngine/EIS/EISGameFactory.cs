@@ -12,6 +12,11 @@ namespace GooseEngine.EIS
 {
     public class EISGameFactory : GameFactory
     {
+		public EISGameFactory(ActionManager actman)
+		{
+			this.actman = actman;
+		}
+
         public override Vision CreateVisionPercept(Grid<Tile> grid, Entity owner)
         {
             return base.CreateVisionPercept(grid, owner);

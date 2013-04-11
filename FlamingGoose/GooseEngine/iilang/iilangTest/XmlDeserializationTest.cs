@@ -12,19 +12,19 @@ namespace iilangTest
 		[Test()]
 		public void TryReadXmlOfIdentifierWithValue_EisIdentifierObject ()
 		{
-			EisIdentifier expected = new EisIdentifier ("test_id");
+			IILIdentifier expected = new IILIdentifier ("test_id");
 			
-			XmlSerializer serializer = new XmlSerializer (typeof(EisIdentifier));
+			XmlSerializer serializer = new XmlSerializer (typeof(IILIdentifier));
 			
 			XElement actual_src = XElement.Parse (@"<identifier value=""test_id"" />");
 			
-			EisIdentifier actual = (EisIdentifier)serializer.Deserialize (actual_src.CreateReader ());
+			IILIdentifier actual = (IILIdentifier)serializer.Deserialize (actual_src.CreateReader ());
 			Assert.AreEqual (expected, actual);
 		}
 
 		public void TryReadXmlOfIdentifierWithoutValue_ThrowException ()
 		{
-			XmlSerializer serializer = new XmlSerializer (typeof(EisIdentifier));
+			XmlSerializer serializer = new XmlSerializer (typeof(IILIdentifier));
 			
 			XElement actual_src = XElement.Parse (@"<identifier />");
 			Assert.Throws<MissingXmlAttributeException> (() => serializer.Deserialize (actual_src.CreateReader ()));
@@ -33,20 +33,20 @@ namespace iilangTest
 		[Test()]
 		public void TryReadXmlOfNumeralWithValue_EisNumeralObject ()
 		{
-			EisNumeral expected = new EisNumeral (42);
+			IILNumeral expected = new IILNumeral (42);
 			
-			XmlSerializer serializer = new XmlSerializer (typeof(EisNumeral));
+			XmlSerializer serializer = new XmlSerializer (typeof(IILNumeral));
 			
 			XElement actual_src = XElement.Parse (@"<number value=""42"" />");
 			
-			EisNumeral actual = (EisNumeral)serializer.Deserialize (actual_src.CreateReader ());
+			IILNumeral actual = (IILNumeral)serializer.Deserialize (actual_src.CreateReader ());
 			Assert.AreEqual (expected, actual);
 		}
 
 		[Test()]
 		public void TryReadXmlOfNumeralWithoutValue_ThrowException ()
 		{
-			XmlSerializer serializer = new XmlSerializer (typeof(EisNumeral));
+			XmlSerializer serializer = new XmlSerializer (typeof(IILNumeral));
 			
 			XElement actual_src = XElement.Parse (@"<number />");
 			Assert.Catch<Exception> (() => serializer.Deserialize (actual_src.CreateReader ()));
@@ -55,9 +55,9 @@ namespace iilangTest
 		[Test()]
 		public void ReadXmlOfFunctionWithChildren_EisFunctionObjectWithChildren ()
 		{
-			EisFunction expected = new EisFunction ("test_fun", new EisIdentifier ("test_id"), new EisNumeral (42));
+			IILFunction expected = new IILFunction ("test_fun", new IILIdentifier ("test_id"), new IILNumeral (42));
 			
-			XmlSerializer serializer = new XmlSerializer (typeof(EisFunction));
+			XmlSerializer serializer = new XmlSerializer (typeof(IILFunction));
 			
 			XElement actual_src = XElement.Parse (
 				@"<function name=""test_fun"">
@@ -65,14 +65,14 @@ namespace iilangTest
 					<number value=""42"" />
 				</function>");
 			
-			EisFunction actual = (EisFunction)serializer.Deserialize (actual_src.CreateReader ());
+			IILFunction actual = (IILFunction)serializer.Deserialize (actual_src.CreateReader ());
 			Assert.AreEqual (expected, actual);
 		}
 
 		[Test()]
 		public void TryReadXmlOfFunctionWithoutName_ThrowException ()
 		{	
-			XmlSerializer serializer = new XmlSerializer (typeof(EisFunction));
+			XmlSerializer serializer = new XmlSerializer (typeof(IILFunction));
 			
 			XElement actual_src = XElement.Parse (
 				@"<function>
@@ -86,9 +86,9 @@ namespace iilangTest
 		[Test()]
 		public void ReadXmlRepresentationOfAction_moveToAction_ReturnsCorrectMovetToActionObject()
 		{
-			EisAction expected = new EisAction ("moveTo", new EisNumeral (2), new EisNumeral (3));
+			IILAction expected = new IILAction ("moveTo", new IILNumeral (2), new IILNumeral (3));
 
-			XmlSerializer serializer = new XmlSerializer(typeof(EisAction));
+			XmlSerializer serializer = new XmlSerializer(typeof(IILAction));
 			
 			XElement actual_src = XElement.Parse (
 				@"<action name=""moveTo"">
@@ -100,14 +100,14 @@ namespace iilangTest
 					</actionParameter>
 				</action>");
 			
-			EisAction actual = (EisAction)serializer.Deserialize (actual_src.CreateReader ());
+			IILAction actual = (IILAction)serializer.Deserialize (actual_src.CreateReader ());
 			Assert.AreEqual (expected, actual);
 		}
 
 		[Test()]
 		public void TryReadXmlRepresentationOfActionWithoutName_ActionObject ()
 		{
-			XmlSerializer serializer = new XmlSerializer (typeof(EisAction));
+			XmlSerializer serializer = new XmlSerializer (typeof(IILAction));
 			
 			XElement actual_src = XElement.Parse (
 				@"<action>

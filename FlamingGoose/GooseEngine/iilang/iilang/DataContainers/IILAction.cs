@@ -6,20 +6,20 @@ namespace iilang
 {
 
 	[XmlRoot("action")]
-	public class EisAction : EisDataContainer
+	public class IILAction : IILDataContainer
 	{
 		public override string XmlTag { get { return "action"; } }
 		public override string ChildXmlTag { get { return "actionParameter"; } }
 		
-		public EisAction () {
+		public IILAction () {
 		}
 		
-		public EisAction (string name, params EisParameter[] ps) 
+		public IILAction (string name, params IILParameter[] ps) 
 			: base (name, ps) 
 		{ 
 		}
 
-		public EisAction (string name, LinkedList<EisParameter> ps)
+		public IILAction (string name, LinkedList<IILParameter> ps)
 			: base (name, ps)
 		{
 		}

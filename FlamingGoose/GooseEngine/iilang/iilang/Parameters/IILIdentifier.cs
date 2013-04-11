@@ -7,17 +7,17 @@ namespace iilang
 {
 #pragma warning disable
     [XmlRoot("identifier")]
-	public class EisIdentifier : EisParameter
+	public class IILIdentifier : IILParameter
 	{
 		public override string XmlTag { get {return "identifier";} }
 		public string Value { get; private set; }
 
-		public EisIdentifier (string value)
+		public IILIdentifier (string value)
 		{
 			Value = value;
 		}
 
-		public EisIdentifier()
+		public IILIdentifier()
 		{ }
 
 		public override void WriteXml(XmlWriter writer)
@@ -40,7 +40,7 @@ namespace iilang
 			if (this.GetType () != obj.GetType())
 				return false;
 
-			EisIdentifier id = (EisIdentifier)obj;
+			IILIdentifier id = (IILIdentifier)obj;
 			return (Value == id.Value);
 		}
 	}

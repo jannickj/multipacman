@@ -7,17 +7,17 @@ namespace iilang
 {
 #pragma warning disable
     [XmlRoot("number")]
-	public class EisNumeral : EisParameter
+	public class IILNumeral : IILParameter
 	{
 		public override string XmlTag { get {return "number";} }
 		public double Value { get; private set; }
 		
-		public EisNumeral (Double value)
+		public IILNumeral (Double value)
 		{
 			Value = value;
 		}
 		
-		public EisNumeral()
+		public IILNumeral()
 		{
 			Value = Double.NaN;
 		}
@@ -44,7 +44,7 @@ namespace iilang
 			if (this.GetType () != obj.GetType())
 				return false;
 			
-			EisNumeral num = (EisNumeral)obj;
+			IILNumeral num = (IILNumeral)obj;
 			return (Value == num.Value);
 		}
 	}

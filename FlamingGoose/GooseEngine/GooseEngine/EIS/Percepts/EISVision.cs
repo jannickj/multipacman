@@ -15,16 +15,16 @@ namespace GooseEngine.EIS.EISPercepts
 
 		#region IEISPercept implementation1
 
-		public iilang.EisPercept toIILang ()
+		public iilang.IILPercept toIILang ()
 		{
-			EisPercept percept = new EisPercept ("vision");
+			IILPercept percept = new IILPercept ("vision");
 
 			foreach (KeyValuePair<Point, Tile> kvp in VisibleTiles)
 			{
-				EisFunction fun = new EisFunction ("on",
-				                                   new EisNumeral(kvp.Key.X),
-				                                   new EisNumeral(kvp.Key.Y),
-				                                   new EisIdentifier(kvp.Value.ToString())
+				IILFunction fun = new IILFunction ("on",
+				                                   new IILNumeral(kvp.Key.X),
+				                                   new IILNumeral(kvp.Key.Y),
+				                                   new IILIdentifier(kvp.Value.ToString())
 				                                   );
 				percept.addParameter(fun);
 			}

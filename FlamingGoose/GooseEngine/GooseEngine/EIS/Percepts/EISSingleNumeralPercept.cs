@@ -12,9 +12,9 @@ namespace GooseEngine.EIS.Percepts
 		}
 
 		#region IEISPercept implementation
-		public iilang.EisPercept toIILang ()
+		public iilang.IILPercept toIILang ()
 		{
-			return new EisPercept (Name, new EisNumeral (Value));
+			return new IILPercept (Name, new IILNumeral (Value));
 		}
 		#endregion
 	}
