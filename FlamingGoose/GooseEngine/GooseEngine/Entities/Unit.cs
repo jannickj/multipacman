@@ -28,7 +28,8 @@ namespace GooseEngine.Entities
         {
             this.AddRuleSuperior<Unit>();
             AddWillBlock_MovementRule<Unit>(p => p is Unit);
-        	
+			perceptCollectors.Add (VisionPercept);
+			perceptCollectors.Add (HealthPercept);
         }
 
 		public void AddPerceptCollector (Func<Unit, IPercept> f)
