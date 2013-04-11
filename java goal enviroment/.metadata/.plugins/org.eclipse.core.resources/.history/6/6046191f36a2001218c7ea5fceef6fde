@@ -1,0 +1,12 @@
+package XML;
+
+import org.xml.sax.XMLReader;
+
+public class NumeralHandler extends ParameterHandler {
+
+	public NumeralHandler(ParameterHandler parent, XMLReader reader) {
+		super(parent, reader);
+		// TODO Auto-generated constructor stub
+	}
+
+}

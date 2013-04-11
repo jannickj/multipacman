@@ -82,7 +82,7 @@
     <Compile Include="GameManagement\TriggerManager.cs" />
     <Compile Include="GameMap.cs" />
     <Compile Include="GameWorld.cs" />
-    <Compile Include="Perception.cs" />
+    <Compile Include="Percept.cs" />
     <Compile Include="Perceptions\Vision.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\MapEntities\Tile.cs" />

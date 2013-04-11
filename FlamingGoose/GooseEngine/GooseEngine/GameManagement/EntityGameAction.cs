@@ -5,11 +5,11 @@ using System.Text;
 
 namespace GooseEngine.GameManagement
 {
-    public abstract class EntityGameAction<T> : GameAction where T : Entity
+    public abstract class EntityGameAction : GameAction
     {
-        private T source;
+        private Entity source;
 
-        public T Source
+        public Entity Source
         {
             get
             {
@@ -19,6 +19,34 @@ namespace GooseEngine.GameManagement
             {
                 source = value;
             }
+        }
+
+        internal protected abstract Type SupportedEntityType();
+
+
+        internal bool IsEntitySupported(Entity entity)
+        {
+            return entity.GetType().IsSubclassOf(SupportedEntityType());
+        }
+    }
+
+
+    public abstract class EntityGameAction<T> : EntityGameAction where T : Entity
+    {
+
+        public new T Source
+        {
+            get
+            {
+                return (T)base.Source;
+            }
+            
+        }
+
+
+        protected internal override Type SupportedEntityType()
+        {
+            return typeof(T);
         }
 
     }

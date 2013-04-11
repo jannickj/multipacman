@@ -1,0 +1,33 @@
+package XML;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.XMLReader;
+
+import eis.iilang.Identifier;
+import eis.iilang.Parameter;
+import eis.iilang.Percept;
+
+public class IdentifierHandler extends ParameterHandler {
+
+	public IdentifierHandler(ParameterHandler parent, XMLReader reader) {
+		super(parent, reader);
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public void startElement (String uri, String name, String qname, Attributes attributes)
+	{
+		String Attr = attributes.getLocalName(0);
+		this.setElement(new Identifier (Attr));
+		
+	}
+
+	@Override
+	protected void AddtoParent(Object parent) {
+		Percept p = (Percept)parent;
+		p.addParameter(this.<Parameter>getElementAs());
+		
+		
+	}
+
+}

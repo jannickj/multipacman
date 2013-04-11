@@ -1,0 +1,72 @@
+package XML;
+
+import java.util.LinkedList;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.XMLReader;
+
+import eis.iilang.Function;
+import eis.iilang.Identifier;
+import eis.iilang.Numeral;
+import eis.iilang.Parameter;
+import eis.iilang.ParameterList;
+import eis.iilang.Percept;
+
+public class PerceptHandler extends ParameterHandler 
+{
+	
+
+	public PerceptHandler(ParameterHandler parent, XMLReader reader) {
+		super(null, reader);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void startElement (String uri, String name, String qname, Attributes attributes)
+	{
+		if (name.equals("percept"))
+		{
+			this.setElement(new Percept(attributes.getValue(0)));
+		}
+		else
+		{
+			ParameterHandler handler = null;
+			if (name.equals ("identifier"))
+				handler = new IdentifierHandler(this,this.getReader());
+			
+			if (name.equals ("number"))
+				handler = new NumeralHandler(this,this.getReader());
+			
+		
+			if (name.equals ("parameterList")) 
+				handler = new ParameterListHandler(this,this.getReader());
+				
+			if (name.equals ("function")) 
+				handler = new FunctionHandler(this,this.getReader());
+			
+			if (name.equals("perceptParameter"))
+				return;
+			
+			if(handler == null)
+			{
+				try {
+					throw new Exception("Unknown XML node named: "+name);
+				} catch (Exception e) { e.printStackTrace();}
+			}
+			
+			this.getReader().setContentHandler(handler);
+		}
+		
+		
+	}
+	
+	@Override
+	protected void endInternElement(String uri, String name, String qname)
+	{
+		
+	}
+	
+	
+	
+	
+}
