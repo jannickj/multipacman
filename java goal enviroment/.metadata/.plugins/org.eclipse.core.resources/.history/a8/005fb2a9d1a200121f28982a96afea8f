@@ -6,17 +6,22 @@ import org.xml.sax.Attributes;
 import org.xml.sax.XMLReader;
 
 import eis.iilang.Function;
-import eis.iilang.Numeral;
 import eis.iilang.Parameter;
+import eis.iilang.ParameterList;
 
-public class FunctionHandler  extends ParameterHandler{
+public class ParameterListHandler extends ParameterHandler {
 
-	public FunctionHandler(ParameterHandler parent, XMLReader reader,
+
+	
+	public ParameterListHandler(ParameterHandler parent, XMLReader reader,
 			Attributes attributes) {
 		super(parent, reader, attributes);
-		new ParameterCollectionHandler(this, reader, attributes);
+		// TODO Auto-generated constructor stub
+		this.getReader().setContentHandler(new ParameterCollectionHandler(this, reader, attributes));
 	}
-	
+		
+		
+		
 	@Override
 	protected void endInternElement(String uri, String name, String qname)
 	{
@@ -26,9 +31,9 @@ public class FunctionHandler  extends ParameterHandler{
 			params.add((Parameter)o);			
 		}
 		
-		this.setElement(new Function(name, params));
+		this.setElement(new ParameterList(params));
 	}
-
-
+	
+	
 
 }
