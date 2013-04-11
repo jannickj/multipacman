@@ -14,15 +14,8 @@ namespace GooseEngine
 			this.agent = agent;
 		}
 
-		public Agent Target 
-		{ 
-			get 
-			{
-				return agent;
-			}
-		}
 
-		public Percept performAction (GameAction action)
+		public void performAction (GameAction action)
 		{
 			action.Completed += action_Completed;
 			agent.QueueAction (action);
@@ -31,16 +24,31 @@ namespace GooseEngine
 			{
 				Monitor.Wait(this);
 			}
-
-			action.Completed -= action_Completed;
 		}
 
+
+
+		#region Events
 		private void  action_Completed (object sender, EventArgs e)
 		{
-			lock (this) {
-				Monitor.PulseAll(this);
+			lock (this) 
+			{
+				Monitor.PulseAll (this);
 			}
 		}
+		#endregion
+
+		#region Getters
+		public Agent Target 
+		{ 
+			get 
+			{
+				return agent;
+			}
+		}
+		#endregion
+
+
 	}
 }
 

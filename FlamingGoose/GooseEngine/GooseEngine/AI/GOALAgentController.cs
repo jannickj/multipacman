@@ -2,10 +2,11 @@ using System;
 
 namespace GooseEngine
 {
-	public class GOALAgetnController
+	public class GOALAgentController : AgentController
 	{
-		public GOALAgetnController ()
+		public GOALAgentController ()
 		{
+
 		}
 	}
 }
