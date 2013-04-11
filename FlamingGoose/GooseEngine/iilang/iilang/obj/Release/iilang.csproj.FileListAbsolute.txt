@@ -1,2 +1,0 @@
-C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilang\bin\Release\iilang.dll
-C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilang\obj\Release\iilang.dll
