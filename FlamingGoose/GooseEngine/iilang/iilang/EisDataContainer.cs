@@ -23,6 +23,17 @@ namespace iilang
 			Parameters = new List<EisParameter> (ps);
 		}
 
+		public EisDataContainer (string name, LinkedList<EisParameter> ps)
+		{
+			Name = name;
+			Parameters = ps;
+		}
+
+		public void addParameter(EisParameter par)
+		{
+			Parameters.Add (par);
+		}
+
 		#region implemented abstract members of IILangElement
 
 		public override void ReadXml (System.Xml.XmlReader reader)

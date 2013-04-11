@@ -15,7 +15,14 @@ namespace iilang
 		}
 
 		public EisPercept (string name, params EisParameter[] ps) 
-		: base (name, ps) { }
+			: base (name, ps) 
+		{ 
+		}
+
+		public EisPercept (string name, LinkedList<EisParameter> ps)
+		:base (name, ps) 
+		{ 
+		}
 
 	}
 }

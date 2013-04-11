@@ -1,5 +1,6 @@
 using System;
 using System.Xml.Serialization;
+using System.Collections.Generic;
 
 namespace iilang
 {
@@ -14,8 +15,14 @@ namespace iilang
 		}
 		
 		public EisAction (string name, params EisParameter[] ps) 
-		: base (name, ps) { }
+			: base (name, ps) 
+		{ 
+		}
 
+		public EisAction (string name, LinkedList<EisParameter> ps)
+			: base (name, ps)
+		{
+		}
 	}
 
 }

@@ -2,6 +2,8 @@ using System;
 using GooseEngine.Percepts;
 using GooseEngine.EIS.Percepts;
 using GooseEngine.Data;
+using System.Collections.Generic;
+using iilang;
 
 namespace GooseEngine.EIS.EISPercepts
 {
@@ -15,8 +17,21 @@ namespace GooseEngine.EIS.EISPercepts
 
 		public iilang.EisPercept toIILang ()
 		{
-			throw new NotImplementedException();
-		}
+			EisPercept percept = new EisPercept ("vision");
+
+			foreach (KeyValuePair<Point, Tile> kvp in VisibleTiles)
+			{
+				EisFunction fun = new EisFunction ("on",
+				                                   new EisNumeral(kvp.Key.X),
+				                                   new EisNumeral(kvp.Key.Y),
+				                                   new EisIdentifier(kvp.Value.ToString())
+				                                   );
+				percept.addParameter(fun);
+			}
+
+			return percept;
+	 	}
+
 
 		#endregion
 
