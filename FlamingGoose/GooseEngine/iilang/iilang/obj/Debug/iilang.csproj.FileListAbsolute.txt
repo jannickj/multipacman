@@ -1,4 +1,0 @@
-C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilang\bin\Debug\iilang.dll
-C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilang\bin\Debug\iilang.pdb
-C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilang\obj\Debug\iilang.dll
-C:\Users\jannick\Bachelor Project\FlamingGoose\GooseEngine\iilang\iilang\obj\Debug\iilang.pdb
