@@ -1,0 +1,14 @@
+package XML;
+
+import org.xml.sax.XMLReader;
+
+public class FunctionHandler  extends ParameterHandler{
+
+	public FunctionHandler(ParameterHandler parent, XMLReader reader) {
+		super(parent, reader);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+}

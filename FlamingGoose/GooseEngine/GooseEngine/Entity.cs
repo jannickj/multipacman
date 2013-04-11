@@ -82,12 +82,11 @@ namespace GooseEngine
             this.triggers.Deregister(trigger);
         }
 
-        public void QueueAction<T>(EntityGameAction<T> action) where T : Entity
+        public void QueueAction(EntityGameAction action)
         {
-            T source = this as T;
-            if (source != null)
+            if (action.IsEntitySupported(this))
             {
-                action.Source = source;
+                action.Source = this;
                 actman.Queue(action);
             }
             else
