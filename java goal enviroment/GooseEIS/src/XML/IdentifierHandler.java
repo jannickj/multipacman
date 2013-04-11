@@ -17,10 +17,12 @@ public class IdentifierHandler extends ParameterHandler {
 	}
 	
 	@Override
-	protected void endInternElement(String uri, String name, String qname)
+	public void endElement(String uri, String name, String qname)
 	{
 		String Attr = this.getAttributes().getValue(0);
 		this.setElement(new Identifier (Attr));
+		
+		super.endElement(uri, name, qname);
 	}
 
 

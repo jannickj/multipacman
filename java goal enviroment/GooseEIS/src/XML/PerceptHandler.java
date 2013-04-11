@@ -27,7 +27,7 @@ public class PerceptHandler extends ParameterHandler
 
 
 	@Override
-	protected void endInternElement(String uri, String name, String qname)
+	public void endElement(String uri, String name, String qname)
 	{
 		@SuppressWarnings("unchecked")
 		LinkedList<Object> l = (LinkedList<Object>) this.getParams().pop();
@@ -37,6 +37,8 @@ public class PerceptHandler extends ParameterHandler
 			Parameter p = (Parameter)o;
 			this.<Percept>getElementAs().addParameter(p);
 		}
+		
+		super.endElement(uri, name, qname);
 	}
 	
 	

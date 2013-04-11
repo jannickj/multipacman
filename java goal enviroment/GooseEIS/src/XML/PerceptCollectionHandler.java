@@ -26,7 +26,7 @@ public class PerceptCollectionHandler extends ParameterHandler {
 	}
 	
 	@Override
-	protected void endInternElement(String uri, String name, String qname)
+	public void endElement(String uri, String name, String qname)
 	{
 		LinkedList<Percept> percepts = new LinkedList<>();
 		
@@ -36,6 +36,8 @@ public class PerceptCollectionHandler extends ParameterHandler {
 			percepts.add(p);
 		}
 		this.setElement(percepts);
+		
+		super.endElement(uri, name, qname);
 	}
 
 }

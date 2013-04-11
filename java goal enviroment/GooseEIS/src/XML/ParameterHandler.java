@@ -28,7 +28,6 @@ public abstract class ParameterHandler extends DefaultHandler
 	@Override
 	public void endElement (String uri, String name, String qname)
 	{
-		endInternElement(uri, name, qname);
 		if(parent != null)
 		{
 			this.parent.params.add(this.element);
@@ -36,10 +35,7 @@ public abstract class ParameterHandler extends DefaultHandler
 		}
 	}
 	
-	protected void endInternElement(String uri, String name, String qname)
-	{
-		
-	}
+	
 
 	protected LinkedList<Object> getParams()
 	{

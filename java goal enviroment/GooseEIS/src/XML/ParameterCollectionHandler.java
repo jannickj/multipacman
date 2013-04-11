@@ -48,9 +48,13 @@ public class ParameterCollectionHandler extends ParameterHandler {
 	}
 	
 	@Override
-	protected void endInternElement(String uri, String name, String qname)
+	public void endElement(String uri, String name, String qname)
 	{
+		if("perceptParameter".equals(name))
+			return;
+		
 		this.setElement(this.getParams());
+		super.endElement(uri, name, qname);
 	}
 
 }
