@@ -94,6 +94,7 @@
     <Compile Include="Rule\Exceptions\MulticonclusionException.cs" />
     <Compile Include="Data\Point.cs" />
     <Compile Include="AI\AgentController.cs" />
+    <Compile Include="AI\GOALAgentController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
