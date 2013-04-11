@@ -96,14 +96,16 @@
     <Compile Include="AI\AgentController.cs" />
     <Compile Include="GameManagement\Actions\GetAllPercepts.cs" />
     <Compile Include="GameManagement\Events\RetreivePerceptsEvent.cs" />
-    <Compile Include="EIS\EISPercepts\EISVision.cs" />
+    <Compile Include="EIS\Percepts\EISVision.cs" />
+    <Compile Include="EIS\IEISPercept.cs" />
+    <Compile Include="GooseObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="AI\" />
     <Folder Include="Perceptions\EISPercepts\" />
     <Folder Include="EIS\" />
-    <Folder Include="EIS\EISPercepts\" />
+    <Folder Include="EIS\Percepts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -113,4 +115,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <ProjectReference Include="..\iilang\iilang\iilang.csproj">
+      <Project>{8205042B-12C2-4A7E-9A19-EC06792BC8E6}</Project>
+      <Name>iilang</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

@@ -7,28 +7,24 @@ using System.Threading.Tasks;
 using GooseEngine.Data.GenericEvents;
 using GooseEngine.GameManagement;
 using GooseEngine.GameManagement.Events;
+using GooseEngine.Data;
 
 namespace GooseEngine
 {
-    public class GameEngine
+    public class GameEngine : GooseObject
     {
         private bool stopEngine;
 
-        private GameWorld world;
-        private EventManager evtman;
-        private ActionManager actman;
-        private GameFactory factory;
-
         public GameEngine(GameWorld world, ActionManager actman, EventManager evtman, GameFactory factory)
         {
-            this.world = world;
-            this.actman = actman;
-            this.evtman = evtman;
-            this.factory = factory;
+            this.World = world;
+            this.ActionManager = actman;
+            this.EventManager = evtman;
+            this.Factory = factory;
 
-            this.evtman.Register(new Trigger<EngineCloseEvent>(evtman_EngineClose));
-            this.actman.ActionQueuing += actman_ActionQueuing;
-            this.actman.ActionQueued += actman_ActionQueued;
+            this.EventManager.Register(new Trigger<EngineCloseEvent>(evtman_EngineClose));
+            this.ActionManager.ActionQueuing += actman_ActionQueuing;
+            this.ActionManager.ActionQueued += actman_ActionQueued;
 
         }
 
@@ -39,17 +35,31 @@ namespace GooseEngine
 
             while (true)
             {                                
-                lock (this.actman)
+                lock (this.ActionManager)
                 {
-                    actman.ExecuteActions();
+                    ActionManager.ExecuteActions();
                     if (this.stopEngine)
                         break;
-                    Monitor.Wait(this.actman);
+                    Monitor.Wait(this.ActionManager);
                 }
 
             }
 
         }
+
+		public void AddEntity (Entity entity, Point loc)
+		{
+			entity.ActionManager = ActionManager;
+			entity.EventManager = EventManager;
+			entity.World = World;
+			entity.Factory = Factory;
+			World.AddEntity (loc, entity);
+		}
+
+		public void AddEntity(Entity entity)
+		{
+			AddEntity (entity, new Point (0, 0));
+		}
 
         #region EVENTS
 
@@ -64,24 +74,20 @@ namespace GooseEngine
 
         void actman_ActionQueuing(object sender, ValueEvent<GameAction> value)
         {
-            value.Value.EventManager = evtman;
-            value.Value.Factory = factory;
-            value.Value.World = world;
-            value.Value.ActionManager = actman;
+            value.Value.EventManager = EventManager;
+            value.Value.Factory = Factory;
+            value.Value.World = World;
+            value.Value.ActionManager = ActionManager;
         }
-
 
         void actman_ActionQueued(object sender, ValueEvent<GameAction> value)
         {
-            lock (this.actman)
+            lock (this.ActionManager)
             {
-                Monitor.PulseAll(this.actman);
+                Monitor.PulseAll(this.ActionManager);
             }
         }
 
-
-
         #endregion
-
     }
 }
