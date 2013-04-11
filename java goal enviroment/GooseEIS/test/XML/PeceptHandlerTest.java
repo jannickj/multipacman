@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
+import java.util.List;
 
 import junit.framework.Assert;
 
@@ -27,19 +28,19 @@ public class PeceptHandlerTest {
 	@Test
 	public void XmlParsing_simplePerceptWithIdentifier_ReturnsAPerceptWithAnIdentifier() throws SAXException, IOException 
 	{
-		String xml ="<percept name=\"percept_name\">" +
+		String xml ="<perceptCollection><percept name=\"percept_name\">" +
 						"<perceptParameter>" +
 							"<identifier value=\"identifer_value\"></identifier>" +
 						"</perceptParameter>"+
-					"</percept>";
+					"</percept></perceptCollection>";
 		XMLReader reader = XMLReaderFactory.createXMLReader();
-		PerceptHandler handler = new PerceptHandler(null, reader,null);
+		PerceptCollectionHandler handler = new PerceptCollectionHandler(reader);
 		reader.setContentHandler(handler);
 		InputStream is = new ByteArrayInputStream(xml.getBytes());
 		InputSource sc = new InputSource(is);
 		reader.parse(sc);
 		
-		Percept p = handler.getElementAs();
+		Percept p = handler.<LinkedList<Percept>>getElementAs().getFirst();
 		
 		Assert.assertEquals("percept_name", p.getName());
 		
@@ -53,7 +54,7 @@ public class PeceptHandlerTest {
 		String xml = "<perceptCollection>" +
 					"<percept name=\"percept1\">" +
 						"<perceptParameter>" +
-							"<identifier value=\"identifer1\"></identifier>" +
+							"<identifier value=\"identifier1\"></identifier>" +
 						"</perceptParameter>"+
 						"<perceptParameter>" +
 							"<parameterList>" +
@@ -83,8 +84,14 @@ public class PeceptHandlerTest {
 		Percept p1 = pc.getFirst();
 		Percept p2 = pc.getLast();
 		ParameterList pl = (ParameterList)p1.getParameters().getLast();
-		Numeral pl_num = null;
-		Function fun = null;
+		LinkedList<eis.iilang.Parameter> pll = new LinkedList<eis.iilang.Parameter>(); 
+		for (eis.iilang.Parameter p : pl)
+		{
+			pll.add(p);
+		}
+		
+		Numeral pl_num = (Numeral) pll.getFirst();
+		Function fun = (Function) pll.getLast();
 		
 		for (eis.iilang.Parameter p : pl)
 		{
@@ -103,9 +110,9 @@ public class PeceptHandlerTest {
 		Assert.assertEquals(2.0, pl_num.getValue());
 		Assert.assertEquals("function_name", fun.getName());
 		Assert.assertEquals("identifier_fun", fun_id.getValue());
-		Assert.assertEquals(42, fun_num.getValue());
-		Assert.assertEquals("identifer1", ((Identifier)p1.getParameters().getFirst()).getValue());
-		Assert.assertEquals("identifer2", ((Identifier)p2.getParameters().getFirst()).getValue());
+		Assert.assertEquals(42.0, fun_num.getValue());
+		Assert.assertEquals("identifier1", ((Identifier)p1.getParameters().getFirst()).getValue());
+		Assert.assertEquals("identifier2", ((Identifier)p2.getParameters().getFirst()).getValue());
 	}
 
 }

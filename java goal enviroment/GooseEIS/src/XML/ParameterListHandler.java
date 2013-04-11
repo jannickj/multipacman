@@ -9,14 +9,13 @@ import eis.iilang.Function;
 import eis.iilang.Parameter;
 import eis.iilang.ParameterList;
 
-public class ParameterListHandler extends ParameterHandler {
+public class ParameterListHandler extends ParameterCollectionHandler {
 
 
 	
 	public ParameterListHandler(ParameterHandler parent, XMLReader reader,
 			Attributes attributes) {
 		super(parent, reader, attributes);
-		new ParameterCollectionHandler(this, reader, attributes);
 	}
 		
 		

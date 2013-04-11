@@ -12,7 +12,7 @@ import eis.iilang.Parameter;
 import eis.iilang.ParameterList;
 import eis.iilang.Percept;
 
-public class PerceptHandler extends ParameterHandler 
+public class PerceptHandler extends ParameterCollectionHandler
 {
 	
 
@@ -22,17 +22,17 @@ public class PerceptHandler extends ParameterHandler
 		super(parent, reader, attributes);
 		// TODO Auto-generated constructor stub
 		this.setElement(new Percept(attributes.getValue(0)));
-		new ParameterCollectionHandler(this, this.getReader(), attributes);
 	}
 
 
 	@Override
 	public void endElement(String uri, String name, String qname)
 	{
-		@SuppressWarnings("unchecked")
-		LinkedList<Object> l = (LinkedList<Object>) this.getParams().pop();
+
+		if("perceptParameter".equals(name))
+			return;
 		
-		for(Object o : l)
+		for(Object o : this.getParams())
 		{
 			Parameter p = (Parameter)o;
 			this.<Percept>getElementAs().addParameter(p);

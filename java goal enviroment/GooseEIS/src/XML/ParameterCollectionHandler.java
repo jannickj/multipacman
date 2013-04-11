@@ -13,8 +13,6 @@ public class ParameterCollectionHandler extends ParameterHandler {
 	public ParameterCollectionHandler(ParameterHandler parent,
 			XMLReader reader, Attributes attributes) {
 		super(parent, reader, attributes);
-		reader.setContentHandler(this);
-		
 	}
 
 	@Override
@@ -47,14 +45,5 @@ public class ParameterCollectionHandler extends ParameterHandler {
 		
 	}
 	
-	@Override
-	public void endElement(String uri, String name, String qname)
-	{
-		if("perceptParameter".equals(name))
-			return;
-		
-		this.setElement(this.getParams());
-		super.endElement(uri, name, qname);
-	}
 
 }
