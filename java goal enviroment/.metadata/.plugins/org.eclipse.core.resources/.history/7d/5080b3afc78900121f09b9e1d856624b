@@ -1,7 +1,0 @@
-
-public enum ObjectOnTile {
-	Package,
-	Man,
-	ManNPackage,
-	Nothing
-}

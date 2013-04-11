@@ -1,7 +1,0 @@
-
-public enum Grid {
-	Package,
-	Man,
-	ManNPackage,
-	Nothing
-}
