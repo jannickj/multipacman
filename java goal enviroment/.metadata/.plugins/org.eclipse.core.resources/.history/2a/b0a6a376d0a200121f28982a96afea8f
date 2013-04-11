@@ -14,7 +14,8 @@ public class FunctionHandler  extends ParameterHandler{
 	public FunctionHandler(ParameterHandler parent, XMLReader reader,
 			Attributes attributes) {
 		super(parent, reader, attributes);
-		new ParameterCollectionHandler(this, reader, attributes);
+		
+		this.getReader().setContentHandler(new ParameterCollectionHandler(this, reader, attributes));
 	}
 	
 	@Override

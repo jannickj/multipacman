@@ -16,8 +16,7 @@ public class ParameterListHandler extends ParameterHandler {
 	public ParameterListHandler(ParameterHandler parent, XMLReader reader,
 			Attributes attributes) {
 		super(parent, reader, attributes);
-		// TODO Auto-generated constructor stub
-		this.getReader().setContentHandler(new ParameterCollectionHandler(this, reader, attributes));
+		new ParameterCollectionHandler(this, reader, attributes);
 	}
 		
 		

@@ -2,6 +2,8 @@ using System;
 using GooseEngine.Entities.Units;
 using GooseEngine.GameManagement;
 using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GooseEngine
 {
@@ -14,44 +16,37 @@ namespace GooseEngine
 			this.agent = agent;
 		}
 
-
-		public void performAction (GameAction action)
+		public void performAction (EntityGameAction action)
 		{
 			action.Completed += action_Completed;
-			agent.QueueAction (action);
-
+			agent.QueueAction(action);
+           
 			lock (this) 
 			{
 				Monitor.Wait(this);
 			}
+
+			action.Completed -= action_Completed;
 		}
 
-		public void sendAllPercepts()
+        #region EVENTS
+        private void  action_Completed (object sender, EventArgs e)
 		{
-
-		}
-
-		#region Events
-		private void  action_Completed (object sender, EventArgs e)
-		{
-			lock (this) 
-			{
-				Monitor.PulseAll (this);
+			lock (this) {
+				Monitor.PulseAll(this);
 			}
-		}
-		#endregion
+        }
+        #endregion
 
-		#region Getters
-		public Agent Target 
-		{ 
-			get 
-			{
-				return agent;
-			}
-		}
-		#endregion
-
-
-	}
+        #region GETTERS
+        public Agent Target
+        {
+            get
+            {
+                return agent;
+            }
+        }
+        #endregion
+    }
 }
 

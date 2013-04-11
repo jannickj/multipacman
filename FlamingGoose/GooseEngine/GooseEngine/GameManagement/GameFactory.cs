@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GooseEngine.Data;
+using GooseEngine.Entities.MapEntities;
+using GooseEngine.Percepts;
 
 namespace GooseEngine.GameManagement
 {
@@ -18,6 +21,11 @@ namespace GooseEngine.GameManagement
         {
             GameTimer gt = new GameTimer(actman, action);
             return gt;
+        }
+
+        public virtual Vision CreateVision(Grid<Tile> grid, Entity owner)
+        {
+            return new Vision(grid, owner);
         }
 
     }

@@ -22,7 +22,8 @@ public class PerceptHandler extends ParameterHandler
 		super(parent, reader, attributes);
 		// TODO Auto-generated constructor stub
 		this.setElement(new Percept(attributes.getValue(0)));
-		new ParameterCollectionHandler(this, this.getReader(), attributes);
+		ParameterCollectionHandler handler = new ParameterCollectionHandler(this, this.getReader(), attributes);
+		this.getReader().setContentHandler(handler);
 	}
 
 
