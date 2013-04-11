@@ -26,7 +26,10 @@ namespace GooseEngine
 			}
 		}
 
+		public void sendAllPercepts()
+		{
 
+		}
 
 		#region Events
 		private void  action_Completed (object sender, EventArgs e)

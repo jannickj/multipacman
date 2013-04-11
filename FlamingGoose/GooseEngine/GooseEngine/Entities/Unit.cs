@@ -38,9 +38,14 @@ namespace GooseEngine.Entities
 
 		#region BuiltinPerceptCollectors
 
-		private Percept VisionPerceptCollector ()
+		private Percept VisionPercept ()
 		{
 			return World.View(this);
+		}
+
+		private Percept HealthPercept ()
+		{
+			return 
 		}
 
 		#endregion

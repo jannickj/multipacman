@@ -96,10 +96,14 @@
     <Compile Include="AI\AgentController.cs" />
     <Compile Include="GameManagement\Actions\GetAllPercepts.cs" />
     <Compile Include="GameManagement\Events\RetreivePerceptsEvent.cs" />
+    <Compile Include="EIS\EISPercepts\EISVision.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="AI\" />
+    <Folder Include="Perceptions\EISPercepts\" />
+    <Folder Include="EIS\" />
+    <Folder Include="EIS\EISPercepts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

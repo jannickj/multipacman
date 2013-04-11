@@ -22,10 +22,18 @@ namespace GooseEngine
 
         public Vision View(Point p, int range, Entity entity)
         {
-            Vision v = new Vision(map[p.X,p.Y,range], entity);
-            return v;
-
+            return new Vision(map[p.X,p.Y,range], entity);
         }
+
+		public Vision View (int range, Entity entity)
+		{
+			return View (entlocs [entity], range, entity);
+		}
+
+		public Vision View (Entity entity)
+		{
+			return View (entity.VisionRange, entity);
+		}
 
         internal void AddEntity(Point loc, Entity entity)
         {
