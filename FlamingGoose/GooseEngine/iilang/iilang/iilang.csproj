@@ -6,7 +6,7 @@
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{8205042B-12C2-4A7E-9A19-EC06792BC8E6}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>iilang</RootNamespace>
     <AssemblyName>iilang</AssemblyName>
   </PropertyGroup>

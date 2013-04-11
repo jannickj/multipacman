@@ -9,10 +9,10 @@ namespace GooseEngine.Entities
 {
     public abstract class Unit : Entity
     {
-		private ICollection<Func<Percept>> perceptCollectors = new List<Func<Percept>> ();
+		private ICollection<Func<IPercept>> perceptCollectors = new List<Func<IPercept>> ();
         private int health = 1;
 
-		public ICollection<Percept> Percepts {
+		public ICollection<IPercept> Percepts {
 			get {
 				return perceptCollectors.Select (f => f()).ToArray();
 			}
@@ -31,21 +31,21 @@ namespace GooseEngine.Entities
         	
         }
 
-		public void AddPerceptCollector (Func<Unit, Percept> f)
+		public void AddPerceptCollector (Func<Unit, IPercept> f)
 		{
-			perceptCollectors.Add (p => f (this));
+			perceptCollectors.Add (() => f (this));
 		}
 
 		#region BuiltinPerceptCollectors
 
-		private Percept VisionPercept ()
+		private IPercept VisionPercept ()
 		{
 			return World.View(this);
 		}
 
-		private Percept HealthPercept ()
+		private IPercept HealthPercept ()
 		{
-			return 
+			throw new NotImplementedException();
 		}
 
 		#endregion

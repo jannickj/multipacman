@@ -8,7 +8,7 @@ using GooseEngine.Entities.MapEntities;
 
 namespace GooseEngine.Percepts
 {
-    public class Vision : Percept
+    public class Vision : IPercept
     {
         private List<KeyValuePair<Point, Tile>> visibleTiles = new List<KeyValuePair<Point, Tile>>();
         private Grid<Tile> grid;

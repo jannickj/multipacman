@@ -4,7 +4,7 @@ using iilang;
 
 namespace GooseEngine.EIS.Percepts
 {
-	public interface EISPercept : Percept
+	public interface IEISPercept : IPercept
 	{
 		EisPercept toIILang ();
 	}

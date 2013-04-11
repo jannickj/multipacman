@@ -4,6 +4,7 @@ using GooseEngine.Entities.Interactables;
 using GooseEngine.Entities.MapEntities;
 using GooseEngine.Entities.Units;
 using NUnit.Framework;
+using GooseEngine;
 
 
 namespace GooseEngine_Test.Entities.MapEntities

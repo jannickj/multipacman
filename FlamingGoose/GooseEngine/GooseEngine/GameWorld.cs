@@ -37,7 +37,6 @@ namespace GooseEngine
 
         internal void AddEntity(Point loc, Entity entity)
         {
-			entity.World = this;
             entlocs.Add(entity, loc);
             map[loc.X, loc.Y].AddEntity(entity);
         }
