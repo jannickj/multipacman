@@ -9,21 +9,14 @@ using GooseEngine.Rule;
 
 namespace GooseEngine
 {
-    public abstract class Entity
+    public abstract class Entity : GooseObject
     {
 		private const int DEFAULT_VISION = 4;
-        private ActionManager actman;
         private Conclusion[] conclusions = new Conclusion[2];
         private RuleHierarchy<Type, Entity> movementRules = new RuleHierarchy<Type, Entity>();
         private LinkedList<Predicate<Entity>> visionBlockRules = new LinkedList<Predicate<Entity>>();
         private TriggerManager triggers = new TriggerManager();
         internal event EventHandler<GameEvent> TriggerRaised;
-		private GameWorld world;
-
-		public GameWorld World { 
-			get { return world; } 
-			internal set { world = value; }
-		}
 
 		public virtual int VisionRange {
 			get { return DEFAULT_VISION; }
@@ -101,12 +94,6 @@ namespace GooseEngine
             }
             else
                 throw new UnacceptableActionException(action, this);
-        }
-
-
-        internal ActionManager ActionManager
-        {
-            set { actman = value; }
         }
 
         internal void Raise(GameEvent evt)

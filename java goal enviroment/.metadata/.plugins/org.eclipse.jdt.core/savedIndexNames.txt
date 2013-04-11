@@ -1,3 +1,27 @@
+<<<<<<< HEAD
+INDEX VERSION 1.126+/home/srn/multipacman/java goal enviroment/.metadata/.plugins/org.eclipse.jdt.core
+2441898237.index
+2125146077.index
+3983787507.index
+858812860.index
+1874780019.index
+4215556225.index
+969670755.index
+3142107428.index
+3635043389.index
+93804853.index
+1211646091.index
+3020891780.index
+2335185346.index
+2059169095.index
+925317926.index
+3528766831.index
+1593792608.index
+3576119270.index
+1431831365.index
+444266131.index
+761659056.index
+=======
 INDEX VERSION 1.126+C:\Users\jannick\Bachelor Project\java goal enviroment\.metadata\.plugins\org.eclipse.jdt.core
 2706502329.index
 3261713084.index
@@ -32,3 +56,4 @@ INDEX VERSION 1.126+C:\Users\jannick\Bachelor Project\java goal enviroment\.meta
 3999113791.index
 1292758494.index
 1075156909.index
+>>>>>>> f12515f9facc6ed6eb3fd8fffb02290d57be0fe7

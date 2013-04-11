@@ -7,13 +7,8 @@ using GooseEngine.GameManagement;
 
 namespace GooseEngine.GameManagement
 {
-    public abstract class GameAction
+    public abstract class GameAction : GooseObject
     {
-        private GameWorld world;
-        private GameFactory factory;
-        private ActionManager actman;
-        private EventManager evtman;
-
         public GameAction()
         { 
 
@@ -32,57 +27,6 @@ namespace GooseEngine.GameManagement
         {
             if (Completed != null)
                 Completed(this, new EventArgs());
-        }
-
-
-        public GameWorld World
-        {
-            get
-            {
-                return world;
-            }
-            internal set
-            {
-                this.world = value;
-            }
-        }
-
-        public GameFactory Factory
-        {
-            get
-            {
-                return factory;
-            }
-
-            internal set
-            {
-                this.factory = value;
-            }
-        }
-
-
-        public EventManager EventManager
-        {
-            get 
-            { 
-                return evtman; 
-            }
-            internal set 
-            { 
-                evtman = value; 
-            }
-        }
-
-        public ActionManager ActionManager
-        {
-            get
-            {
-                return actman;
-            }
-            internal set
-            {
-                actman = value;
-            }
         }
     }
 }
