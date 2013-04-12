@@ -26,7 +26,7 @@ namespace iilang
 		public IILDataContainer (string name, LinkedList<IILParameter> ps)
 		{
 			Name = name;
-			Parameters = ps.ToList ();
+			Parameters = ps.ToList();
 		}
 
 		public void addParameter(IILParameter par)

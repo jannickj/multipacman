@@ -12,7 +12,7 @@ namespace GooseEngine.EIS
 {
     public class EISGameFactory : GameFactory
     {
-		public EISGameFactory(ActionManager actman) : base(actman)
+		public EISGameFactory(ActionManager actman) : base (actman)
 		{
 		}
 

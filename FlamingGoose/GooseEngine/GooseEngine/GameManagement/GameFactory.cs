@@ -10,7 +10,7 @@ namespace GooseEngine.GameManagement
 {
     public class GameFactory
     {
-        internal ActionManager actman;
+        private ActionManager actman;
 
         public GameFactory(ActionManager actman)
         {
