@@ -5,17 +5,14 @@ namespace GooseEngine
 {
 	public class EISTileSerializer : EISSerializer<Tile>
 	{
-		#region IEISifiable implementation
 
-		public IILElement EISify (Tile t)
-		{
-			IILParameterList pl = new IILParameterList ();
-			foreach (Entity ent in t.Entities)
-				pl.AddParameter ((IILParameter) ent.ToSerializableObject ());
+        public override IILElement BeginConversion(Tile t)
+        {
+            IILParameterList pl = new IILParameterList();
+            foreach (Entity ent in t.Entities)
+                pl.AddParameter((IILParameter)this.Convert(ent));
 
-			return pl;
-		}
-
-		#endregion
-	}
+            return pl;
+        }
+    }
 }

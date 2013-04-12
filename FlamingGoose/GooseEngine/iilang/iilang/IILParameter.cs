@@ -24,7 +24,7 @@ namespace iilang
 
         static IILParameter()
         {
-            IEnumerable<Type> l = FindAllDerivedTypes<IILParameter>().Where(t => !t.IsAbstract);
+            IEnumerable<Type> l = ExtendedType.FindAllDerivedTypes<IILParameter>().Where(t => !t.IsAbstract);
             foreach (Type t in l)
             {
                 XmlRootAttribute att = t.GetCustomAttributes(typeof(XmlRootAttribute), true).FirstOrDefault() as XmlRootAttribute;
@@ -35,17 +35,7 @@ namespace iilang
             }
         }
 
-        private static List<Type> FindAllDerivedTypes<T>()
-        {
-            return FindAllDerivedTypes<T>(Assembly.GetAssembly(typeof(T)));
-        }
-
-        private static List<Type> FindAllDerivedTypes<T>(Assembly assembly)
-        {
-            var derivedType = typeof(T);
-            return assembly.GetTypes().Where(t => t != derivedType && derivedType.IsAssignableFrom(t)).ToList();
-
-        }
+        
 	}
 }
 

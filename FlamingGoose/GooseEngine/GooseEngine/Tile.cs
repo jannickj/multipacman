@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GooseEngine
 {
-    public class Tile
+    public class Tile : GooseObject
     {
         private LinkedList<Entity> entities = new LinkedList<Entity>();
 

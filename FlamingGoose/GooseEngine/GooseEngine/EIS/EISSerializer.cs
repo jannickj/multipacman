@@ -1,9 +1,9 @@
 using System;
-using GooseEngine.Serialization;
+using GooseEngine.Conversion;
 
 namespace GooseEngine
 {
-	public abstract class EISSerializer<T> : GooseSerializer<T>
+	public abstract class EISSerializer<T> : GooseConverter<T,iilang.IILElement> where T : GooseObject
 	{
 
 	}

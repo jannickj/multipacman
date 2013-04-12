@@ -44,7 +44,9 @@
     <Compile Include="EIS\EISAgentController.cs" />
     <Compile Include="Data\GenericEvents\ValueEvent.cs" />
     <Compile Include="Data\Size.cs" />
+    <Compile Include="EIS\EISSerializationTool.cs" />
     <Compile Include="Exceptions\UnacceptableActionException.cs" />
+    <Compile Include="Exceptions\UnconvertableException.cs" />
     <Compile Include="GameManagement\ActionManager.cs" />
     <Compile Include="GameManagement\Actions\CloseEngine.cs" />
     <Compile Include="GameManagement\Actions\DamageUnitTarget.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="GameMap.cs" />
     <Compile Include="GooesObject.cs" />
     <Compile Include="GameWorld.cs" />
+    <Compile Include="Lib\ExtendedType.cs" />
     <Compile Include="Perceptions\Vision.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\Wall.cs" />
@@ -101,16 +104,15 @@
     <Compile Include="EIS\IEISPercept.cs" />
     <Compile Include="GooseActor.cs" />
     <Compile Include="IPercept.cs" />
-    <Compile Include="Serialization\GooseConverterTool.cs" />
-    <Compile Include="Serialization\GooseSerializer.cs" />
+    <Compile Include="Conversion\GooseConversionTool.cs" />
+    <Compile Include="Conversion\GooseConverter.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Perceptions\SingleNumeralPercept.cs" />
     <Compile Include="EIS\Percepts\EISSingleNumeralPercept.cs" />
     <Compile Include="EIS\EISGameFactory.cs" />
-    <Compile Include="EIS\IEISifiable.cs" />
     <Compile Include="EIS\EISSerializer.cs" />
     <Compile Include="EIS\Serializers\EISTileSerializer.cs" />
-    <Compile Include="EIS\Serializers\EISEntity.cs" />
+    <Compile Include="EIS\Serializers\EISEntitySerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\MapEntities\" />
