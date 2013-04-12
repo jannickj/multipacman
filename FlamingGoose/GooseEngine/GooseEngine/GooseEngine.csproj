@@ -101,6 +101,7 @@
     <Compile Include="EIS\IEISPercept.cs" />
     <Compile Include="GooseActor.cs" />
     <Compile Include="IPercept.cs" />
+    <Compile Include="Serialization\GooseConverterTool.cs" />
     <Compile Include="Serialization\GooseSerializer.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Perceptions\SingleNumeralPercept.cs" />
@@ -114,7 +115,6 @@
   <ItemGroup>
     <Folder Include="Entities\MapEntities\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="EIS\Serializers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
