@@ -13,12 +13,12 @@ namespace GooseEngine.EIS.EISPercepts
 		{
 		}
 
-		#region IEISPercept implementation1
+		#region IEISPercept implementation
 
-		public iilang.IILPercept toIILang ()
+		public IILElement EISify ()
 		{
 			IILPercept percept = new IILPercept ("vision");
-
+			
 			foreach (KeyValuePair<Point, Tile> kvp in VisibleTiles)
 			{
 				IILFunction fun = new IILFunction ("on",
@@ -28,10 +28,9 @@ namespace GooseEngine.EIS.EISPercepts
 				                                   );
 				percept.addParameter(fun);
 			}
-
+			
 			return percept;
-	 	}
-
+		}
 
 		#endregion
 

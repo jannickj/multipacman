@@ -19,6 +19,10 @@ namespace iilang
 			Parameters = new List<IILParameter> (ps);
 		}
 
+		public void AddParameter (IILParameter p)
+		{
+			Parameters.Add (p);
+		}
 
 		#region IXmlSerializable implementation
 		

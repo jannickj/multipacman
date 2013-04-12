@@ -11,11 +11,13 @@ namespace GooseEngine.EIS.Percepts
 		{
 		}
 
-		#region IEISPercept implementation
-		public iilang.IILPercept toIILang ()
+		#region IEISifiable implementation
+
+		public IILElement EISify ()
 		{
 			return new IILPercept (Name, new IILNumeral (Value));
 		}
+
 		#endregion
 	}
 }
