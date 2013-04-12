@@ -28,6 +28,9 @@ namespace GooseEngine_Test.GameManagement
             
             Agent expectedDealer = new Agent();
             Agent expectedTaker = new Agent();
+
+            expectedDealer.ActionManager = actman;
+            expectedTaker.ActionManager = actman;
             int expectedDmg = 10;
             
             //ignore initialization values
@@ -36,12 +39,12 @@ namespace GooseEngine_Test.GameManagement
             int actualDmg = new int();
 
             Trigger t = new Trigger<UnitTakesDamagePostEvent>(e => { actualDealer = e.Source; actualTaker = e.Target; actualDmg = e.Damage; });
-            GameAction ga = new DamageUnitTarget(expectedDealer, expectedTaker, expectedDmg);
+            DamageUnitTarget ga = new DamageUnitTarget(expectedTaker, expectedDmg);
             
             expectedTaker.Register(t);
             gem.AddEntity(expectedTaker);
 
-            actman.Queue(ga);
+            expectedDealer.QueueAction(ga);
             actman.ExecuteActions();
 
             Assert.AreEqual(expectedDealer, actualDealer);
@@ -58,6 +61,10 @@ namespace GooseEngine_Test.GameManagement
 
             Agent expectedDealer = new Agent();
             Agent expectedTaker = new Agent();
+
+            expectedDealer.ActionManager = actman;
+            expectedTaker.ActionManager = actman;
+
             int dmg = 10;
             int prevent = 10;
             int expectedDmg = 10;
@@ -70,13 +77,13 @@ namespace GooseEngine_Test.GameManagement
 
             Trigger preT = new Trigger<UnitTakesDamagePreEvent>(e => e.ModDmgPreMultiplier(-prevent));
             Trigger postT = new Trigger<UnitTakesDamagePostEvent>(e => { actualDealer = e.Source; actualTaker = e.Target; actualDmg = e.Damage; });
-            GameAction ga = new DamageUnitTarget(expectedDealer, expectedTaker, dmg);
+            EntityGameAction ga = new DamageUnitTarget(expectedTaker, dmg);
 
             expectedTaker.Register(preT);
             expectedTaker.Register(postT);
             gem.AddEntity(expectedTaker);
 
-            actman.Queue(ga);
+            expectedDealer.QueueAction(ga);
             actman.ExecuteActions();
 
             Assert.AreEqual(expectedDealer, actualDealer);
@@ -93,21 +100,25 @@ namespace GooseEngine_Test.GameManagement
 
             Agent A = new Agent();
             Agent B = new Agent();
+
+            A.ActionManager = actman;
+            B.ActionManager = actman;
+
             int dmg = int.MaxValue;
 
             int actualTimesFired = 0;
 
 
             Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => actualTimesFired++);
-            GameAction ga1 = new DamageUnitTarget(A, B, dmg);
-            GameAction ga2 = new DamageUnitTarget(B, A, dmg);
+            EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
+            EntityGameAction ga2 = new DamageUnitTarget(A, dmg);
             
             gem.Register(T);
             gem.AddEntity(A);
             gem.AddEntity(B);
 
-            actman.Queue(ga1);
-            actman.Queue(ga2);
+            A.QueueAction(ga1);
+            B.QueueAction(ga2);
             actman.ExecuteActions();
 
             int expectedTimeFired = 2;
@@ -124,19 +135,23 @@ namespace GooseEngine_Test.GameManagement
 
             Agent A = new Agent();
             Agent B = new Agent();
+
+            A.ActionManager = actman;
+            B.ActionManager = actman;
+
             int dmg = int.MaxValue;
 
             bool eventFired = false;
 
 
             Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => eventFired = true);
-            GameAction ga1 = new DamageUnitTarget(A, B, dmg);
+            EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
 
 
             gem.Register(T);
             gem.Deregister(T);
 
-            actman.Queue(ga1);
+            A.QueueAction(ga1);
 
             Assert.IsFalse(eventFired);
 
@@ -150,13 +165,17 @@ namespace GooseEngine_Test.GameManagement
 
             Agent A = new Agent();
             Agent B = new Agent();
+
+            A.ActionManager = actman;
+            B.ActionManager = actman;
+
             int dmg = int.MaxValue;
 
             bool eventFired = false;
 
 
             Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => eventFired = true);
-            GameAction ga1 = new DamageUnitTarget(A, B, dmg);
+            EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
 
 
             B.Register(T);
@@ -164,7 +183,7 @@ namespace GooseEngine_Test.GameManagement
 
             B.Deregister(T);
 
-            actman.Queue(ga1);
+            A.QueueAction(ga1);
 
             Assert.IsFalse(eventFired);
 
@@ -179,18 +198,22 @@ namespace GooseEngine_Test.GameManagement
 
             Agent A = new Agent();
             Agent B = new Agent();
+
+            A.ActionManager = actman;
+            B.ActionManager = actman;
+
             int dmg = int.MaxValue;
 
             bool eventFired = false;
 
 
             Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => eventFired = true);
-            GameAction ga1 = new DamageUnitTarget(A, B, dmg);
+            EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
 
             gem.AddEntity(B);
             B.Register(T);
 
-            actman.Queue(ga1);
+            A.QueueAction(ga1);
             actman.ExecuteActions();
 
             Assert.IsTrue(eventFired);

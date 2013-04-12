@@ -90,7 +90,7 @@ namespace GooseEngine
             if (action.IsEntitySupported(this))
             {
                 action.Source = this;
-                ActionManager.Queue(action);
+                ActionManager.QueueAction(action);
             }
             else
                 throw new UnacceptableActionException(action, this);

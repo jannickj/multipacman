@@ -8,15 +8,13 @@ using GooseEngine.GameManagement.Events;
 
 namespace GooseEngine.GameManagement.Actions
 {
-    public class DamageUnitTarget : GameAction
+    public class DamageUnitTarget : EntityGameAction<Unit>
     {
-        Unit source;
         Unit target;
         int dmg;
 
-        public DamageUnitTarget(Unit source, Unit target, int dmg)
+        public DamageUnitTarget(Unit target, int dmg)
         {
-            this.source = source;
             this.target = target;
             this.dmg = dmg;
         }
@@ -24,12 +22,12 @@ namespace GooseEngine.GameManagement.Actions
 
         protected override void Execute()
         {
-            UnitTakesDamagePreEvent pre = new UnitTakesDamagePreEvent(source, target, dmg);
+            UnitTakesDamagePreEvent pre = new UnitTakesDamagePreEvent(Source, target, dmg);
             target.Raise(pre);
             int actualDamage = pre.ActualDmg;
             int newhp = this.target.Health - actualDamage;
-            source.Health = newhp < 0? 0 : newhp;
-            UnitTakesDamagePostEvent post = new UnitTakesDamagePostEvent(source, target, dmg, actualDamage);
+            Source.Health = newhp < 0? 0 : newhp;
+            UnitTakesDamagePostEvent post = new UnitTakesDamagePostEvent(Source, target, dmg, actualDamage);
             target.Raise(post);
             this.Complete();
         }

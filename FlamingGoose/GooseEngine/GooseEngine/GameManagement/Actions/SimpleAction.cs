@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GooseEngine.GameManagement.Actions
 {
-    public class SimpleAction : GameAction
+    public class SimpleAction : EnvironmentAction
     {
         private Action<SimpleAction> action;
 

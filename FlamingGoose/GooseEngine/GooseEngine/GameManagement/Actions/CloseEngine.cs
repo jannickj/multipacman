@@ -7,7 +7,7 @@ using GooseEngine.GameManagement.Events;
 
 namespace GooseEngine.GameManagement.Actions
 {
-    public class CloseEngine : GameAction
+    public class CloseEngine : EnvironmentAction
     {
 
         protected override void Execute()

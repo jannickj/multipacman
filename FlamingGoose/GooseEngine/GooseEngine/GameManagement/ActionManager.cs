@@ -42,7 +42,12 @@ namespace GooseEngine.GameManagement
             } while (awaitingActions.Count != 0);
         }
 
-        public void Queue(GameAction action)
+        public void Queue(EnvironmentAction action)
+        {
+            this.QueueAction(action);            
+        }
+
+        internal void QueueAction(GameAction action)
         {
             lock (this)
             {
@@ -51,8 +56,7 @@ namespace GooseEngine.GameManagement
                 awaitingActions.Enqueue(action);
                 if (ActionQueued != null)
                     ActionQueued(this, new ValueEvent<GameAction>(action));
-            }          
-
+            }     
         }
 
 
