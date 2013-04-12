@@ -7,7 +7,7 @@ using GooseEngine.GameManagement;
 
 namespace GooseEngine.GameManagement
 {
-    public abstract class GameAction : GooseObject
+    public abstract class GameAction : GooseActor
     {
         public GameAction()
         { 

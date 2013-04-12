@@ -3,14 +3,14 @@ using GooseEngine.GameManagement;
 
 namespace GooseEngine
 {
-	public class GooseObject
+	public class GooseActor : GooseObject
 	{
 		private GameWorld world;
 		private GameFactory factory;
 		private ActionManager actman;
 		private EventManager evtman;
 
-		public GooseObject ()
+		public GooseActor ()
 		{
 		}
 

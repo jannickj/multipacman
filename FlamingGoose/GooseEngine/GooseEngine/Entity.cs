@@ -9,7 +9,7 @@ using GooseEngine.Rule;
 
 namespace GooseEngine
 {
-    public abstract class Entity : GooseObject
+    public abstract class Entity : GooseActor
     {
 		private const int DEFAULT_VISION = 4;
         private Conclusion[] conclusions = new Conclusion[2];

@@ -12,9 +12,9 @@ namespace GooseEngineView
 {
     public class EntityView
     {
-        private GameObject gobj;
+        private GooseObject gobj;
 
-        public EntityView(GameObject gobj, Entity entity)
+        public EntityView(GooseObject gobj, Entity entity)
         {
             this.gobj = gobj;
             entity.Register(new Trigger<UnitMovePreEvent>(unit_Move));
