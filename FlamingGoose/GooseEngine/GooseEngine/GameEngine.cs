@@ -15,6 +15,8 @@ namespace GooseEngine
     {
         private bool stopEngine;
 
+        private Exception engineCrash = null;
+
         public GameEngine(GameWorld world, ActionManager actman, EventManager evtman, GameFactory factory)
         {
             this.World = world;
@@ -31,20 +33,27 @@ namespace GooseEngine
         
         public void Start()
         {
-            stopEngine = false;
+            try
+            {
 
-            while (true)
-            {                                
-                lock (this.ActionManager)
+                stopEngine = false;
+
+                while (true)
                 {
-                    ActionManager.ExecuteActions();
-                    if (this.stopEngine)
-                        break;
-                    Monitor.Wait(this.ActionManager);
+                    lock (this.ActionManager)
+                    {
+                        ActionManager.ExecuteActions();
+                        if (this.stopEngine)
+                            break;
+                        Monitor.Wait(this.ActionManager);
+                    }
+
                 }
-
             }
-
+            catch (Exception e)
+            {
+                this.engineCrash = e;
+            }
         }
 
 		public void AddEntity (Entity entity, Point loc)
@@ -60,6 +69,18 @@ namespace GooseEngine
 		{
 			AddEntity (entity, new Point (0, 0));
 		}
+
+        public bool EngineCrashed(out Exception exception)
+        {
+            if (this.engineCrash != null)
+            {
+                exception = this.engineCrash;
+                return true;
+            }
+
+            exception = null;    
+            return false;
+        }
 
         #region EVENTS
 

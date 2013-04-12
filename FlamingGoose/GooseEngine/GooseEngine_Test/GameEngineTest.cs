@@ -39,10 +39,11 @@ namespace GooseEngine_Test
 
             thread.Start();
 
-            actman.Queue(move);
+            a.QueueAction(move);
 
             thread.Join();
-            Assert.Pass();
+            Exception e;
+            Assert.IsFalse(engine.EngineCrashed(out e));
 
 
 

@@ -24,7 +24,7 @@ namespace iilang
 
         static IILParameter()
         {
-            List<Type> l = FindAllDerivedTypes<IILParameter>();
+            IEnumerable<Type> l = FindAllDerivedTypes<IILParameter>().Where(t => !t.IsAbstract);
             foreach (Type t in l)
             {
                 XmlRootAttribute att = t.GetCustomAttributes(typeof(XmlRootAttribute), true).FirstOrDefault() as XmlRootAttribute;
