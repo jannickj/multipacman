@@ -106,14 +106,15 @@
     <Compile Include="Perceptions\SingleNumeralPercept.cs" />
     <Compile Include="EIS\Percepts\EISSingleNumeralPercept.cs" />
     <Compile Include="EIS\EISGameFactory.cs" />
-    <Compile Include="EIS\EISTile.cs" />
     <Compile Include="EIS\IEISifiable.cs" />
-    <Compile Include="EIS\EISEntity.cs" />
     <Compile Include="EIS\EISSerializer.cs" />
+    <Compile Include="EIS\Serializers\EISTileSerializer.cs" />
+    <Compile Include="EIS\Serializers\EISEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\MapEntities\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="EIS\Serializers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

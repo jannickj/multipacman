@@ -1,10 +1,11 @@
 using System;
+using GooseEngine.Serialization;
 
 namespace GooseEngine
 {
-	public class EISSerializer : GooseSerializer
+	public abstract class EISSerializer<T> : GooseSerializer<T>
 	{
-		public object
+
 	}
 }
 
