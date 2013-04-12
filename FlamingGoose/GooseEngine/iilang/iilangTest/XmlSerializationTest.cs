@@ -158,6 +158,38 @@ namespace iilangTest
             Assert.Catch<Exception>(() => serializer.Serialize(GenerateWriter(), actual_src));
 		}
 
+		[Test()]
+		public void PerceptCollectionWriter_XmlOfPerceptCollectionWithTwoPercepts_ReturnPerceptCollectionWithTwoChildren ()
+		{
+			IILPerceptCollection actual_src = new IILPerceptCollection (new IILPercept ("percept1", new IILNumeral (42)),
+			                                                  new IILPercept ("percept2", new IILIdentifier ("id"))
+			                                                 );
+			
+			StringBuilder sb = new StringBuilder();
+			
+			XmlSerializer serializer = new XmlSerializer(typeof(IILPerceptCollection));
+			serializer.Serialize (XmlWriter.Create(sb), actual_src);
+			
+			XDocument expected = XDocument.Parse (
+				@"<?xml version=""1.0"" encoding=""utf-16""?>
+				<perceptCollection>
+					<percept name=""percept1"">
+						<perceptParameter>
+							<number value=""42"" />
+						</perceptParameter>
+					</percept>
+					<percept name=""percept2"">
+						<perceptParameter>
+							<identifier value=""id"" />
+						</perceptParameter>
+					</percept>
+				</perceptCollection>"
+				);
+			
+			XDocument actual = XDocument.Parse(sb.ToString());
+			
+			Assert.AreEqual (expected.ToString (), actual.ToString ());
+		}
 
         private static XmlWriter GenerateWriter()
         {
