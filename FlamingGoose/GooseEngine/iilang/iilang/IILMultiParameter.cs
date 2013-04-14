@@ -7,21 +7,29 @@ namespace iilang
 {
 	public abstract class IILMultiParameter : IILParameter
 	{
-		public List<IILParameter> Parameters { get; private set; }
+		private List<IILParameter> parameters;
+
+		public List<IILParameter> Parameters { 
+			get
+			{
+				return parameters;
+			}
+		}
+
 
 		public IILMultiParameter ()
 		{
-			Parameters = new List<IILParameter> ();
+			parameters = new List<IILParameter> ();
 		}
 
 		public IILMultiParameter(IILParameter[] ps)
 		{
-			Parameters = new List<IILParameter> (ps);
+			parameters = new List<IILParameter> (ps);
 		}
 
 		public void AddParameter (IILParameter p)
 		{
-			Parameters.Add (p);
+			parameters.Add (p);
 		}
 
 		#region IXmlSerializable implementation
@@ -39,14 +47,14 @@ namespace iilang
 				
 				IILParameter p = IILParameter.fromString(reader.LocalName);
 				p.ReadXml(reader);
-				Parameters.Add(p);
+				parameters.Add(p);
 			}
 			reader.Read();
 		}
 
 		public override void WriteXml (System.Xml.XmlWriter writer)
 		{
-			foreach (IILElement p in Parameters) {
+			foreach (IILElement p in parameters) {
 				writer.WriteStartElement (p.XmlTag);
 				p.WriteXml (writer);
 				writer.WriteEndElement ();

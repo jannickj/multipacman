@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace GooseEngine
 {
-    public interface IPercept
+    public abstract class Percept : GooseObject
     {
      
     }

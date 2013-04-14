@@ -5,7 +5,7 @@ using iilang;
 
 namespace GooseEngine.EIS.Percepts
 {
-	public class EISSingleNumeralPercept : SingleNumeralPercept, IEISPercept
+	public class EISSingleNumeralPercept : SingleNumeralPercept
 	{
 		public EISSingleNumeralPercept (string name, double value) : base(name, value)
 		{

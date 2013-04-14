@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,7 @@ using GooseEngine.Entities.MapEntities;
 
 namespace GooseEngine.Percepts
 {
-    public class Vision : IPercept
+    public class Vision : Percept
     {
         private List<KeyValuePair<Point, Tile>> visibleTiles = new List<KeyValuePair<Point, Tile>>();
         private Grid<Tile> grid;

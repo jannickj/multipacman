@@ -23,6 +23,14 @@ namespace iilang
 			Parameters = new List<IILParameter> (ps);
 		}
 
+		
+		public virtual void TransferFrom(IILDataContainer con)
+		{
+			this.Parameters = con.Parameters;
+			this.Name = con.Name;
+			
+		}
+
 		public IILDataContainer (string name, LinkedList<IILParameter> ps)
 		{
 			Name = name;

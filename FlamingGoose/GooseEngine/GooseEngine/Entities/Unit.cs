@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +9,10 @@ namespace GooseEngine.Entities
 {
     public abstract class Unit : Entity
     {
-		private ICollection<Func<IPercept>> perceptCollectors = new List<Func<IPercept>> ();
+		private ICollection<Func<Percept>> perceptCollectors = new List<Func<Percept>> ();
         private int health = 1;
 
-		public ICollection<IPercept> Percepts {
+		public ICollection<Percept> Percepts {
 			get {
 				return perceptCollectors.Select (f => f()).ToArray();
 			}
@@ -32,19 +32,19 @@ namespace GooseEngine.Entities
 			perceptCollectors.Add (HealthPercept);
         }
 
-		public void AddPerceptCollector (Func<Unit, IPercept> f)
+		public void AddPerceptCollector (Func<Unit, Percept> f)
 		{
 			perceptCollectors.Add (() => f (this));
 		}
 
 		#region BuiltinPerceptCollectors
 
-		private IPercept VisionPercept ()
+		private Percept VisionPercept ()
 		{
 			return World.View(this);
 		}
 
-		private IPercept HealthPercept ()
+		private Percept HealthPercept ()
 		{
 			return Factory.CreateSingleNumeralPercept ("health", this.health);
 		}

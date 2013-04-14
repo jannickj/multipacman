@@ -7,7 +7,7 @@ using iilang;
 
 namespace GooseEngine.EIS.EISPercepts
 {
-	public class EISVision : Vision, IEISPercept
+	public class EISVision : Vision
 	{
 		public EISVision (Grid<Tile> grid, Entity owner) : base(grid, owner)
 		{

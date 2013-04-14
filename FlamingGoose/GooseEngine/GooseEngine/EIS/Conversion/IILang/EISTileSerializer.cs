@@ -2,12 +2,18 @@ using System;
 using iilang;
 using GooseEngine.EIS;
 
-namespace GooseEngine
+namespace GooseEngine.EIS.Conversion.IILang
 {
 	public class EISTileSerializer : EISConverter<Tile>
 	{
 		#region implemented abstract members of GooseConverter
-		public override GooseObject BeginConversionToGoose (Tile t)
+
+		public override Tile BeginConversionToGoose (IILElement gobj)
+		{
+			throw new NotImplementedException ();
+		}
+
+		public override IILElement BeginConversionToForeign (Tile t)
 		{
 			IILParameterList pl = new IILParameterList();
 			foreach (Entity ent in t.Entities)
@@ -15,10 +21,7 @@ namespace GooseEngine
 			
 			return pl;
 		}
-		public override Tile BeginConversionToForeign (GooseObject gobj)
-		{
-			throw new NotImplementedException ();
-		}
+
 		#endregion
     }
 }

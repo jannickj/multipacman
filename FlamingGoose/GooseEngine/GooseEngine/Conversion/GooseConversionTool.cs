@@ -19,7 +19,7 @@ namespace GooseEngine.Conversion
 
         }
 
-        public void AddConverter<GooseType>(GooseConverter<GooseType,ForeignType> converter) where GooseType : GooseObject
+        public virtual void AddConverter<GooseType>(GooseConverter<GooseType,ForeignType> converter) where GooseType : GooseObject
         {
             this.gooseLookup.Add(typeof(GooseType), converter);
             this.foreignLookup.Add(typeof(ForeignType), converter);

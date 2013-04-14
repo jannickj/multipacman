@@ -100,27 +100,34 @@
     <Compile Include="GameManagement\Actions\GetAllPercepts.cs" />
     <Compile Include="GameManagement\Events\RetreivePerceptsEvent.cs" />
     <Compile Include="EIS\Percepts\EISVision.cs" />
-    <Compile Include="EIS\IEISPercept.cs" />
     <Compile Include="GooseActor.cs" />
-    <Compile Include="IPercept.cs" />
     <Compile Include="Conversion\GooseConversionTool.cs" />
     <Compile Include="Conversion\GooseConverter.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Perceptions\SingleNumeralPercept.cs" />
     <Compile Include="EIS\Percepts\EISSingleNumeralPercept.cs" />
     <Compile Include="EIS\EISGameFactory.cs" />
-    <Compile Include="EIS\Serializers\EISTileSerializer.cs" />
-    <Compile Include="EIS\Serializers\EISEntitySerializer.cs" />
     <Compile Include="Data\GenericEvents\UnaryValueEvent.cs" />
     <Compile Include="EIS\EISConversionTool.cs" />
-    <Compile Include="EIS\EISConverter.cs" />
+    <Compile Include="EIS\Conversion\EISConverter.cs" />
+    <Compile Include="EIS\Conversion\IILang\EISEntitySerializer.cs" />
+    <Compile Include="EIS\Conversion\IILang\EISTileSerializer.cs" />
     <Compile Include="EIS\Conversion\IILang\EISActionConverter.cs" />
+    <Compile Include="EIS\Conversion\IILang\Actions\GetAllPerceptsActionConverter.cs" />
+    <Compile Include="EIS\Conversion\IILang\Actions\MoveUnitAction.cs" />
+    <Compile Include="EIS\ActionTypes\EISGetAllPercepts.cs" />
+    <Compile Include="EIS\ActionTypes\EISMoveUnit.cs" />
+    <Compile Include="EIS\IILActionParser.cs" />
+    <Compile Include="EIS\EISAction.cs" />
+    <Compile Include="Percept.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\MapEntities\" />
     <Folder Include="Interfaces\" />
     <Folder Include="EIS\Conversion\" />
     <Folder Include="EIS\Conversion\IILang\" />
+    <Folder Include="EIS\Conversion\IILang\Actions\" />
+    <Folder Include="EIS\ActionTypes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

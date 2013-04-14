@@ -12,8 +12,8 @@ namespace GooseEngine
 	public abstract class AgentController
 	{
 		private Agent agent;
-        protected event UnaryValueHandler<ICollection<IPercept>> PerceptsRecieved;
-        private ICollection<IPercept> newpercepts = null;
+        protected event UnaryValueHandler<ICollection<Percept>> PerceptsRecieved;
+        private ICollection<Percept> newpercepts = null;
 
 		public AgentController (Agent agent)
 		{
@@ -31,7 +31,7 @@ namespace GooseEngine
 				Monitor.Wait(this);
             }
 
-            ICollection<IPercept> activepercepts = null;
+            ICollection<Percept> activepercepts = null;
             lock (this)
             {
                 activepercepts = this.newpercepts;
@@ -40,7 +40,7 @@ namespace GooseEngine
 
             if (PerceptsRecieved != null && activepercepts != null)
             {
-                this.PerceptsRecieved(this, new UnaryValueEvent<ICollection<IPercept>>(activepercepts));
+                this.PerceptsRecieved(this, new UnaryValueEvent<ICollection<Percept>>(activepercepts));
             }
 			
 		}

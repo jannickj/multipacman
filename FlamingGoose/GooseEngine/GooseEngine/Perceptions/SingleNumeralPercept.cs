@@ -8,7 +8,7 @@ using GooseEngine.Percepts;
 
 namespace GooseEngine.GameManagement
 {
-	public class SingleNumeralPercept : IPercept
+	public class SingleNumeralPercept : Percept
 	{
 		private string name;
 		private double value;

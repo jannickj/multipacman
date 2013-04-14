@@ -1,22 +1,19 @@
 using System;
 using GooseEngine.EIS;
 
-namespace GooseEngine
+namespace GooseEngine.EIS.Conversion.IILang
 {
 	public class EISEntitySerializer : EISConverter<Entity>
 	{
 		#region implemented abstract members of GooseConverter
-
-		public override GooseObject BeginConversionToGoose (Entity gobj)
+		public override Entity BeginConversionToGoose (iilang.IILElement fobj)
 		{
 			throw new NotImplementedException ();
 		}
-
-		public override Entity BeginConversionToForeign (GooseObject gobj)
+		public override iilang.IILElement BeginConversionToForeign (Entity gobj)
 		{
 			throw new NotImplementedException ();
 		}
-
 		#endregion
     }
 }
