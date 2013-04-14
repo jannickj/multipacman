@@ -7,15 +7,15 @@ namespace GooseEngine.Exceptions
 {
     public class UnconvertableException : Exception
     {
-        private GooseObject gobj;
+        private object gobj;
 
-        public GooseObject ConvertingObject
+        public object ConvertingObject
         {
             get { return gobj; }
         }
 
 
-        public UnconvertableException(GooseObject gobj) : base("Conversion for object of type: "+gobj.GetType().Name+" Was not possible")
+        public UnconvertableException(object gobj) : base("Conversion for object of type: "+gobj.GetType().Name+" Was not possible")
         {
             this.gobj = gobj;
         }

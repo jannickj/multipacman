@@ -6,62 +6,91 @@ using GooseEngine.Exceptions;
 
 namespace GooseEngine.Conversion
 {
-    public class GooseConversionTool<ToType>
+    public class GooseConversionTool<ForeignType>
     {
-        private Dictionary<Type, GooseConverter> converters = new Dictionary<Type, GooseConverter>();
+        private Dictionary<Type, GooseConverter> gooseLookup = new Dictionary<Type, GooseConverter>();
+        private Dictionary<Type, GooseConverter> foreignLookup = new Dictionary<Type, GooseConverter>();
 
         public GooseConversionTool()
         {
-            this.converters.Add(typeof(object), new NoConverter());
+            NoConverter nocon = new NoConverter();
+            this.gooseLookup.Add(typeof(object), nocon);
+            this.foreignLookup.Add(typeof(object), nocon);
+
         }
 
-        public void AddConverter<FromType>(GooseConverter<FromType,ToType> converter) where FromType : GooseObject
+        public void AddConverter<GooseType>(GooseConverter<GooseType,ForeignType> converter) where GooseType : GooseObject
         {
-            this.converters.Add(typeof(FromType), converter);          
+            this.gooseLookup.Add(typeof(GooseType), converter);
+            this.foreignLookup.Add(typeof(ForeignType), converter);
         }
 
-        public ToType Convert(GooseObject gobj)
+        public ForeignType ConvertToForeign(GooseObject gobj)
         {
             Type original = gobj.GetType();
             Type gt = original;
             GooseConverter converter;
             while (true)
             {
-                if (converters.TryGetValue(gt, out converter))
+                if (gooseLookup.TryGetValue(gt, out converter))
                 {
                     if (gt != original)
                     {
-                        this.converters.Add(original, new SleekConverter(converter.BeginUnsafeConversion));
+                        SleekConverter sleek = new SleekConverter(converter.BeginUnsafeConversionToForeign,converter.BeginUnsafeConversionToGoose);
+                        this.gooseLookup.Add(original, sleek);
                     }
-                    return (ToType)converter.BeginUnsafeConversion(gobj);
+                    return (ForeignType)converter.BeginUnsafeConversionToForeign(gobj);
                 }
                 else
                     gt = gt.BaseType;
             }
         }
 
+        public GooseObject ConvertToGoose(ForeignType foreign)
+        {
+            GooseConverter converter;
+            Type ft = typeof(ForeignType);
+            if (foreignLookup.TryGetValue(ft, out converter))
+            {
+                return converter.BeginUnsafeConversionToGoose((ForeignType)foreign);
+            }
+            throw new UnconvertableException(foreign);
+        }
+
 
         private class NoConverter : GooseConverter
         {
 
-            internal override object BeginUnsafeConversion(GooseObject gobj)
+            internal override object BeginUnsafeConversionToForeign(GooseObject gobj)
             {
                 throw new UnconvertableException(gobj);
+            }
+
+            internal override GooseObject BeginUnsafeConversionToGoose(object obj)
+            {
+                throw new UnconvertableException(obj);
             }
         }
 
         private class SleekConverter : GooseConverter
         {
-            private Func<GooseObject, object> func;
+            private Func<GooseObject, object> toForeign;
+            private Func<object, GooseObject> toGoose;
 
-            public SleekConverter(Func<GooseObject, object> func)
+            public SleekConverter(Func<GooseObject, object> toForeign,Func<object, GooseObject> toGoose)
             {
-                this.func = func;
+                this.toForeign = toForeign;
+                this.toGoose = toGoose;
             }
 
-            internal override object BeginUnsafeConversion(GooseObject gobj)
+            internal override object BeginUnsafeConversionToForeign(GooseObject gobj)
             {
-                return func(gobj);
+                return toForeign(gobj);
+            }
+
+            internal override GooseObject BeginUnsafeConversionToGoose(object obj)
+            {
+                return toGoose(obj);
             }
         }
     }
