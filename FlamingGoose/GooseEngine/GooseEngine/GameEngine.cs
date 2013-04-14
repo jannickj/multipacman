@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -102,15 +102,15 @@ namespace GooseEngine
             }
         }
 
-        void actman_ActionQueuing(object sender, ValueEvent<GameAction> value)
+        void actman_ActionQueuing(object sender, UnaryValueEvent<GameAction> evt)
         {
-            value.Value.EventManager = EventManager;
-            value.Value.Factory = Factory;
-            value.Value.World = World;
-            value.Value.ActionManager = ActionManager;
+            evt.Value.EventManager = EventManager;
+            evt.Value.Factory = Factory;
+            evt.Value.World = World;
+            evt.Value.ActionManager = ActionManager;
         }
 
-        void actman_ActionQueued(object sender, ValueEvent<GameAction> value)
+        void actman_ActionQueued(object sender, UnaryValueEvent<GameAction> evt)
         {
             lock (this.ActionManager)
             {

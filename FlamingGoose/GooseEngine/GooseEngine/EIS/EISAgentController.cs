@@ -49,7 +49,7 @@ namespace GooseEngine.AI.BuiltInController
 
         #region EVENTS
 
-        void EISAgentController_PerceptsRecieved(object sender, ValueEvent<ICollection<IPercept>> value)
+        void EISAgentController_PerceptsRecieved(object sender, UnaryValueEvent<ICollection<IPercept>> value)
         {
             throw new NotImplementedException();
         }

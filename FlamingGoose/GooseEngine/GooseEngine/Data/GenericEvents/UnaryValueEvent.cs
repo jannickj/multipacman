@@ -5,24 +5,20 @@ using System.Text;
 
 namespace GooseEngine.Data.GenericEvents
 {
-    public delegate void ValueHandler<T>(object sender, ValueEvent<T> evt);
+    public delegate void UnaryValueHandler<T>(object sender, UnaryValueEvent<T> evt);
 
-    public class ValueEvent<T> : EventArgs
+    public class UnaryValueEvent<T> : EventArgs
     {
-        T val;
+        private T val;
 
         public T Value
         {
             get { return val; }
         }
 
-        public ValueEvent(T val)
+        public UnaryValueEvent(T val)
         {
             this.val = val;
-
         }
-
-
-
     }
 }

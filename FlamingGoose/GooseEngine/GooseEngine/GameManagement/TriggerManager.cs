@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -57,15 +57,15 @@ namespace GooseEngine.GameManagement
         }
 
 
-        void trigger_RegisteredEvent(object sender, ValueEvent<Type> value)
+        void trigger_RegisteredEvent(object sender, UnaryValueEvent<Type> evt)
         {
-            triggers.Add(value.Value, (Trigger)sender);
+            triggers.Add(evt.Value, (Trigger)sender);
         }
 
 
-        void trigger_DeregisteredEvent(object sender, ValueEvent<Type> value)
+        void trigger_DeregisteredEvent(object sender, UnaryValueEvent<Type> evt)
         {
-            triggers.Remove(value.Value, (Trigger)sender);
+            triggers.Remove(evt.Value, (Trigger)sender);
         }
     }
 }
