@@ -14,8 +14,8 @@ namespace GooseEngine.GameManagement
         private Dictionary<object, Action<GameEvent>> actionDictionary = new Dictionary<object, Action<GameEvent>>();
         private Dictionary<object, Predicate<GameEvent>> condDictionary = new Dictionary<object, Predicate<GameEvent>>();
 
-        internal event UnaryValueHandler RegisteredEvent;
-        internal event UnaryValueHandler DeregisteredEvent;
+        internal event UnaryValueHandler<Type> RegisteredEvent;
+        internal event UnaryValueHandler<Type> DeregisteredEvent;
 
         public MultiTrigger()
         {
@@ -27,7 +27,7 @@ namespace GooseEngine.GameManagement
             Type type = typeof(T);
             this.eventtypes.Add(type);
             if (RegisteredEvent != null)
-                RegisteredEvent(this, new UnaryValueEvent(type));
+                RegisteredEvent(this, new UnaryValueEvent<Type>(type));
 
         }
 
@@ -55,7 +55,7 @@ namespace GooseEngine.GameManagement
             Type type = typeof(T);
             this.eventtypes.Remove(type);
             if (DeregisteredEvent != null)
-                DeregisteredEvent(this, new UnaryValueEvent(type));
+                DeregisteredEvent(this, new UnaryValueEvent<Type>(type));
         }
 
         internal void RemoveAction<T>(Action<T> action) where T : GameEvent

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GooseEngine.Data.GenericEvents
 {
-    public delegate void UnaryValueHandler<T>(object sender, UnaryValueEvent value);
+    public delegate void UnaryValueHandler<T>(object sender, UnaryValueEvent<T> value);
 
     public class UnaryValueEvent<T> : EventArgs
     {
@@ -19,7 +19,6 @@ namespace GooseEngine.Data.GenericEvents
         public UnaryValueEvent(T val)
         {
             this.val = val;
-
         }
     }
 }

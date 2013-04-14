@@ -57,15 +57,15 @@ namespace GooseEngine.GameManagement
         }
 
 
-        void trigger_RegisteredEvent(object sender, UnaryValueEvent value)
+        void trigger_RegisteredEvent(object sender, UnaryValueEvent<Type> evt)
         {
-            triggers.Add(value.Value, (Trigger)sender);
+            triggers.Add(evt.Value, (Trigger)sender);
         }
 
 
-        void trigger_DeregisteredEvent(object sender, UnaryValueEvent value)
+        void trigger_DeregisteredEvent(object sender, UnaryValueEvent<Type> evt)
         {
-            triggers.Remove(value.Value, (Trigger)sender);
+            triggers.Remove(evt.Value, (Trigger)sender);
         }
     }
 }

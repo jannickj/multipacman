@@ -9,8 +9,8 @@ namespace GooseEngine.GameManagement
 {
     public class ActionManager
     {
-        internal event ValueHandler<GameAction> ActionQueuing;
-        internal event ValueHandler<GameAction> ActionQueued;
+        internal event UnaryValueHandler<GameAction> ActionQueuing;
+        internal event UnaryValueHandler<GameAction> ActionQueued;
 
         private List<object> wakeup = new List<object>();
         private Queue<GameAction> awaitingActions = new Queue<GameAction>();
@@ -59,10 +59,10 @@ namespace GooseEngine.GameManagement
             lock (this)
             {
                 if (ActionQueuing != null)
-                    ActionQueuing(this, new ValueEvent<GameAction>(action));
+                    ActionQueuing(this, new UnaryValueEvent<GameAction>(action));
                 awaitingActions.Enqueue(action);
                 if (ActionQueued != null)
-                    ActionQueued(this, new ValueEvent<GameAction>(action));
+                    ActionQueued(this, new UnaryValueEvent<GameAction>(action));
             }     
         }
 

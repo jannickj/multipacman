@@ -21,7 +21,6 @@ namespace GooseEngine.AI.BuiltInController
         {
             this.xreader = xreader;
             this.xwriter = xwriter;
-
         }
 
         private void update()
