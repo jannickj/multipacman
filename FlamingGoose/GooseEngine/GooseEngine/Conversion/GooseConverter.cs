@@ -28,15 +28,24 @@ namespace GooseEngine.Conversion
         public abstract ForeignType BeginConversionToForeign(GooseType gobj);
 
 
-        protected GooseType Convert(GooseObject gobj)
+        protected ForeignType ConvertToForeign(GooseObject gobj)
         {
-            return conversionTool.ConvertToForeign(gobj);
+            return conversionTool.ConvertToForeign((GooseType)gobj);
         }
 
+		protected GooseType ConvertToGoose(ForeignType fobj)
+		{
+			return conversionTool.ConvertToGoose((ForeignType) fobj);
+		}
 
         internal override object BeginUnsafeConversionToForeign(GooseObject gobj)
         {
             return this.BeginConversionToForeign((GooseType)gobj);
         }
+
+		internal override GooseObject BeginUnsafeConversionToGoose (object obj)
+		{
+			return this.BeginConversionToGoose ((ForeignType)obj);
+		}
     }
 }

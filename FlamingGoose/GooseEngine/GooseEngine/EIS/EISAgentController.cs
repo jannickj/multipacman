@@ -18,6 +18,7 @@ namespace GooseEngine.AI.BuiltInController
         XmlSerializer deserializer = new XmlSerializer(typeof(IILAction));
         XmlSerializer serializer = new XmlSerializer(typeof(IILAction));
 
+
         public EISAgentController(Agent agent, XmlReader xreader, XmlWriter xwriter) : base(agent)
         {
             this.xreader = xreader;
@@ -29,8 +30,6 @@ namespace GooseEngine.AI.BuiltInController
         private void update()
         {
             
-            
-
         }
 
 

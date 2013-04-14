@@ -43,7 +43,6 @@
     <Compile Include="AI\AgentController.cs" />
     <Compile Include="EIS\EISAgentController.cs" />
     <Compile Include="Data\Size.cs" />
-    <Compile Include="EIS\EISSerializationTool.cs" />
     <Compile Include="Exceptions\ForceStopEngineException.cs" />
     <Compile Include="Exceptions\UnacceptableActionException.cs" />
     <Compile Include="Exceptions\UnconvertableException.cs" />
@@ -110,14 +109,18 @@
     <Compile Include="Perceptions\SingleNumeralPercept.cs" />
     <Compile Include="EIS\Percepts\EISSingleNumeralPercept.cs" />
     <Compile Include="EIS\EISGameFactory.cs" />
-    <Compile Include="EIS\EISSerializer.cs" />
     <Compile Include="EIS\Serializers\EISTileSerializer.cs" />
     <Compile Include="EIS\Serializers\EISEntitySerializer.cs" />
     <Compile Include="Data\GenericEvents\UnaryValueEvent.cs" />
+    <Compile Include="EIS\EISConversionTool.cs" />
+    <Compile Include="EIS\EISConverter.cs" />
+    <Compile Include="EIS\Conversion\IILang\EISActionConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\MapEntities\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="EIS\Conversion\" />
+    <Folder Include="EIS\Conversion\IILang\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
