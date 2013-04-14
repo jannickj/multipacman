@@ -45,6 +45,7 @@
     <Compile Include="Data\GenericEvents\ValueEvent.cs" />
     <Compile Include="Data\Size.cs" />
     <Compile Include="EIS\EISSerializationTool.cs" />
+    <Compile Include="Exceptions\ForceStopEngineException.cs" />
     <Compile Include="Exceptions\UnacceptableActionException.cs" />
     <Compile Include="Exceptions\UnconvertableException.cs" />
     <Compile Include="GameManagement\ActionManager.cs" />

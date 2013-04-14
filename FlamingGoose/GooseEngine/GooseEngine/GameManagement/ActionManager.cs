@@ -29,9 +29,11 @@ namespace GooseEngine.GameManagement
 
             do
             {
-                actions = awaitingActions.ToList();
-                awaitingActions.Clear();
-
+                lock (this)
+                {
+                    actions = awaitingActions.ToList();
+                    awaitingActions.Clear();
+                }
 
                 foreach (GameAction action in actions)
                 {
@@ -39,7 +41,12 @@ namespace GooseEngine.GameManagement
                     action.Completed += action_Completed;
                     action.Fire();
                 }
-            } while (awaitingActions.Count != 0);
+                lock(this)
+                {
+                    if (awaitingActions.Count == 0)
+                        break;
+                }
+            } while (true);
         }
 
         public void Queue(EnvironmentAction action)

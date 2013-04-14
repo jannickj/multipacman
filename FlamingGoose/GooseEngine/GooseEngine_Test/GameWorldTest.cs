@@ -22,21 +22,22 @@ namespace GooseEngine_Test
 
             GameMap map = new GameMap(new Size(2, 2));
             Wall SEwall = new Wall();
+            Wall NearWall = new Wall();
            
-            map[1, 1].AddEntity(new Wall());
-            map[4, 4].AddEntity(SEwall);
-
             GameWorld gm = new GameWorld(map);
 
-            Vision v = gm.View(new Point(2,2),2, new Player());
+            gm.AddEntity(new Point(1, 1), NearWall);
+            gm.AddEntity(new Point(2, 2), SEwall);
+
+            Vision v = gm.View(new Point(0,0),2, new Player());
 
            
             int expected_count = 0;
-            int actual_count = v.VisibleTiles.Where(p => p.Key.Equals(new Point(1, 1))).Count();
+            int actual_count = v.VisibleTiles.Where(p => p.Key.Equals(new Point(2, 2))).Count();
             Assert.AreEqual(expected_count, actual_count);
 
-            Entity expected = SEwall;
-            Entity actual = v.VisibleTiles.Where(p => p.Key.Equals(new Point(4, 4))).Select(p => p.Value.Entities.First()).First();
+            Entity expected = NearWall;
+            Entity actual = v.VisibleTiles.Where(p => p.Key.Equals(new Point(1, 1))).Select(p => p.Value.Entities.First()).First();
             Assert.AreEqual(expected, actual);
 
 
@@ -49,9 +50,9 @@ namespace GooseEngine_Test
             GameWorld world = new GameWorld(map);
 
             Agent agent = new Agent();
-            world.AddEntity(new Point(1, 4), agent);
+            world.AddEntity(new Point(1, 2), agent);
 
-            Point expected = new Point(1, 4);
+            Point expected = new Point(1, 2);
             Point actual = world.GetEntityPosition(agent);
             Assert.AreEqual(expected, actual);
         }

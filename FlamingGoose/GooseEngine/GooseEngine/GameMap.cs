@@ -38,7 +38,7 @@ namespace GooseEngine
         {
             get
             {
-                if(center.X + x > burstSize.Width + 1 || center.X + x < 0 || center.Y + y > burstSize.Height + 1 || center.Y + y < 0 )
+                if (x > burstSize.Width || x < -burstSize.Width || y > burstSize.Height || y < -burstSize.Height)
                 {
                     Tile t = new Tile();
                     t.AddEntity(outofmapzone);

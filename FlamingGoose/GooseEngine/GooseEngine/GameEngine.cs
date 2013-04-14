@@ -8,6 +8,7 @@ using GooseEngine.Data.GenericEvents;
 using GooseEngine.GameManagement;
 using GooseEngine.GameManagement.Events;
 using GooseEngine.Data;
+using GooseEngine.Exceptions;
 
 namespace GooseEngine
 {
@@ -43,15 +44,20 @@ namespace GooseEngine
 
                 while (true)
                 {
+
+                    ActionManager.ExecuteActions();
+                    if (this.stopEngine)
+                        break;
                     lock (this.ActionManager)
                     {
-                        ActionManager.ExecuteActions();
-                        if (this.stopEngine)
-                            break;
                         Monitor.Wait(this.ActionManager);
                     }
 
                 }
+            }
+            catch (ForceStopEngineException)
+            {
+
             }
             catch (Exception e)
             {

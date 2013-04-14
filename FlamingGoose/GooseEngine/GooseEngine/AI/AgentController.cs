@@ -4,16 +4,21 @@ using GooseEngine.GameManagement;
 using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
+using GooseEngine.GameManagement.Events;
+using GooseEngine.Data.GenericEvents;
 
 namespace GooseEngine
 {
 	public abstract class AgentController
 	{
 		private Agent agent;
+        protected event ValueHandler<ICollection<IPercept>> PerceptsRecieved;
+        private ICollection<IPercept> lastpercepts = null;
 
 		public AgentController (Agent agent)
 		{
 			this.agent = agent;
+            agent.Register(new Trigger<RetreivePerceptsEvent>(agent_RetrievePercepts));
 		}
 
 		public void performAction (EntityGameAction action)
@@ -24,10 +29,16 @@ namespace GooseEngine
 			lock (this) 
 			{
 				Monitor.Wait(this);
+                if (lastpercepts != null)
+                    if (PerceptsRecieved != null)
+                    {
+                        this.PerceptsRecieved(this, new ValueEvent<ICollection<IPercept>>(lastpercepts));
+                        lastpercepts = null;
+                    }
 			}
-
-			action.Completed -= action_Completed;
 		}
+
+        
 
         public abstract void Start();
 
@@ -38,6 +49,15 @@ namespace GooseEngine
 				Monitor.PulseAll(this);
 			}
         }
+
+        private void agent_RetrievePercepts(RetreivePerceptsEvent e)
+        {
+            lock (this)
+            {
+                lastpercepts = e.Percepts;
+            }
+        }
+
         #endregion
 
         #region GETTERS
