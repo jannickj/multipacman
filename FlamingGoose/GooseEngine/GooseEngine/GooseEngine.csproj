@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="AI\AgentController.cs" />
     <Compile Include="EIS\EISAgentController.cs" />
-    <Compile Include="Data\GenericEvents\ValueEvent.cs" />
     <Compile Include="Data\Size.cs" />
     <Compile Include="EIS\EISSerializationTool.cs" />
     <Compile Include="Exceptions\ForceStopEngineException.cs" />
@@ -114,6 +113,7 @@
     <Compile Include="EIS\EISSerializer.cs" />
     <Compile Include="EIS\Serializers\EISTileSerializer.cs" />
     <Compile Include="EIS\Serializers\EISEntitySerializer.cs" />
+    <Compile Include="Data\GenericEvents\UnaryValueEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\MapEntities\" />
