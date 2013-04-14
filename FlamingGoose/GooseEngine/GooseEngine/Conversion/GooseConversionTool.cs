@@ -8,134 +8,36 @@ namespace GooseEngine.Conversion
 {
     public class GooseConversionTool<ToType>
     {
-        private InherienceTree tree = new InherienceTree();
+        private Dictionary<Type, GooseConverter> converters = new Dictionary<Type, GooseConverter>();
 
         public GooseConversionTool()
         {
-            InherienceNode n = new InherienceNode(typeof(object), new NoConverter());
+            this.converters.Add(typeof(object), new NoConverter());
         }
 
         public void AddConverter<FromType>(GooseConverter<FromType,ToType> converter) where FromType : GooseObject
         {
-            Type fromType = typeof(FromType);
-            converter.ConversionTool = this;
-            InherienceNode node = new InherienceNode(fromType, converter);
-            tree.AddNode(node);           
+            this.converters.Add(typeof(FromType), converter);          
         }
 
         public ToType Convert(GooseObject gobj)
         {
-            InherienceNode leaf = this.tree.FindYoungestParent(gobj.GetType());
-            return (ToType)leaf.Convert(gobj);
-        }
-
-
-        private class InherienceNode
-        {
-            private Type main;
-            private HashSet<InherienceNode> derivingChildren = new HashSet<InherienceNode>();
-            private GooseConverter converter;
-
-            public InherienceNode(Type main, GooseConverter converter)
+            Type original = gobj.GetType();
+            Type gt = original;
+            GooseConverter converter;
+            while (true)
             {
-                this.main = main;
-                this.converter = converter;
-            }
-
-            public bool IsParentOf(InherienceNode node)
-            {
-                return IsParentOf(node.main);
-            }
-
-            public bool IsParentOf(Type type)
-            {
-                return IsSubclassOf(main, type);
-            }
-
-            public void AddChild(InherienceNode node)
-            {
-                bool foundfamily = false;
-
-                foreach (InherienceNode child in derivingChildren.ToArray())
+                if (converters.TryGetValue(gt, out converter))
                 {
-                    if (child.IsParentOf(node))
+                    if (gt != original)
                     {
-                        child.AddChild(node);
-                        foundfamily = true;
-                        break;
+                        this.converters.Add(original, new SleekConverter(converter.BeginUnsafeConversion));
                     }
-                    else if (node.IsParentOf(child))
-                    {
-                        derivingChildren.Remove(child);
-                        derivingChildren.Add(node);
-                        node.AddChild(child);
-                        foundfamily = true;
-                        break;
-                    }
+                    return (ToType)converter.BeginUnsafeConversion(gobj);
                 }
-
-                if (foundfamily != true)
-                    this.derivingChildren.Add(node);
-
-            }
-
-
-            public  InherienceNode FindParent(Type type)
-            {
-                foreach (InherienceNode child in this.derivingChildren)
-                {
-                    if (child.IsParentOf(type))
-                        return child.FindParent(type);
-                }
-                return this;
-            }
-
-            public object Convert(GooseObject gobj)
-            {
-                return converter.BeginUnsafeConversion(gobj);
-            }
-        }
-
-        private class InherienceTree
-        {
-            private InherienceNode root;
-
-            public void AddNode(InherienceNode node)
-            {
-                if (root == null)
-                    root = node;
                 else
-                {
-                    if (root.IsParentOf(node))
-                        root.AddChild(node);
-                    else
-                    {
-                        node.AddChild(root);
-                        root = node;
-                    }
-                }
-
+                    gt = gt.BaseType;
             }
-
-
-            public InherienceNode FindYoungestParent(Type type)
-            {
-                return root.FindParent(type);
-            }
-        }
-
-        private static bool IsSubclassOf(Type generic, Type toCheck) 
-        {
-            while (toCheck != null && toCheck != typeof(object)) 
-            {
-                var cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
-                if (generic == cur) 
-                {
-                    return true;
-                }
-                toCheck = toCheck.BaseType;
-            }
-            return false;
         }
 
 
@@ -145,6 +47,21 @@ namespace GooseEngine.Conversion
             internal override object BeginUnsafeConversion(GooseObject gobj)
             {
                 throw new UnconvertableException(gobj);
+            }
+        }
+
+        private class SleekConverter : GooseConverter
+        {
+            private Func<GooseObject, object> func;
+
+            public SleekConverter(Func<GooseObject, object> func)
+            {
+                this.func = func;
+            }
+
+            internal override object BeginUnsafeConversion(GooseObject gobj)
+            {
+                return func(gobj);
             }
         }
     }
