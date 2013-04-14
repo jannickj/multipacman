@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+using GooseEngine.Data.GenericEvents;
 using GooseEngine.Entities.Units;
 using iilang;
 
@@ -21,6 +22,7 @@ namespace GooseEngine.AI.BuiltInController
         {
             this.xreader = xreader;
             this.xwriter = xwriter;
+            this.PerceptsRecieved += EISAgentController_PerceptsRecieved;
 
         }
 
@@ -44,5 +46,14 @@ namespace GooseEngine.AI.BuiltInController
 		}
 
 		#endregion
+
+        #region EVENTS
+
+        void EISAgentController_PerceptsRecieved(object sender, ValueEvent<ICollection<IPercept>> value)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

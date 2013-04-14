@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GooseEngine.Data.GenericEvents
 {
-    public delegate void ValueHandler<T>(object sender, ValueEvent<T> value);
+    public delegate void ValueHandler<T>(object sender, ValueEvent<T> evt);
 
     public class ValueEvent<T> : EventArgs
     {
