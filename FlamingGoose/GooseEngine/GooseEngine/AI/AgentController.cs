@@ -13,7 +13,7 @@ namespace GooseEngine
 	{
 		private Agent agent;
         protected event ValueHandler<ICollection<IPercept>> PerceptsRecieved;
-        private ICollection<IPercept> lastpercepts = null;
+        private ICollection<IPercept> newpercepts = null;
 
 		public AgentController (Agent agent)
 		{
@@ -29,13 +29,20 @@ namespace GooseEngine
 			lock (this) 
 			{
 				Monitor.Wait(this);
-                if (lastpercepts != null)
-                    if (PerceptsRecieved != null)
-                    {
-                        this.PerceptsRecieved(this, new ValueEvent<ICollection<IPercept>>(lastpercepts));
-                        lastpercepts = null;
-                    }
-			}
+            }
+
+            ICollection<IPercept> activepercepts = null;
+            lock (this)
+            {
+                activepercepts = this.newpercepts;
+                this.newpercepts = null;
+            }
+
+            if (PerceptsRecieved != null && activepercepts != null)
+            {
+                this.PerceptsRecieved(this, new ValueEvent<ICollection<IPercept>>(newpercepts));
+            }
+			
 		}
 
         
@@ -54,7 +61,7 @@ namespace GooseEngine
         {
             lock (this)
             {
-                lastpercepts = e.Percepts;
+                newpercepts = e.Percepts;
             }
         }
 
