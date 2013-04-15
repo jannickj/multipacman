@@ -41,11 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\AgentController.cs" />
+    <Compile Include="AI\AgentServer.cs" />
     <Compile Include="EIS\Conversion\IILang\EISSingleNumeralSerializer.cs" />
     <Compile Include="EIS\Conversion\IILang\EISPerceptCollectionSerializer.cs" />
     <Compile Include="EIS\Conversion\IILang\EISVisionSerializer.cs" />
     <Compile Include="EIS\EISAgentController.cs" />
     <Compile Include="Data\Size.cs" />
+    <Compile Include="EIS\EISAgentServer.cs" />
     <Compile Include="Exceptions\ForceStopEngineException.cs" />
     <Compile Include="Exceptions\UnacceptableActionException.cs" />
     <Compile Include="Exceptions\UnconvertableException.cs" />

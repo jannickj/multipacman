@@ -77,12 +77,18 @@ namespace GooseEngine
 
         public void Register(Trigger trigger)
         {
-            this.triggers.Register(trigger);
+            lock (this)
+            {
+                this.triggers.Register(trigger);
+            }
         }
 
         public void Deregister(Trigger trigger)
         {
-            this.triggers.Deregister(trigger);
+            lock(this)
+            {
+                this.triggers.Deregister(trigger);
+            }
         }
 
         public void QueueAction(EntityGameAction action)
@@ -98,9 +104,12 @@ namespace GooseEngine
 
         internal void Raise(GameEvent evt)
         {
-            this.triggers.Raise(evt);
-            if (this.TriggerRaised != null)
-                this.TriggerRaised(this, evt);
+            lock (this)
+            {
+                this.triggers.Raise(evt);
+                if (this.TriggerRaised != null)
+                    this.TriggerRaised(this, evt);
+            }
         }
     }
 }

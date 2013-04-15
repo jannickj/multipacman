@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using GooseEngine.Data;
 using GooseEngine.Entities.MapEntities;
 using GooseEngine.Percepts;
@@ -33,5 +34,10 @@ namespace GooseEngine.GameManagement
 			return new SingleNumeralPercept (name, value);
 		}
 
+
+        public Thread CreateThread(Action action)
+        {
+            return new Thread(new ThreadStart(action));
+        }
     }
 }
