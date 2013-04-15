@@ -14,7 +14,7 @@ namespace GooseEngine.GameManagement.Actions
 
 		protected override void Execute ()
 		{
-			this.Source.Raise (new RetreivePerceptsEvent (this.Source.Percepts)); 
+			this.Source.Raise (new RetreivePerceptsEvent (new PerceptCollection(this.Source.Percepts))); 
 			this.Complete ();
 		}
 

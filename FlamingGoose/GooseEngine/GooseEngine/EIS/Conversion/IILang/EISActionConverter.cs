@@ -7,14 +7,14 @@ using GooseEngine.EIS.Conversion;
 
 namespace GooseEngine.EIS.Conversion.IILang
 {
-	public abstract class EISActionConverter<ActionType> : EISConverter<ActionType> where ActionType : GameAction
+	public abstract class EISActionConverter<ActionType,EISActionType> : EISConverter<ActionType,EISActionType> 
+        where ActionType : EntityGameAction
+        where EISActionType : EISAction
 	{
-		#region implemented abstract members of GooseConverter
-		public override IILElement BeginConversionToForeign (ActionType gobj)
-		{
-			throw new NotImplementedException ();
-		}
-		#endregion
+        public override EISActionType BeginConversionToForeign(ActionType gobj)
+        {
+            throw new NotImplementedException();
+        }
 	}
 }
 

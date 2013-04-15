@@ -5,14 +5,14 @@ namespace GooseEngine.GameManagement.Events
 {
 	public class RetreivePerceptsEvent : GameEvent
 	{
-        private ICollection<Percept> percepts;
+        private PerceptCollection percepts;
 
-        public ICollection<Percept> Percepts
+        public PerceptCollection Percepts
         {
             get { return percepts; }
         }
 
-		public RetreivePerceptsEvent (ICollection<Percept> percepts)
+		public RetreivePerceptsEvent (PerceptCollection percepts)
 		{
 			this.percepts = percepts;
 		}

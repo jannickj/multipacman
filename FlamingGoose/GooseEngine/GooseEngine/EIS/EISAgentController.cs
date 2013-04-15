@@ -58,9 +58,9 @@ namespace GooseEngine.AI.BuiltInController
 
         #region EVENTS
 
-        void EISAgentController_PerceptsRecieved(object sender, UnaryValueEvent<ICollection<Percept>> evt)
+        void EISAgentController_PerceptsRecieved(object sender, UnaryValueEvent<PerceptCollection> evt)
         {
-			IILPerceptCollection perceptcollection = tool.ConvertToForeign (evt.Value);
+            IILPerceptCollection perceptcollection = (IILPerceptCollection)tool.ConvertToForeign(evt.Value);
 			serializer.Serialize (xwriter, perceptcollection);
         }
 

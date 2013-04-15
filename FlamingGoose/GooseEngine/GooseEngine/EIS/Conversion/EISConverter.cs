@@ -4,7 +4,9 @@ using iilang;
 
 namespace GooseEngine.EIS.Conversion
 {
-	public abstract class EISConverter<GooseType> : GooseConverter<GooseType, IILElement> where GooseType : GooseObject
+	public abstract class EISConverter<GooseType, EISType> : GooseConverter<GooseType, EISType> 
+        where GooseType : GooseObject
+        where EISType : IILElement
 	{
 		public EISConverter ()
 		{

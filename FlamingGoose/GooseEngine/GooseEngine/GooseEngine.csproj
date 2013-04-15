@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\AgentController.cs" />
+    <Compile Include="EIS\Conversion\IILang\EISSingleNumeralSerializer.cs" />
+    <Compile Include="EIS\Conversion\IILang\EISPerceptCollectionSerializer.cs" />
+    <Compile Include="EIS\Conversion\IILang\EISVisionSerializer.cs" />
     <Compile Include="EIS\EISAgentController.cs" />
     <Compile Include="Data\Size.cs" />
     <Compile Include="Exceptions\ForceStopEngineException.cs" />
@@ -88,6 +91,7 @@
     <Compile Include="GooesObject.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="Lib\ExtendedType.cs" />
+    <Compile Include="PerceptCollection.cs" />
     <Compile Include="Perceptions\Vision.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\Wall.cs" />
@@ -124,10 +128,6 @@
   <ItemGroup>
     <Folder Include="Entities\MapEntities\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="EIS\Conversion\" />
-    <Folder Include="EIS\Conversion\IILang\" />
-    <Folder Include="EIS\Conversion\IILang\Actions\" />
-    <Folder Include="EIS\ActionTypes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

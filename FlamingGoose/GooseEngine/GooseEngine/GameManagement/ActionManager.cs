@@ -22,9 +22,9 @@ namespace GooseEngine.GameManagement
         }
 
 
-        internal void ExecuteActions()
+        internal int ExecuteActions()
         {
-           
+            int actionsExecuted = 0;
             List<GameAction> actions;
 
             do
@@ -40,6 +40,7 @@ namespace GooseEngine.GameManagement
                     runningActions.Add(action);
                     action.Completed += action_Completed;
                     action.Fire();
+                    actionsExecuted++;
                 }
                 lock(this)
                 {
@@ -47,6 +48,7 @@ namespace GooseEngine.GameManagement
                         break;
                 }
             } while (true);
+            return actionsExecuted;
         }
 
         public void Queue(EnvironmentAction action)

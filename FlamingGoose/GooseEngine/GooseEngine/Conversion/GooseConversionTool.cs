@@ -6,7 +6,14 @@ using GooseEngine.Exceptions;
 
 namespace GooseEngine.Conversion
 {
-    public class GooseConversionTool<ForeignType>
+    public abstract class GooseConversionTool
+    {
+
+        internal abstract object ConvertToForeignUnsafe(GooseObject gobj);
+
+        internal abstract GooseObject ConvertToGooseUnsafe(object fobj);
+    }
+    public class GooseConversionTool<ForeignType> : GooseConversionTool
     {
         private Dictionary<Type, GooseConverter> gooseLookup = new Dictionary<Type, GooseConverter>();
         private Dictionary<Type, GooseConverter> foreignLookup = new Dictionary<Type, GooseConverter>();
@@ -19,10 +26,13 @@ namespace GooseEngine.Conversion
 
         }
 
-        public virtual void AddConverter<GooseType>(GooseConverter<GooseType,ForeignType> converter) where GooseType : GooseObject
+        public virtual void AddConverter<GooseType,ForeignTyped>(GooseConverter<GooseType,ForeignTyped> converter) 
+            where ForeignTyped : ForeignType
+            where GooseType : GooseObject
         {
+            converter.ConversionTool = this;
             this.gooseLookup.Add(typeof(GooseType), converter);
-            this.foreignLookup.Add(typeof(ForeignType), converter);
+            this.foreignLookup.Add(typeof(ForeignTyped), converter);
         }
 
         public ForeignType ConvertToForeign(GooseObject gobj)
@@ -46,10 +56,21 @@ namespace GooseEngine.Conversion
             }
         }
 
+
+        internal override object ConvertToForeignUnsafe(GooseObject gobj)
+        {
+            return this.ConvertToForeign(gobj);
+        }
+
+        internal override GooseObject ConvertToGooseUnsafe(object fobj)
+        {
+            return this.ConvertToGoose((ForeignType)fobj);
+        }
+
         public GooseObject ConvertToGoose(ForeignType foreign)
         {
             GooseConverter converter;
-            Type ft = typeof(ForeignType);
+            Type ft = foreign.GetType();
             if (foreignLookup.TryGetValue(ft, out converter))
             {
                 return converter.BeginUnsafeConversionToGoose((ForeignType)foreign);
@@ -93,5 +114,6 @@ namespace GooseEngine.Conversion
                 return toGoose(obj);
             }
         }
+
     }
 }

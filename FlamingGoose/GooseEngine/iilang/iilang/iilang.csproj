@@ -43,6 +43,7 @@
     <Compile Include="Exceptions\MissingXmlAttributeException.cs" />
     <Compile Include="DataContainers\IILAction.cs" />
     <Compile Include="DataContainers\IILPercept.cs" />
+    <Compile Include="No.cs" />
     <Compile Include="Parameters\IILFunction.cs" />
     <Compile Include="Parameters\IILIdentifier.cs" />
     <Compile Include="Parameters\IILParameterList.cs" />
@@ -55,7 +56,5 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

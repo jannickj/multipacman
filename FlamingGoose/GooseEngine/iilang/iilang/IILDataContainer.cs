@@ -67,7 +67,7 @@ namespace iilang
 					reader.Read();
 				}
 			}
-			reader.Read();
+			//reader.Read();
 
 		}
 

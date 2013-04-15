@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgentTest.cs" />
+    <Compile Include="Conversion\GooseConversionToolTest.cs" />
+    <Compile Include="EIS\EISAgentControllerTest.cs" />
     <Compile Include="Entities\MapEntities\TileTest.cs" />
     <Compile Include="GameManagement\GameManagerTest.cs" />
     <Compile Include="GameEngineTest.cs" />
@@ -61,6 +63,10 @@
       <Project>{1A146465-21F3-44D1-A779-6C4958CBD24B}</Project>
       <Name>GooseEngine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\iilang\iilang\iilang.csproj">
+      <Project>{8205042b-12c2-4a7e-9a19-ec06792bc8e6}</Project>
+      <Name>iilang</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -70,7 +76,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

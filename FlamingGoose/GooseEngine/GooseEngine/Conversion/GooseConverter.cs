@@ -14,9 +14,9 @@ namespace GooseEngine.Conversion
     public abstract class GooseConverter<GooseType,ForeignType> : GooseConverter where GooseType : GooseObject
     {
 
-        private GooseConversionTool<ForeignType> conversionTool;
+        private GooseConversionTool conversionTool;
 
-        internal GooseConversionTool<ForeignType> ConversionTool
+        internal GooseConversionTool ConversionTool
         {
             private get { return conversionTool; }
             set { conversionTool = value; }
@@ -28,14 +28,14 @@ namespace GooseEngine.Conversion
         public abstract ForeignType BeginConversionToForeign(GooseType gobj);
 
 
-        protected ForeignType ConvertToForeign(GooseObject gobj)
+        protected object ConvertToForeign(GooseObject gobj)
         {
-            return conversionTool.ConvertToForeign((GooseType)gobj);
+            return conversionTool.ConvertToForeignUnsafe(gobj);
         }
 
-		protected GooseType ConvertToGoose(ForeignType fobj)
+		protected GooseObject ConvertToGoose(ForeignType fobj)
 		{
-			return (GooseType) conversionTool.ConvertToGoose((ForeignType) fobj);
+			return conversionTool.ConvertToGooseUnsafe(fobj);
 		}
 
         internal override object BeginUnsafeConversionToForeign(GooseObject gobj)

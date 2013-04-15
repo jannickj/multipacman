@@ -4,7 +4,7 @@ using GooseEngine.EIS;
 
 namespace GooseEngine.EIS.Conversion.IILang
 {
-	public class EISTileSerializer : EISConverter<Tile>
+    public class EISTileSerializer : EISConverter<Tile, IILElement>
 	{
 		#region implemented abstract members of GooseConverter
 

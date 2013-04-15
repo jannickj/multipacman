@@ -17,19 +17,19 @@ namespace GooseEngine.EIS.EISPercepts
 
 		public IILElement EISify ()
 		{
-			IILPercept percept = new IILPercept ("vision");
-			
-			foreach (KeyValuePair<Point, Tile> kvp in VisibleTiles)
-			{
-				IILFunction fun = new IILFunction ("on",
-				                                   new IILNumeral(kvp.Key.X),
-				                                   new IILNumeral(kvp.Key.Y),
-				                                   new IILIdentifier(kvp.Value.ToString())
-				                                   );
-				percept.addParameter(fun);
-			}
-			
-			return percept;
+            IILPercept percept = new IILPercept("vision");
+
+            foreach (KeyValuePair<Point, Tile> kvp in VisibleTiles)
+            {
+                IILFunction fun = new IILFunction("on",
+                                                   new IILNumeral(kvp.Key.X),
+                                                   new IILNumeral(kvp.Key.Y),
+                                                   new IILIdentifier(kvp.Value.ToString())
+                                                   );
+                percept.addParameter(fun);
+            }
+
+            return percept;
 		}
 
 		#endregion
