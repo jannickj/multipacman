@@ -11,6 +11,7 @@ namespace GooseEngine.Entities
     {
 		private ICollection<Func<Percept>> perceptCollectors = new List<Func<Percept>> ();
         private int health = 1;
+		private double moveSpeed = 500;
 
 		public ICollection<Percept> Percepts {
 			get {
@@ -23,6 +24,11 @@ namespace GooseEngine.Entities
             get { return health; }
             set { health = value; }
         }
+
+		public double MoveSpeed {
+			get { return moveSpeed; }
+			set { moveSpeed = value; }
+		}
 
         public Unit()
         {

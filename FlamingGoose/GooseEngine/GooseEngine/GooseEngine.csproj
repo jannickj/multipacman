@@ -123,12 +123,12 @@
     <Compile Include="EIS\Conversion\IILang\Objects\EISTileSerializer.cs" />
     <Compile Include="EIS\Conversion\IILang\EISActionConverter.cs" />
     <Compile Include="EIS\Conversion\IILang\Actions\GetAllPerceptsActionConverter.cs" />
-    <Compile Include="EIS\Conversion\IILang\Actions\MoveUnitAction.cs" />
     <Compile Include="EIS\ActionTypes\EISGetAllPercepts.cs" />
     <Compile Include="EIS\ActionTypes\EISMoveUnit.cs" />
     <Compile Include="EIS\IILActionParser.cs" />
     <Compile Include="EIS\EISAction.cs" />
     <Compile Include="Percept.cs" />
+    <Compile Include="EIS\Conversion\IILang\Actions\MoveUnitActionConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\MapEntities\" />

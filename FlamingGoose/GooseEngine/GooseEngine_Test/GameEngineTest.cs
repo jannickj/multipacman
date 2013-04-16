@@ -33,7 +33,7 @@ namespace GooseEngine_Test
             Thread thread = new Thread(new ThreadStart(() => engine.Start()));
             thread.Name = "Engine Thread";
 
-            MoveUnit move = new MoveUnit(new Vector(0,1), 1);
+            MoveUnit move = new MoveUnit(new Vector(0,1));
 
             evtman.Register(new Trigger<UnitMovePostEvent>(_ => actman.Queue(new CloseEngine())));
 
