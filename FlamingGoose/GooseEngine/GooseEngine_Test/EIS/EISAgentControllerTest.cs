@@ -27,7 +27,7 @@ namespace GooseEngine_Test.EIS
 
         bool lock1 = true;
         EISAgentController controller;
-        //[Test]
+        [Test]
         public void SingleUpdate_RecievedGetAllPercepts_PickUpPerceptsAndReturnThemThroughWriter()
         {
 
