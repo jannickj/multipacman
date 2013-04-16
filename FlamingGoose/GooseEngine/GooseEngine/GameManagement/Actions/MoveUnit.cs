@@ -42,7 +42,7 @@ namespace GooseEngine.GameManagement.Actions
             {
                 Point newloc = World.GetEntityPosition(this.Source) + direction;
                 World.SetEntityLocation(newloc, this.Source);
-                this.Source.Raise(new UnitMovePostEvent());
+                this.Source.Raise(new UnitMovePostEvent(newloc));
 
                 this.Complete();
             });
