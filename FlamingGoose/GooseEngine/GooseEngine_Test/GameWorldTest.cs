@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Linq;
 using GooseEngine;
-using GooseEngine.Descriptions;
 using GooseEngine.Entities.MapEntities;
 using GooseEngine.Percepts;
 using GooseEngine.Entities.Units;

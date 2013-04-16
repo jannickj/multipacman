@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Timers;
 using GooseEngine.Data;
 
 namespace GooseEngineView.Testing.ConsoleView
@@ -10,24 +11,32 @@ namespace GooseEngineView.Testing.ConsoleView
     {
 
         private ConsoleWorldView world;
+        private GooseEngine.GameWorld gameWorld;
+
+        public GooseConsoleView(GooseEngine.GameWorld gameWorld)
+        {
+            // TODO: Complete member initialization
+            this.gameWorld = gameWorld;
+        }
 
         public void Setup()
         {
             Console.SetWindowSize(world.Width, world.Height);
+            Timer timer = new Timer();
+            timer.Elapsed += timer_Elapsed;
+            timer.Interval = 1000 / 25;
+            timer.Start();
+        }
+
+        void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            draw();
         }
 
         private void draw()
         {
             Console.SetCursorPosition(0, 0);
             Console.Write(Area());
-        }
-
-        public void Start()
-        {
-            while (true)
-            {
-                draw();
-            }
         }
 
         public Char[] Area()

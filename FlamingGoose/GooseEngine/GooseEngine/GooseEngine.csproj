@@ -95,6 +95,7 @@
     <Compile Include="GameMap.cs" />
     <Compile Include="GooesObject.cs" />
     <Compile Include="GameWorld.cs" />
+    <Compile Include="Interfaces\IStartable.cs" />
     <Compile Include="Lib\ExtendedType.cs" />
     <Compile Include="PerceptCollection.cs" />
     <Compile Include="Perceptions\Vision.cs" />
@@ -130,7 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\MapEntities\" />
-    <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

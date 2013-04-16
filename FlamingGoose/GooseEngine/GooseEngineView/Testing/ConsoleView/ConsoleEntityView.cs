@@ -18,5 +18,9 @@ namespace GooseEngineView.Testing.ConsoleView
 
 
         public char Symbol { get; set; }
+
+        public Entity Model { get; set; }
+
+        public GooseEngine.Data.Point Position { get; set; }
     }
 }

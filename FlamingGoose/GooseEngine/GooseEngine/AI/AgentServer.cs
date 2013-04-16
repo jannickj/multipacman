@@ -5,10 +5,11 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using GooseEngine.Entities.Units;
+using GooseEngine.Interfaces;
 
 namespace GooseEngine.AI
 {
-    public abstract class AgentServer : GooseActor
+    public abstract class AgentServer : GooseActor, IStartable
     {
         private TcpListener listener;
         private List<AgentController> agents = new List<AgentController>();

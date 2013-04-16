@@ -9,10 +9,11 @@ using GooseEngine.GameManagement;
 using GooseEngine.GameManagement.Events;
 using GooseEngine.Data;
 using GooseEngine.Exceptions;
+using GooseEngine.Interfaces;
 
 namespace GooseEngine
 {
-    public class GameEngine
+    public class GameEngine : IStartable
     {
         private bool stopEngine;
         private GameWorld world;

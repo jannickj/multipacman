@@ -3,25 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GooseEngine;
+using GooseEngine.Data;
 
 namespace GooseEngineView.Testing.ConsoleView
 {
     class ConsoleWorldView
     {
         private GameWorld model;
-
-        
+        Dictionary<Entity, ConsoleEntityView> viewlookup = new Dictionary<Entity, ConsoleEntityView>();
 
         public ConsoleWorldView(GameWorld model)
         {
             this.model = model;
+
         }
 
-
-
-        internal char[] GenerateDraw()
+        public void AddEntity(ConsoleEntityView entview)
         {
-            throw new NotImplementedException();
+            viewlookup.Add(entview.Model, entview);
         }
 
         public int Width
@@ -41,9 +40,13 @@ namespace GooseEngineView.Testing.ConsoleView
         }
 
 
-        internal Dictionary<GooseEngine.Data.Point, ConsoleEntityView> AllEntities()
+        public Dictionary<Point, ConsoleEntityView> AllEntities()
         {
-            throw new NotImplementedException();
+            Dictionary<Point, ConsoleEntityView> locs = new Dictionary<Point, ConsoleEntityView>();
+            foreach(KeyValuePair<Entity,ConsoleEntityView> kv in this.viewlookup)
+                locs.Add(kv.Value.Position,kv.Value);
+
+            return null;
         }
 
 
