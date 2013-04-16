@@ -16,6 +16,8 @@ namespace GooseEngine
         private Size burstSize;
         private ImpassableWall outofmapzone = new ImpassableWall();
 
+
+
         public GameMap(Size burstSize)
         {
             this.burstSize = burstSize;
@@ -32,6 +34,12 @@ namespace GooseEngine
             }
 
 
+        }
+
+
+        public Size Size
+        {
+            get { return size; }
         }
 
         public Tile this[int x, int y]

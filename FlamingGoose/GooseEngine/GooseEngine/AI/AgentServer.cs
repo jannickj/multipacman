@@ -13,6 +13,7 @@ namespace GooseEngine.AI
         private TcpListener listener;
         private List<AgentController> agents = new List<AgentController>();
         private Dictionary<string, Agent> knownAgents = new Dictionary<string, Agent>();
+        private HashSet<Agent> availableAgents = new HashSet<Agent>();
 
         public AgentServer(TcpListener listener)
         {
@@ -27,16 +28,18 @@ namespace GooseEngine.AI
             while (true)
             {
                 TcpClient client = listener.AcceptTcpClient();
-                Thread thread = this.Factory.CreateThread(() => agent_Thread(client));
+                ThreadNameSetter namesetter = new ThreadNameSetter();
+                Thread thread = this.Factory.CreateThread(() => agent_Thread(client,namesetter));
+                namesetter.Thread = thread;
                 thread.Start();
             }
         }
 
-        protected abstract AgentController CreateAgentController(AgentServer server, TcpClient client);
+        protected abstract AgentController CreateAgentController(AgentServer server, TcpClient client, Action<string> SetControllerName);
 
-        private void agent_Thread(TcpClient client)
+        private void agent_Thread(TcpClient client, ThreadNameSetter namesetter)
         {
-            AgentController agent = CreateAgentController(this,client);
+            AgentController agent = CreateAgentController(this,client,namesetter.SetName);
             
             lock(this)
                 this.agents.Add(agent);
@@ -44,11 +47,18 @@ namespace GooseEngine.AI
             agent.Start();
         }
 
-        public Agent Find(string name)
+        public Agent TakeControlOf(string name)
         {
             lock (this)
             {
-                return this.knownAgents[name];
+                Agent agent;
+                if(this.knownAgents.TryGetValue(name,out agent))
+                {
+                    this.availableAgents.Remove(agent);
+                    return agent;
+                }
+                else
+                    throw new Exception("Agent controller was unable to assume control of "+name);                
             }
         }
 
@@ -57,6 +67,22 @@ namespace GooseEngine.AI
             lock (this)
             {
                 this.knownAgents.Add(agent.Name, agent);
+                this.availableAgents.Add(agent);
+            }
+        }
+
+        private class ThreadNameSetter
+        {
+            private Thread thread;
+
+            public Thread Thread
+            {
+                set { thread = value; }
+            }
+
+            internal void SetName(string name)
+            {
+                thread.Name = name;
             }
         }
     }

@@ -44,6 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityView.cs" />
+    <Compile Include="Testing\ConsoleView\ConsoleEntityView.cs" />
+    <Compile Include="Testing\ConsoleView\ConsoleViewFactory.cs" />
+    <Compile Include="Testing\ConsoleView\ConsoleWorldView.cs" />
+    <Compile Include="Testing\ConsoleView\GooseConsoleView.cs" />
     <Compile Include="ViewFactory.cs" />
     <Compile Include="WorldView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

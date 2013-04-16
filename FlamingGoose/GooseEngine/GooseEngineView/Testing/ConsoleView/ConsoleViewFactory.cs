@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace GooseEngineView
+namespace GooseEngineView.Testing.ConsoleView
 {
-    public class ViewFactory
+    public class ConsoleViewFactory
     {
-
 
     }
 }

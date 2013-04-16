@@ -41,9 +41,7 @@ namespace GooseEngine_Test.EIS
             world.AddEntity(new GooseEngine.Data.Point(0, 0), agent);
 
 
-            XElement node = XElement.Parse(
-                @"<action name=""getAllPercepts"">
-				</action>");
+
 
             Thread thread1 = new Thread(new ThreadStart(test2));
             thread1.Name = "TCP Server";

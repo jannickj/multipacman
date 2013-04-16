@@ -24,17 +24,20 @@ namespace GooseEngine.EIS
             this.parser = parser;
         }
 
-        protected override AgentController CreateAgentController(AgentServer server, TcpClient client)
+
+
+        protected override AgentController CreateAgentController(AgentServer server, TcpClient client, Action<string> SetControllerName)
         {
-            XmlReader xreader = XmlReader.Create(new StreamReader(client.GetStream(),Encoding.UTF8));
+            XmlReader xreader = XmlReader.Create(new StreamReader(client.GetStream(), Encoding.UTF8));
             XmlWriterSettings wset = new XmlWriterSettings();
             wset.OmitXmlDeclaration = true;
             XmlWriter xwriter = XmlWriter.Create(client.GetStream());
             XmlSerializer serializer = new XmlSerializer(typeof(IILIdentifier));
-            IILIdentifier ident = (IILIdentifier) serializer.Deserialize(xreader);
-            Agent agent = server.Find(ident.Value);
-            
-            EISAgentController con = new EISAgentController(agent,xreader,xwriter,tool,parser);
+            IILIdentifier ident = (IILIdentifier)serializer.Deserialize(xreader);
+            SetControllerName(ident.Value);
+            Agent agent = server.TakeControlOf(ident.Value);
+
+            EISAgentController con = new EISAgentController(agent, xreader, xwriter, tool, parser);
 
             return con;
         }
