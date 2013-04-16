@@ -39,6 +39,8 @@ namespace GooseEngine.AI
             
             lock(this)
                 this.agents.Add(agent);
+
+            agent.Start();
         }
 
         public Agent Find(string name)
