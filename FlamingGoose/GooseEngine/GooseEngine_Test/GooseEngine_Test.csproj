@@ -64,7 +64,7 @@
       <Name>GooseEngine</Name>
     </ProjectReference>
     <ProjectReference Include="..\iilang\iilang\iilang.csproj">
-      <Project>{8205042b-12c2-4a7e-9a19-ec06792bc8e6}</Project>
+      <Project>{8205042B-12C2-4A7E-9A19-EC06792BC8E6}</Project>
       <Name>iilang</Name>
     </ProjectReference>
   </ItemGroup>
@@ -77,4 +77,7 @@
   </Target>
   -->
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Conversion\EIS\" />
+  </ItemGroup>
 </Project>
