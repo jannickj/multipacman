@@ -51,6 +51,8 @@
     <Compile Include="ViewFactory.cs" />
     <Compile Include="WorldView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Testing\ConsoleView\EntityViews\WallConsoleView.cs" />
+    <Compile Include="Testing\ConsoleView\EntityViews\AgentConsoleView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GooseEngine\GooseEngine.csproj">
@@ -60,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Action\" />
+    <Folder Include="Testing\ConsoleView\EntityViews\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -13,6 +13,7 @@ namespace GooseEngine
         private GameMap map;
         private Dictionary<Entity, Point> entlocs = new Dictionary<Entity, Point>();
 
+
         public Size Size
         {
             get
