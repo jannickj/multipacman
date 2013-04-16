@@ -14,6 +14,7 @@ namespace GooseEngine
 		private Agent agent;
         protected event UnaryValueHandler<PerceptCollection> PerceptsRecieved;
         private PerceptCollection newpercepts = null;
+        private AutoResetEvent actionComplete = new AutoResetEvent(false);
 
 		public AgentController (Agent agent)
 		{
@@ -25,11 +26,8 @@ namespace GooseEngine
 		{
 			action.Completed += action_Completed;
 			agent.QueueAction(action);
-           
-			lock (this) 
-			{
-				Monitor.Wait(this);
-            }
+
+            this.actionComplete.WaitOne();
 
             PerceptCollection activepercepts = null;
             lock (this)
@@ -52,9 +50,7 @@ namespace GooseEngine
         #region EVENTS
         private void  action_Completed (object sender, EventArgs e)
 		{
-			lock (this) {
-				Monitor.PulseAll(this);
-			}
+            this.actionComplete.Set();
         }
 
         private void agent_RetrievePercepts(RetreivePerceptsEvent e)

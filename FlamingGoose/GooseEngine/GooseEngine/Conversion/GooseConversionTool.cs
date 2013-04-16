@@ -33,9 +33,10 @@ namespace GooseEngine.Conversion
             converter.ConversionTool = this;
 
             if(!(converter is GooseConverterToForeign<GooseType,ForeignTyped>))
-                this.gooseLookup.Add(typeof(GooseType), converter);
-            if(!(converter is GooseConverterToGoose<GooseType,ForeignTyped>))
                 this.foreignLookup.Add(typeof(ForeignTyped), converter);
+            if(!(converter is GooseConverterToGoose<GooseType,ForeignTyped>))
+                this.gooseLookup.Add(typeof(GooseType), converter);
+                
         }
 
 

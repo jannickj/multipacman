@@ -18,6 +18,7 @@ namespace GooseEngine.AI
         {
             this.listener = listener;
             
+            
         }
 
         public void Start()

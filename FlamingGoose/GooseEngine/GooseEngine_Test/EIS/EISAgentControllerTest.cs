@@ -27,7 +27,7 @@ namespace GooseEngine_Test.EIS
 
         bool lock1 = true;
         EISAgentController controller;
-        [Test]
+        //[Test]
         public void SingleUpdate_RecievedGetAllPercepts_PickUpPerceptsAndReturnThemThroughWriter()
         {
 
@@ -66,8 +66,10 @@ namespace GooseEngine_Test.EIS
 
             XmlReaderSettings set = new XmlReaderSettings();
             set.ConformanceLevel = ConformanceLevel.Fragment;
-            XmlReader xreader = new XmlTextReader(new StreamReader(stream, Encoding.UTF8));
-            XmlWriter xwriter = XmlWriter.Create(sb);
+            XmlReader xreader = XmlReader.Create(new StreamReader(stream, Encoding.UTF8));
+            XmlWriterSettings wset = new XmlWriterSettings();
+            wset.OmitXmlDeclaration = true;
+            XmlWriter xwriter = XmlWriter.Create(sb,wset);
             controller = new EISAgentController(agent, xreader, xwriter, ctool, parser);
 
 
@@ -76,18 +78,31 @@ namespace GooseEngine_Test.EIS
             thread2.Start();
 
             while(manager.ExecuteActions() == 0);
-            string returned = sb.ToString();
+            string returned = null;
+            do
+            {
+                try
+                {
+                    returned = sb.ToString();
+                }
+                catch
+                {
+
+                }
+            } while (String.IsNullOrEmpty(returned));
+
 
 
         }
 
         private void test2()
         {
+           
             TcpListener tcp = new TcpListener(IPAddress.Parse("127.0.0.1"), 6661);
             tcp.Start();
             lock1 = false;
             TcpClient client = tcp.AcceptTcpClient();
-            string actiontext = @"<?xml version=""1.0"" encoding=""utf-16""?><action name=""getAllPercepts"">
+            string actiontext = @"<action name=""getAllPercepts"">
 				</action>";
 
             StreamWriter writer = new StreamWriter(client.GetStream(),Encoding.UTF8);
