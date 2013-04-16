@@ -9,6 +9,7 @@ namespace GooseEngine.Conversion
 	{
         internal abstract object BeginUnsafeConversionToForeign(GooseObject gobj);
         internal abstract GooseObject BeginUnsafeConversionToGoose(object obj);
+
 	}
 
     public abstract class GooseConverter<GooseType,ForeignType> : GooseConverter where GooseType : GooseObject

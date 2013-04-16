@@ -47,7 +47,7 @@ namespace GooseEngine.AI
         {
             lock (this)
             {
-                return this.knownAgents["name"];
+                return this.knownAgents[name];
             }
         }
 

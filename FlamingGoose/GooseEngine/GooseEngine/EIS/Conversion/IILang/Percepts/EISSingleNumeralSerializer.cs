@@ -5,15 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GooseEngine.EIS.Conversion.IILang
+namespace GooseEngine.EIS.Conversion.IILang.Percepts
 {
-    public class EISSingleNumeralSerializer : EISConverter<SingleNumeralPercept, iilang.IILPercept>
+    public class EISSingleNumeralSerializer : EISPerceptConverter<SingleNumeralPercept>
     {
 
-        public override SingleNumeralPercept BeginConversionToGoose(IILPercept fobj)
-        {
-            throw new NotImplementedException();
-        }
 
         public override IILPercept BeginConversionToForeign(SingleNumeralPercept gobj)
         {

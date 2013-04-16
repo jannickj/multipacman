@@ -7,15 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GooseEngine.EIS.Conversion.IILang
+namespace GooseEngine.EIS.Conversion.IILang.Percepts
 {
-    public class EISVisionSerializer : EISConverter<Vision,IILPercept>
+    public class EISVisionSerializer : EISPerceptConverter<Vision>
     {
 
-        public override Vision BeginConversionToGoose(IILPercept fobj)
-        {
-            throw new NotImplementedException();
-        }
 
         public override IILPercept BeginConversionToForeign(Vision gobj)
         {

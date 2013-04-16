@@ -16,6 +16,7 @@ using System.Net.Sockets;
 using System.Net;
 using GooseEngine.GameManagement;
 using GooseEngine.EIS.Conversion.IILang;
+using GooseEngine.EIS.Conversion.IILang.Percepts;
 
 namespace GooseEngine_Test.EIS
 {
