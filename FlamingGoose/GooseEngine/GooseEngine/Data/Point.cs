@@ -50,6 +50,11 @@ namespace GooseEngine.Data
 		{
 			return p - v;
 		}
+
+		public override string ToString ()
+		{
+			return string.Format ("[Point: X={0}, Y={1}]", X, Y);
+		}
 	}
 }
 

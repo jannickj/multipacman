@@ -12,7 +12,11 @@ namespace GooseEngine.Entities.MapEntities
         {
             AddRuleSuperior<ImpassableWall>();
             AddWillBlock_MovementRule<ImpassableWall>(_ => true);
-
         }
+
+		public override bool IsVisionBlocking(Entity entity)
+		{
+			return true;
+		}
     }
 }

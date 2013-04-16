@@ -22,6 +22,12 @@ namespace GooseEngine
 			get { return DEFAULT_VISION; }
 		}
 
+		public Point Position {
+			get { 
+				return World.GetEntityPosition (this); 
+			}
+		}
+
         public Entity()
         {
             conclusions[0] = new Conclusion("Non blocking");

@@ -29,7 +29,7 @@ namespace GooseEngineView.Testing.ConsoleView
         {
 			this.model = model;
 			this.position = model.Position;
-			model.Register(new Trigger<UnitMovePostEvent>( ))
+			model.Register (new Trigger<UnitMovePostEvent> (UnitMoved));
         }
 
 		protected virtual void UnitMoved(UnitMovePostEvent evt)

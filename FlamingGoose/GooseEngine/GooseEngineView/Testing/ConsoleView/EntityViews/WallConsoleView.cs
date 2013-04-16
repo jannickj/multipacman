@@ -6,7 +6,7 @@ namespace GooseEngineView.Testing.ConsoleView.EntityViews
 {
 	public class WallConsoleView : ConsoleEntityView
 	{
-		public char Symbol { get { return "W"; } }
+		public  override char Symbol { get { return 'W'; } }
 
 		public WallConsoleView (Entity model) 
 			: base(model)
