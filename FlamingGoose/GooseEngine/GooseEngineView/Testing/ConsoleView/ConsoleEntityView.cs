@@ -37,8 +37,6 @@ namespace GooseEngineView.Testing.ConsoleView
 			position = evt.NewPos;
 		}
 
-        public Entity Model { get; set; }
 
-        public GooseEngine.Data.Point Position { get; set; }
     }
 }
