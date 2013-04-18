@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +9,10 @@ namespace GooseEngineView.Testing.ConsoleView
 {
     public class ConsoleWorldView
     {
-        private GameWorld model;
+        private GooseWorld model;
         Dictionary<Entity, ConsoleEntityView> viewlookup = new Dictionary<Entity, ConsoleEntityView>();
 
-        public ConsoleWorldView(GameWorld model)
+        public ConsoleWorldView(GooseWorld model)
         {
             this.model = model;
 

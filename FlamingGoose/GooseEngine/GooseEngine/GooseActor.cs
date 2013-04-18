@@ -5,7 +5,7 @@ namespace GooseEngine
 {
 	public class GooseActor : GooseObject
 	{
-		private GameWorld world;
+		private GooseWorld world;
 		private GameFactory factory;
 		private ActionManager actman;
 		private EventManager evtman;
@@ -14,7 +14,7 @@ namespace GooseEngine
 		{
 		}
 
-		public GameWorld World {
+		public GooseWorld World {
 			get {
 				return world;
 			}

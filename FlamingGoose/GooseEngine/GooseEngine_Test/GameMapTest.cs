@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using GooseEngine;
 using GooseEngine.Data;
@@ -17,7 +17,7 @@ namespace GooseEngine_Test
         public void getGrid_AdjacentToOuterBounds_ReturnsImpassableWalls()
         {
 
-            GameMap map = new GameMap(new Size(2,2));
+            GooseMap map = new GooseMap(new Size(2,2));
 
             Grid<Tile> g = map[-2, -2, 1];
 

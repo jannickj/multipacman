@@ -88,9 +88,7 @@
     <Compile Include="GooseModel.cs" />
     <Compile Include="GameManagement\EventManager.cs" />
     <Compile Include="GameManagement\TriggerManager.cs" />
-    <Compile Include="GameMap.cs" />
     <Compile Include="GooesObject.cs" />
-    <Compile Include="GameWorld.cs" />
     <Compile Include="Interfaces\IStartable.cs" />
     <Compile Include="Lib\ExtendedType.cs" />
     <Compile Include="PerceptCollection.cs" />
@@ -124,6 +122,8 @@
     <Compile Include="EIS\EISAction.cs" />
     <Compile Include="Percept.cs" />
     <Compile Include="EIS\Conversion\IILang\Actions\MoveUnitActionConverter.cs" />
+    <Compile Include="GooseWorld.cs" />
+    <Compile Include="GooseMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\MapEntities\" />

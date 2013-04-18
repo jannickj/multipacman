@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Linq;
 using GooseEngine;
@@ -16,8 +16,8 @@ namespace GooseEngine_Test
         [Test]
         public void GetEntityPosition_OneAgentInWorld_ReturnThatAgentPosition()
         {
-            GameMap map = new GameMap(new Size(2, 2));
-            GameWorld world = new GameWorld(map);
+            GooseMap map = new GooseMap(new Size(2, 2));
+            GooseWorld world = new GooseWorld(map);
 
             Agent agent = new Agent();
             world.AddEntity(new Point(1, 2), agent);

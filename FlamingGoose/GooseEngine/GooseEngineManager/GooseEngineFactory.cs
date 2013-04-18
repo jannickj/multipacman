@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -42,9 +42,9 @@ namespace GooseEngineManager
             return tool;
         }
 
-        public virtual GooseModel ConstructEngine(GameMap map)
+        public virtual GooseModel ConstructEngine(GooseMap map)
         {
-            GameWorld world = new GameWorld(map);
+            GooseWorld world = new GooseWorld(map);
             ActionManager actman = ConstructActionManager();
             EventManager evtman = ConstructEventManager();
             GameFactory fact = ConstructGameFactory(actman);

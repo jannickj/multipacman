@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
@@ -35,13 +35,13 @@ namespace GooseEngine_Test.Percepts
 			 * SSXSS
 			 */
 
-			GameMap map = new GameMap (new Size (2, 2));
+			GooseMap map = new GooseMap (new Size (2, 2));
 			map [-1, -1].AddEntity (new Wall ());
 			map [1, -1].AddEntity (new Wall ());
 			map [-1, 1].AddEntity (new Wall ());
 			map [1, 1].AddEntity (new Wall ());
 
-			GameWorld world = new GameWorld (map);
+			GooseWorld world = new GooseWorld (map);
 			Vision vision = world.View (new Point (0, 0), 2, new Player ());
 
 			List<KeyValuePair<Point,Tile>> expected = vision.AllTiles ();
@@ -74,13 +74,13 @@ namespace GooseEngine_Test.Percepts
 			 * XXSXX
 			 */
 			
-			GameMap map = new GameMap (new Size (2, 2));
+			GooseMap map = new GooseMap (new Size (2, 2));
 			map [-1, 0].AddEntity (new Wall ());
 			map [1, 0].AddEntity (new Wall ());
 			map [0, -1].AddEntity (new Wall ());
 			map [0, 1].AddEntity (new Wall ());
 			
-			GameWorld world = new GameWorld (map);
+			GooseWorld world = new GooseWorld (map);
 			Vision vision = world.View (new Point (0, 0), 2, new Player ());
 			
 			List<KeyValuePair<Point,Tile>> expected = vision.AllTiles ();
@@ -112,10 +112,10 @@ namespace GooseEngine_Test.Percepts
 			 * XXXXXXX
 			 */
 			
-			GameMap map = new GameMap (new Size (3, 3));
+			GooseMap map = new GooseMap (new Size (3, 3));
 			map [-1, -1].AddEntity (new Wall ());
 			
-			GameWorld world = new GameWorld (map);
+			GooseWorld world = new GooseWorld (map);
 			Vision vision = world.View (new Point (0, 0), 2, new Player ());
 			
 			List<KeyValuePair<Point,Tile>> expected = vision.AllTiles ();
@@ -148,10 +148,10 @@ namespace GooseEngine_Test.Percepts
 			 * XXXXXXX
 			 */
 			
-			GameMap map = new GameMap (new Size (3, 3));
+			GooseMap map = new GooseMap (new Size (3, 3));
 			map [-1, 0].AddEntity (new Wall ());
 			
-			GameWorld world = new GameWorld (map);
+			GooseWorld world = new GooseWorld (map);
 			Vision vision = world.View (new Point (0, 0), 2, new Player ());
 			
 			List<KeyValuePair<Point,Tile>> expected = vision.AllTiles ();
@@ -185,7 +185,7 @@ namespace GooseEngine_Test.Percepts
 			 * SSSSSSS
 			 */
 			
-			GameMap map = new GameMap (new Size (3, 3));
+			GooseMap map = new GooseMap (new Size (3, 3));
 			for (int i = -2; i <= 2; i++) {
 				map [-2, i].AddEntity (new ImpassableWall ());
 				map [2, i].AddEntity (new ImpassableWall ());
@@ -198,7 +198,7 @@ namespace GooseEngine_Test.Percepts
 
 			map [-3, 0].AddEntity (new Wall ());
 
-			GameWorld world = new GameWorld (map);
+			GooseWorld world = new GooseWorld (map);
 			Vision vision = world.View (new Point (0, 0), 3, new Player ());
 			
 			List<KeyValuePair<Point,Tile>> expected = vision.AllTiles ();
@@ -238,7 +238,7 @@ namespace GooseEngine_Test.Percepts
 			 * WWWWWWW
 			 */
 			
-			GameMap map = new GameMap (new Size (3, 3));
+			GooseMap map = new GooseMap (new Size (3, 3));
 
 			for (int x = -3; x <= 3; x++) {
 				for (int y = -3; y <= 3; y++) {
@@ -247,7 +247,7 @@ namespace GooseEngine_Test.Percepts
 				}
 			}
 			
-			GameWorld world = new GameWorld (map);
+			GooseWorld world = new GooseWorld (map);
 			Vision vision = world.View (new Point (0, 0), 3, new Player ());
 			
 			List<KeyValuePair<Point,Tile>> expected = vision.AllTiles ();
@@ -273,9 +273,9 @@ namespace GooseEngine_Test.Percepts
 		public void AgentRequests7by7VisionInEmpty3by3World_Return5by5TilesWithImpassableWallsAtEdges ()
 		{
 			
-			GameMap map = new GameMap (new Size (1, 1));
+			GooseMap map = new GooseMap (new Size (1, 1));
 			
-			GameWorld world = new GameWorld (map);
+			GooseWorld world = new GooseWorld (map);
 			Vision vision = world.View (new Point (0, 0), 3, new Player ());
 			
 			List<KeyValuePair<Point,Tile>> expected = vision.AllTiles ();

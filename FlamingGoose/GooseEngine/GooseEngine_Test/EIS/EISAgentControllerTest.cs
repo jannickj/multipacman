@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +32,7 @@ namespace GooseEngine_Test.EIS
         {
 
             ActionManager manager = new ActionManager();
-            GameWorld world = new GameWorld(new GameMap(new GooseEngine.Data.Size(4, 4)));
+            GooseWorld world = new GooseWorld(new GooseMap(new GooseEngine.Data.Size(4, 4)));
             GameFactory fact = new GameFactory(manager);
             Agent agent = new Agent();
             agent.ActionManager = manager;
