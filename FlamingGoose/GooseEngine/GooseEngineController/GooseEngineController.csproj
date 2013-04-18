@@ -44,7 +44,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Goal\" />
+    <Folder Include="AI\" />
+    <Folder Include="EIS\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GooseEngine\GooseEngine.csproj">

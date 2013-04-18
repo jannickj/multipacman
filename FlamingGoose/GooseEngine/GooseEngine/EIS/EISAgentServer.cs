@@ -17,16 +17,35 @@ namespace GooseEngine.EIS
     {
         private EISConversionTool tool;
         private IILActionParser parser;
+        private TcpListener listener;
 
         public EISAgentServer(TcpListener listener, EISConversionTool tool, IILActionParser parser) : base(listener)
         {
+            this.listener = listener;
             this.tool = tool;
             this.parser = parser;
         }
 
+        protected override void Initialize()
+        {
+            listener.Start();
+        }
+
+        protected override Func<KeyValuePair<string,AgentController>> AquireAgentControllerContructor()
+        {
+            TcpClient client = listener.AcceptTcpClient();
 
 
-        protected override AgentController CreateAgentController(AgentServer server, TcpClient client, Action<string> SetControllerName)
+            return () => 
+            {
+                string name; 
+                AgentController value = CreateAgentController(client,out name);
+                return new KeyValuePair<string, AgentController>(name, value);
+            };
+        }
+
+
+        private  AgentController CreateAgentController(TcpClient client, out string name)
         {
             XmlReader xreader = XmlReader.Create(new StreamReader(client.GetStream(), Encoding.UTF8));
             XmlWriterSettings wset = new XmlWriterSettings();
@@ -34,12 +53,15 @@ namespace GooseEngine.EIS
             XmlWriter xwriter = XmlWriter.Create(client.GetStream());
             XmlSerializer serializer = new XmlSerializer(typeof(IILIdentifier));
             IILIdentifier ident = (IILIdentifier)serializer.Deserialize(xreader);
-            SetControllerName(ident.Value);
-            Agent agent = server.TakeControlOf(ident.Value);
+            name = ident.Value;
+            Agent agent = this.TakeControlOf(name);
+            
 
             EISAgentController con = new EISAgentController(agent, xreader, xwriter, tool, parser);
 
             return con;
         }
+
+   
     }
 }

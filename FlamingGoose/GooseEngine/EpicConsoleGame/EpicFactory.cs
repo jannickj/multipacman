@@ -41,8 +41,9 @@ namespace EpicConsoleGame
             return tool;
         }
 
-        public virtual GameEngine ConstrucEngine(GameWorld world)
+        public virtual GameEngine ConstrucEngine(GameMap map)
         {
+            GameWorld world = new GameWorld(map);
             ActionManager actman = ConstrucActionManager();
             EventManager evtman = ConstrucEventManager();
             GameFactory fact = ConstrucGameFactory(actman);

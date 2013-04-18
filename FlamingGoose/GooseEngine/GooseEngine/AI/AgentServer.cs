@@ -12,9 +12,10 @@ namespace GooseEngine.AI
     public abstract class AgentServer : GooseActor, IStartable
     {
         private TcpListener listener;
-        private List<AgentController> agents = new List<AgentController>();
+        private Dictionary<AgentController, AgentControllerInfomation> agents = new Dictionary<AgentController, AgentControllerInfomation>();
         private Dictionary<string, Agent> knownAgents = new Dictionary<string, Agent>();
         private HashSet<Agent> availableAgents = new HashSet<Agent>();
+
 
         public AgentServer(TcpListener listener)
         {
@@ -23,29 +24,45 @@ namespace GooseEngine.AI
             
         }
 
+        protected abstract void Initialize();
+
+
         public void Start()
         {
-            listener.Start();
+            Initialize();
             while (true)
             {
-                TcpClient client = listener.AcceptTcpClient();
-                ThreadNameSetter namesetter = new ThreadNameSetter();
-                Thread thread = this.Factory.CreateThread(() => agent_Thread(client,namesetter));
-                namesetter.Thread = thread;
+
+                Func<KeyValuePair<string, AgentController>> agentcontroller = AquireAgentControllerContructor();
+                Thread thread = null;
+                thread = this.Factory.CreateThread(() => agent_Thread(agentcontroller));
                 thread.Start();
+
             }
         }
 
-        protected abstract AgentController CreateAgentController(AgentServer server, TcpClient client, Action<string> SetControllerName);
+        protected abstract Func<KeyValuePair<string,AgentController>> AquireAgentControllerContructor();
 
-        private void agent_Thread(TcpClient client, ThreadNameSetter namesetter)
+ 
+        private void agent_Thread(Func<KeyValuePair<string, AgentController>> constructor)
         {
-            AgentController agent = CreateAgentController(this,client,namesetter.SetName);
-            
-            lock(this)
-                this.agents.Add(agent);
 
-            agent.Start();
+            KeyValuePair<string, AgentController> agent;
+            try
+            {
+                TryExecute<KeyValuePair<string, AgentController>>(constructor, 2000, out agent);
+                AgentControllerInfomation ainfo = new AgentControllerInfomation();
+                ainfo.Thread = Thread.CurrentThread;
+                ainfo.Name = agent.Key;
+                lock (this)
+                    this.agents.Add(agent.Value, ainfo);
+
+                agent.Value.Start();
+            }
+            catch (TimeoutException)
+            {
+                throw new TimeoutException("Agent Controller construction timed out");
+            }
         }
 
         public Agent TakeControlOf(string name)
@@ -72,19 +89,65 @@ namespace GooseEngine.AI
             }
         }
 
-        private class ThreadNameSetter
+        private class AgentControllerInfomation
         {
             private Thread thread;
+            private Agent controlling;
+            private String name;
+
+            private string ThreadName()
+            {                  
+                return name+ " Controller Thread";
+            }
+
+            public String Name
+            {
+                set
+                {
+                    name = value;
+                    if (thread != null && thread.Name == null)
+                        thread.Name = ThreadName();
+                    
+                }
+            }
 
             public Thread Thread
             {
-                set { thread = value; }
+                set
+                {
+                    thread = value;
+                    if(name != null && thread.Name == null)
+                        thread.Name = ThreadName();
+                }
             }
 
-            internal void SetName(string name)
+            public AgentControllerInfomation()
             {
-                thread.Name = name;
+               
             }
+
+        }
+
+        public static T Execute<T>(Func<T> func, int timeout)
+        {
+            T result;
+            TryExecute(func, timeout, out result);
+            return result;
+        }
+
+        public static bool TryExecute<T>(Func<T> func, int timeout, out T result)
+        {
+            var t = default(T);
+            var thread = new Thread(() => t = func());
+            thread.Start();
+            var completed = thread.Join(timeout);
+            if (!completed)
+            {
+                thread.Abort();
+                throw new TimeoutException();
+            }
+            result = t;
+            return completed;
         }
     }
 }
