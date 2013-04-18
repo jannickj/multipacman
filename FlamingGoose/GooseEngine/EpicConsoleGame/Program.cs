@@ -16,11 +16,11 @@ namespace EpicConsoleGame
         static void Main(string[] args)
         {
             EpicFactory factory = new EpicFactory();
-            GameEngine engine = factory.ConstrucEngine();
+            GameEngine engine = factory.ConstructEngine();
 
             Thread thread = new Thread(new ThreadStart(engine.Start));
 
-            GooseConsoleView view = factory.ConstrucView();
+            GooseConsoleView view = factory.ConstructView(engine);
 
 
         }

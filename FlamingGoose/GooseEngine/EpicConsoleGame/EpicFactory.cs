@@ -41,33 +41,33 @@ namespace EpicConsoleGame
             return tool;
         }
 
-        public virtual GameEngine ConstrucEngine(GameWorld world)
+        public virtual GameEngine ConstructEngine(GameWorld world)
         {
-            ActionManager actman = ConstrucActionManager();
-            EventManager evtman = ConstrucEventManager();
-            GameFactory fact = ConstrucGameFactory(actman);
+            ActionManager actman = ConstructActionManager();
+            EventManager evtman = ConstructEventManager();
+            GameFactory fact = ConstructGameFactory(actman);
             GameEngine engine = new GameEngine(world,actman,evtman,fact);
 
             return engine;
         }
 
-        protected virtual GameFactory ConstrucGameFactory(ActionManager actman)
+        protected virtual GameFactory ConstructGameFactory(ActionManager actman)
         {
             return new GameFactory(actman);
         }
 
-        private EventManager ConstrucEventManager()
+        private EventManager ConstructEventManager()
         {
             return new EventManager();
         }
 
-        private ActionManager ConstrucActionManager()
+        private ActionManager ConstructActionManager()
         {
             return new ActionManager();
         }
 
 
-        public  GooseConsoleView ConstrucView(GameEngine engine)
+        public  GooseConsoleView ConstructView(GameEngine engine)
         {
             return new GooseConsoleView(engine.World);
         }
