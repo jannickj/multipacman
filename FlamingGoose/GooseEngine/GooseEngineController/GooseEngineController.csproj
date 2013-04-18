@@ -40,17 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="AI\AgentController.cs" />
+    <Compile Include="AI\AgentServer.cs" />
+    <Compile Include="EIS\AI\EISAgentController.cs" />
+    <Compile Include="EIS\AI\EISAgentServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="AI\" />
-    <Folder Include="EIS\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\GooseEngineView\GooseEngineView.csproj">
+      <Project>{7d41d1de-4947-45d8-8dd7-05ef290576c7}</Project>
+      <Name>GooseEngineView</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GooseEngine\GooseEngine.csproj">
       <Project>{1A146465-21F3-44D1-A779-6C4958CBD24B}</Project>
       <Name>GooseEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iilang\iilang\iilang.csproj">
+      <Project>{8205042b-12c2-4a7e-9a19-ec06792bc8e6}</Project>
+      <Name>iilang</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

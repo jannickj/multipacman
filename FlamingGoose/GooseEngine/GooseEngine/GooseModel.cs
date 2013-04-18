@@ -13,7 +13,7 @@ using GooseEngine.Interfaces;
 
 namespace GooseEngine
 {
-    public class GameEngine : IStartable
+    public class GooseModel : IStartable
     {
         private bool stopEngine;
         private GameWorld world;
@@ -22,7 +22,7 @@ namespace GooseEngine
         private EventManager evtman;
         private Exception engineCrash = null;
 
-        public GameEngine(GameWorld world, ActionManager actman, EventManager evtman, GameFactory factory)
+        public GooseModel(GameWorld world, ActionManager actman, EventManager evtman, GameFactory factory)
         {
             this.World = world;
             this.ActionManager = actman;

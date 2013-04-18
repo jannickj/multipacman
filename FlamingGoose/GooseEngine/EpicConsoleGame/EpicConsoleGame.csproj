@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EpicFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SweetMap.cs" />
@@ -50,6 +49,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GooseEngineController\GooseEngineController.csproj">
+      <Project>{17b595ad-7f21-43eb-baee-70e9838842d1}</Project>
+      <Name>GooseEngineController</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GooseEngineManager\GooseEngineManager.csproj">
+      <Project>{148b0e7d-bdc7-46eb-9640-9b796eee78bf}</Project>
+      <Name>GooseEngineManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GooseEngineView\GooseEngineView.csproj">
       <Project>{7d41d1de-4947-45d8-8dd7-05ef290576c7}</Project>
       <Name>GooseEngineView</Name>

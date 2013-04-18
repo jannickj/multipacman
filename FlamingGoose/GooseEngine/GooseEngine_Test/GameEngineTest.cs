@@ -28,7 +28,7 @@ namespace GooseEngine_Test
 
             evtman.AddEntity(a);
             world.AddEntity(new Point(0, 0), a);
-            GameEngine engine = new GameEngine(world, actman, evtman, factory);
+            GooseModel engine = new GooseModel(world, actman, evtman, factory);
 
             Thread thread = new Thread(new ThreadStart(() => engine.Start()));
             thread.Name = "Engine Thread";

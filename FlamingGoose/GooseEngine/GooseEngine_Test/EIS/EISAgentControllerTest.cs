@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-using GooseEngine.AI.BuiltInController;
 using GooseEngine.Entities.Units;
 using NUnit.Framework;
 using GooseEngine.EIS;
@@ -17,6 +16,7 @@ using System.Net;
 using GooseEngine.GameManagement;
 using GooseEngine.EIS.Conversion.IILang;
 using GooseEngine.EIS.Conversion.IILang.Percepts;
+using GooseEngineController.EIS.AI;
 
 namespace GooseEngine_Test.EIS
 {

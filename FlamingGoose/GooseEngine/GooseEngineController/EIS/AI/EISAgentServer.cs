@@ -6,12 +6,12 @@ using System.Net.Sockets;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using GooseEngine.AI;
-using GooseEngine.AI.BuiltInController;
+using GooseEngine.EIS;
 using GooseEngine.Entities.Units;
+using GooseEngineController.AI;
 using iilang;
 
-namespace GooseEngine.EIS
+namespace GooseEngineController.EIS.AI
 {
     public class EISAgentServer : AgentServer
     {
@@ -26,10 +26,10 @@ namespace GooseEngine.EIS
             this.parser = parser;
         }
 
-        protected override void Initialize()
-        {
-            listener.Start();
-        }
+		protected override void Initialize()
+		{
+			listener.Start();
+		}
 
         protected override Func<KeyValuePair<string,AgentController>> AquireAgentControllerContructor()
         {

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooseEngineView", "GooseEng
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicConsoleGame", "EpicConsoleGame\EpicConsoleGame.csproj", "{441E102F-4C4F-4C54-8D3F-969A5E3762A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooseEngineManager", "GooseEngineManager\GooseEngineManager.csproj", "{148B0E7D-BDC7-46EB-9640-9B796EEE78BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,6 +116,16 @@ Global
 		{441E102F-4C4F-4C54-8D3F-969A5E3762A0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{441E102F-4C4F-4C54-8D3F-969A5E3762A0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{441E102F-4C4F-4C54-8D3F-969A5E3762A0}.Release|x86.ActiveCfg = Release|Any CPU
+		{148B0E7D-BDC7-46EB-9640-9B796EEE78BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{148B0E7D-BDC7-46EB-9640-9B796EEE78BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{148B0E7D-BDC7-46EB-9640-9B796EEE78BF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{148B0E7D-BDC7-46EB-9640-9B796EEE78BF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{148B0E7D-BDC7-46EB-9640-9B796EEE78BF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{148B0E7D-BDC7-46EB-9640-9B796EEE78BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{148B0E7D-BDC7-46EB-9640-9B796EEE78BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{148B0E7D-BDC7-46EB-9640-9B796EEE78BF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{148B0E7D-BDC7-46EB-9640-9B796EEE78BF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{148B0E7D-BDC7-46EB-9640-9B796EEE78BF}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,7 +7,7 @@ using GooseEngine.Data;
 
 namespace GooseEngineView.Testing.ConsoleView
 {
-    class ConsoleWorldView
+    public class ConsoleWorldView
     {
         private GameWorld model;
         Dictionary<Entity, ConsoleEntityView> viewlookup = new Dictionary<Entity, ConsoleEntityView>();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Timers;
+using GooseEngine;
 using GooseEngine.Data;
 
 namespace GooseEngineView.Testing.ConsoleView
@@ -10,18 +11,16 @@ namespace GooseEngineView.Testing.ConsoleView
     public class GooseConsoleView
     {
 
-        private ConsoleWorldView world;
-        private GooseEngine.GameWorld gameWorld;
+        private ConsoleWorldView viewWorld;
 
-        public GooseConsoleView(GooseEngine.GameWorld gameWorld)
+        public GooseConsoleView(ConsoleWorldView viewWorld)
         {
-            // TODO: Complete member initialization
-            this.gameWorld = gameWorld;
+			this.viewWorld = viewWorld;
         }
 
         public void Setup()
         {
-            Console.SetWindowSize(world.Width, world.Height);
+			Console.SetWindowSize(viewWorld.Width, viewWorld.Height);
             Timer timer = new Timer();
             timer.Elapsed += timer_Elapsed;
             timer.Interval = 1000 / 25;
@@ -41,23 +40,23 @@ namespace GooseEngineView.Testing.ConsoleView
 
         public Char[] Area()
         {
-            Dictionary<Point,ConsoleEntityView> entities = world.AllEntities();
-            char[] drawchars = new char[world.Height * world.Width + world.Height];
+			Dictionary<Point, ConsoleEntityView> entities = viewWorld.AllEntities();
+			char[] drawchars = new char[viewWorld.Height * viewWorld.Width + viewWorld.Height];
 
-            for (int i = 0; i < world.Height*world.Width; i++)
+			for (int i = 0; i < viewWorld.Height * viewWorld.Width; i++)
             {
                 drawchars[i] = ' ';
             }
-            for (int i = 0; i < world.Height; i++)
+			for (int i = 0; i < viewWorld.Height; i++)
             {
-                drawchars[world.Width + i * world.Height] = '\n';
+				drawchars[viewWorld.Width + i * viewWorld.Height] = '\n';
             }
 
             foreach (KeyValuePair<Point, ConsoleEntityView> kv in entities)
             {
                 int x = kv.Key.X;
                 int y = kv.Key.Y;
-                int cord = x + y*world.Width;
+				int cord = x + y * viewWorld.Width;
 
                 drawchars[cord] = kv.Value.Symbol;
             }

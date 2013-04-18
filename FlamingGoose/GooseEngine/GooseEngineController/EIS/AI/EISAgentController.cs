@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+using GooseEngine;
 using GooseEngine.Data.GenericEvents;
-using GooseEngine.Entities.Units;
-using iilang;
 using GooseEngine.EIS;
+using GooseEngine.Entities.Units;
 using GooseEngine.GameManagement;
-using GooseEngine.EIS.Percepts;
+using GooseEngineController.AI;
+using iilang;
 
-namespace GooseEngine.AI.BuiltInController
+namespace GooseEngineController.EIS.AI
 {
     public class EISAgentController : AgentController
     {

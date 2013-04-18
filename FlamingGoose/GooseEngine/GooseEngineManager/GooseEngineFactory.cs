@@ -6,16 +6,17 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using GooseEngine;
-using GooseEngine.AI;
 using GooseEngine.Conversion;
 using GooseEngine.EIS;
 using GooseEngine.GameManagement;
 using GooseEngine.Lib;
+using GooseEngineController.AI;
+using GooseEngineController.EIS.AI;
 using GooseEngineView.Testing.ConsoleView;
 
-namespace EpicConsoleGame
+namespace GooseEngineManager
 {
-    public class EpicFactory
+    public class GooseEngineFactory
     {
         public AgentServer ConstructAgentServer()
         {
@@ -41,13 +42,13 @@ namespace EpicConsoleGame
             return tool;
         }
 
-        public virtual GameEngine ConstructEngine(GameMap map)
+        public virtual GooseModel ConstructEngine(GameMap map)
         {
             GameWorld world = new GameWorld(map);
             ActionManager actman = ConstructActionManager();
             EventManager evtman = ConstructEventManager();
             GameFactory fact = ConstructGameFactory(actman);
-            GameEngine engine = new GameEngine(world,actman,evtman,fact);
+            GooseModel engine = new GooseModel(world,actman,evtman,fact);
 
             return engine;
         }
@@ -68,9 +69,9 @@ namespace EpicConsoleGame
         }
 
 
-        public  GooseConsoleView ConstructView(GameEngine engine)
+        public  GooseConsoleView ConstructView(ConsoleWorldView view)
         {
-            return new GooseConsoleView(engine.World);
+            return new GooseConsoleView(view);
         }
     }
 }

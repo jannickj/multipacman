@@ -4,10 +4,11 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using GooseEngine;
 using GooseEngine.Entities.Units;
 using GooseEngine.Interfaces;
 
-namespace GooseEngine.AI
+namespace GooseEngineController.AI
 {
     public abstract class AgentServer : GooseActor, IStartable
     {
@@ -39,18 +40,19 @@ namespace GooseEngine.AI
                 thread.Start();
 
             }
-        }
+
+			
+		}
 
         protected abstract Func<KeyValuePair<string,AgentController>> AquireAgentControllerContructor();
 
  
         private void agent_Thread(Func<KeyValuePair<string, AgentController>> constructor)
         {
-
             KeyValuePair<string, AgentController> agent;
             try
             {
-                TryExecute<KeyValuePair<string, AgentController>>(constructor, 2000, out agent);
+				TryExecute<KeyValuePair<string, AgentController>>(constructor, 2000, out agent);
                 AgentControllerInfomation ainfo = new AgentControllerInfomation();
                 ainfo.Thread = Thread.CurrentThread;
                 ainfo.Name = agent.Key;
@@ -92,7 +94,6 @@ namespace GooseEngine.AI
         private class AgentControllerInfomation
         {
             private Thread thread;
-            private Agent controlling;
             private String name;
 
             private string ThreadName()

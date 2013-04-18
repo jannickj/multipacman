@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using GooseEngine.GameManagement.Events;
 using GooseEngine.Data.GenericEvents;
+using GooseEngine;
 
-namespace GooseEngine
+namespace GooseEngineController.AI
 {
 	public abstract class AgentController
 	{

@@ -40,8 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AI\AgentController.cs" />
-    <Compile Include="AI\AgentServer.cs" />
     <Compile Include="Conversion\GooseConverterToForeign.cs" />
     <Compile Include="Conversion\GooseConverterToGoose.cs" />
     <Compile Include="EIS\Conversion\IILang\EISConverterToEIS.cs" />
@@ -49,9 +47,7 @@
     <Compile Include="EIS\Conversion\IILang\Percepts\EISSingleNumeralSerializer.cs" />
     <Compile Include="EIS\Conversion\IILang\Percepts\EISPerceptCollectionSerializer.cs" />
     <Compile Include="EIS\Conversion\IILang\Percepts\EISVisionSerializer.cs" />
-    <Compile Include="EIS\EISAgentController.cs" />
     <Compile Include="Data\Size.cs" />
-    <Compile Include="EIS\EISAgentServer.cs" />
     <Compile Include="Exceptions\ForceStopEngineException.cs" />
     <Compile Include="Exceptions\UnableToConvertException.cs" />
     <Compile Include="Exceptions\UnacceptableActionException.cs" />
@@ -89,7 +85,7 @@
     <Compile Include="Entity.cs" />
     <Compile Include="Enum\Direction.cs" />
     <Compile Include="Exceptions\EntityException.cs" />
-    <Compile Include="GameEngine.cs" />
+    <Compile Include="GooseModel.cs" />
     <Compile Include="GameManagement\EventManager.cs" />
     <Compile Include="GameManagement\TriggerManager.cs" />
     <Compile Include="GameMap.cs" />

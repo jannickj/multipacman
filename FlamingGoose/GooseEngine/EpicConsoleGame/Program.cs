@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using GooseEngine;
+using GooseEngineManager;
 using GooseEngineView.Testing.ConsoleView;
 
 namespace EpicConsoleGame
@@ -15,12 +16,12 @@ namespace EpicConsoleGame
 
         static void Main(string[] args)
         {
-            EpicFactory factory = new EpicFactory();
-            GameEngine engine = factory.ConstructEngine(new SweetMap());
+            GooseEngineFactory factory = new GooseEngineFactory();
+            GooseModel engine = factory.ConstructEngine(new SweetMap());
 
             Thread thread = new Thread(new ThreadStart(engine.Start));
 
-            GooseConsoleView view = factory.ConstructView(engine);
+            GooseConsoleView view = factory.ConstructView(null);
 
 
         }
