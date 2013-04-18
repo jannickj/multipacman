@@ -115,5 +115,7 @@ namespace GooseEngine
 					tile.RemoveEntity(entity);
 			}
 		}
+
+
     }
 }
