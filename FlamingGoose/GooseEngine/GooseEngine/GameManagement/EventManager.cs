@@ -15,7 +15,7 @@ namespace GooseEngine.GameManagement
         private HashSet<Entity> trackedEntities = new HashSet<Entity>();
         private TriggerManager triggerManager = new TriggerManager();
         
-        internal EventManager()
+        public EventManager()
         {
 
         }
