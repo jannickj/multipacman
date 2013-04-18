@@ -52,23 +52,23 @@ namespace EpicConsoleGame
             return engine;
         }
 
-        protected virtual GameFactory ConstrucGameFactory(ActionManager actman)
+        protected virtual GameFactory ConstructGameFactory(ActionManager actman)
         {
             return new GameFactory(actman);
         }
 
-        private EventManager ConstrucEventManager()
+        private EventManager ConstructEventManager()
         {
             return new EventManager();
         }
 
-        private ActionManager ConstrucActionManager()
+        private ActionManager ConstructActionManager()
         {
             return new ActionManager();
         }
 
 
-        public  GooseConsoleView ConstrucView(GameEngine engine)
+        public  GooseConsoleView ConstructView(GameEngine engine)
         {
             return new GooseConsoleView(engine.World);
         }

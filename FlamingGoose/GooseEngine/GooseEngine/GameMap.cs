@@ -14,12 +14,11 @@ namespace GooseEngine
         private Point center;
         private Size size;
         private Size burstSize;
-        private ImpassableWall outofmapzone = new ImpassableWall();
-
-
+        private Tile outofmaptile = new Tile ();
 
         public GameMap(Size burstSize)
         {
+			outofmaptile.AddEntity (new ImpassableWall ());
             this.burstSize = burstSize;
             size = new Size(burstSize.Width * 2 + 1, burstSize.Height * 2 + 1);
             center = new Point(burstSize.Width, burstSize.Height);
@@ -32,31 +31,32 @@ namespace GooseEngine
                     tiles[i, j] = new Tile();
                 }
             }
-
-
         }
-
 
         public Size Size
         {
             get { return size; }
         }
 
+		private bool IsOutOfBounds(int x, int y)
+		{
+			return (x > burstSize.Width || x < -burstSize.Width || y > burstSize.Height || y < -burstSize.Height);
+		}
+
         public Tile this[int x, int y]
         {
             get
             {
-                if (x > burstSize.Width || x < -burstSize.Width || y > burstSize.Height || y < -burstSize.Height)
+                if (IsOutOfBounds (x, y))
                 {
-                    Tile t = new Tile();
-                    t.AddEntity(outofmapzone);
-                    return t;
+                    return outofmaptile;
                 }
                 return tiles[center.X + x, center.Y - y];
             }
             set
             {
-                tiles[center.X + x, center.Y - y] = value;
+				if (!IsOutOfBounds(x,y))
+                	tiles[center.X + x, center.Y - y] = value;
             }
         }
 
@@ -65,16 +65,8 @@ namespace GooseEngine
             get
             {
 				int startx = x - range;
-//                int startx = center.X - range;
-//                //startx = startx < 0 ? 0 : startx;
-                
 				int starty = y - range;
-//                int starty = center.Y - range;
-//                //starty = starty < 0 ? 0 : starty;
-
                 int rsize = range * 2 + 1;
-                //int rsizeX = rsize > burstSize.Width + x ? burstSize.Width + x : rsize;
-                //int rsizeY = rsize > burstSize.Height + y ? burstSize.Height + y : rsize;
 
                 Tile[,] r = new Tile[rsize, rsize];
 
@@ -94,5 +86,34 @@ namespace GooseEngine
 
             }
         }
+
+		public IEnumerable<Tile> TilesInChunk (Point start, Point stop)
+		{
+			Point min = new Point (Math.Min (start.X, stop.X), Math.Min (start.Y, stop.Y));
+			Point max = new Point (Math.Max (start.X, stop.X), Math.Max (start.Y, stop.Y));
+			
+			for (int x = min.X; x <= max.X; x++)
+				for (int y = min.Y; y <= max.Y; y++)
+					yield return this [x, y];
+		}
+
+		public void AddChunk<EntityType> (Point start, Point stop) 
+			where EntityType : Entity, new()
+		{
+			foreach (Tile tile in TilesInChunk (start, stop)) {
+				EntityType entity = new EntityType();
+				if (tile.CanContain (entity))
+					tile.AddEntity(entity);
+			}
+		}
+
+		public void RemoveChunk<EntityType> (Point start, Point stop)
+			where EntityType : Entity, new()
+		{
+			foreach (Tile tile in TilesInChunk(start, stop)) {
+				foreach (EntityType entity in tile.Entities.OfType<EntityType>())
+					tile.RemoveEntity(entity);
+			}
+		}
     }
 }
