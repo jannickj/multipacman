@@ -9,7 +9,7 @@ using GooseEngine.Entities.Units;
 
 namespace EpicConsoleGame
 {
-    public class SweetMap : GameMap
+    public class SweetMap : GooseMap
     {
 		private List<KeyValuePair<Point,Point>> walls;
         public SweetMap() : base(new Size(6, 6))

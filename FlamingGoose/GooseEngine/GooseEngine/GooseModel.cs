@@ -16,13 +16,13 @@ namespace GooseEngine
     public class GooseModel : IStartable
     {
         private bool stopEngine;
-        private GameWorld world;
+        private GooseWorld world;
         private GameFactory factory;
         private ActionManager actman;
         private EventManager evtman;
         private Exception engineCrash = null;
 
-        public GooseModel(GameWorld world, ActionManager actman, EventManager evtman, GameFactory factory)
+        public GooseModel(GooseWorld world, ActionManager actman, EventManager evtman, GameFactory factory)
         {
             this.World = world;
             this.ActionManager = actman;
@@ -122,7 +122,7 @@ namespace GooseEngine
         #endregion
 
         #region PROPERTIES
-        public GameWorld World
+        public GooseWorld World
         {
             get
             {

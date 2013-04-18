@@ -8,9 +8,9 @@ using GooseEngine.Data;
 
 namespace GooseEngine
 {
-    public class GameWorld
+    public class GooseWorld
     {
-        private GameMap map;
+        private GooseMap map;
         private Dictionary<Entity, Point> entlocs = new Dictionary<Entity, Point>();
 
 
@@ -22,7 +22,7 @@ namespace GooseEngine
             }
         }
 
-        public GameWorld(GameMap map)
+        public GooseWorld(GooseMap map)
         {
             // TODO: Complete member initialization
             this.map = map;

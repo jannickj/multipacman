@@ -8,7 +8,7 @@ using GooseEngine.Entities.MapEntities;
 
 namespace GooseEngine
 {
-    public class GameMap
+    public class GooseMap
     {
         private Tile[,] tiles;
         private Point center;
@@ -16,7 +16,7 @@ namespace GooseEngine
         private Size burstSize;
         private Tile outofmaptile = new Tile ();
 
-        public GameMap(Size burstSize)
+        public GooseMap(Size burstSize)
         {
 			outofmaptile.AddEntity (new ImpassableWall ());
             this.burstSize = burstSize;

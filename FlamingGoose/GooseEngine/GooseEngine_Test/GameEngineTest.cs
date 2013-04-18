@@ -18,7 +18,7 @@ namespace GooseEngine_Test
         [Test]
         public void RunningGame_MoveActionStarted_MoveActionCompletes()
         {
-            GameWorld world = new GameWorld(new GameMap(new Size(2, 2)));
+            GooseWorld world = new GooseWorld(new GooseMap(new Size(2, 2)));
             
             ActionManager actman = new ActionManager();
             GameFactory factory = new GameFactory(actman);
