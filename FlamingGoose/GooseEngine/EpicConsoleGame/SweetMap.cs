@@ -11,7 +11,6 @@ namespace EpicConsoleGame
 {
     public class SweetMap : GooseMap
     {
-		private List<KeyValuePair<Point,Point>> walls;
         public SweetMap() : base(new Size(6, 6))
         {
 			BuildMap ();
@@ -19,7 +18,8 @@ namespace EpicConsoleGame
 
 		private void BuildMap()
 		{
-			/*
+			/*	Map to be built:
+			 * 
 			 * IIIIIIIIIIIIIII
 			 * I W   W   W   I 
 			 * I W W W W W W I
@@ -35,16 +35,25 @@ namespace EpicConsoleGame
 			 * I W W W W W W I 
 			 * I   W   W   W I 
 			 * IIIIIIIIIIIIIII
+			 * 
+			 * Legend:
+			 * 	 'I' = Impassable Wall
+			 *   'W' = Wall
+			 *   'P' = Player
+			 *   ' ' = Empty Tile
+			 * 
 			 */
 
 			int start = -6;
 			int stop = 5;
 			int factor = 1;
 
-			foreach (int index in AlternateRange (-5, 5, 2)) {
-				this.AddChunk<Wall> (new Point (i, start * factor), new Point (i, stop * factor));
+			foreach (int idx in AlternateRange (-5, 5, 2)) {
+				this.AddChunk<Wall> (new Point (idx, start * factor), new Point (idx, stop * factor));
 				factor *= -1;
 			}
+
+			this [0, 0].AddEntity (new Player ());
 		}
 
 		public IEnumerable<int> AlternateRange(int start, int count, int inc) {

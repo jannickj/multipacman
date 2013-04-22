@@ -87,36 +87,49 @@ namespace GooseEngine
             }
         }
 
-		public IEnumerable<Tile> TilesInChunk (Point start, Point stop)
+		public IEnumerable<Tile> TilesInChunk (Point start, Point stop, ICollection<Point> exceptions)
 		{
 			Point min = new Point (Math.Min (start.X, stop.X), Math.Min (start.Y, stop.Y));
 			Point max = new Point (Math.Max (start.X, stop.X), Math.Max (start.Y, stop.Y));
 			
-			for (int x = min.X; x <= max.X; x++)
-				for (int y = min.Y; y <= max.Y; y++)
-					yield return this [x, y];
+			for (int x = min.X; x <= max.X; x++) {
+				for (int y = min.Y; y <= max.Y; y++) {
+					if (exceptions != null && !exceptions.Contains (new Point (x, y)))
+						yield return this [x, y];
+				}
+			}
 		}
 
-		public void AddChunk<EntityType> (Point start, Point stop) 
-			where EntityType : Entity, new()
+		public void AddChunk<TEntity> (Point start, Point stop) 
+			where TEntity : Entity, new()
 		{
-			foreach (Tile tile in TilesInChunk (start, stop)) {
-				EntityType entity = new EntityType();
+			AddChunkExcept<TEntity> (start, stop, null);
+		}
+
+		public void RemoveChunk<TEntity> (Point start, Point stop)
+			where TEntity : Entity, new()
+		{
+			RemoveChunkExcept<TEntity> (start, stop, null);
+		}
+
+		public void AddChunkExcept<TEntity> (Point start, Point stop, ICollection<Point> exceptions)
+			where TEntity : Entity, new()
+		{
+			foreach (Tile tile in TilesInChunk (start, stop, exceptions)) {
+				TEntity entity = new TEntity();
 				if (tile.CanContain (entity))
 					tile.AddEntity(entity);
 			}
 		}
 
-		public void RemoveChunk<EntityType> (Point start, Point stop)
-			where EntityType : Entity, new()
+		public void RemoveChunkExcept<TEntity> (Point start, Point stop, ICollection<Point> exceptions)
+			where TEntity : Entity, new()
 		{
-			foreach (Tile tile in TilesInChunk(start, stop)) {
-				foreach (EntityType entity in tile.Entities.OfType<EntityType>())
+			foreach (Tile tile in TilesInChunk(start, stop, exceptions)) {
+				foreach (TEntity entity in tile.Entities.OfType<TEntity>())
 					tile.RemoveEntity(entity);
 			}
 		}
-
-
 
 
     }
