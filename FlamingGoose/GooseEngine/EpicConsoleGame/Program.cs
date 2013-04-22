@@ -3,6 +3,7 @@ using GooseEISExtension;
 using GooseEngine;
 using GooseEngineController;
 using GooseEngineManager;
+using GooseEngineView;
 using GooseEngineView.Testing.ConsoleView;
 
 namespace EpicConsoleGame
@@ -11,7 +12,7 @@ namespace EpicConsoleGame
 	{
 		private static void Main(string[] args)
 		{
-			GooseEngineFactory factory = new GooseEngineFactory();
+			GooseEngineFactory<GooseModel,GooseView,GooseController> factory = null;
 			EisGooseEngineFactory eisfactory = new EisGooseEngineFactory();
 
 			GooseModel model = factory.ConstructModel(new SweetMap());
