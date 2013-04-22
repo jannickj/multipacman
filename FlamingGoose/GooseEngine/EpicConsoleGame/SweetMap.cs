@@ -15,18 +15,43 @@ namespace EpicConsoleGame
         public SweetMap() : base(new Size(6, 6))
         {
 			BuildMap ();
-			walls = new List<KeyValuePair<Point, Point>> ()
-			{
-				new KeyValuePair<Point, Point> (new Point (-4, -6), new Point (-4, 5)),
-				new KeyValuePair<Point, Point> (new Point (-2, -4), new Point (-2, 6))
-			};
 		}
 
 		private void BuildMap()
 		{
-			foreach (KeyValuePair<Point, Point> kv in walls)
-				this.AddChunk<Wall> (kv.Key, kv.Value);
-			this[0,0].AddEntity(new Player());
+			/*
+			 * IIIIIIIIIIIIIII
+			 * I W   W   W   I 
+			 * I W W W W W W I
+			 * I W W W W W W I
+			 * I W W W W W W I 
+			 * I W W W W W W I 
+			 * I W W W W W W I 
+			 * I W W WPW W W I 
+			 * I W W W W W W I 
+			 * I W W W W W W I 
+			 * I W W W W W W I 
+			 * I W W W W W W I 
+			 * I W W W W W W I 
+			 * I   W   W   W I 
+			 * IIIIIIIIIIIIIII
+			 */
+
+			int start = -6;
+			int stop = 5;
+			int factor = 1;
+
+			foreach (int index in AlternateRange (-5, 5, 2)) {
+				this.AddChunk<Wall> (new Point (i, start * factor), new Point (i, stop * factor));
+				factor *= -1;
+			}
 		}
+
+		public IEnumerable<int> AlternateRange(int start, int count, int inc) {
+			for (int i = start; i < start + count; i += inc) {
+				yield return i;
+			}
+		}
+
     }
 }
