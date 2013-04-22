@@ -26,7 +26,6 @@ namespace GooseEngineController.AI
 
 		public void Start()
 		{
-			Initialize();
 			while (true)
 			{
 				Func<KeyValuePair<string, AgentController>> agentcontroller = AquireAgentControllerContructor();
@@ -36,7 +35,7 @@ namespace GooseEngineController.AI
 			}
 		}
 
-		protected abstract void Initialize();
+		public abstract void Initialize();
 
 		protected abstract Func<KeyValuePair<string, AgentController>> AquireAgentControllerContructor();
 
@@ -137,5 +136,8 @@ namespace GooseEngineController.AI
 				return name + " Controller Thread";
 			}
 		}
+
+
+		
 	}
 }

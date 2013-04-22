@@ -5,7 +5,7 @@ using JSLibrary.Data;
 
 namespace GooseEngineView.Testing.ConsoleView
 {
-	public class GooseConsoleView
+	public class GooseConsoleView : GooseView
 	{
 		private ConsoleWorldView viewWorld;
 
@@ -36,6 +36,7 @@ namespace GooseEngineView.Testing.ConsoleView
 
 		public Char[] Area()
 		{
+			
 			Dictionary<Point, ConsoleEntityView> entities = viewWorld.AllEntities();
 			char[] drawchars = new char[viewWorld.Height*viewWorld.Width + viewWorld.Height];
 
@@ -57,6 +58,11 @@ namespace GooseEngineView.Testing.ConsoleView
 				drawchars[cord] = kv.Value.Symbol;
 			}
 			return drawchars;
+		}
+
+		public override void Start()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

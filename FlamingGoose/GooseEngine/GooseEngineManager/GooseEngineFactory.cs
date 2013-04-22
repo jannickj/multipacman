@@ -1,14 +1,21 @@
+using System;
+using System.Collections.Generic;
 using System.Threading;
 using GooseEngine;
 using GooseEngine.GameManagement;
 using GooseEngineController;
+using GooseEngineController.AI;
+using GooseEngineView;
 using GooseEngineView.Testing.ConsoleView;
 
 namespace GooseEngineManager
 {
-	public class GooseEngineFactory
+	public class GooseEngineFactory<TModel,TView,TController>
+		where TModel : GooseModel
+		where TView : GooseView
+		where TController : GooseController
 	{
-		public virtual GooseModel ConstructEngine(GooseMap map)
+		public virtual GooseModel ConstructModel(GooseMap map)
 		{
 			GooseWorld world = new GooseWorld(map);
 			ActionManager actman = ConstructActionManager();
@@ -24,30 +31,53 @@ namespace GooseEngineManager
 			return new GooseFactory(actman);
 		}
 
-		private EventManager ConstructEventManager()
+		protected virtual EventManager ConstructEventManager()
 		{
 			return new EventManager();
 		}
 
-		private ActionManager ConstructActionManager()
+		protected virtual ActionManager ConstructActionManager()
 		{
 			return new ActionManager();
 		}
 
-
-		public GooseConsoleView ConstructView(ConsoleWorldView view)
+		private ConsoleWorldView ConstructWorldView(GooseWorld world)
 		{
-			return new GooseConsoleView(view);
+			return new ConsoleWorldView(world);
 		}
 
-		public void Start(GooseModel model, GooseConsoleView view, GooseController controller)
+		public virtual GooseConsoleView ConstructView(GooseModel model)
+		{
+
+			return new GooseConsoleView(ConstructWorldView(model.World));
+		}
+
+		public virtual GooseController ContructController(GooseModel model, GooseView view)
+		{
+			return new GooseController(model);
+		}
+
+		public Tuple<GooseModel,GooseView,GooseWorld> SimpleConstructAndStartOfEngine(GooseMap map, List<AgentServer> agentServers)
+		{
+			GooseModel model = this.ConstructModel(map);
+			
+		
+			return null;
+		}
+
+		public void StartEngine(GooseModel model, GooseView view, GooseController controller)
 		{
 			GooseFactory fact = model.Factory;
 			Thread modelt = fact.CreateThread(model.Start);
+			Thread viewt = fact.CreateThread(view.Start);
 			Thread cont = fact.CreateThread(controller.Start);
 
-			view.Setup();
+			model.Initialize();
+			view.Initialize();
+			controller.Initialize();
+
 			modelt.Start();
+			viewt.Start();
 			cont.Start();
 		}
 	}

@@ -1,5 +1,7 @@
 ﻿using System.Threading;
+using GooseEISExtension;
 using GooseEngine;
+using GooseEngineController;
 using GooseEngineManager;
 using GooseEngineView.Testing.ConsoleView;
 
@@ -10,11 +12,15 @@ namespace EpicConsoleGame
 		private static void Main(string[] args)
 		{
 			GooseEngineFactory factory = new GooseEngineFactory();
-			GooseModel engine = factory.ConstructEngine(new SweetMap());
+			EisGooseEngineFactory eisfactory = new EisGooseEngineFactory();
 
-			Thread thread = new Thread(engine.Start);
+			GooseModel model = factory.ConstructModel(new SweetMap());
+			
+			GooseConsoleView view = factory.ConstructView(model);
 
-			GooseConsoleView view = factory.ConstructView(null);
+			GooseController controller = factory.ContructController(model, view);
+
+			factory.StartEngine(model, view, controller);
 		}
 	}
 }

@@ -18,6 +18,7 @@ namespace GooseEngine
 		private bool stopEngine;
 		private GooseWorld world;
 
+
 		public GooseModel(GooseWorld world, ActionManager actman, EventManager evtman, GooseFactory factory)
 		{
 			World = world;
@@ -30,6 +31,10 @@ namespace GooseEngine
 			ActionManager.ActionQueued += actman_ActionQueued;
 		}
 
+		public void Initialize()
+		{
+
+		}
 
 		public void Start()
 		{
@@ -141,5 +146,8 @@ namespace GooseEngine
 		}
 
 		#endregion
+
+
+		
 	}
 }

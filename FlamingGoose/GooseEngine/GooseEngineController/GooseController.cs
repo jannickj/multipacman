@@ -20,6 +20,11 @@ namespace GooseEngineController
 			aiservs.Add(server);
 		}
 
+		public void Initialize()
+		{
+
+		}
+
 		public void Start()
 		{
 			foreach (AgentServer ac in aiservs)

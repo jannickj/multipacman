@@ -25,7 +25,7 @@ namespace GooseEISExtension.Controller.AI
 			this.parser = parser;
 		}
 
-		protected override void Initialize()
+		public override void Initialize()
 		{
 			listener.Start();
 		}

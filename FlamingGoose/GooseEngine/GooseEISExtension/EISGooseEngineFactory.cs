@@ -14,12 +14,13 @@ namespace GooseEISExtension
 {
 	public class EisGooseEngineFactory
 	{
-		public EISAgentServer ConstructEisAgentServer()
+		public EISAgentServer ConstructEisAgentServer(string ip, int port)
 		{
-			TcpListener listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 13337);
+			TcpListener listener = new TcpListener(IPAddress.Parse(ip), port);
 			EISAgentServer server = new EISAgentServer(listener, ContructEISConversionTool(), ConstructIILActionParser());
 			return server;
 		}
+
 
 		private IILActionParser ConstructIILActionParser()
 		{
