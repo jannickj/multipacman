@@ -31,7 +31,7 @@ namespace GooseEngine
 			}
 		}
 
-		private Tile[,] Tiles
+		public Tile[,] Tiles
 		{
 			get { return tiles; }
 		}
