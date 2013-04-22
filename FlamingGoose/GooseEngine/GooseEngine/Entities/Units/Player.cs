@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GooseEngine.Entities.Units
+﻿namespace GooseEngine.Entities.Units
 {
-    public class Player : Unit
-    {
-    }
+	public class Player : Unit
+	{
+	}
 }

@@ -1,71 +1,68 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using GooseEngine.Data;
-using GooseEngine.Data.GenericEvents;
+using JSLibrary.Data;
+using JSLibrary.Data.GenericEvents;
 
 namespace GooseEngine.GameManagement
 {
-    public class TriggerManager
-    {
-        private DictionaryList<Type, Trigger> triggers = new DictionaryList<Type, Trigger>();
+	public class TriggerManager
+	{
+		private DictionaryList<Type, Trigger> triggers = new DictionaryList<Type, Trigger>();
 
-        public void Raise(GameEvent evt)
-        {
-            ICollection<Trigger> trigered = triggers.Get(evt.GetType());
-            foreach (Trigger t in trigered)
-            {
-                if (t.CheckCondition(evt))
-                    t.Execute(evt);
-            }
-        }
+		public void Raise(GameEvent evt)
+		{
+			ICollection<Trigger> trigered = triggers.Get(evt.GetType());
+			foreach (Trigger t in trigered)
+			{
+				if (t.CheckCondition(evt))
+					t.Execute(evt);
+			}
+		}
 
-        public void Register(Trigger trigger)
-        {
-            foreach (Type evt in trigger.Events)
-            {
-                triggers.Add(evt, trigger);
-            }
+		public void Register(Trigger trigger)
+		{
+			foreach (Type evt in trigger.Events)
+			{
+				triggers.Add(evt, trigger);
+			}
 
-            if (trigger is MultiTrigger)
-                regMulti((MultiTrigger)trigger);
-        }
+			if (trigger is MultiTrigger)
+				regMulti((MultiTrigger) trigger);
+		}
 
-        public void Deregister(Trigger trigger)
-        {
-            foreach (Type t in trigger.Events)
-            {
-                triggers.Remove(t, trigger);
-            }
+		public void Deregister(Trigger trigger)
+		{
+			foreach (Type t in trigger.Events)
+			{
+				triggers.Remove(t, trigger);
+			}
 
-            if (trigger is MultiTrigger)
-                deregMulti((MultiTrigger)trigger);
-        }
+			if (trigger is MultiTrigger)
+				deregMulti((MultiTrigger) trigger);
+		}
 
-        private void regMulti(MultiTrigger trigger)
-        {
-            trigger.DeregisteredEvent += trigger_DeregisteredEvent;
-            trigger.RegisteredEvent += trigger_RegisteredEvent;
-        }
+		private void regMulti(MultiTrigger trigger)
+		{
+			trigger.DeregisteredEvent += trigger_DeregisteredEvent;
+			trigger.RegisteredEvent += trigger_RegisteredEvent;
+		}
 
-        public void deregMulti(MultiTrigger trigger)
-        {
-            
-            trigger.DeregisteredEvent -= trigger_DeregisteredEvent;
-            trigger.RegisteredEvent -= trigger_RegisteredEvent;
-        }
-
-
-        void trigger_RegisteredEvent(object sender, UnaryValueEvent<Type> evt)
-        {
-            triggers.Add(evt.Value, (Trigger)sender);
-        }
+		public void deregMulti(MultiTrigger trigger)
+		{
+			trigger.DeregisteredEvent -= trigger_DeregisteredEvent;
+			trigger.RegisteredEvent -= trigger_RegisteredEvent;
+		}
 
 
-        void trigger_DeregisteredEvent(object sender, UnaryValueEvent<Type> evt)
-        {
-            triggers.Remove(evt.Value, (Trigger)sender);
-        }
-    }
+		private void trigger_RegisteredEvent(object sender, UnaryValueEvent<Type> evt)
+		{
+			triggers.Add(evt.Value, (Trigger) sender);
+		}
+
+
+		private void trigger_DeregisteredEvent(object sender, UnaryValueEvent<Type> evt)
+		{
+			triggers.Remove(evt.Value, (Trigger) sender);
+		}
+	}
 }

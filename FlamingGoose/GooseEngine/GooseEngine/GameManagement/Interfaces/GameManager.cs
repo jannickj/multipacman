@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace GooseEngine.GameManagement.Interfaces
+﻿namespace GooseEngine.GameManagement.Interfaces
 {
-    class GameManager
-    {
-    }
+	internal class GameManager
+	{
+	}
 }

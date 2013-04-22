@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using System.Xml;
 
 namespace iilang
@@ -9,58 +7,58 @@ namespace iilang
 	{
 		private List<IILParameter> parameters;
 
-		public List<IILParameter> Parameters { 
-			get
-			{
-				return parameters;
-			}
-		}
 
-
-		public IILMultiParameter ()
+		public IILMultiParameter()
 		{
-			parameters = new List<IILParameter> ();
+			parameters = new List<IILParameter>();
 		}
 
 		public IILMultiParameter(IILParameter[] ps)
 		{
-			parameters = new List<IILParameter> (ps);
+			parameters = new List<IILParameter>(ps);
 		}
 
-		public void AddParameter (IILParameter p)
+		public List<IILParameter> Parameters
 		{
-			parameters.Add (p);
+			get { return parameters; }
+		}
+
+		public void AddParameter(IILParameter p)
+		{
+			parameters.Add(p);
 		}
 
 		#region IXmlSerializable implementation
-		
-		public override void ReadXml (System.Xml.XmlReader reader)
-		{	
-			if (reader.IsEmptyElement) {
-				reader.Read ();
+
+		public override void ReadXml(XmlReader reader)
+		{
+			if (reader.IsEmptyElement)
+			{
+				reader.Read();
 			}
 
 			reader.ReadStartElement();
 			reader.MoveToContent();
 
-			while (reader.MoveToContent() == XmlNodeType.Element) {
-				
-				IILParameter p = IILParameter.fromString(reader.LocalName);
+			while (reader.MoveToContent() == XmlNodeType.Element)
+			{
+				IILParameter p = fromString(reader.LocalName);
 				p.ReadXml(reader);
 				parameters.Add(p);
 			}
 			reader.Read();
 		}
 
-		public override void WriteXml (System.Xml.XmlWriter writer)
+		public override void WriteXml(XmlWriter writer)
 		{
-			foreach (IILElement p in parameters) {
-				writer.WriteStartElement (p.XmlTag);
-				p.WriteXml (writer);
-				writer.WriteEndElement ();
+			foreach (IILElement p in parameters)
+			{
+				writer.WriteStartElement(p.XmlTag);
+				p.WriteXml(writer);
+				writer.WriteEndElement();
 			}
 		}
+
 		#endregion
 	}
 }
-

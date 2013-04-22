@@ -1,63 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using GooseEngine.Entities.MapEntities;
-using GooseEngine.Percepts;
-using GooseEngine.Data;
+﻿using System.Collections.Generic;
+using GooseEngine.Perceptions;
+using JSLibrary.Data;
 
 namespace GooseEngine
 {
-    public class GooseWorld
-    {
-        private GooseMap map;
-        private Dictionary<Entity, Point> entlocs = new Dictionary<Entity, Point>();
+	public class GooseWorld
+	{
+		private Dictionary<Entity, Point> entlocs = new Dictionary<Entity, Point>();
+		private GooseMap map;
 
 
-        public Size Size
-        {
-            get
-            {
-                return map.Size;
-            }
-        }
-
-        public GooseWorld(GooseMap map)
-        {
-            // TODO: Complete member initialization
-            this.map = map;
-        }
-
-        public Vision View(Point p, int range, Entity entity)
-        {
-            return new Vision(map[p.X,p.Y,range], entity);
-        }
-
-		public Vision View (int range, Entity entity)
+		public GooseWorld(GooseMap map)
 		{
-			return View (entlocs [entity], range, entity);
+			// TODO: Complete member initialization
+			this.map = map;
 		}
 
-		public Vision View (Entity entity)
+		public Size Size
 		{
-			return View (entity.VisionRange, entity);
+			get { return map.Size; }
 		}
 
-        internal void AddEntity(Point loc, Entity entity)
-        {
-            entlocs.Add(entity, loc);
-            map[loc.X, loc.Y].AddEntity(entity);
-        }
+		public Vision View(Point p, int range, Entity entity)
+		{
+			return new Vision(map[p.X, p.Y, range], entity);
+		}
 
-        public Point GetEntityPosition(Entity entity)
-        {
-            return entlocs[entity];
-        }
+		public Vision View(int range, Entity entity)
+		{
+			return View(entlocs[entity], range, entity);
+		}
 
-        internal void SetEntityLocation(Point loc, Entity entity)
-        {
-            
-            map[loc.X, loc.Y].AddEntity(entity);
-        }
-    }
+		public Vision View(Entity entity)
+		{
+			return View(entity.VisionRange, entity);
+		}
+
+		internal void AddEntity(Point loc, Entity entity)
+		{
+			entlocs.Add(entity, loc);
+			map[loc.X, loc.Y].AddEntity(entity);
+		}
+
+		public Point GetEntityPosition(Entity entity)
+		{
+			return entlocs[entity];
+		}
+
+		internal void SetEntityLocation(Point loc, Entity entity)
+		{
+			map[loc.X, loc.Y].AddEntity(entity);
+		}
+	}
 }

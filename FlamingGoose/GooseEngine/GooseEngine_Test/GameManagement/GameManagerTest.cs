@@ -1,281 +1,268 @@
-﻿using System;
-using System.Collections.Generic;
-using GooseEngine;
+﻿using GooseEngine.Entities;
+using GooseEngine.Entities.Units;
 using GooseEngine.GameManagement;
 using GooseEngine.GameManagement.Actions;
 using GooseEngine.GameManagement.Events;
-using GooseEngine.Data;
-using GooseEngine.Entities;
-using GooseEngine.Entities.MapEntities;
-using GooseEngine.Entities.Units;
-using GooseEngine.Enum;
 using NUnit.Framework;
-
 
 namespace GooseEngine_Test.GameManagement
 {
-    [TestFixture]
-    public class GameManagerTest
-    {
-        
-        [Test]
-        public void ExecuteActionWithSpecificTargetEvent_UnitDealsDamageToAnotherUnit_TheOtherUnitTakesDamage()
-        {
-            
-            EventManager gem = new EventManager();
-            ActionManager actman = new ActionManager();
-
-            
-            Agent expectedDealer = new Agent();
-            Agent expectedTaker = new Agent();
-
-            expectedDealer.ActionManager = actman;
-            expectedTaker.ActionManager = actman;
-            int expectedDmg = 10;
-            
-            //ignore initialization values
-            Unit actualDealer = null;
-            Unit actualTaker = null;
-            int actualDmg = new int();
-
-            Trigger t = new Trigger<UnitTakesDamagePostEvent>(e => { actualDealer = e.Source; actualTaker = e.Target; actualDmg = e.Damage; });
-            DamageUnitTarget ga = new DamageUnitTarget(expectedTaker, expectedDmg);
-            
-            expectedTaker.Register(t);
-            gem.AddEntity(expectedTaker);
+	[TestFixture]
+	public class GameManagerTest
+	{
+		[Test]
+		public void AddEventToUnit_containMultiTrigger_TheAddedEventGetsFired()
+		{
+			EventManager gem = new EventManager();
 
-            expectedDealer.QueueAction(ga);
-            actman.ExecuteActions();
+			Agent A = new Agent();
 
-            Assert.AreEqual(expectedDealer, actualDealer);
-            Assert.AreEqual(expectedTaker, actualTaker);
-            Assert.AreEqual(expectedDmg, actualDmg);
-            
-        }
+			gem.AddEntity(A);
 
-        [Test]
-        public void ExecuteActionWithSpecificTargetEvent_UnitDealsDamageToAnotherUnitWithDamagePrevetionImplemented_TheTargetUnitTakesNoDamage()
-        {
-            EventManager gem = new EventManager();
-            ActionManager actman = new ActionManager();
+			bool eventfired = false;
 
-            Agent expectedDealer = new Agent();
-            Agent expectedTaker = new Agent();
+			MultiTrigger mt = new MultiTrigger();
 
-            expectedDealer.ActionManager = actman;
-            expectedTaker.ActionManager = actman;
+			A.Register(mt);
 
-            int dmg = 10;
-            int prevent = 10;
-            int expectedDmg = 10;
+			mt.AddAction<GameEvent>(e => eventfired = true);
 
-            //ignore initialization values
-            Unit actualDealer = null;
-            Unit actualTaker = null;
-            int actualDmg = new int();
+			mt.RegisterEvent<UnitTakesDamagePostEvent>();
 
+			A.Raise(new UnitTakesDamagePostEvent(null, null, 0, 0));
 
-            Trigger preT = new Trigger<UnitTakesDamagePreEvent>(e => e.ModDmgPreMultiplier(-prevent));
-            Trigger postT = new Trigger<UnitTakesDamagePostEvent>(e => { actualDealer = e.Source; actualTaker = e.Target; actualDmg = e.Damage; });
-            EntityGameAction ga = new DamageUnitTarget(expectedTaker, dmg);
+			Assert.IsTrue(eventfired);
+		}
 
-            expectedTaker.Register(preT);
-            expectedTaker.Register(postT);
-            gem.AddEntity(expectedTaker);
+		[Test]
+		public void AddTrigger_triggerIsAddedToUnitAfterItIsAddedToManagger_EventFired()
+		{
+			EventManager gem = new EventManager();
+			ActionManager actman = new ActionManager();
 
-            expectedDealer.QueueAction(ga);
-            actman.ExecuteActions();
+			Agent A = new Agent();
+			Agent B = new Agent();
 
-            Assert.AreEqual(expectedDealer, actualDealer);
-            Assert.AreEqual(expectedTaker, actualTaker);
-            Assert.AreEqual(expectedDmg, actualDmg);
+			A.ActionManager = actman;
+			B.ActionManager = actman;
 
-        }
+			int dmg = int.MaxValue;
 
-        [Test]
-        public void ExecuteActionWithGlobalTrigger_UnitDealsDamageToAnotherUnitWithDamage_EventsWasFiredOnBothActions()
-        {
-            EventManager gem = new EventManager();
-            ActionManager actman = new ActionManager();
+			bool eventFired = false;
 
-            Agent A = new Agent();
-            Agent B = new Agent();
 
-            A.ActionManager = actman;
-            B.ActionManager = actman;
+			Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => eventFired = true);
+			EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
 
-            int dmg = int.MaxValue;
+			gem.AddEntity(B);
+			B.Register(T);
 
-            int actualTimesFired = 0;
+			A.QueueAction(ga1);
+			actman.ExecuteActions();
 
+			Assert.IsTrue(eventFired);
+		}
 
-            Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => actualTimesFired++);
-            EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
-            EntityGameAction ga2 = new DamageUnitTarget(A, dmg);
-            
-            gem.Register(T);
-            gem.AddEntity(A);
-            gem.AddEntity(B);
+		[Test]
+		public void ExecuteActionWithGlobalTrigger_UnitDealsDamageToAnotherUnitWithDamage_EventsWasFiredOnBothActions()
+		{
+			EventManager gem = new EventManager();
+			ActionManager actman = new ActionManager();
 
-            A.QueueAction(ga1);
-            B.QueueAction(ga2);
-            actman.ExecuteActions();
+			Agent A = new Agent();
+			Agent B = new Agent();
 
-            int expectedTimeFired = 2;
+			A.ActionManager = actman;
+			B.ActionManager = actman;
 
-            Assert.AreEqual(expectedTimeFired, actualTimesFired);
+			int dmg = int.MaxValue;
 
-        }
+			int actualTimesFired = 0;
 
-        [Test]
-        public void RemoveTrigger_simpleGlobalTrigger_NoEventFired()
-        {
-            EventManager gem = new EventManager();
-            ActionManager actman = new ActionManager();
 
-            Agent A = new Agent();
-            Agent B = new Agent();
+			Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => actualTimesFired++);
+			EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
+			EntityGameAction ga2 = new DamageUnitTarget(A, dmg);
 
-            A.ActionManager = actman;
-            B.ActionManager = actman;
+			gem.Register(T);
+			gem.AddEntity(A);
+			gem.AddEntity(B);
 
-            int dmg = int.MaxValue;
+			A.QueueAction(ga1);
+			B.QueueAction(ga2);
+			actman.ExecuteActions();
 
-            bool eventFired = false;
+			int expectedTimeFired = 2;
 
+			Assert.AreEqual(expectedTimeFired, actualTimesFired);
+		}
 
-            Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => eventFired = true);
-            EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
+		[Test]
+		public void
+			ExecuteActionWithSpecificTargetEvent_UnitDealsDamageToAnotherUnitWithDamagePrevetionImplemented_TheTargetUnitTakesNoDamage
+			()
+		{
+			EventManager gem = new EventManager();
+			ActionManager actman = new ActionManager();
 
+			Agent expectedDealer = new Agent();
+			Agent expectedTaker = new Agent();
 
-            gem.Register(T);
-            gem.Deregister(T);
+			expectedDealer.ActionManager = actman;
+			expectedTaker.ActionManager = actman;
 
-            A.QueueAction(ga1);
+			int dmg = 10;
+			int prevent = 10;
+			int expectedDmg = 10;
 
-            Assert.IsFalse(eventFired);
+			//ignore initialization values
+			Unit actualDealer = null;
+			Unit actualTaker = null;
+			int actualDmg = new int();
 
-        }
 
-        [Test]
-        public void RemoveTrigger_triggerIsRemovedFromUnit_NoEventFired()
-        {
-            EventManager gem = new EventManager();
-            ActionManager actman = new ActionManager();
+			Trigger preT = new Trigger<UnitTakesDamagePreEvent>(e => e.ModDmgPreMultiplier(-prevent));
+			Trigger postT = new Trigger<UnitTakesDamagePostEvent>(e =>
+				{
+					actualDealer = e.Source;
+					actualTaker = e.Target;
+					actualDmg = e.Damage;
+				});
+			EntityGameAction ga = new DamageUnitTarget(expectedTaker, dmg);
 
-            Agent A = new Agent();
-            Agent B = new Agent();
+			expectedTaker.Register(preT);
+			expectedTaker.Register(postT);
+			gem.AddEntity(expectedTaker);
 
-            A.ActionManager = actman;
-            B.ActionManager = actman;
+			expectedDealer.QueueAction(ga);
+			actman.ExecuteActions();
 
-            int dmg = int.MaxValue;
+			Assert.AreEqual(expectedDealer, actualDealer);
+			Assert.AreEqual(expectedTaker, actualTaker);
+			Assert.AreEqual(expectedDmg, actualDmg);
+		}
 
-            bool eventFired = false;
+		[Test]
+		public void ExecuteActionWithSpecificTargetEvent_UnitDealsDamageToAnotherUnit_TheOtherUnitTakesDamage()
+		{
+			EventManager gem = new EventManager();
+			ActionManager actman = new ActionManager();
 
 
-            Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => eventFired = true);
-            EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
+			Agent expectedDealer = new Agent();
+			Agent expectedTaker = new Agent();
 
+			expectedDealer.ActionManager = actman;
+			expectedTaker.ActionManager = actman;
+			int expectedDmg = 10;
 
-            B.Register(T);
-            gem.AddEntity(B);
+			//ignore initialization values
+			Unit actualDealer = null;
+			Unit actualTaker = null;
+			int actualDmg = new int();
 
-            B.Deregister(T);
+			Trigger t = new Trigger<UnitTakesDamagePostEvent>(e =>
+				{
+					actualDealer = e.Source;
+					actualTaker = e.Target;
+					actualDmg = e.Damage;
+				});
+			DamageUnitTarget ga = new DamageUnitTarget(expectedTaker, expectedDmg);
 
-            A.QueueAction(ga1);
+			expectedTaker.Register(t);
+			gem.AddEntity(expectedTaker);
 
-            Assert.IsFalse(eventFired);
+			expectedDealer.QueueAction(ga);
+			actman.ExecuteActions();
 
-        }
+			Assert.AreEqual(expectedDealer, actualDealer);
+			Assert.AreEqual(expectedTaker, actualTaker);
+			Assert.AreEqual(expectedDmg, actualDmg);
+		}
 
+		[Test]
+		public void RemoveEventFromUnit_containMultiTrigger_TheEventGetsRemovedAndIsNotFired()
+		{
+			EventManager gem = new EventManager();
 
-        [Test]
-        public void AddTrigger_triggerIsAddedToUnitAfterItIsAddedToManagger_EventFired()
-        {
-            EventManager gem = new EventManager();
-            ActionManager actman = new ActionManager();
+			Agent A = new Agent();
 
-            Agent A = new Agent();
-            Agent B = new Agent();
+			gem.AddEntity(A);
 
-            A.ActionManager = actman;
-            B.ActionManager = actman;
+			bool eventfired = false;
 
-            int dmg = int.MaxValue;
+			MultiTrigger mt = new MultiTrigger();
+			mt.AddAction<GameEvent>(e => eventfired = true);
+			mt.RegisterEvent<UnitTakesDamagePostEvent>();
 
-            bool eventFired = false;
+			A.Register(mt);
 
+			mt.DeregisterEvent<UnitTakesDamagePostEvent>();
 
-            Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => eventFired = true);
-            EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
 
-            gem.AddEntity(B);
-            B.Register(T);
+			A.Raise(new UnitTakesDamagePostEvent(null, null, 0, 0));
 
-            A.QueueAction(ga1);
-            actman.ExecuteActions();
+			Assert.IsFalse(eventfired);
+		}
 
-            Assert.IsTrue(eventFired);
+		[Test]
+		public void RemoveTrigger_simpleGlobalTrigger_NoEventFired()
+		{
+			EventManager gem = new EventManager();
+			ActionManager actman = new ActionManager();
 
-            
-        }
+			Agent A = new Agent();
+			Agent B = new Agent();
 
-        [Test]
-        public void AddEventToUnit_containMultiTrigger_TheAddedEventGetsFired()
-        {
+			A.ActionManager = actman;
+			B.ActionManager = actman;
 
-            EventManager gem = new EventManager();
+			int dmg = int.MaxValue;
 
-            Agent A = new Agent();
+			bool eventFired = false;
 
-            gem.AddEntity(A);
 
-            bool eventfired = false;
+			Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => eventFired = true);
+			EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
 
-            MultiTrigger mt = new MultiTrigger();
 
-            A.Register(mt);
+			gem.Register(T);
+			gem.Deregister(T);
 
-            mt.AddAction<GameEvent>(e => eventfired = true);
+			A.QueueAction(ga1);
 
-            mt.RegisterEvent<UnitTakesDamagePostEvent>();
+			Assert.IsFalse(eventFired);
+		}
 
-            A.Raise(new UnitTakesDamagePostEvent(null, null, 0, 0));
+		[Test]
+		public void RemoveTrigger_triggerIsRemovedFromUnit_NoEventFired()
+		{
+			EventManager gem = new EventManager();
+			ActionManager actman = new ActionManager();
 
-            Assert.IsTrue(eventfired);
+			Agent A = new Agent();
+			Agent B = new Agent();
 
-        }
+			A.ActionManager = actman;
+			B.ActionManager = actman;
 
-        [Test]
-        public void RemoveEventFromUnit_containMultiTrigger_TheEventGetsRemovedAndIsNotFired()
-        {
+			int dmg = int.MaxValue;
 
-            EventManager gem = new EventManager();
+			bool eventFired = false;
 
-            Agent A = new Agent();
 
-            gem.AddEntity(A);
+			Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => eventFired = true);
+			EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
 
-            bool eventfired = false;
 
-            MultiTrigger mt = new MultiTrigger();
-            mt.AddAction<GameEvent>(e => eventfired = true);
-            mt.RegisterEvent<UnitTakesDamagePostEvent>();
+			B.Register(T);
+			gem.AddEntity(B);
 
-            A.Register(mt);
+			B.Deregister(T);
 
-            mt.DeregisterEvent<UnitTakesDamagePostEvent>();
+			A.QueueAction(ga1);
 
-
-            A.Raise(new UnitTakesDamagePostEvent(null, null, 0, 0));
-
-            Assert.IsFalse(eventfired);
-
-        }
-
-
-
-
-    }
+			Assert.IsFalse(eventFired);
+		}
+	}
 }

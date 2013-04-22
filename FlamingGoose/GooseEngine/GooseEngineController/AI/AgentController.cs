@@ -1,78 +1,74 @@
 using System;
+using System.Threading;
+using GooseEngine;
 using GooseEngine.Entities.Units;
 using GooseEngine.GameManagement;
-using System.Threading;
-using System.Collections.Generic;
-using System.Linq;
 using GooseEngine.GameManagement.Events;
-using GooseEngine.Data.GenericEvents;
-using GooseEngine;
+using JSLibrary.Data.GenericEvents;
 
 namespace GooseEngineController.AI
 {
 	public abstract class AgentController
 	{
+		private AutoResetEvent actionComplete = new AutoResetEvent(false);
 		private Agent agent;
-        protected event UnaryValueHandler<PerceptCollection> PerceptsRecieved;
-        private PerceptCollection newpercepts = null;
-        private AutoResetEvent actionComplete = new AutoResetEvent(false);
+		private PerceptCollection newpercepts;
 
-		public AgentController (Agent agent)
+		public AgentController(Agent agent)
 		{
 			this.agent = agent;
-            agent.Register(new Trigger<RetreivePerceptsEvent>(agent_RetrievePercepts));
+			agent.Register(new Trigger<RetreivePerceptsEvent>(agent_RetrievePercepts));
 		}
 
-		public void performAction (EntityGameAction action)
+		protected event UnaryValueHandler<PerceptCollection> PerceptsRecieved;
+
+		public void performAction(EntityGameAction action)
 		{
 			action.Completed += action_Completed;
 			agent.QueueAction(action);
 
-            this.actionComplete.WaitOne();
+			actionComplete.WaitOne();
 
-            PerceptCollection activepercepts = null;
-            lock (this)
-            {
-                activepercepts = this.newpercepts;
-                this.newpercepts = null;
-            }
+			PerceptCollection activepercepts = null;
+			lock (this)
+			{
+				activepercepts = newpercepts;
+				newpercepts = null;
+			}
 
-            if (PerceptsRecieved != null && activepercepts != null)
-            {
-                this.PerceptsRecieved(this, new UnaryValueEvent<PerceptCollection>(activepercepts));
-            }
-			
+			if (PerceptsRecieved != null && activepercepts != null)
+			{
+				PerceptsRecieved(this, new UnaryValueEvent<PerceptCollection>(activepercepts));
+			}
 		}
 
-        
 
-        public abstract void Start();
+		public abstract void Start();
 
-        #region EVENTS
-        private void  action_Completed (object sender, EventArgs e)
+		#region EVENTS
+
+		private void action_Completed(object sender, EventArgs e)
 		{
-            this.actionComplete.Set();
-        }
+			actionComplete.Set();
+		}
 
-        private void agent_RetrievePercepts(RetreivePerceptsEvent e)
-        {
-            lock (this)
-            {
-                newpercepts = e.Percepts;
-            }
-        }
+		private void agent_RetrievePercepts(RetreivePerceptsEvent e)
+		{
+			lock (this)
+			{
+				newpercepts = e.Percepts;
+			}
+		}
 
-        #endregion
+		#endregion
 
-        #region GETTERS
-        public Agent Target
-        {
-            get
-            {
-                return agent;
-            }
-        }
-        #endregion
-    }
+		#region GETTERS
+
+		public Agent Target
+		{
+			get { return agent; }
+		}
+
+		#endregion
+	}
 }
-

@@ -1,27 +1,24 @@
-using System;
+using System.Xml;
+using System.Xml.Schema;
 using System.Xml.Serialization;
 
 namespace iilang
 {
 	public abstract class IILElement : IXmlSerializable
 	{
-		public abstract string XmlTag{ get; }
-
-		public IILElement () {
-		
-		}
+		public abstract string XmlTag { get; }
 
 		#region IXmlSerializable implementation
 
-		public System.Xml.Schema.XmlSchema GetSchema () {
+		public XmlSchema GetSchema()
+		{
 			return null;
 		}
 
-		public abstract void ReadXml (System.Xml.XmlReader reader);
+		public abstract void ReadXml(XmlReader reader);
 
-		public abstract void WriteXml (System.Xml.XmlWriter writer);
+		public abstract void WriteXml(XmlWriter writer);
 
 		#endregion
 	}
 }
-

@@ -1,61 +1,57 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GooseEngine.Entities.Interactables;
 
 namespace GooseEngine.Entities
 {
-    public abstract class Unit : Entity
-    {
-		private ICollection<Func<Percept>> perceptCollectors = new List<Func<Percept>> ();
-        private int health = 1;
+	public abstract class Unit : Entity
+	{
+		private int health = 1;
 		private double moveSpeed = 500;
+		private ICollection<Func<Percept>> perceptCollectors = new List<Func<Percept>>();
 
-		public ICollection<Percept> Percepts {
-			get {
-				return perceptCollectors.Select (f => f()).ToArray();
-			}
+		public Unit()
+		{
+			AddRuleSuperior<Unit>();
+			AddWillBlock_MovementRule<Unit>(p => p is Unit);
+			perceptCollectors.Add(VisionPercept);
+			perceptCollectors.Add(HealthPercept);
 		}
 
-        public int Health
-        {
-            get { return health; }
-            set { health = value; }
-        }
+		public ICollection<Percept> Percepts
+		{
+			get { return perceptCollectors.Select(f => f()).ToArray(); }
+		}
 
-		public double MoveSpeed {
+		public int Health
+		{
+			get { return health; }
+			set { health = value; }
+		}
+
+		public double MoveSpeed
+		{
 			get { return moveSpeed; }
 			set { moveSpeed = value; }
 		}
 
-        public Unit()
-        {
-            this.AddRuleSuperior<Unit>();
-            AddWillBlock_MovementRule<Unit>(p => p is Unit);
-			perceptCollectors.Add (VisionPercept);
-			perceptCollectors.Add (HealthPercept);
-        }
-
-		public void AddPerceptCollector (Func<Unit, Percept> f)
+		public void AddPerceptCollector(Func<Unit, Percept> f)
 		{
-			perceptCollectors.Add (() => f (this));
+			perceptCollectors.Add(() => f(this));
 		}
 
 		#region BuiltinPerceptCollectors
 
-		private Percept VisionPercept ()
+		private Percept VisionPercept()
 		{
 			return World.View(this);
 		}
 
-		private Percept HealthPercept ()
+		private Percept HealthPercept()
 		{
-			return Factory.CreateSingleNumeralPercept ("health", this.health);
+			return Factory.CreateSingleNumeralPercept("health", health);
 		}
 
 		#endregion
-        
-    }
+	}
 }

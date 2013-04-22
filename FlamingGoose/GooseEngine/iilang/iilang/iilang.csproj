@@ -32,10 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="nunit.framework" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +51,11 @@
     <Compile Include="IILPerceptCollection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\JSLibrary\JSLibrary.csproj">
+      <Project>{46919fe5-0649-4af3-bdba-6f25de0b8fe9}</Project>
+      <Name>JSLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup />
 </Project>

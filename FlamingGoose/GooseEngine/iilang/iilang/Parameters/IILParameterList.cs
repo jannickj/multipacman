@@ -1,51 +1,51 @@
-using System;
-using System.Collections.Generic;
-using System.Xml.Linq;
-using System.Xml.Serialization;
-using System.Xml;
-using System.Collections;
 using System.Linq;
+using System.Xml;
+using System.Xml.Serialization;
 
-namespace iilang
+namespace iilang.Parameters
 {
 #pragma warning disable
-    [XmlRoot("parameterList")]
+	[XmlRoot("parameterList")]
 	public class IILParameterList : IILMultiParameter
 	{
-		public override string XmlTag{ get { return "parameterList"; } }
 //		public List<Parameter> Parameters { get; private set; }
 
-		public IILParameterList () 
-			: base() 
-		{ }
+		public IILParameterList()
+		{
+		}
 
-		public IILParameterList (params IILParameter[] ps) 
-			: base(ps) 
-		{ }
+		public IILParameterList(params IILParameter[] ps)
+			: base(ps)
+		{
+		}
 
 		#region implemented abstract members of IILangElement
 
-		public override void ReadXml (System.Xml.XmlReader reader)
+		public override void ReadXml(XmlReader reader)
 		{
-			reader.MoveToContent ();
-			base.ReadXml (reader);
+			reader.MoveToContent();
+			base.ReadXml(reader);
 		}
 
-		public override void WriteXml (System.Xml.XmlWriter writer)
+		public override void WriteXml(XmlWriter writer)
 		{
-			base.WriteXml (writer);
+			base.WriteXml(writer);
 		}
 
 		#endregion
 
-		public override bool Equals (object obj)
+		public override string XmlTag
 		{
-			if (this.GetType () != obj.GetType())
+			get { return "parameterList"; }
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (GetType() != obj.GetType())
 				return false;
 
-			IILParameterList pl = (IILParameterList)obj;
-			return (Parameters.SequenceEqual (pl.Parameters));
+			IILParameterList pl = (IILParameterList) obj;
+			return (Parameters.SequenceEqual(pl.Parameters));
 		}
 	}
 }
-

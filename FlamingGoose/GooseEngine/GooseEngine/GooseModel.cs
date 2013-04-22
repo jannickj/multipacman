@@ -1,176 +1,145 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using GooseEngine.Data.GenericEvents;
+using GooseEngine.Exceptions;
 using GooseEngine.GameManagement;
 using GooseEngine.GameManagement.Events;
-using GooseEngine.Data;
-using GooseEngine.Exceptions;
 using GooseEngine.Interfaces;
+using JSLibrary.Data;
+using JSLibrary.Data.GenericEvents;
 
 namespace GooseEngine
 {
-    public class GooseModel : IStartable
-    {
-        private bool stopEngine;
-        private GooseWorld world;
-        private GameFactory factory;
-        private ActionManager actman;
-        private EventManager evtman;
-        private Exception engineCrash = null;
+	public class GooseModel : IStartable
+	{
+		private ActionManager actman;
+		private Exception engineCrash;
+		private EventManager evtman;
+		private GooseFactory factory;
+		private bool stopEngine;
+		private GooseWorld world;
 
-        public GooseModel(GooseWorld world, ActionManager actman, EventManager evtman, GameFactory factory)
-        {
-            this.World = world;
-            this.ActionManager = actman;
-            this.EventManager = evtman;
-            this.Factory = factory;
+		public GooseModel(GooseWorld world, ActionManager actman, EventManager evtman, GooseFactory factory)
+		{
+			World = world;
+			ActionManager = actman;
+			EventManager = evtman;
+			Factory = factory;
 
-            this.EventManager.Register(new Trigger<EngineCloseEvent>(evtman_EngineClose));
-            this.ActionManager.ActionQueuing += actman_ActionQueuing;
-            this.ActionManager.ActionQueued += actman_ActionQueued;
+			EventManager.Register(new Trigger<EngineCloseEvent>(evtman_EngineClose));
+			ActionManager.ActionQueuing += actman_ActionQueuing;
+			ActionManager.ActionQueued += actman_ActionQueued;
+		}
 
-        }
 
-        
-        public void Start()
-        {
-            try
-            {
+		public void Start()
+		{
+			try
+			{
+				stopEngine = false;
 
-                stopEngine = false;
+				while (true)
+				{
+					ActionManager.ExecuteActions();
+					if (stopEngine)
+						break;
+					lock (ActionManager)
+					{
+						Monitor.Wait(ActionManager);
+					}
+				}
+			}
+			catch (ForceStopEngineException)
+			{
+			}
+			catch (Exception e)
+			{
+				engineCrash = e;
+			}
+		}
 
-                while (true)
-                {
-
-                    ActionManager.ExecuteActions();
-                    if (this.stopEngine)
-                        break;
-                    lock (this.ActionManager)
-                    {
-                        Monitor.Wait(this.ActionManager);
-                    }
-
-                }
-            }
-            catch (ForceStopEngineException)
-            {
-
-            }
-            catch (Exception e)
-            {
-                this.engineCrash = e;
-            }
-        }
-
-		public void AddEntity (Entity entity, Point loc)
+		public void AddEntity(Entity entity, Point loc)
 		{
 			entity.ActionManager = ActionManager;
 			entity.EventManager = EventManager;
 			entity.World = World;
 			entity.Factory = Factory;
-			World.AddEntity (loc, entity);
+			World.AddEntity(loc, entity);
 		}
 
 		public void AddEntity(Entity entity)
 		{
-			AddEntity (entity, new Point (0, 0));
+			AddEntity(entity, new Point(0, 0));
 		}
 
-        public bool EngineCrashed(out Exception exception)
-        {
-            if (this.engineCrash != null)
-            {
-                exception = this.engineCrash;
-                return true;
-            }
+		public bool EngineCrashed(out Exception exception)
+		{
+			if (engineCrash != null)
+			{
+				exception = engineCrash;
+				return true;
+			}
 
-            exception = null;    
-            return false;
-        }
+			exception = null;
+			return false;
+		}
 
-        #region EVENTS
+		#region EVENTS
 
-        void evtman_EngineClose(EngineCloseEvent e)
-        {
-            stopEngine = true;
-            lock (this)
-            {
-                Monitor.PulseAll(this);
-            }
-        }
+		private void evtman_EngineClose(EngineCloseEvent e)
+		{
+			stopEngine = true;
+			lock (this)
+			{
+				Monitor.PulseAll(this);
+			}
+		}
 
-        void actman_ActionQueuing(object sender, UnaryValueEvent<GameAction> evt)
-        {
-            evt.Value.EventManager = EventManager;
-            evt.Value.Factory = Factory;
-            evt.Value.World = World;
-            evt.Value.ActionManager = ActionManager;
-        }
+		private void actman_ActionQueuing(object sender, UnaryValueEvent<GameAction> evt)
+		{
+			evt.Value.EventManager = EventManager;
+			evt.Value.Factory = Factory;
+			evt.Value.World = World;
+			evt.Value.ActionManager = ActionManager;
+		}
 
-        void actman_ActionQueued(object sender, UnaryValueEvent<GameAction> evt)
-        {
-            lock (this.ActionManager)
-            {
-                Monitor.PulseAll(this.ActionManager);
-            }
-        }
+		private void actman_ActionQueued(object sender, UnaryValueEvent<GameAction> evt)
+		{
+			lock (ActionManager)
+			{
+				Monitor.PulseAll(ActionManager);
+			}
+		}
 
-        #endregion
+		#endregion
 
-        #region PROPERTIES
-        public GooseWorld World
-        {
-            get
-            {
-                return world;
-            }
-            internal set
-            {
-                this.world = value;
-            }
-        }
+		#region PROPERTIES
 
-        public GameFactory Factory
-        {
-            get
-            {
-                return factory;
-            }
+		public GooseWorld World
+		{
+			get { return world; }
+			internal set { world = value; }
+		}
 
-            internal set
-            {
-                this.factory = value;
-            }
-        }
+		public GooseFactory Factory
+		{
+			get { return factory; }
+
+			internal set { factory = value; }
+		}
 
 
-        public EventManager EventManager
-        {
-            get
-            {
-                return evtman;
-            }
-            internal set
-            {
-                evtman = value;
-            }
-        }
+		public EventManager EventManager
+		{
+			get { return evtman; }
+			internal set { evtman = value; }
+		}
 
-        public ActionManager ActionManager
-        {
-            get
-            {
-                return actman;
-            }
-            internal set
-            {
-                actman = value;
-            }
-        }
-        #endregion
-    }
+		public ActionManager ActionManager
+		{
+			get { return actman; }
+			internal set { actman = value; }
+		}
+
+		#endregion
+	}
 }

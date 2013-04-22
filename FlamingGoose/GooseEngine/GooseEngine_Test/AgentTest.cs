@@ -1,12 +1,9 @@
-﻿using System;
-using NUnit.Framework;
-
+﻿using NUnit.Framework;
 
 namespace GooseEngine_Test
 {
-    [TestFixture]
-    public class AgentTest
-    {
-        
-    }
+	[TestFixture]
+	public class AgentTest
+	{
+	}
 }

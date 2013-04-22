@@ -1,54 +1,42 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using GooseEngine;
-using GooseEngine.Data;
+using JSLibrary.Data;
 
 namespace GooseEngineView.Testing.ConsoleView
 {
-    public class ConsoleWorldView
-    {
-        private GooseWorld model;
-        Dictionary<Entity, ConsoleEntityView> viewlookup = new Dictionary<Entity, ConsoleEntityView>();
+	public class ConsoleWorldView
+	{
+		private GooseWorld model;
+		private Dictionary<Entity, ConsoleEntityView> viewlookup = new Dictionary<Entity, ConsoleEntityView>();
 
-        public ConsoleWorldView(GooseWorld model)
-        {
-            this.model = model;
+		public ConsoleWorldView(GooseWorld model)
+		{
+			this.model = model;
+		}
 
-        }
+		public int Width
+		{
+			get { return model.Size.Width; }
+		}
 
-        public void AddEntity(ConsoleEntityView entview)
-        {
-            viewlookup.Add(entview.Model, entview);
-        }
+		public int Height
+		{
+			get { return model.Size.Height; }
+		}
 
-        public int Width
-        {
-            get
-            {
-                return model.Size.Width;
-            }
-        }
-
-        public int Height
-        {
-            get
-            {
-                return model.Size.Height;
-            }
-        }
+		public void AddEntity(ConsoleEntityView entview)
+		{
+			viewlookup.Add(entview.Model, entview);
+		}
 
 
-        public Dictionary<Point, ConsoleEntityView> AllEntities()
-        {
-            Dictionary<Point, ConsoleEntityView> locs = new Dictionary<Point, ConsoleEntityView>();
-            foreach(KeyValuePair<Entity,ConsoleEntityView> kv in this.viewlookup)
-                locs.Add(kv.Value.Position,kv.Value);
+		public Dictionary<Point, ConsoleEntityView> AllEntities()
+		{
+			Dictionary<Point, ConsoleEntityView> locs = new Dictionary<Point, ConsoleEntityView>();
+			foreach (KeyValuePair<Entity, ConsoleEntityView> kv in viewlookup)
+				locs.Add(kv.Value.Position, kv.Value);
 
-            return null;
-        }
-
-
-    }
+			return null;
+		}
+	}
 }

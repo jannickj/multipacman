@@ -1,92 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using GooseEngine.Data.GenericEvents;
+using JSLibrary.Data.GenericEvents;
 
 namespace GooseEngine.GameManagement
 {
-    public class ActionManager
-    {
-        internal event UnaryValueHandler<GameAction> ActionQueuing;
-        internal event UnaryValueHandler<GameAction> ActionQueued;
+	public class ActionManager
+	{
+		private Queue<GameAction> awaitingActions = new Queue<GameAction>();
+		private HashSet<GameAction> runningActions = new HashSet<GameAction>();
+		private List<object> wakeup = new List<object>();
 
-        private List<object> wakeup = new List<object>();
-        private Queue<GameAction> awaitingActions = new Queue<GameAction>();
-        private HashSet<GameAction> runningActions = new HashSet<GameAction>();
+		public ICollection<GameAction> RunningActions
+		{
+			get { return runningActions.ToArray(); }
+		}
 
-        public ActionManager()
-        {
-            
-        }
+		#region EVENTS
 
+		private void action_Completed(object sender, EventArgs e)
+		{
+			GameAction ga = (GameAction) sender;
+			runningActions.Remove(ga);
+			ga.Completed -= action_Completed;
+		}
 
-        internal int ExecuteActions()
-        {
-            int actionsExecuted = 0;
-            List<GameAction> actions;
+		#endregion
 
-            do
-            {
-                lock (this)
-                {
-                    actions = awaitingActions.ToList();
-                    awaitingActions.Clear();
-                }
-
-                foreach (GameAction action in actions)
-                {
-                    runningActions.Add(action);
-                    action.Completed += action_Completed;
-                    action.Fire();
-                    actionsExecuted++;
-                }
-                lock(this)
-                {
-                    if (awaitingActions.Count == 0)
-                        break;
-                }
-            } while (true);
-            return actionsExecuted;
-        }
-
-        public void Queue(EnvironmentAction action)
-        {
-            this.QueueAction(action);            
-        }
-
-        internal void QueueAction(GameAction action)
-        {
-            lock (this)
-            {
-                if (ActionQueuing != null)
-                    ActionQueuing(this, new UnaryValueEvent<GameAction>(action));
-                awaitingActions.Enqueue(action);
-                if (ActionQueued != null)
-                    ActionQueued(this, new UnaryValueEvent<GameAction>(action));
-            }     
-        }
+		internal event UnaryValueHandler<GameAction> ActionQueuing;
+		internal event UnaryValueHandler<GameAction> ActionQueued;
 
 
-        public ICollection<GameAction> RunningActions
-        {
-            get
-            {
-                return runningActions.ToArray();
-            }
-        }
+		internal int ExecuteActions()
+		{
+			int actionsExecuted = 0;
+			List<GameAction> actions;
 
-        #region EVENTS
+			do
+			{
+				lock (this)
+				{
+					actions = awaitingActions.ToList();
+					awaitingActions.Clear();
+				}
 
-        void action_Completed(object sender, EventArgs e)
-        {
-            GameAction ga = (GameAction)sender;
-            runningActions.Remove(ga);
-            ga.Completed -= action_Completed;
+				foreach (GameAction action in actions)
+				{
+					runningActions.Add(action);
+					action.Completed += action_Completed;
+					action.Fire();
+					actionsExecuted++;
+				}
+				lock (this)
+				{
+					if (awaitingActions.Count == 0)
+						break;
+				}
+			} while (true);
+			return actionsExecuted;
+		}
 
-        }
+		public void Queue(EnvironmentAction action)
+		{
+			QueueAction(action);
+		}
 
-        #endregion
-    }
+		internal void QueueAction(GameAction action)
+		{
+			lock (this)
+			{
+				if (ActionQueuing != null)
+					ActionQueuing(this, new UnaryValueEvent<GameAction>(action));
+				awaitingActions.Enqueue(action);
+				if (ActionQueued != null)
+					ActionQueued(this, new UnaryValueEvent<GameAction>(action));
+			}
+		}
+	}
 }

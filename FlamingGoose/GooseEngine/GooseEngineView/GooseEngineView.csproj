@@ -33,14 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine">
-      <HintPath>..\reference\UnityEngine.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityView.cs" />
@@ -59,10 +51,13 @@
       <Project>{1A146465-21F3-44D1-A779-6C4958CBD24B}</Project>
       <Name>GooseEngine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
+      <Project>{46919fe5-0649-4af3-bdba-6f25de0b8fe9}</Project>
+      <Name>JSLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Action\" />
-    <Folder Include="Testing\ConsoleView\EntityViews\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

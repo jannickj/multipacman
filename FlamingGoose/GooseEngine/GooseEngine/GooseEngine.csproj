@@ -34,20 +34,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conversion\GooseConverterToForeign.cs" />
     <Compile Include="Conversion\GooseConverterToGoose.cs" />
-    <Compile Include="EIS\Conversion\IILang\EISConverterToEIS.cs" />
-    <Compile Include="EIS\Conversion\IILang\EISPerceptConverter.cs" />
-    <Compile Include="EIS\Conversion\IILang\Percepts\EISSingleNumeralSerializer.cs" />
-    <Compile Include="EIS\Conversion\IILang\Percepts\EISPerceptCollectionSerializer.cs" />
-    <Compile Include="EIS\Conversion\IILang\Percepts\EISVisionSerializer.cs" />
-    <Compile Include="Data\Size.cs" />
     <Compile Include="Exceptions\ForceStopEngineException.cs" />
     <Compile Include="Exceptions\UnableToConvertException.cs" />
     <Compile Include="Exceptions\UnacceptableActionException.cs" />
@@ -73,9 +63,6 @@
     <Compile Include="GameManagement\Interfaces\ITriggerContainer.cs" />
     <Compile Include="GameManagement\MultiTrigger.cs" />
     <Compile Include="GameManagement\Trigger.cs" />
-    <Compile Include="Data\DictionaryList.cs" />
-    <Compile Include="Data\Grid.cs" />
-    <Compile Include="Data\Vector.cs" />
     <Compile Include="Entities\ImpassableWall.cs" />
     <Compile Include="Entities\Interactable.cs" />
     <Compile Include="Entities\Interactables\PowerUp.cs" />
@@ -90,7 +77,6 @@
     <Compile Include="GameManagement\TriggerManager.cs" />
     <Compile Include="GooesObject.cs" />
     <Compile Include="Interfaces\IStartable.cs" />
-    <Compile Include="Lib\ExtendedType.cs" />
     <Compile Include="PerceptCollection.cs" />
     <Compile Include="Perceptions\Vision.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,33 +86,25 @@
     <Compile Include="Rule\RuleHierarchy.cs" />
     <Compile Include="Rule\TransformationRule.cs" />
     <Compile Include="Rule\Exceptions\MulticonclusionException.cs" />
-    <Compile Include="Data\Point.cs" />
     <Compile Include="GameManagement\Actions\GetAllPercepts.cs" />
     <Compile Include="GameManagement\Events\RetreivePerceptsEvent.cs" />
-    <Compile Include="EIS\Percepts\EISVision.cs" />
     <Compile Include="GooseActor.cs" />
     <Compile Include="Conversion\GooseConversionTool.cs" />
     <Compile Include="Conversion\GooseConverter.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Perceptions\SingleNumeralPercept.cs" />
-    <Compile Include="EIS\Percepts\EISSingleNumeralPercept.cs" />
-    <Compile Include="EIS\EISGameFactory.cs" />
-    <Compile Include="Data\GenericEvents\UnaryValueEvent.cs" />
-    <Compile Include="EIS\EISConversionTool.cs" />
-    <Compile Include="EIS\Conversion\IILang\Objects\EISTileSerializer.cs" />
-    <Compile Include="EIS\Conversion\IILang\EISActionConverter.cs" />
-    <Compile Include="EIS\Conversion\IILang\Actions\GetAllPerceptsActionConverter.cs" />
-    <Compile Include="EIS\ActionTypes\EISGetAllPercepts.cs" />
-    <Compile Include="EIS\ActionTypes\EISMoveUnit.cs" />
-    <Compile Include="EIS\IILActionParser.cs" />
-    <Compile Include="EIS\EISAction.cs" />
     <Compile Include="Percept.cs" />
-    <Compile Include="EIS\Conversion\IILang\Actions\MoveUnitActionConverter.cs" />
     <Compile Include="GooseWorld.cs" />
     <Compile Include="GooseMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\MapEntities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
+      <Project>{46919fe5-0649-4af3-bdba-6f25de0b8fe9}</Project>
+      <Name>JSLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -136,10 +114,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <ProjectReference Include="..\iilang\iilang\iilang.csproj">
-      <Project>{8205042B-12C2-4A7E-9A19-EC06792BC8E6}</Project>
-      <Name>iilang</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

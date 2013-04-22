@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GooseEngine.Enum
+﻿namespace GooseEngine.Enum
 {
-    public enum Direction
-    {
-        Up,
-        Down,
-        Left,
-        Right
-    };
+	public enum Direction
+	{
+		Up,
+		Down,
+		Left,
+		Right
+	};
 }

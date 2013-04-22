@@ -1,64 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using GooseEngine;
-using GooseEngine.GameManagement;
-using GooseEngine.Data;
-using System.Threading;
+﻿using System.Collections.Generic;
 
 namespace GooseEngine.GameManagement
 {
-    public class EventManager 
-    {
-       
-        private HashSet<Entity> trackedEntities = new HashSet<Entity>();
-        private TriggerManager triggerManager = new TriggerManager();
-        
-        public EventManager()
-        {
+	public class EventManager
+	{
+		private HashSet<Entity> trackedEntities = new HashSet<Entity>();
+		private TriggerManager triggerManager = new TriggerManager();
 
-        }
-             
-        public void Raise(GameEvent evt)
-        {
-            triggerManager.Raise(evt);
-        }        
+		public void Raise(GameEvent evt)
+		{
+			triggerManager.Raise(evt);
+		}
 
-        public void AddEntity(Entity entity)
-        {
-            this.trackedEntities.Add(entity);
+		public void AddEntity(Entity entity)
+		{
+			trackedEntities.Add(entity);
 
-            entity.TriggerRaised += entity_TriggerRaised;
-        }
+			entity.TriggerRaised += entity_TriggerRaised;
+		}
 
-        public void RemoveEntity(Entity entity)
-        {
-            this.trackedEntities.Remove(entity);
+		public void RemoveEntity(Entity entity)
+		{
+			trackedEntities.Remove(entity);
 
-            entity.TriggerRaised -= entity_TriggerRaised;
-        }
+			entity.TriggerRaised -= entity_TriggerRaised;
+		}
 
-        public void Register(Trigger trigger)
-        {
-            this.triggerManager.Register(trigger);
-        }
+		public void Register(Trigger trigger)
+		{
+			triggerManager.Register(trigger);
+		}
 
-        public void Deregister(Trigger trigger)
-        {
-            this.triggerManager.Deregister(trigger);
-        }
+		public void Deregister(Trigger trigger)
+		{
+			triggerManager.Deregister(trigger);
+		}
 
-        
+		#region EVENTS
 
-        #region EVENTS
+		private void entity_TriggerRaised(object sender, GameEvent e)
+		{
+			Raise(e);
+		}
 
-        void entity_TriggerRaised(object sender, GameEvent e)
-        {
-            this.Raise(e);
-        }
-
-        #endregion
-
-    }
+		#endregion
+	}
 }

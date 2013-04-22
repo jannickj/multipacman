@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using GooseEngine.Conversion;
-
-namespace GooseEngine
+﻿namespace GooseEngine
 {
-    public class GooseObject
-    {
-
-
-    }
+	public class GooseObject
+	{
+	}
 }

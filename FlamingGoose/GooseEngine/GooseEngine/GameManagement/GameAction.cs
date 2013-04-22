@@ -1,32 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GooseEngine.GameManagement;
 
 namespace GooseEngine.GameManagement
 {
-    public abstract class GameAction : GooseActor
-    {
-        public GameAction()
-        { 
+	public abstract class GameAction : GooseActor
+	{
+		public event EventHandler Completed;
 
-        }
+		internal void Fire()
+		{
+			Execute();
+		}
 
-        public event EventHandler Completed;
+		protected abstract void Execute();
 
-        internal void Fire()
-        {
-            this.Execute();
-        }
-
-        protected abstract void Execute();
-
-        protected void Complete()
-        {
-            if (Completed != null)
-                Completed(this, new EventArgs());
-        }
-    }
+		protected void Complete()
+		{
+			if (Completed != null)
+				Completed(this, new EventArgs());
+		}
+	}
 }

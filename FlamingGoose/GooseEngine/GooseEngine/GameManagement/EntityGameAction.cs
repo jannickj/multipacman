@@ -1,53 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace GooseEngine.GameManagement
 {
-    public abstract class EntityGameAction : GameAction
-    {
-        private Entity source;
+	public abstract class EntityGameAction : GameAction
+	{
+		private Entity source;
 
-        public Entity Source
-        {
-            get
-            {
-                return source;
-            }
-            internal set
-            {
-                source = value;
-            }
-        }
+		public Entity Source
+		{
+			get { return source; }
+			internal set { source = value; }
+		}
 
-        internal protected abstract Type SupportedEntityType();
+		protected internal abstract Type SupportedEntityType();
 
 
-        internal bool IsEntitySupported(Entity entity)
-        {
-            return entity.GetType().IsSubclassOf(SupportedEntityType());
-        }
-    }
+		internal bool IsEntitySupported(Entity entity)
+		{
+			return entity.GetType().IsSubclassOf(SupportedEntityType());
+		}
+	}
 
 
-    public abstract class EntityGameAction<T> : EntityGameAction where T : Entity
-    {
-
-        public new T Source
-        {
-            get
-            {
-                return (T)base.Source;
-            }
-            
-        }
+	public abstract class EntityGameAction<T> : EntityGameAction where T : Entity
+	{
+		public new T Source
+		{
+			get { return (T) base.Source; }
+		}
 
 
-        protected internal override Type SupportedEntityType()
-        {
-            return typeof(T);
-        }
-
-    }
+		protected internal override Type SupportedEntityType()
+		{
+			return typeof (T);
+		}
+	}
 }

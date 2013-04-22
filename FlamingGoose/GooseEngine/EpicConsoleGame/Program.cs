@@ -1,29 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading;
 using GooseEngine;
 using GooseEngineManager;
 using GooseEngineView.Testing.ConsoleView;
 
 namespace EpicConsoleGame
 {
-    class Program
-    {
-        
+	internal class Program
+	{
+		private static void Main(string[] args)
+		{
+			GooseEngineFactory factory = new GooseEngineFactory();
+			GooseModel engine = factory.ConstructEngine(new SweetMap());
 
-        static void Main(string[] args)
-        {
-            GooseEngineFactory factory = new GooseEngineFactory();
-            GooseModel engine = factory.ConstructEngine(new SweetMap());
+			Thread thread = new Thread(engine.Start);
 
-            Thread thread = new Thread(new ThreadStart(engine.Start));
-
-            GooseConsoleView view = factory.ConstructView(null);
-
-
-        }
-    }
+			GooseConsoleView view = factory.ConstructView(null);
+		}
+	}
 }

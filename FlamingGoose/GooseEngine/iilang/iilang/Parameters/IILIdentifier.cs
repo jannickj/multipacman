@@ -1,48 +1,52 @@
 using System;
-using System.Xml.Linq;
-using System.Xml.Serialization;
 using System.Xml;
+using System.Xml.Serialization;
+using iilang.Exceptions;
 
-namespace iilang
+namespace iilang.Parameters
 {
 #pragma warning disable
-    [XmlRoot("identifier")]
+	[XmlRoot("identifier")]
 	public class IILIdentifier : IILParameter
 	{
-		public override string XmlTag { get {return "identifier";} }
-		public string Value { get; private set; }
-
-		public IILIdentifier (string value)
+		public IILIdentifier(string value)
 		{
 			Value = value;
 		}
 
 		public IILIdentifier()
-		{ }
+		{
+		}
+
+		public override string XmlTag
+		{
+			get { return "identifier"; }
+		}
+
+		public string Value { get; private set; }
 
 		public override void WriteXml(XmlWriter writer)
 		{
-			if (String.IsNullOrEmpty (Value))
-				throw new MissingXmlAttributeException ("Error: Value not set.");
-            
-			writer.WriteAttributeString ("value", Value);
+			if (String.IsNullOrEmpty(Value))
+				throw new MissingXmlAttributeException("Error: Value not set.");
+
+			writer.WriteAttributeString("value", Value);
 		}
 
-		public override void ReadXml (XmlReader reader)
+		public override void ReadXml(XmlReader reader)
 		{
-			reader.MoveToContent ();
-			Value = reader ["value"];
-			reader.Read ();
+			reader.MoveToContent();
+			Value = reader["value"];
+			reader.Read();
 		}
 
-		public override bool Equals (object obj)
+		public override bool Equals(object obj)
 		{
-			if (this.GetType () != obj.GetType())
+			if (GetType() != obj.GetType())
 				return false;
 
-			IILIdentifier id = (IILIdentifier)obj;
+			IILIdentifier id = (IILIdentifier) obj;
 			return (Value == id.Value);
 		}
 	}
 }
-

@@ -33,10 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GooseEngineFactory.cs" />
@@ -54,10 +50,6 @@
     <ProjectReference Include="..\GooseEngine\GooseEngine.csproj">
       <Project>{1a146465-21f3-44d1-a779-6c4958cbd24b}</Project>
       <Name>GooseEngine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\iilang\iilang\iilang.csproj">
-      <Project>{8205042b-12c2-4a7e-9a19-ec06792bc8e6}</Project>
-      <Name>iilang</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

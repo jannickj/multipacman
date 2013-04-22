@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GooseEngine.Entities.MapEntities
+﻿namespace GooseEngine.Entities
 {
-    public class ImpassableWall : Entity
-    {
-        public ImpassableWall()
-        {
-            AddRuleSuperior<ImpassableWall>();
-            AddWillBlock_MovementRule<ImpassableWall>(_ => true);
-        }
+	public class ImpassableWall : Entity
+	{
+		public ImpassableWall()
+		{
+			AddRuleSuperior<ImpassableWall>();
+			AddWillBlock_MovementRule<ImpassableWall>(_ => true);
+		}
 
 		public override bool IsVisionBlocking(Entity entity)
 		{
 			return true;
 		}
-    }
+	}
 }

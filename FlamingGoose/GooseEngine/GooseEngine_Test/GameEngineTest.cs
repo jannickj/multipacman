@@ -1,54 +1,47 @@
 ﻿using System;
 using System.Threading;
-using GooseEngine.GameManagement;
 using GooseEngine;
 using GooseEngine.Entities.Units;
-using NUnit.Framework;
+using GooseEngine.GameManagement;
 using GooseEngine.GameManagement.Actions;
-using System.Collections.Generic;
 using GooseEngine.GameManagement.Events;
-using GooseEngine.Data;
+using JSLibrary.Data;
+using NUnit.Framework;
 
 namespace GooseEngine_Test
 {
-    [TestFixture]
-    public class GameEngineTest
-    {
-        
-        [Test]
-        public void RunningGame_MoveActionStarted_MoveActionCompletes()
-        {
-            GooseWorld world = new GooseWorld(new GooseMap(new Size(2, 2)));
-            
-            ActionManager actman = new ActionManager();
-            GameFactory factory = new GameFactory(actman);
-            EventManager evtman = new EventManager();
-            Agent a = new Agent();
-            a.ActionManager = actman;
+	[TestFixture]
+	public class GameEngineTest
+	{
+		[Test]
+		public void RunningGame_MoveActionStarted_MoveActionCompletes()
+		{
+			GooseWorld world = new GooseWorld(new GooseMap(new Size(2, 2)));
 
-            evtman.AddEntity(a);
-            world.AddEntity(new Point(0, 0), a);
-            GooseModel engine = new GooseModel(world, actman, evtman, factory);
+			ActionManager actman = new ActionManager();
+			GooseFactory factory = new GooseFactory(actman);
+			EventManager evtman = new EventManager();
+			Agent a = new Agent();
+			a.ActionManager = actman;
 
-            Thread thread = new Thread(new ThreadStart(() => engine.Start()));
-            thread.Name = "Engine Thread";
+			evtman.AddEntity(a);
+			world.AddEntity(new Point(0, 0), a);
+			GooseModel engine = new GooseModel(world, actman, evtman, factory);
 
-            MoveUnit move = new MoveUnit(new Vector(0,1));
+			Thread thread = new Thread(() => engine.Start());
+			thread.Name = "Engine Thread";
 
-            evtman.Register(new Trigger<UnitMovePostEvent>(_ => actman.Queue(new CloseEngine())));
+			MoveUnit move = new MoveUnit(new Vector(0, 1));
 
-            thread.Start();
+			evtman.Register(new Trigger<UnitMovePostEvent>(_ => actman.Queue(new CloseEngine())));
 
-            a.QueueAction(move);
+			thread.Start();
 
-            thread.Join();
-            Exception e;
-            Assert.IsFalse(engine.EngineCrashed(out e));
+			a.QueueAction(move);
 
-
-
-
-
-        }
-    }
+			thread.Join();
+			Exception e;
+			Assert.IsFalse(engine.EngineCrashed(out e));
+		}
+	}
 }

@@ -33,9 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\..\Downloads\NUnit-2.6.2\bin\nunit.framework.dll</HintPath>
@@ -58,6 +55,10 @@
     <Compile Include="Data\PointTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GooseEISExtension\GooseEISExtension.csproj">
+      <Project>{b01bb766-d04c-443b-a9e8-faa46deddceb}</Project>
+      <Name>GooseEISExtension</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GooseEngineController\GooseEngineController.csproj">
       <Project>{17b595ad-7f21-43eb-baee-70e9838842d1}</Project>
       <Name>GooseEngineController</Name>
@@ -69,6 +70,10 @@
     <ProjectReference Include="..\iilang\iilang\iilang.csproj">
       <Project>{8205042B-12C2-4A7E-9A19-EC06792BC8E6}</Project>
       <Name>iilang</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
+      <Project>{46919fe5-0649-4af3-bdba-6f25de0b8fe9}</Project>
+      <Name>JSLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
