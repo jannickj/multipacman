@@ -16,6 +16,12 @@ namespace GooseEngine
         private Size burstSize;
         private Tile outofmaptile = new Tile ();
 
+		private Tile[,] Tiles {
+			get {
+				return tiles;
+			}
+		}
+
         public GooseMap(Size burstSize)
         {
 			outofmaptile.AddEntity (new ImpassableWall ());
@@ -130,7 +136,5 @@ namespace GooseEngine
 					tile.RemoveEntity(entity);
 			}
 		}
-
-
     }
 }
