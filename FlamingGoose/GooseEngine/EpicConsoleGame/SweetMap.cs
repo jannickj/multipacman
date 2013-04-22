@@ -1,30 +1,66 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using GooseEngine;
-using GooseEngine.Entities;
+using GooseEngine.Data;
+using GooseEngine.Entities.MapEntities;
 using GooseEngine.Entities.Units;
-using JSLibrary.Data;
 
 namespace EpicConsoleGame
 {
-	public class SweetMap : GooseMap
-	{
-		private List<KeyValuePair<Point, Point>> walls;
-
-		public SweetMap() : base(new Size(6, 6))
-		{
-			BuildMap();
-			walls = new List<KeyValuePair<Point, Point>>
-				{
-					new KeyValuePair<Point, Point>(new Point(-4, -6), new Point(-4, 5)),
-					new KeyValuePair<Point, Point>(new Point(-2, -4), new Point(-2, 6))
-				};
+    public class SweetMap : GooseMap
+    {
+        public SweetMap() : base(new Size(6, 6))
+        {
+			BuildMap ();
 		}
 
 		private void BuildMap()
 		{
-			foreach (KeyValuePair<Point, Point> kv in walls)
-				AddChunk<Wall>(kv.Key, kv.Value);
-			this[0, 0].AddEntity(new Player());
+			/*	Map to be built:
+			 * 
+			 * IIIIIIIIIIIIIII
+			 * I W   W   W   I 
+			 * I W W W W W W I
+			 * I W W W W W W I
+			 * I W W W W W W I 
+			 * I W W W W W W I 
+			 * I W W W W W W I 
+			 * I W W WPW W W I 
+			 * I W W W W W W I 
+			 * I W W W W W W I 
+			 * I W W W W W W I 
+			 * I W W W W W W I 
+			 * I W W W W W W I 
+			 * I   W   W   W I 
+			 * IIIIIIIIIIIIIII
+			 * 
+			 * Legend:
+			 * 	 'I' = Impassable Wall
+			 *   'W' = Wall
+			 *   'P' = Player
+			 *   ' ' = Empty Tile
+			 * 
+			 */
+
+			int start = -6;
+			int stop = 5;
+			int factor = 1;
+
+			foreach (int idx in AlternateRange (-5, 5, 2)) {
+				this.AddChunk<Wall> (new Point (idx, start * factor), new Point (idx, stop * factor));
+				factor *= -1;
+			}
+
+			this [0, 0].AddEntity (new Player ());
 		}
-	}
+
+		public IEnumerable<int> AlternateRange(int start, int count, int inc) {
+			for (int i = start; i < start + count; i += inc) {
+				yield return i;
+			}
+		}
+
+    }
 }
