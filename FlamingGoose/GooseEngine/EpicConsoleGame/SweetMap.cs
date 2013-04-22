@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using GooseEngine;
-using GooseEngine.Data;
-using GooseEngine.Entities.MapEntities;
+using GooseEngine.Entities;
 using GooseEngine.Entities.Units;
+using JSLibrary.Data;
 
 namespace EpicConsoleGame
 {
-    public class SweetMap : GooseMap
-    {
-        public SweetMap() : base(new Size(6, 6))
-        {
-			BuildMap ();
+	public class SweetMap : GooseMap
+	{
+		public SweetMap() : base(new Size(6, 6))
+		{
+			BuildMap();
 		}
 
 		private void BuildMap()
@@ -48,19 +45,21 @@ namespace EpicConsoleGame
 			int stop = 5;
 			int factor = 1;
 
-			foreach (int idx in AlternateRange (-5, 5, 2)) {
-				this.AddChunk<Wall> (new Point (idx, start * factor), new Point (idx, stop * factor));
+			foreach (int idx in AlternateRange(-5, 5, 2))
+			{
+				AddChunk<Wall>(new Point(idx, start*factor), new Point(idx, stop*factor));
 				factor *= -1;
 			}
 
-			this [0, 0].AddEntity (new Player ());
+			this[0, 0].AddEntity(new Player());
 		}
 
-		public IEnumerable<int> AlternateRange(int start, int count, int inc) {
-			for (int i = start; i < start + count; i += inc) {
+		public IEnumerable<int> AlternateRange(int start, int count, int inc)
+		{
+			for (int i = start; i < start + count; i += inc)
+			{
 				yield return i;
 			}
 		}
-
-    }
+	}
 }

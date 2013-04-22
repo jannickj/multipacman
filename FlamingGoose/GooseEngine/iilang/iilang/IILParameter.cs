@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Xml.Serialization;
 using JSLibrary;
 
@@ -34,7 +33,5 @@ namespace iilang
 		{
 			return Activator.CreateInstance(typeMap[str]) as IILParameter;
 		}
-
-	
 	}
 }
