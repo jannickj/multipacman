@@ -56,11 +56,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GooseEISExtension\GooseEISExtension.csproj">
-      <Project>{b01bb766-d04c-443b-a9e8-faa46deddceb}</Project>
+      <Project>{B01BB766-D04C-443B-A9E8-FAA46DEDDCEB}</Project>
       <Name>GooseEISExtension</Name>
     </ProjectReference>
     <ProjectReference Include="..\GooseEngineController\GooseEngineController.csproj">
-      <Project>{17b595ad-7f21-43eb-baee-70e9838842d1}</Project>
+      <Project>{17B595AD-7F21-43EB-BAEE-70E9838842D1}</Project>
       <Name>GooseEngineController</Name>
     </ProjectReference>
     <ProjectReference Include="..\GooseEngine\GooseEngine.csproj">
@@ -72,7 +72,7 @@
       <Name>iilang</Name>
     </ProjectReference>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
-      <Project>{46919fe5-0649-4af3-bdba-6f25de0b8fe9}</Project>
+      <Project>{46919FE5-0649-4AF3-BDBA-6F25DE0B8FE9}</Project>
       <Name>JSLibrary</Name>
     </ProjectReference>
   </ItemGroup>

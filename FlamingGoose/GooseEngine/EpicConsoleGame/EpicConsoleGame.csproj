@@ -9,15 +9,15 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EpicConsoleGame</RootNamespace>
     <AssemblyName>EpicConsoleGame</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>True</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -46,27 +46,27 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GooseEISExtension\GooseEISExtension.csproj">
-      <Project>{b01bb766-d04c-443b-a9e8-faa46deddceb}</Project>
+      <Project>{B01BB766-D04C-443B-A9E8-FAA46DEDDCEB}</Project>
       <Name>GooseEISExtension</Name>
     </ProjectReference>
     <ProjectReference Include="..\GooseEngineController\GooseEngineController.csproj">
-      <Project>{17b595ad-7f21-43eb-baee-70e9838842d1}</Project>
+      <Project>{17B595AD-7F21-43EB-BAEE-70E9838842D1}</Project>
       <Name>GooseEngineController</Name>
     </ProjectReference>
     <ProjectReference Include="..\GooseEngineManager\GooseEngineManager.csproj">
-      <Project>{148b0e7d-bdc7-46eb-9640-9b796eee78bf}</Project>
+      <Project>{148B0E7D-BDC7-46EB-9640-9B796EEE78BF}</Project>
       <Name>GooseEngineManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\GooseEngineView\GooseEngineView.csproj">
-      <Project>{7d41d1de-4947-45d8-8dd7-05ef290576c7}</Project>
+      <Project>{7D41D1DE-4947-45D8-8DD7-05EF290576C7}</Project>
       <Name>GooseEngineView</Name>
     </ProjectReference>
     <ProjectReference Include="..\GooseEngine\GooseEngine.csproj">
-      <Project>{1a146465-21f3-44d1-a779-6c4958cbd24b}</Project>
+      <Project>{1A146465-21F3-44D1-A779-6C4958CBD24B}</Project>
       <Name>GooseEngine</Name>
     </ProjectReference>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
-      <Project>{46919fe5-0649-4af3-bdba-6f25de0b8fe9}</Project>
+      <Project>{46919FE5-0649-4AF3-BDBA-6F25DE0B8FE9}</Project>
       <Name>JSLibrary</Name>
     </ProjectReference>
   </ItemGroup>

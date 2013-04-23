@@ -53,7 +53,7 @@
       <Name>GooseEngine</Name>
     </ProjectReference>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
-      <Project>{46919fe5-0649-4af3-bdba-6f25de0b8fe9}</Project>
+      <Project>{46919FE5-0649-4AF3-BDBA-6F25DE0B8FE9}</Project>
       <Name>JSLibrary</Name>
     </ProjectReference>
   </ItemGroup>

@@ -31,13 +31,17 @@ namespace GooseEISExtension
 			return actparser;
 		}
 
+
 		private EISConversionTool ContructEISConversionTool()
 		{
 			EISConversionTool tool = new EISConversionTool();
 			List<Type> converters = ExtendedType.FindAllDerivedTypes<GooseConverter>();
 			foreach (Type t in converters.Where(t => !t.IsAbstract))
 			{
-				tool.AddConverter((GooseConverter<GooseObject, IILElement>) Activator.CreateInstance(t));
+				if (t.BaseType.IsGenericType && t.BaseType.GetGenericArguments() == typeof(EISActionConverter<,>))
+				{
+					tool.AddConverter((GooseConverter<int, string>) Activator.CreateInstance(t));
+				}
 			}
 			return tool;
 		}
