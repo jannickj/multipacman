@@ -45,7 +45,7 @@
   <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\GooseEngineView\GooseEngineView.csproj">
-      <Project>{7d41d1de-4947-45d8-8dd7-05ef290576c7}</Project>
+      <Project>{7D41D1DE-4947-45D8-8DD7-05EF290576C7}</Project>
       <Name>GooseEngineView</Name>
     </ProjectReference>
     <ProjectReference Include="..\GooseEngine\GooseEngine.csproj">
@@ -53,7 +53,7 @@
       <Name>GooseEngine</Name>
     </ProjectReference>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
-      <Project>{46919fe5-0649-4af3-bdba-6f25de0b8fe9}</Project>
+      <Project>{46919FE5-0649-4AF3-BDBA-6F25DE0B8FE9}</Project>
       <Name>JSLibrary</Name>
     </ProjectReference>
   </ItemGroup>
