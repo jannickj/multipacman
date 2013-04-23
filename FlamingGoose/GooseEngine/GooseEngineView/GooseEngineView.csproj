@@ -38,16 +38,16 @@
     <Compile Include="Console\ConsoleEntityView.cs" />
     <Compile Include="Console\ConsoleViewFactory.cs" />
     <Compile Include="Console\ConsoleWorldView.cs" />
-    <Compile Include="Console\EntityViews\AgentConsoleView.cs" />
-    <Compile Include="Console\EntityViews\WallConsoleView.cs" />
     <Compile Include="Console\GooseConsoleView.cs" />
     <Compile Include="EntityView.cs" />
     <Compile Include="GooseView.cs" />
     <Compile Include="ViewFactory.cs" />
     <Compile Include="WorldView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Console\EntityViews\PlayerConsoleView.cs" />
-    <Compile Include="Console\EntityViews\ImpassableWallConsoleView.cs" />
+    <Compile Include="Console\EntityViews\ConsoleAgentView.cs" />
+    <Compile Include="Console\EntityViews\ConsoleImpassableWallView.cs" />
+    <Compile Include="Console\EntityViews\ConsolePlayerView.cs" />
+    <Compile Include="Console\EntityViews\ConsoleWallView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GooseEngine\GooseEngine.csproj">

@@ -4,9 +4,9 @@ using GooseEngineView.Console;
 
 namespace GooseEngineView
 {
-	public class PlayerConsoleView : ConsoleEntityView
+	public class ConsolePlayerView : ConsoleEntityView
 	{
-		public PlayerConsoleView(Entity model)
+		public ConsolePlayerView(Entity model)
 			: base(model)
 		{
 		}

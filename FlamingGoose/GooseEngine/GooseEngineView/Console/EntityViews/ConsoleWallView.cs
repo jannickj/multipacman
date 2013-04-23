@@ -2,16 +2,16 @@ using GooseEngine;
 
 namespace GooseEngineView.Console.EntityViews
 {
-	public class AgentConsoleView : ConsoleEntityView
+	public class ConsoleWallView : ConsoleEntityView
 	{
-		public AgentConsoleView(Entity model)
+		public ConsoleWallView(Entity model)
 			: base(model)
 		{
 		}
 
 		public override char Symbol
 		{
-			get { return 'A'; }
+			get { return 'W'; }
 		}
 	}
 }

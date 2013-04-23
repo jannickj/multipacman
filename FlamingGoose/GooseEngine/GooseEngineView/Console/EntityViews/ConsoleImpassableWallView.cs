@@ -2,9 +2,9 @@ using System;
 using GooseEngineView.Console;
 using GooseEngine;
 
-public class ImpassableWallConsoleView : ConsoleEntityView
+public class ConsoleImpassableWallView : ConsoleEntityView
 {
-	public ImpassableWallConsoleView(Entity model)
+	public ConsoleImpassableWallView(Entity model)
 		: base(model)
 	{
 	}

@@ -14,10 +14,10 @@ namespace GooseEngineView
 
 		public ViewFactory ()
 		{
-			AddTypeLink<Agent, AgentConsoleView> ();
-			AddTypeLink<Wall,WallConsoleView> ();
-			AddTypeLink<Player,PlayerConsoleView> ();
-			AddTypeLink<ImpassableWall, ImpassableWallConsoleView> ();
+			AddTypeLink<Agent, ConsoleAgentView> ();
+			AddTypeLink<Wall,ConsoleWallView> ();
+			AddTypeLink<Player,ConsolePlayerView> ();
+			AddTypeLink<ImpassableWall, ConsoleImpassableWallView> ();
 		}
 
 		public void AddTypeLink<TModel, TView> () 
