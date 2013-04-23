@@ -19,9 +19,9 @@ namespace GooseEngineView.Console
 
 		public abstract char Symbol { get; }
 
-		public Entity Model
-		{
+		public Entity Model {
 			get { return model; }
+			set { model = value; }
 		}
 
 		public Point Position

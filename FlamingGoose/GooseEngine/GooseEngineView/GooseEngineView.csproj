@@ -46,6 +46,8 @@
     <Compile Include="ViewFactory.cs" />
     <Compile Include="WorldView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Console\EntityViews\PlayerConsoleView.cs" />
+    <Compile Include="Console\EntityViews\ImpassableWallConsoleView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GooseEngine\GooseEngine.csproj">
