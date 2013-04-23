@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using GooseEngine.Exceptions;
 using GooseEngine.GameManagement;
+using GooseEngine.GameManagement.Actions;
 using GooseEngine.GameManagement.Events;
 using GooseEngine.Interfaces;
 using JSLibrary.Data;
@@ -26,15 +27,23 @@ namespace GooseEngine
 			ActionManager = actman;
 			EventManager = evtman;
 			Factory = factory;
+			this.factory.EntityCreated += factory_EntityCreated;
 
 			EventManager.Register(new Trigger<EngineCloseEvent>(evtman_EngineClose));
 			ActionManager.ActionQueuing += actman_ActionQueuing;
 			ActionManager.ActionQueued += actman_ActionQueued;
 		}
 
+		void factory_EntityCreated(object sender, UnaryValueEvent<Tuple<Entity, Point>> evt)
+		{
+			this.AddEntity(evt.Value.Item1,evt.Value.Item2);
+		}
+
+		
+
 		public void Initialize()
 		{
-
+			
 		}
 
 		public void Start()
@@ -67,6 +76,7 @@ namespace GooseEngine
 		{
             AddActor(entity);
 			World.AddEntity(loc, entity);
+			this.ActionManager.QueueAction(new SimpleAction(() => this.EventManager.Raise(new EntityAddedEvent(entity))));
 		}
 
         public void AddActor(GooseActor actor)

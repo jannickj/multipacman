@@ -15,6 +15,7 @@ namespace GooseEngineManager
 	{
 		public virtual GooseModel ConstructModel(GooseMap map)
 		{
+			
 			GooseWorld world = new GooseWorld(map);
 			ActionManager actman = ConstructActionManager();
 			EventManager evtman = ConstructEventManager();

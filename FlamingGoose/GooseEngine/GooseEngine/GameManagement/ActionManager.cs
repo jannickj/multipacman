@@ -9,7 +9,6 @@ namespace GooseEngine.GameManagement
 	{
 		private Queue<GameAction> awaitingActions = new Queue<GameAction>();
 		private HashSet<GameAction> runningActions = new HashSet<GameAction>();
-		private List<object> wakeup = new List<object>();
 
 		public ICollection<GameAction> RunningActions
 		{

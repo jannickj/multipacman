@@ -6,9 +6,9 @@ using JSLibrary.Data;
 
 namespace EpicConsoleGame
 {
-	public class TestMap1 : GooseMap
+	public class TestWorld1 : GooseWorld
 	{
-		public TestMap1() : base(new Size(6, 6))
+		public TestWorld1() : base(new Size(6, 6))
 		{
 			BuildMap();
 		}
@@ -51,7 +51,7 @@ namespace EpicConsoleGame
 				factor *= -1;
 			}
 
-			this[0, 0].AddEntity(new Player());
+			this.AddEntity(new Point(0, 0), new Player());
 		}
 
 		public IEnumerable<int> AlternateRange(int start, int count, int inc)
