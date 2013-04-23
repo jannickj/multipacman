@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using GooseEngine.Perceptions;
 using JSLibrary.Data;
+using GooseEngine.Perceptions;
 
 namespace GooseEngine
 {
@@ -40,6 +40,7 @@ namespace GooseEngine
 		{
 			entlocs.Add(entity, loc);
 			map[loc.X, loc.Y].AddEntity(entity);
+
 		}
 
 		public Point GetEntityPosition(Entity entity)

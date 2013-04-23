@@ -69,6 +69,11 @@ namespace GooseEngine
 			World.AddEntity(loc, entity);
 		}
 
+		public void AddEntity(Entity entity)
+		{
+			AddEntity(entity, new Point(0, 0));
+		}
+
         public void AddActor(GooseActor actor)
         {
             actor.ActionManager = ActionManager;
@@ -76,11 +81,6 @@ namespace GooseEngine
             actor.World = World;
             actor.Factory = Factory;
         }
-
-		public void AddEntity(Entity entity)
-		{
-			AddEntity(entity, new Point(0, 0));
-		}
 
 		public bool EngineCrashed(out Exception exception)
 		{

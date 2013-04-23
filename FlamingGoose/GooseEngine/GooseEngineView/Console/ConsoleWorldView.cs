@@ -11,8 +11,6 @@ namespace GooseEngineView.Console
 		private GooseWorld model;
 		private Dictionary<Entity, ConsoleEntityView> viewlookup = new Dictionary<Entity, ConsoleEntityView>();
 
-		public ThreadSafeEventManager EventManager { get; set; }
-
 		public ConsoleWorldView(GooseWorld model)
 		{
 			this.model = model;
@@ -31,7 +29,6 @@ namespace GooseEngineView.Console
 		public void AddEntity(ConsoleEntityView entview)
 		{
 			viewlookup.Add(entview.Model, entview);
-			EventManager.AddEventQueue (entview.EventQueue);
 		}
 
 		public Dictionary<Point, ConsoleEntityView> AllEntities()

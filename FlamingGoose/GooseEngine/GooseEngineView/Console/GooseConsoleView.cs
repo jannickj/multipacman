@@ -13,14 +13,16 @@ namespace GooseEngineView.Console
 		private ConsoleWorldView viewWorld;
 		private ThreadSafeEventQueue eventqueue;
 		private ThreadSafeEventManager evtmanager;
+		private ConsoleViewFactory entityFactory;
 
-		public GooseConsoleView(GooseModel model, ConsoleWorldView viewWorld)
+		public GooseConsoleView(GooseModel model, ConsoleWorldView viewWorld, ConsoleViewFactory entityFactory)
 		{
 			this.model = model;
 			this.viewWorld = viewWorld;
+			this.entityFactory = entityFactory;
 			evtmanager = new ThreadSafeEventManager ();
 			eventqueue = model.EventManager.ConstructEventQueue ();
-			viewWorld.EventManager = evtmanager;
+			eventqueue.Register(new Trigger<EntityAddedEvent> (Model_EntityAdded));
 		}
 
 		public void Setup()
@@ -73,6 +75,11 @@ namespace GooseEngineView.Console
             timer.Elapsed += timer_Elapsed;
             timer.Interval = 1000 / 25;
             timer.Start();
+		}
+
+		private void Model_EntityAdded(EntityAddedEvent evt)
+		{
+			viewWorld.AddEntity (entityFactory.ConstructEntityView (evt.AddedEntity));
 		}
 	}
 }

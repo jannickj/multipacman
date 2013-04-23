@@ -5,18 +5,9 @@ using JSLibrary.Data;
 
 namespace GooseEngineView.Console
 {
-	public abstract class ConsoleEntityView
+	public abstract class ConsoleEntityView : EntityView
 	{
-		private Entity model;
-		protected Point position;
-		private ThreadSafeEventQueue eventqueue;
-
-		public ThreadSafeEventQueue EventQueue
-		{
-			get { return eventqueue; }
-		}
-
-		public ConsoleEntityView(Entity model)
+		public ConsoleEntityView(Entity model) : base(model)
 		{
 			this.model = model;
 			position = model.Position;
@@ -25,20 +16,5 @@ namespace GooseEngineView.Console
 		}
 
 		public abstract char Symbol { get; }
-
-		public Entity Model {
-			get { return model; }
-			set { model = value; }
-		}
-
-		public Point Position
-		{
-			get { return position; }
-		}
-
-		protected virtual void UnitMoved(UnitMovePostEvent evt)
-		{
-			position = evt.NewPos;
-		}
 	}
 }

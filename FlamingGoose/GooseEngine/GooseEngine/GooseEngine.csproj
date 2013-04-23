@@ -98,6 +98,7 @@
     <Compile Include="Percept.cs" />
     <Compile Include="GooseWorld.cs" />
     <Compile Include="GooseMap.cs" />
+    <Compile Include="GameManagement\Events\EntityAddedEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\MapEntities\" />
