@@ -59,7 +59,7 @@ namespace GooseEngineView.Console
 
 		public override void Start()
 		{
-            System.Console.SetWindowSize(viewWorld.Width, viewWorld.Height);
+//            System.Console.SetWindowSize(viewWorld.Width, viewWorld.Height);
             Timer timer = new Timer();
             timer.Elapsed += timer_Elapsed;
             timer.Interval = 1000 / 25;
