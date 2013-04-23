@@ -6,9 +6,9 @@ using JSLibrary.Data;
 
 namespace EpicConsoleGame
 {
-	public class SweetMap : GooseMap
+	public class TestMap1 : GooseMap
 	{
-		public SweetMap() : base(new Size(6, 6))
+		public TestMap1() : base(new Size(6, 6))
 		{
 			BuildMap();
 		}

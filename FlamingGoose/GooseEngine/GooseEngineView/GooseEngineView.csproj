@@ -35,17 +35,17 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Console\ConsoleEntityView.cs" />
+    <Compile Include="Console\ConsoleViewFactory.cs" />
+    <Compile Include="Console\ConsoleWorldView.cs" />
+    <Compile Include="Console\EntityViews\AgentConsoleView.cs" />
+    <Compile Include="Console\EntityViews\WallConsoleView.cs" />
+    <Compile Include="Console\GooseConsoleView.cs" />
     <Compile Include="EntityView.cs" />
     <Compile Include="GooseView.cs" />
-    <Compile Include="Testing\ConsoleView\ConsoleEntityView.cs" />
-    <Compile Include="Testing\ConsoleView\ConsoleViewFactory.cs" />
-    <Compile Include="Testing\ConsoleView\ConsoleWorldView.cs" />
-    <Compile Include="Testing\ConsoleView\GooseConsoleView.cs" />
     <Compile Include="ViewFactory.cs" />
     <Compile Include="WorldView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Testing\ConsoleView\EntityViews\WallConsoleView.cs" />
-    <Compile Include="Testing\ConsoleView\EntityViews\AgentConsoleView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GooseEngine\GooseEngine.csproj">

@@ -1,9 +1,9 @@
-﻿using GooseEngine;
+using GooseEngine;
 using GooseEngine.GameManagement;
 using GooseEngine.GameManagement.Events;
 using JSLibrary.Data;
 
-namespace GooseEngineView.Testing.ConsoleView
+namespace GooseEngineView.Console
 {
 	public abstract class ConsoleEntityView
 	{

@@ -6,7 +6,6 @@ using GooseEngine.GameManagement;
 using GooseEngineController;
 using GooseEngineController.AI;
 using GooseEngineView;
-using GooseEngineView.Testing.ConsoleView;
 
 namespace GooseEngineManager
 {

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using GooseEngine;
 using JSLibrary.Data;
 
-namespace GooseEngineView.Testing.ConsoleView
+namespace GooseEngineView.Console
 {
 	public class ConsoleWorldView
 	{

@@ -1,6 +1,6 @@
 using GooseEngine;
 
-namespace GooseEngineView.Testing.ConsoleView.EntityViews
+namespace GooseEngineView.Console.EntityViews
 {
 	public class AgentConsoleView : ConsoleEntityView
 	{

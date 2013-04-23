@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Timers;
 using JSLibrary.Data;
 
-namespace GooseEngineView.Testing.ConsoleView
+namespace GooseEngineView.Console
 {
 	public class GooseConsoleView : GooseView
 	{
@@ -26,8 +26,8 @@ namespace GooseEngineView.Testing.ConsoleView
 
 		private void draw()
 		{
-			Console.SetCursorPosition(0, 0);
-			Console.Write(Area());
+			System.Console.SetCursorPosition(0, 0);
+			System.Console.Write(Area());
 		}
 
 		public Char[] Area()
@@ -58,7 +58,7 @@ namespace GooseEngineView.Testing.ConsoleView
 
 		public override void Start()
 		{
-            Console.SetWindowSize(viewWorld.Width, viewWorld.Height);
+            System.Console.SetWindowSize(viewWorld.Width, viewWorld.Height);
             Timer timer = new Timer();
             timer.Elapsed += timer_Elapsed;
             timer.Interval = 1000 / 25;

@@ -2,7 +2,7 @@
 using System.Threading;
 using GooseEngine;
 using GooseEngineController.AI;
-using GooseEngineView.Testing.ConsoleView;
+using GooseEngineView.Console;
 
 namespace GooseEngineController
 {
