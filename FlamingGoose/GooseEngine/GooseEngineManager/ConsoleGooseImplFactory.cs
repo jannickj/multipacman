@@ -14,7 +14,7 @@ namespace GooseEngineManager
 
         public override GooseConsoleView ConstructView(GooseModel model)
         {
-            return new GooseConsoleView(contructWorldView(model.World));
+            return new GooseConsoleView(model,contructWorldView(model.World));
         }
 
         private ConsoleWorldView contructWorldView(GooseWorld modelworld)
