@@ -9,12 +9,19 @@ namespace GooseEngineView.Console
 	{
 		private Entity model;
 		protected Point position;
+		private ThreadSafeEventQueue eventqueue;
+
+		public ThreadSafeEventQueue EventQueue
+		{
+			get { return eventqueue; }
+		}
 
 		public ConsoleEntityView(Entity model)
 		{
 			this.model = model;
 			position = model.Position;
-			model.Register(new Trigger<UnitMovePostEvent>(UnitMoved));
+			eventqueue = model.ConstructEventQueue ();
+			eventqueue.Register (new Trigger<UnitMovePostEvent> (UnitMoved));
 		}
 
 		public abstract char Symbol { get; }

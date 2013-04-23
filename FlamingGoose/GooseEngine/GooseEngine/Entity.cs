@@ -118,5 +118,10 @@ namespace GooseEngine
 					TriggerRaised(this, evt);
 			}
 		}
+
+		public ThreadSafeEventQueue ConstructEventQueue ()
+		{
+			return new ThreadSafeEventQueue(triggers);
+		}
 	}
 }

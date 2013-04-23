@@ -36,6 +36,11 @@ namespace GooseEngine.GameManagement
 			triggerManager.Deregister(trigger);
 		}
 
+		public ThreadSafeEventQueue ConstructEventQueue ()
+		{
+			return new ThreadSafeEventQueue (triggerManager);
+		}
+
 		#region EVENTS
 
 		private void entity_TriggerRaised(object sender, GameEvent e)

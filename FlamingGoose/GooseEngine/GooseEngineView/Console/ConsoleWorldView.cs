@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using GooseEngine;
 using JSLibrary.Data;
+using GooseEngine.GameManagement;
 
 namespace GooseEngineView.Console
 {
@@ -10,10 +11,11 @@ namespace GooseEngineView.Console
 		private GooseWorld model;
 		private Dictionary<Entity, ConsoleEntityView> viewlookup = new Dictionary<Entity, ConsoleEntityView>();
 
+		public ThreadSafeEventManager EventManager { get; set; }
+
 		public ConsoleWorldView(GooseWorld model)
 		{
 			this.model = model;
-			
 		}
 
 		public int Width
@@ -29,8 +31,8 @@ namespace GooseEngineView.Console
 		public void AddEntity(ConsoleEntityView entview)
 		{
 			viewlookup.Add(entview.Model, entview);
+			EventManager.AddEventQueue (entview.EventQueue);
 		}
-
 
 		public Dictionary<Point, ConsoleEntityView> AllEntities()
 		{
@@ -43,7 +45,6 @@ namespace GooseEngineView.Console
 
 		public void gooseWorld_EntityAdded(object sender, EventArgs e)
 		{
-
 
 		}
 	}

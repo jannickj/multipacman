@@ -2,16 +2,25 @@ using System;
 using System.Collections.Generic;
 using System.Timers;
 using JSLibrary.Data;
+using GooseEngine.GameManagement;
+using GooseEngine;
 
 namespace GooseEngineView.Console
 {
 	public class GooseConsoleView : GooseView
 	{
+		private GooseModel model;
 		private ConsoleWorldView viewWorld;
+		private ThreadSafeEventQueue eventqueue;
+		private ThreadSafeEventManager evtmanager;
 
-		public GooseConsoleView(ConsoleWorldView viewWorld)
+		public GooseConsoleView(GooseModel model, ConsoleWorldView viewWorld)
 		{
+			this.model = model;
 			this.viewWorld = viewWorld;
+			evtmanager = new ThreadSafeEventManager ();
+			eventqueue = model.EventManager.ConstructEventQueue ();
+			viewWorld.EventManager = evtmanager;
 		}
 
 		public void Setup()
