@@ -9,18 +9,21 @@ using GooseEngine;
 using GooseEngine.Conversion;
 using JSLibrary;
 using iilang;
+using GooseEngineController;
+using GooseEngineController.AI;
 
 namespace GooseEISExtension
 {
-	public class EisGooseEngineFactory
+    public class EisAgentFactory : AgentFactory
 	{
-		public EISAgentServer ConstructEisAgentServer(string ip, int port)
-		{
-			TcpListener listener = new TcpListener(IPAddress.Parse(ip), port);
-			EISAgentServer server = new EISAgentServer(listener, ContructEISConversionTool(), ConstructIILActionParser());
-			return server;
-		}
+        private IPAddress ip;
+        private int port;
 
+        public EisAgentFactory(IPAddress ip, int port)
+        {
+            this.ip = ip;
+            this.port = port;
+        }
 
 		private IILActionParser ConstructIILActionParser()
 		{
@@ -38,5 +41,16 @@ namespace GooseEISExtension
 			}
 			return tool;
 		}
-	}
+
+
+
+        public override AgentServer ContructServer()
+        {
+            TcpListener listener = new TcpListener(ip, port);
+            EISAgentServer server = new EISAgentServer(listener, ContructEISConversionTool(), ConstructIILActionParser());
+            return server;
+        }
+
+
+    }
 }

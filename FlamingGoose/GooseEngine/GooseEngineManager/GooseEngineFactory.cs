@@ -10,8 +10,7 @@ using GooseEngineView.Testing.ConsoleView;
 
 namespace GooseEngineManager
 {
-	public class GooseEngineFactory<TModel,TView,TController>
-		where TModel : GooseModel
+	public abstract class GooseEngineFactory<TView,TController>
 		where TView : GooseView
 		where TController : GooseController
 	{
@@ -41,28 +40,24 @@ namespace GooseEngineManager
 			return new ActionManager();
 		}
 
-		private ConsoleWorldView ConstructWorldView(GooseWorld world)
-		{
-			return new ConsoleWorldView(world);
-		}
+		public abstract TView ConstructView(GooseModel model);
 
-		public virtual GooseConsoleView ConstructView(GooseModel model)
-		{
 
-			return new GooseConsoleView(ConstructWorldView(model.World));
-		}
+        public abstract TController ContructController(GooseModel model, TView view);
 
-		public virtual GooseController ContructController(GooseModel model, GooseView view)
-		{
-			return new GooseController(model);
-		}
 
-		public Tuple<GooseModel,GooseView,GooseWorld> SimpleConstructAndStartOfEngine(GooseMap map, List<AgentServer> agentServers)
+        
+		public Tuple<GooseModel,TView,TController> FullConstruct(GooseMap map,params AgentFactory[] agentFactory)
 		{
 			GooseModel model = this.ConstructModel(map);
-			
-		
-			return null;
+            TView view = this.ConstructView(model);
+            TController controller = this.ContructController(model, view);
+
+            foreach (AgentFactory afact in agentFactory)
+                controller.AddAiServer(afact.ContructServer());
+           
+
+			return Tuple.Create(model, view, controller);
 		}
 
 		public void StartEngine(GooseModel model, GooseView view, GooseController controller)

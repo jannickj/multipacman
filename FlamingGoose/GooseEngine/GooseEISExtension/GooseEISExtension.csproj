@@ -38,7 +38,7 @@
   <ItemGroup>
     <Compile Include="Controller\AI\EISAgentController.cs" />
     <Compile Include="Controller\AI\EISAgentServer.cs" />
-    <Compile Include="EISGooseEngineFactory.cs" />
+    <Compile Include="EisAgentFactory.cs" />
     <Compile Include="Model\ActionTypes\EISGetAllPercepts.cs" />
     <Compile Include="Model\ActionTypes\EISMoveUnit.cs" />
     <Compile Include="Model\Conversion\IILang\Actions\GetAllPerceptsActionConverter.cs" />

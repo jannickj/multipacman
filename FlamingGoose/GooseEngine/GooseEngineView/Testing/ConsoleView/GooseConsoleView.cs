@@ -16,11 +16,7 @@ namespace GooseEngineView.Testing.ConsoleView
 
 		public void Setup()
 		{
-			Console.SetWindowSize(viewWorld.Width, viewWorld.Height);
-			Timer timer = new Timer();
-			timer.Elapsed += timer_Elapsed;
-			timer.Interval = 1000/25;
-			timer.Start();
+			
 		}
 
 		private void timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -62,7 +58,11 @@ namespace GooseEngineView.Testing.ConsoleView
 
 		public override void Start()
 		{
-			throw new NotImplementedException();
+            Console.SetWindowSize(viewWorld.Width, viewWorld.Height);
+            Timer timer = new Timer();
+            timer.Elapsed += timer_Elapsed;
+            timer.Interval = 1000 / 25;
+            timer.Start();
 		}
 	}
 }

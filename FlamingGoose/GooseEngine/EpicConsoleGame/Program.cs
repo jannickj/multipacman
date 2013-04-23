@@ -2,9 +2,11 @@
 using GooseEISExtension;
 using GooseEngine;
 using GooseEngineController;
-using GooseEngineManager;
 using GooseEngineView;
 using GooseEngineView.Testing.ConsoleView;
+using GooseEngineManager;
+using System.Net;
+using System;
 
 namespace EpicConsoleGame
 {
@@ -12,16 +14,11 @@ namespace EpicConsoleGame
 	{
 		private static void Main(string[] args)
 		{
-			GooseEngineFactory<GooseModel,GooseView,GooseController> factory = null;
-			EisGooseEngineFactory eisfactory = new EisGooseEngineFactory();
+            ConsoleGooseImplFactory factory = new ConsoleGooseImplFactory();
 
-			GooseModel model = factory.ConstructModel(new SweetMap());
-			
-			GooseConsoleView view = factory.ConstructView(model);
+			var t = factory.FullConstruct(new SweetMap(),new EisAgentFactory(IPAddress.Parse("127.0.0.1"),133766));
 
-			GooseController controller = factory.ContructController(model, view);
-
-			factory.StartEngine(model, view, controller);
+            factory.StartEngine(t.Item1, t.Item2, t.Item3);
 		}
 	}
 }

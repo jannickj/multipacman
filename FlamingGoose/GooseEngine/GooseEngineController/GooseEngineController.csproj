@@ -35,13 +35,19 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgentFactory.cs" />
     <Compile Include="AI\AgentController.cs" />
     <Compile Include="AI\AgentServer.cs" />
+    <Compile Include="Console\ConsoleController.cs" />
     <Compile Include="GooseController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\GooseEngineView\GooseEngineView.csproj">
+      <Project>{7d41d1de-4947-45d8-8dd7-05ef290576c7}</Project>
+      <Name>GooseEngineView</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GooseEngine\GooseEngine.csproj">
       <Project>{1A146465-21F3-44D1-A779-6C4958CBD24B}</Project>
       <Name>GooseEngine</Name>

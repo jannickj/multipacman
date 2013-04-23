@@ -17,6 +17,7 @@ namespace GooseEngine
 		private GooseFactory factory;
 		private bool stopEngine;
 		private GooseWorld world;
+        private AutoResetEvent actionRecieved = new AutoResetEvent(false);
 
 
 		public GooseModel(GooseWorld world, ActionManager actman, EventManager evtman, GooseFactory factory)
@@ -45,12 +46,12 @@ namespace GooseEngine
 				while (true)
 				{
 					ActionManager.ExecuteActions();
-					if (stopEngine)
-						break;
-					lock (ActionManager)
-					{
-						Monitor.Wait(ActionManager);
-					}
+                    lock (this)
+                    {
+                        if (stopEngine)
+                            break;
+                    }
+                    actionRecieved.WaitOne();
 				}
 			}
 			catch (ForceStopEngineException)
@@ -64,12 +65,17 @@ namespace GooseEngine
 
 		public void AddEntity(Entity entity, Point loc)
 		{
-			entity.ActionManager = ActionManager;
-			entity.EventManager = EventManager;
-			entity.World = World;
-			entity.Factory = Factory;
+            AddActor(entity);
 			World.AddEntity(loc, entity);
 		}
+
+        public void AddActor(GooseActor actor)
+        {
+            actor.ActionManager = ActionManager;
+            actor.EventManager = EventManager;
+            actor.World = World;
+            actor.Factory = Factory;
+        }
 
 		public void AddEntity(Entity entity)
 		{
@@ -92,11 +98,9 @@ namespace GooseEngine
 
 		private void evtman_EngineClose(EngineCloseEvent e)
 		{
-			stopEngine = true;
-			lock (this)
-			{
-				Monitor.PulseAll(this);
-			}
+            stopEngine = true;
+
+            this.actionRecieved.Set();
 		}
 
 		private void actman_ActionQueuing(object sender, UnaryValueEvent<GameAction> evt)
@@ -148,6 +152,6 @@ namespace GooseEngine
 		#endregion
 
 
-		
-	}
+    
+    }
 }

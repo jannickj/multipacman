@@ -8,7 +8,7 @@ using GooseEngine.Interfaces;
 
 namespace GooseEngineController.AI
 {
-	public abstract class AgentServer : GooseActor, IStartable
+    public abstract class AgentServer : GooseActor, IStartable
 	{
 		private Dictionary<AgentController, AgentControllerInfomation> agents =
 			new Dictionary<AgentController, AgentControllerInfomation>();
@@ -138,6 +138,7 @@ namespace GooseEngineController.AI
 		}
 
 
-		
-	}
+
+
+    }
 }
