@@ -66,6 +66,10 @@ namespace GooseEngineManager
 			Thread viewt = fact.CreateThread(view.Start);
 			Thread cont = fact.CreateThread(controller.Start);
 
+			modelt.Name = "Model Thread";
+			viewt.Name = "View Thread";
+			cont.Name = "Controller Thread";
+
 			model.Initialize();
 			view.Initialize();
 			controller.Initialize();

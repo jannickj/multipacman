@@ -26,6 +26,7 @@ namespace GooseEngineView.Console
 
 		private void draw()
 		{
+			;
 			System.Console.SetCursorPosition(0, 0);
 			System.Console.Write(Area());
 		}

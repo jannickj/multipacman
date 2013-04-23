@@ -62,6 +62,8 @@
     <Compile Include="GameManagement\Interfaces\ITrigger.cs" />
     <Compile Include="GameManagement\Interfaces\ITriggerContainer.cs" />
     <Compile Include="GameManagement\MultiTrigger.cs" />
+    <Compile Include="GameManagement\ThreadSafeEventManager.cs" />
+    <Compile Include="GameManagement\ThreadSafeEventQueue.cs" />
     <Compile Include="GameManagement\Trigger.cs" />
     <Compile Include="Entities\ImpassableWall.cs" />
     <Compile Include="Entities\Interactable.cs" />

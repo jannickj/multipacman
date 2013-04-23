@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using GooseEngine;
 using JSLibrary.Data;
@@ -12,6 +13,7 @@ namespace GooseEngineView.Console
 		public ConsoleWorldView(GooseWorld model)
 		{
 			this.model = model;
+			
 		}
 
 		public int Width
@@ -36,7 +38,13 @@ namespace GooseEngineView.Console
 			foreach (KeyValuePair<Entity, ConsoleEntityView> kv in viewlookup)
 				locs.Add(kv.Value.Position, kv.Value);
 
-			return null;
+			return locs;
+		}
+
+		public void gooseWorld_EntityAdded(object sender, EventArgs e)
+		{
+
+
 		}
 	}
 }

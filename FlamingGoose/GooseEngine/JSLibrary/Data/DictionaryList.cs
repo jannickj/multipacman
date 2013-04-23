@@ -11,43 +11,55 @@ namespace JSLibrary.Data
 		{
 			get
 			{
-				HashSet<TValue> vals;
-				if (dic.TryGetValue(key, out vals))
-					return vals.ToArray();
+				lock (dic)
+				{
+					HashSet<TValue> vals;
+					if (dic.TryGetValue(key, out vals))
+						return vals.ToArray();
 
-				return new TValue[0];
+					return new TValue[0];
+				}
 			}
 		}
 
 		public ICollection<TValue> Get(TKey key)
 		{
-			return this[key];
+			lock(dic)
+			{
+				return this[key].ToArray();
+			}
 		}
 
 		public bool Add(TKey key, TValue val)
 		{
-			HashSet<TValue> vals;
-			if (!dic.TryGetValue(key, out vals))
+			lock (dic)
 			{
-				vals = new HashSet<TValue>();
-				dic[key] = vals;
+				HashSet<TValue> vals;
+				if (!dic.TryGetValue(key, out vals))
+				{
+					vals = new HashSet<TValue>();
+					dic[key] = vals;
+				}
+				return vals.Add(val);
 			}
-			return vals.Add(val);
 		}
 
 		public bool Remove(TKey key, TValue val)
 		{
-			HashSet<TValue> vals;
-			if (dic.TryGetValue(key, out vals))
+			lock(dic)
 			{
-				if (vals.Remove(val))
+				HashSet<TValue> vals;
+				if (dic.TryGetValue(key, out vals))
 				{
-					if (vals.Count == 0)
-						dic.Remove(key);
-					return true;
+					if (vals.Remove(val))
+					{
+						if (vals.Count == 0)
+							dic.Remove(key);
+						return true;
+					}
 				}
+				return false;
 			}
-			return false;
 		}
 	}
 }

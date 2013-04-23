@@ -35,6 +35,7 @@ namespace GooseEngineController
 			foreach (AgentServer ac in aiservs)
 			{
 				Thread t = model.Factory.CreateThread(ac.Start);
+				t.Name = ac.GetType().Name + " thread";
 				t.Start();
 			}
 		}

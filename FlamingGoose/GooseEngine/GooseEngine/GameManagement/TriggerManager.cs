@@ -9,6 +9,8 @@ namespace GooseEngine.GameManagement
 	{
 		private DictionaryList<Type, Trigger> triggers = new DictionaryList<Type, Trigger>();
 
+		internal event UnaryValueHandler<GameEvent> EventRaised; 
+
 		public void Raise(GameEvent evt)
 		{
 			ICollection<Trigger> trigered = triggers.Get(evt.GetType());
@@ -17,6 +19,7 @@ namespace GooseEngine.GameManagement
 				if (t.CheckCondition(evt))
 					t.Execute(evt);
 			}
+
 		}
 
 		public void Register(Trigger trigger)
