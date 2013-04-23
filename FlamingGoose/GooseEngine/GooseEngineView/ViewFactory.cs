@@ -8,17 +8,9 @@ using GooseEngineView.Console;
 
 namespace GooseEngineView
 {
-	public class ViewFactory
+	public abstract class ViewFactory
 	{
-		private Dictionary<Type, Type> typeDict = new Dictionary<Type, Type> ();
-
-		public ViewFactory ()
-		{
-			AddTypeLink<Agent, ConsoleAgentView> ();
-			AddTypeLink<Wall,ConsoleWallView> ();
-			AddTypeLink<Player,ConsolePlayerView> ();
-			AddTypeLink<ImpassableWall, ConsoleImpassableWallView> ();
-		}
+		protected Dictionary<Type, Type> typeDict = new Dictionary<Type, Type> ();
 
 		public void AddTypeLink<TModel, TView> () 
 			where TModel : Entity
@@ -27,11 +19,6 @@ namespace GooseEngineView
 			typeDict.Add (typeof(TModel), typeof(TView));
 		}
 
-		public ConsoleEntityView ConstructEntityView (Entity model)
-		{
-			ConsoleEntityView retval = (ConsoleEntityView) Activator.CreateInstance (typeDict [model.GetType ()]);
-			retval.Model = model;
-			return retval;
-		}
+		public abstract EntityView ConstructEntityView (Entity model);
 	}
 }

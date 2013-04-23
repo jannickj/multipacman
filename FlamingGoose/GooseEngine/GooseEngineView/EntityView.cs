@@ -1,21 +1,42 @@
 ﻿using GooseEngine;
 using GooseEngine.GameManagement;
 using GooseEngine.GameManagement.Events;
+using JSLibrary.Data;
 
-namespace GooseEngineView
+namespace GooseEngineView.Console
 {
 	public class EntityView
 	{
-		private GooseObject gobj;
-
-		public EntityView(GooseObject gobj, Entity entity)
+		protected Entity model;
+		protected Point position;
+		protected ThreadSafeEventQueue eventqueue;
+		
+		public ThreadSafeEventQueue EventQueue
 		{
-			this.gobj = gobj;
-			entity.Register(new Trigger<UnitMovePreEvent>(unit_Move));
+			get { return eventqueue; }
 		}
-
-		private void unit_Move(UnitMovePreEvent obj)
+		
+		public EntityView(Entity model)
 		{
+			this.model = model;
+			position = model.Position;
+			eventqueue = model.ConstructEventQueue ();
+			eventqueue.Register (new Trigger<UnitMovePostEvent> (UnitMoved));
+		}
+		
+		public Entity Model {
+			get { return model; }
+			set { model = value; }
+		}
+		
+		public Point Position
+		{
+			get { return position; }
+		}
+		
+		protected virtual void UnitMoved(UnitMovePostEvent evt)
+		{
+			position = evt.NewPos;
 		}
 	}
 }

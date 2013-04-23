@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using JSLibrary.Data;
 using System.Linq;
 using GooseEngine.Perceptions;
-using JSLibrary.Data;
 
 namespace GooseEngine
 {
@@ -42,6 +42,7 @@ namespace GooseEngine
 		{
 			entlocs.Add(entity, loc);
 			map[loc.X, loc.Y].AddEntity(entity);
+
 		}
 
 		protected internal void RemoveEntity(Entity entity)
