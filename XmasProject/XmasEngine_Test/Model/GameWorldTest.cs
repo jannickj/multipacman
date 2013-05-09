@@ -19,7 +19,7 @@ namespace XmasEngine_Test.Model
 			world.AddEntity(new Point(1, 2), agent);
 
 			Point expected = new Point(1, 2);
-			Point actual = world.GetEntityPosition(agent);
+			Point actual = ((TilePosition)world.GetEntityPosition(agent)).Point;
 			Assert.AreEqual(expected, actual);
 		}
 	}

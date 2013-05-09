@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using JSLibrary.Data;
 using System.Linq;
 using XmasEngineModel.Perceptions;
+using XmasEngineModel.World;
 
 namespace XmasEngineModel
 {
-	public class TileWorld
+	public class TileWorld : XmasWorld
 	{
 		private Dictionary<Entity, Point> entlocs = new Dictionary<Entity, Point>();
 		private XmasMap map;
@@ -57,9 +58,24 @@ namespace XmasEngineModel
 			}
 		}
 
-		public Point GetEntityPosition(Entity entity)
+		protected override void AddEntity(Entity ent, EntitySpawnInformation info)
 		{
-			return entlocs[entity];
+			throw new NotImplementedException();
+		}
+
+		public override XmasPosition GetEntityPosition(Entity entity)
+		{
+			throw new NotImplementedException();
+		}
+
+		//public Point GetEntityPosition(Entity entity)
+		//{
+		//	return entlocs[entity];
+		//}
+
+		public override void SetEntityPosition(Entity entity, XmasPosition tilePosition)
+		{
+			throw new NotImplementedException();
 		}
 
 		internal void SetEntityLocation(Point loc, Entity entity)
