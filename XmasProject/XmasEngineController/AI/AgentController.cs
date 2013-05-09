@@ -1,12 +1,12 @@
 using System;
 using System.Threading;
-using GooseEngine;
-using GooseEngine.Entities.Units;
-using GooseEngine.GameManagement;
-using GooseEngine.GameManagement.Events;
 using JSLibrary.Data.GenericEvents;
+using XmasEngineModel;
+using XmasEngineModel.Entities.Units;
+using XmasEngineModel.GameManagement;
+using XmasEngineModel.GameManagement.Events;
 
-namespace GooseEngineController.AI
+namespace XmasEngineController.AI
 {
 	public abstract class AgentController
 	{

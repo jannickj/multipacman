@@ -1,7 +1,7 @@
 ﻿using System;
-using GooseEngine.GameManagement;
+using XmasEngineModel.GameManagement;
 
-namespace GooseEngine.Exceptions
+namespace XmasEngineModel.Exceptions
 {
 	public class UnacceptableActionException : Exception
 	{

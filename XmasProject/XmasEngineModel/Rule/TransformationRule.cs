@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GooseEngine.Rule.Exceptions;
+using XmasEngineModel.Rule.Exceptions;
 
-namespace GooseEngine.Rule
+namespace XmasEngineModel.Rule
 {
 	public class TransformationRule<T>
 	{

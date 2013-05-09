@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using GooseEngine.Interfaces;
+﻿using XmasEngineModel.Interfaces;
 
-namespace GooseEngineView
+namespace XmasEngineView
 {
 	public abstract class GooseView : IStartable
 	{

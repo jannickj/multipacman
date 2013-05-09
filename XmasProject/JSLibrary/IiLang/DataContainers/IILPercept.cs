@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace iilang.DataContainers
+namespace JSLibrary.IiLang.DataContainers
 {
 	[XmlRoot("percept")]
 	public class IILPercept : IILDataContainer

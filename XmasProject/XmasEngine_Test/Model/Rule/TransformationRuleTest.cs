@@ -1,9 +1,9 @@
 ﻿using System;
-using GooseEngine.Rule;
-using GooseEngine.Rule.Exceptions;
 using NUnit.Framework;
+using XmasEngineModel.Rule;
+using XmasEngineModel.Rule.Exceptions;
 
-namespace GooseEngine_Test.Rule
+namespace XmasEngine_Test.Model.Rule
 {
 	[TestFixture]
 	public class TransformationRuleTest

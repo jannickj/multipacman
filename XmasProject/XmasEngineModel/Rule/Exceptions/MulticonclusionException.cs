@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GooseEngine.Rule.Exceptions
+namespace XmasEngineModel.Rule.Exceptions
 {
 	public class MultiConclusionException : Exception
 	{

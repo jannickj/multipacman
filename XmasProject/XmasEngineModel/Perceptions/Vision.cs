@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JSLibrary.Data;
 
-namespace GooseEngine.Perceptions
+namespace XmasEngineModel.Perceptions
 {
 	public class Vision : Percept
 	{

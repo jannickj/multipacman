@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using GooseEngine;
-using GooseEngineView.Console.EntityViews;
-using GooseEngine.Entities;
-using GooseEngine.Entities.Units;
-using GooseEngineView.Console;
+using XmasEngineModel;
+using XmasEngineView.Console;
 
-namespace GooseEngineView
+namespace XmasEngineView
 {
 	public abstract class ViewFactory
 	{

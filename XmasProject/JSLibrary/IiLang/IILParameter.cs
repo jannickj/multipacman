@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using JSLibrary;
 
-namespace iilang
+namespace JSLibrary.IiLang
 {
 	public abstract class IILParameter : IILElement
 	{

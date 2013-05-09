@@ -1,4 +1,4 @@
-﻿namespace GooseEngine.Entities
+﻿namespace XmasEngineModel.Entities
 {
 	public class Wall : Entity
 	{

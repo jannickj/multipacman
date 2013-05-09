@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using GooseEISExtension.Model.ActionTypes;
-using iilang.DataContainers;
+using JSLibrary.IiLang.DataContainers;
+using XmasEngineExtensions.EisExtension.Model.ActionTypes;
 
-namespace GooseEISExtension.Model
+namespace XmasEngineExtensions.EisExtension.Model
 {
 	public class IILActionParser
 	{

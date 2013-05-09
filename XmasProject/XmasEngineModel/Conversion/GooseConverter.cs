@@ -1,4 +1,4 @@
-﻿namespace GooseEngine.Conversion
+﻿namespace XmasEngineModel.Conversion
 {
 	public abstract class GooseConverter
 	{

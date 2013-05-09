@@ -5,17 +5,17 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Xml;
-using GooseEISExtension.Controller.AI;
-using GooseEISExtension.Model;
-using GooseEISExtension.Model.Conversion.IILang.Actions;
-using GooseEISExtension.Model.Conversion.IILang.Percepts;
-using GooseEngine;
-using GooseEngine.Entities.Units;
-using GooseEngine.GameManagement;
 using JSLibrary.Data;
 using NUnit.Framework;
+using XmasEngineExtensions.EisExtension.Controller.AI;
+using XmasEngineExtensions.EisExtension.Model;
+using XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Actions;
+using XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Percepts;
+using XmasEngineModel;
+using XmasEngineModel.Entities.Units;
+using XmasEngineModel.GameManagement;
 
-namespace GooseEngine_Test.EIS
+namespace XmasEngineExtensions_Test.EisExtension.AI
 {
 	[TestFixture]
 	public class EISAgentControllerTest

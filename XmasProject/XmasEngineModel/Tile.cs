@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace GooseEngine
+namespace XmasEngineModel
 {
 	public class Tile : GooseObject
 	{

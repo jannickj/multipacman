@@ -1,6 +1,6 @@
-﻿using GooseEngine.Exceptions;
+﻿using XmasEngineModel.Exceptions;
 
-namespace GooseEngine.Conversion
+namespace XmasEngineModel.Conversion
 {
 	public abstract class GooseConverterToGoose<GooseType, ForeignType> : GooseConverter<GooseType, ForeignType>
 		where GooseType : GooseObject

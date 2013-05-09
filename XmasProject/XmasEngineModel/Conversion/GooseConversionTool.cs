@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using GooseEngine.Exceptions;
+using XmasEngineModel.Exceptions;
 
-namespace GooseEngine.Conversion
+namespace XmasEngineModel.Conversion
 {
 	public abstract class GooseConversionTool
 	{

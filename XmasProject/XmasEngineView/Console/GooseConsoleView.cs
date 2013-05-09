@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Timers;
 using JSLibrary.Data;
-using GooseEngine.GameManagement;
-using GooseEngine;
+using XmasEngineModel;
+using XmasEngineModel.GameManagement;
+using XmasEngineModel.GameManagement.Events;
 
-namespace GooseEngineView.Console
+namespace XmasEngineView.Console
 {
 	public class GooseConsoleView : GooseView
 	{

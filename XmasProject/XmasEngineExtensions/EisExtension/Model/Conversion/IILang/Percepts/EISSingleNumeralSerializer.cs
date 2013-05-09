@@ -1,8 +1,8 @@
-﻿using GooseEngine.Perceptions;
-using iilang.DataContainers;
-using iilang.Parameters;
+﻿using JSLibrary.IiLang.DataContainers;
+using JSLibrary.IiLang.Parameters;
+using XmasEngineModel.Perceptions;
 
-namespace GooseEISExtension.Model.Conversion.IILang.Percepts
+namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Percepts
 {
 	public class EISSingleNumeralSerializer : EISPerceptConverter<SingleNumeralPercept>
 	{

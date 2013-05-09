@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using GooseEISExtension.Controller.AI;
-using GooseEISExtension.Model;
-using GooseEISExtension.Model.Conversion.IILang;
-using GooseEngine;
-using GooseEngine.Conversion;
 using JSLibrary;
-using iilang;
-using GooseEngineController;
-using GooseEngineController.AI;
 using System.Reflection;
+using XmasEngineController;
+using XmasEngineController.AI;
+using XmasEngineExtensions.EisExtension.Controller.AI;
+using XmasEngineExtensions.EisExtension.Model;
+using XmasEngineExtensions.EisExtension.Model.Conversion.IILang;
+using XmasEngineModel.Conversion;
 
-namespace GooseEISExtension
+namespace XmasEngineExtensions.EisExtension
 {
     public class EisAgentFactory : AgentFactory
 	{

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using GooseEngine;
-using GooseEngine.Perceptions;
 using JSLibrary.Data;
-using iilang.DataContainers;
-using iilang.Parameters;
+using JSLibrary.IiLang.DataContainers;
+using JSLibrary.IiLang.Parameters;
+using XmasEngineModel;
+using XmasEngineModel.Perceptions;
 
-namespace GooseEISExtension.Model.Conversion.IILang.Percepts
+namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Percepts
 {
 	public class EISVisionSerializer : EISPerceptConverter<Vision>
 	{

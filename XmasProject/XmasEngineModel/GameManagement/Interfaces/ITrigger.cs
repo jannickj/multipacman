@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GooseEngine.GameManagement.Interfaces
+namespace XmasEngineModel.GameManagement.Interfaces
 {
 	public interface ITrigger
 	{

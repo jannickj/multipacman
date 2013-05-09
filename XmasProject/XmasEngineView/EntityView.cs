@@ -1,9 +1,9 @@
-﻿using GooseEngine;
-using GooseEngine.GameManagement;
-using GooseEngine.GameManagement.Events;
-using JSLibrary.Data;
+﻿using JSLibrary.Data;
+using XmasEngineModel;
+using XmasEngineModel.GameManagement;
+using XmasEngineModel.GameManagement.Events;
 
-namespace GooseEngineView.Console
+namespace XmasEngineView
 {
 	public abstract class EntityView
 	{

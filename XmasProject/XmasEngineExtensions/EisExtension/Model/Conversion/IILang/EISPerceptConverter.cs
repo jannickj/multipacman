@@ -1,7 +1,7 @@
-﻿using GooseEngine;
-using iilang.DataContainers;
+﻿using JSLibrary.IiLang.DataContainers;
+using XmasEngineModel;
 
-namespace GooseEISExtension.Model.Conversion.IILang
+namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang
 {
 	public abstract class EISPerceptConverter<GooseType> : EISConverterToEIS<GooseType, IILPercept>
 		where GooseType : GooseObject

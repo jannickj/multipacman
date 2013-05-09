@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using GooseEngine;
-using GooseEngine.Entities;
-using GooseEngine.Entities.Units;
-using GooseEngine.Perceptions;
 using JSLibrary.Data;
 using NUnit.Framework;
+using XmasEngineModel;
+using XmasEngineModel.Entities;
+using XmasEngineModel.Entities.Units;
+using XmasEngineModel.Perceptions;
 
-namespace GooseEngine_Test.Percepts
+namespace XmasEngine_Test.Model.Percepts
 {
 	[TestFixture]
 	public class VisionTest

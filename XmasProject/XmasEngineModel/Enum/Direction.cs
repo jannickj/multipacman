@@ -1,4 +1,4 @@
-﻿namespace GooseEngine.Enum
+﻿namespace XmasEngineModel.Enum
 {
 	public enum Direction
 	{

@@ -1,4 +1,4 @@
-namespace GooseEISExtension.Model.ActionTypes
+namespace XmasEngineExtensions.EisExtension.Model.ActionTypes
 {
 	public class EISMoveUnit : EISAction
 	{

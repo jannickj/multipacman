@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading;
-using GooseEngine;
-using GooseEngine.Entities.Units;
-using GooseEngine.Interfaces;
+using XmasEngineModel;
+using XmasEngineModel.Entities.Units;
+using XmasEngineModel.Interfaces;
 
-namespace GooseEngineController.AI
+namespace XmasEngineController.AI
 {
     public abstract class AgentServer : GooseActor, IStartable
 	{

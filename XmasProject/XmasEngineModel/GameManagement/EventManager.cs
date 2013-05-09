@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GooseEngine.GameManagement
+namespace XmasEngineModel.GameManagement
 {
 	public class EventManager
 	{

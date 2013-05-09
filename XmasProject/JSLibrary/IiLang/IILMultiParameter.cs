@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Xml;
 
-namespace iilang
+namespace JSLibrary.IiLang
 {
 	public abstract class IILMultiParameter : IILParameter
 	{

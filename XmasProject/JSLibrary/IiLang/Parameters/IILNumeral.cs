@@ -2,9 +2,9 @@ using System;
 using System.Globalization;
 using System.Xml;
 using System.Xml.Serialization;
-using iilang.Exceptions;
+using JSLibrary.IiLang.Exceptions;
 
-namespace iilang.Parameters
+namespace JSLibrary.IiLang.Parameters
 {
 #pragma warning disable
 	[XmlRoot("number")]

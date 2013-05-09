@@ -1,6 +1,6 @@
 using System;
 
-namespace iilang.Exceptions
+namespace JSLibrary.IiLang.Exceptions
 {
 	public class MissingXmlAttributeException : Exception
 	{

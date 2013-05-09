@@ -1,7 +1,7 @@
 using JSLibrary.Data;
 using NUnit.Framework;
 
-namespace GooseEngine_Test.Data
+namespace XmasEngine_Test.Model.Data
 {
 	[TestFixture]
 	public class PointTest

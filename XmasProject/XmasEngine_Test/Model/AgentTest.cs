@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace GooseEngine_Test
+namespace XmasEngine_Test.Model
 {
 	[TestFixture]
 	public class AgentTest

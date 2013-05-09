@@ -1,12 +1,12 @@
 using System;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using JSLibrary.IiLang.DataContainers;
+using JSLibrary.IiLang.Exceptions;
+using JSLibrary.IiLang.Parameters;
 using NUnit.Framework;
-using iilang.DataContainers;
-using iilang.Exceptions;
-using iilang.Parameters;
 
-namespace iilangTest
+namespace JSLibrary_Test.IiLang
 {
 	[TestFixture]
 	public class XmlDeserializationTest

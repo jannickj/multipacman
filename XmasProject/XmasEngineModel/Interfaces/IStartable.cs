@@ -1,4 +1,4 @@
-﻿namespace GooseEngine.Interfaces
+﻿namespace XmasEngineModel.Interfaces
 {
 	public interface IStartable
 	{

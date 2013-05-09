@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GooseEngine.GameManagement.Actions
+namespace XmasEngineModel.GameManagement.Actions
 {
 	public class SimpleAction : EnvironmentAction
 	{

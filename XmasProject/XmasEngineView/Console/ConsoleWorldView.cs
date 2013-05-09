@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using GooseEngine;
 using JSLibrary.Data;
-using GooseEngine.GameManagement;
+using XmasEngineModel;
 
-namespace GooseEngineView.Console
+namespace XmasEngineView.Console
 {
 	public class ConsoleWorldView
 	{

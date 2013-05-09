@@ -1,7 +1,7 @@
-﻿using GooseEngine.Rule;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using XmasEngineModel.Rule;
 
-namespace GooseEngine_Test.Rule
+namespace XmasEngine_Test.Model.Rule
 {
 	[TestFixture]
 	public class RuleHierarchyTest

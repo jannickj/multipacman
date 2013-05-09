@@ -1,6 +1,6 @@
-using iilang.DataContainers;
+using JSLibrary.IiLang.DataContainers;
 
-namespace GooseEISExtension.Model
+namespace XmasEngineExtensions.EisExtension.Model
 {
 	public abstract class EISAction : IILAction
 	{

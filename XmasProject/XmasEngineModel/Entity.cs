@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using GooseEngine.Exceptions;
-using GooseEngine.GameManagement;
-using GooseEngine.Rule;
 using JSLibrary.Data;
+using XmasEngineModel.Exceptions;
+using XmasEngineModel.GameManagement;
+using XmasEngineModel.Rule;
 
-namespace GooseEngine
+namespace XmasEngineModel
 {
 	public abstract class Entity : GooseActor
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GooseEngine.Exceptions
+namespace XmasEngineModel.Exceptions
 {
 	public class ForceStopEngineException : Exception
 	{

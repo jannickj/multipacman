@@ -1,11 +1,11 @@
-﻿using GooseEngine.Entities;
-using GooseEngine.Entities.Units;
-using GooseEngine.GameManagement;
-using GooseEngine.GameManagement.Actions;
-using GooseEngine.GameManagement.Events;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using XmasEngineModel.Entities;
+using XmasEngineModel.Entities.Units;
+using XmasEngineModel.GameManagement;
+using XmasEngineModel.GameManagement.Actions;
+using XmasEngineModel.GameManagement.Events;
 
-namespace GooseEngine_Test.GameManagement
+namespace XmasEngine_Test.Model.GameManagement
 {
 	[TestFixture]
 	public class GameManagerTest

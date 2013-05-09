@@ -1,4 +1,4 @@
-﻿namespace GooseEngine.GameManagement.Events
+﻿namespace XmasEngineModel.GameManagement.Events
 {
 	public class UnitMovePreEvent : GameEvent
 	{

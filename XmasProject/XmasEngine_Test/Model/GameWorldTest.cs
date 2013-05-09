@@ -1,9 +1,9 @@
-using GooseEngine;
-using GooseEngine.Entities.Units;
 using JSLibrary.Data;
 using NUnit.Framework;
+using XmasEngineModel;
+using XmasEngineModel.Entities.Units;
 
-namespace GooseEngine_Test
+namespace XmasEngine_Test.Model
 {
 	[TestFixture]
 	public class GameWorldTest

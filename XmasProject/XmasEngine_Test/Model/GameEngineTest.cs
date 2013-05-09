@@ -1,14 +1,14 @@
 using System;
 using System.Threading;
-using GooseEngine;
-using GooseEngine.Entities.Units;
-using GooseEngine.GameManagement;
-using GooseEngine.GameManagement.Actions;
-using GooseEngine.GameManagement.Events;
 using JSLibrary.Data;
 using NUnit.Framework;
+using XmasEngineModel;
+using XmasEngineModel.Entities.Units;
+using XmasEngineModel.GameManagement;
+using XmasEngineModel.GameManagement.Actions;
+using XmasEngineModel.GameManagement.Events;
 
-namespace GooseEngine_Test
+namespace XmasEngine_Test.Model
 {
 	[TestFixture]
 	public class GameEngineTest

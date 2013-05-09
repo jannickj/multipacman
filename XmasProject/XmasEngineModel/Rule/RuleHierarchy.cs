@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace GooseEngine.Rule
+namespace XmasEngineModel.Rule
 {
 	public class RuleHierarchy<P, T>
 	{

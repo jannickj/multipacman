@@ -1,13 +1,6 @@
-﻿using System.Threading;
-using GooseEISExtension;
-using GooseEngine;
-using GooseEngineController;
-using GooseEngineView;
-using GooseEngineManager;
-using System.Net;
-using System;
+﻿using XmasEngine;
 
-namespace EpicConsoleGame
+namespace ConsoleXmasImplementation
 {
 	internal class Program
 	{

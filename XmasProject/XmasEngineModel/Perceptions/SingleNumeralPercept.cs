@@ -1,4 +1,4 @@
-namespace GooseEngine.Perceptions
+namespace XmasEngineModel.Perceptions
 {
 	public class SingleNumeralPercept : Percept
 	{

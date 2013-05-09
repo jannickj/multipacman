@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GooseEngine
+namespace XmasEngineModel
 {
 	public class PerceptCollection : GooseObject
 	{

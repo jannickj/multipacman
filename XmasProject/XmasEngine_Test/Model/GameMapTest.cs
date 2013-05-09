@@ -1,11 +1,11 @@
 using System.Linq;
-using GooseEngine;
-using GooseEngine.Entities;
 using JSLibrary.Data;
 using NUnit.Framework;
-using GooseEngine.Entities.Units;
+using XmasEngineModel;
+using XmasEngineModel.Entities;
+using XmasEngineModel.Entities.Units;
 
-namespace GooseEngine_Test
+namespace XmasEngine_Test.Model
 {
 	[TestFixture]
 	public class GameMapTest

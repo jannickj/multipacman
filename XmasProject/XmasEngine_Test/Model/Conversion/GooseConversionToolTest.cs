@@ -1,9 +1,9 @@
-﻿using GooseEngine;
-using GooseEngine.Conversion;
-using GooseEngine.Exceptions;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using XmasEngineModel;
+using XmasEngineModel.Conversion;
+using XmasEngineModel.Exceptions;
 
-namespace GooseEngine_Test.Conversion
+namespace XmasEngine_Test.Model.Conversion
 {
 	[TestFixture]
 	public class GooseConversionToolTest

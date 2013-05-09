@@ -1,7 +1,7 @@
-using GooseEISExtension.Model.ActionTypes;
-using GooseEngine.GameManagement.Actions;
+using XmasEngineExtensions.EisExtension.Model.ActionTypes;
+using XmasEngineModel.GameManagement.Actions;
 
-namespace GooseEISExtension.Model.Conversion.IILang.Actions
+namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Actions
 {
 	public class GetAllPerceptsActionConverter : EISActionConverter<GetAllPercepts, EISGetAllPercepts>
 	{

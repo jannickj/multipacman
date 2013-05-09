@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using GooseEngine.Entities;
-using JSLibrary.Data;
+﻿using JSLibrary.Data;
+using XmasEngineModel.Entities;
 
-namespace GooseEngine
+namespace XmasEngineModel
 {
 	public class GooseMap
 	{

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GooseEngine.Entities
+namespace XmasEngineModel.Entities
 {
 	public abstract class Unit : Entity
 	{

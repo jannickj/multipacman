@@ -5,12 +5,12 @@ using System.Net.Sockets;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using GooseEISExtension.Model;
-using GooseEngine.Entities.Units;
-using GooseEngineController.AI;
-using iilang.Parameters;
+using JSLibrary.IiLang.Parameters;
+using XmasEngineController.AI;
+using XmasEngineExtensions.EisExtension.Model;
+using XmasEngineModel.Entities.Units;
 
-namespace GooseEISExtension.Controller.AI
+namespace XmasEngineExtensions.EisExtension.Controller.AI
 {
 	public class EISAgentServer : AgentServer
 	{

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using JSLibrary.Data;
 using System.Linq;
-using GooseEngine.Perceptions;
+using XmasEngineModel.Perceptions;
 
-namespace GooseEngine
+namespace XmasEngineModel
 {
 	public class GooseWorld
 	{

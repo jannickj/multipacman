@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Timers;
-using GooseEngine.GameManagement.Actions;
+using XmasEngineModel.GameManagement.Actions;
 
-namespace GooseEngine.GameManagement
+namespace XmasEngineModel.GameManagement
 {
 	public class GameTimer
 	{

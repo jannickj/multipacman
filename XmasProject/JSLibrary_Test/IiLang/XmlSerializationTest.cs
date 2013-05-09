@@ -3,12 +3,12 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using JSLibrary.IiLang;
+using JSLibrary.IiLang.DataContainers;
+using JSLibrary.IiLang.Parameters;
 using NUnit.Framework;
-using iilang;
-using iilang.DataContainers;
-using iilang.Parameters;
 
-namespace iilangTest
+namespace JSLibrary_Test.IiLang
 {
 	[TestFixture]
 	public class XmlSerializationTest

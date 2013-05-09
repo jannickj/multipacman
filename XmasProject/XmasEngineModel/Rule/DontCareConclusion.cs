@@ -1,4 +1,4 @@
-﻿namespace GooseEngine.Rule
+﻿namespace XmasEngineModel.Rule
 {
 	public class DontCareConclusion : Conclusion
 	{

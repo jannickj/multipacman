@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
-using iilang.DataContainers;
+using JSLibrary.IiLang.DataContainers;
 
-namespace iilang
+namespace JSLibrary.IiLang
 {
 	[XmlRoot("perceptCollection")]
 	public class IILPerceptCollection : IILElement, IXmlSerializable

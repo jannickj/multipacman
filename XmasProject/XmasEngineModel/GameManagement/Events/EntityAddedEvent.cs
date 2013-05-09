@@ -1,7 +1,4 @@
-using System;
-using GooseEngine.GameManagement;
-
-namespace GooseEngine
+namespace XmasEngineModel.GameManagement.Events
 {
 	public class EntityAddedEvent : GameEvent
 	{

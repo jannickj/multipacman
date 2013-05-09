@@ -1,8 +1,6 @@
-using System;
-using GooseEngine;
-using GooseEngineView.Console;
+using XmasEngineModel;
 
-namespace GooseEngineView
+namespace XmasEngineView.Console.EntityViews
 {
 	public class ConsolePlayerView : ConsoleEntityView
 	{

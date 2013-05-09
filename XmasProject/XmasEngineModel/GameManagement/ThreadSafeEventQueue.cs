@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using JSLibrary.Data.GenericEvents;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace GooseEngine.GameManagement
+namespace XmasEngineModel.GameManagement
 {
 	public class ThreadSafeEventQueue
 	{

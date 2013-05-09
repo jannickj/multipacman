@@ -1,10 +1,10 @@
-using GooseEngineView;
 using System;
-using GooseEngine.Entities.Units;
-using GooseEngine.Entities;
-using GooseEngineView.Console.EntityViews;
+using XmasEngineModel;
+using XmasEngineModel.Entities;
+using XmasEngineModel.Entities.Units;
+using XmasEngineView.Console.EntityViews;
 
-namespace GooseEngineView.Console
+namespace XmasEngineView.Console
 {
 	public class ConsoleViewFactory : ViewFactory
 	{
@@ -18,7 +18,7 @@ namespace GooseEngineView.Console
 			AddTypeLink<ImpassableWall, ConsoleImpassableWallView> ();
 		}
 
-		public override EntityView ConstructEntityView (GooseEngine.Entity model)
+		public override EntityView ConstructEntityView (Entity model)
 		{
 			ConsoleEntityView retval = (ConsoleEntityView) Activator.CreateInstance (typeDict [model.GetType ()]);
 			retval.Model = model;

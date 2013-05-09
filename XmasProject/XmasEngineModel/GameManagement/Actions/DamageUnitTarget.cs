@@ -1,7 +1,7 @@
-﻿using GooseEngine.Entities;
-using GooseEngine.GameManagement.Events;
+﻿using XmasEngineModel.Entities;
+using XmasEngineModel.GameManagement.Events;
 
-namespace GooseEngine.GameManagement.Actions
+namespace XmasEngineModel.GameManagement.Actions
 {
 	public class DamageUnitTarget : EntityGameAction<Unit>
 	{

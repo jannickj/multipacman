@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GooseEngine.GameManagement
+namespace XmasEngineModel.GameManagement
 {
 	public abstract class GameEvent : EventArgs
 	{

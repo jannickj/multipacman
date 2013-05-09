@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using GooseEngine;
-using iilang;
-using iilang.DataContainers;
+using JSLibrary.IiLang;
+using JSLibrary.IiLang.DataContainers;
+using XmasEngineModel;
 
-namespace GooseEISExtension.Model.Conversion.IILang.Percepts
+namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Percepts
 {
 	public class EISPerceptCollectionSerializer : EISConverterToEIS<PerceptCollection, IILPerceptCollection>
 	{

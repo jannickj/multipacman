@@ -1,6 +1,4 @@
-using System;
-
-namespace iilang
+namespace JSLibrary.IiLang
 {
 	public class SingleParameter
 	{

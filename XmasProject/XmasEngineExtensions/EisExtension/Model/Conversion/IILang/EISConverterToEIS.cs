@@ -1,8 +1,8 @@
-﻿using GooseEngine;
-using GooseEngine.Conversion;
-using iilang;
+﻿using JSLibrary.IiLang;
+using XmasEngineModel;
+using XmasEngineModel.Conversion;
 
-namespace GooseEISExtension.Model.Conversion.IILang
+namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang
 {
 	public abstract class EISConverterToEIS<GooseType, EISType> : GooseConverterToForeign<GooseType, EISType>
 		where EISType : IILElement

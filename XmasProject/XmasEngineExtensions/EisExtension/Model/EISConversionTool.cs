@@ -1,7 +1,7 @@
-using GooseEngine.Conversion;
-using iilang;
+using JSLibrary.IiLang;
+using XmasEngineModel.Conversion;
 
-namespace GooseEISExtension.Model
+namespace XmasEngineExtensions.EisExtension.Model
 {
 	public class EISConversionTool : GooseConversionTool<IILElement>
 	{

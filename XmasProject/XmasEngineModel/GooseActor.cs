@@ -1,6 +1,6 @@
-using GooseEngine.GameManagement;
+using XmasEngineModel.GameManagement;
 
-namespace GooseEngine
+namespace XmasEngineModel
 {
 	public class GooseActor : GooseObject
 	{

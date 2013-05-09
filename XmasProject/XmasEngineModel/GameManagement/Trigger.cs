@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using GooseEngine.GameManagement.Interfaces;
+using XmasEngineModel.GameManagement.Interfaces;
 
-namespace GooseEngine.GameManagement
+namespace XmasEngineModel.GameManagement
 {
 	public abstract class Trigger : ITrigger
 	{

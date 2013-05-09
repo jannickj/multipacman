@@ -2,7 +2,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace iilang
+namespace JSLibrary.IiLang
 {
 	public abstract class IILElement : IXmlSerializable
 	{

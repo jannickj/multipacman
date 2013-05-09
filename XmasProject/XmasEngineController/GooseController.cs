@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using GooseEngine;
-using GooseEngineController.AI;
-using GooseEngineView.Console;
+using XmasEngineController.AI;
+using XmasEngineModel;
+using XmasEngineView.Console;
 
-namespace GooseEngineController
+namespace XmasEngineController
 {
 	public abstract class GooseController
 	{

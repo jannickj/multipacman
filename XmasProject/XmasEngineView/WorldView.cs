@@ -1,4 +1,4 @@
-﻿namespace GooseEngineView
+﻿namespace XmasEngineView
 {
 	public class WorldView
 	{

@@ -1,15 +1,15 @@
 ﻿using System.Xml;
 using System.Xml.Serialization;
-using GooseEISExtension.Model;
-using GooseEngine;
-using GooseEngine.Entities.Units;
-using GooseEngine.GameManagement;
-using GooseEngineController.AI;
 using JSLibrary.Data.GenericEvents;
-using iilang;
-using iilang.DataContainers;
+using JSLibrary.IiLang;
+using JSLibrary.IiLang.DataContainers;
+using XmasEngineController.AI;
+using XmasEngineExtensions.EisExtension.Model;
+using XmasEngineModel;
+using XmasEngineModel.Entities.Units;
+using XmasEngineModel.GameManagement;
 
-namespace GooseEISExtension.Controller.AI
+namespace XmasEngineExtensions.EisExtension.Controller.AI
 {
 	public class EISAgentController : AgentController
 	{

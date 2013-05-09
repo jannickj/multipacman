@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
-using iilang.Exceptions;
+using JSLibrary.IiLang.Exceptions;
 
-namespace iilang
+namespace JSLibrary.IiLang
 {
 #pragma warning disable
 	public abstract class IILDataContainer : IILElement

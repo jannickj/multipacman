@@ -1,7 +1,7 @@
 ﻿using System;
-using GooseEngine.Conversion;
+using XmasEngineModel.Conversion;
 
-namespace GooseEngine.Exceptions
+namespace XmasEngineModel.Exceptions
 {
 	public class UnableToConvertException : Exception
 	{

@@ -1,14 +1,14 @@
 using System;
 using System.Threading;
-using GooseEngine.Exceptions;
-using GooseEngine.GameManagement;
-using GooseEngine.GameManagement.Actions;
-using GooseEngine.GameManagement.Events;
-using GooseEngine.Interfaces;
 using JSLibrary.Data;
 using JSLibrary.Data.GenericEvents;
+using XmasEngineModel.Exceptions;
+using XmasEngineModel.GameManagement;
+using XmasEngineModel.GameManagement.Actions;
+using XmasEngineModel.GameManagement.Events;
+using XmasEngineModel.Interfaces;
 
-namespace GooseEngine
+namespace XmasEngineModel
 {
 	public class GooseModel : IStartable
 	{

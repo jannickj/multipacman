@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using GooseEngine;
-using GooseEngine.Entities;
-using GooseEngine.Entities.Units;
 using JSLibrary.Data;
+using XmasEngineModel;
+using XmasEngineModel.Entities;
+using XmasEngineModel.Entities.Units;
 
-namespace EpicConsoleGame
+namespace ConsoleXmasImplementation
 {
 	public class TestWorld1 : GooseWorld
 	{

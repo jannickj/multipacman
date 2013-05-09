@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JSLibrary.Data.GenericEvents;
 
-namespace GooseEngine.GameManagement
+namespace XmasEngineModel.GameManagement
 {
 	public class MultiTrigger : Trigger
 	{

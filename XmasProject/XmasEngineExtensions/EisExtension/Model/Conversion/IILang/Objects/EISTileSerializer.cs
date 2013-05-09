@@ -1,8 +1,8 @@
-using GooseEngine;
-using iilang;
-using iilang.Parameters;
+using JSLibrary.IiLang;
+using JSLibrary.IiLang.Parameters;
+using XmasEngineModel;
 
-namespace GooseEISExtension.Model.Conversion.IILang.Objects
+namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Objects
 {
 	public class EISTileSerializer : EISConverterToEIS<Tile, IILElement>
 	{

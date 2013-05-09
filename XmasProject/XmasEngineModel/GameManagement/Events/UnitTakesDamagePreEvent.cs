@@ -1,7 +1,7 @@
 ﻿using System;
-using GooseEngine.Entities;
+using XmasEngineModel.Entities;
 
-namespace GooseEngine.GameManagement.Events
+namespace XmasEngineModel.GameManagement.Events
 {
 	public class UnitTakesDamagePreEvent : GameEvent
 	{

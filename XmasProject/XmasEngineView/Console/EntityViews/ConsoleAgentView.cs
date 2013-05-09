@@ -1,6 +1,6 @@
-using GooseEngine;
+using XmasEngineModel;
 
-namespace GooseEngineView.Console.EntityViews
+namespace XmasEngineView.Console.EntityViews
 {
 	public class ConsoleAgentView : ConsoleEntityView
 	{

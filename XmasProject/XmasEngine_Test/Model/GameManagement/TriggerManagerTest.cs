@@ -1,9 +1,9 @@
 ﻿using System;
-using GooseEngine.GameManagement;
-using GooseEngine.GameManagement.Events;
 using NUnit.Framework;
+using XmasEngineModel.GameManagement;
+using XmasEngineModel.GameManagement.Events;
 
-namespace GooseEngine_Test.GameManagement
+namespace XmasEngine_Test.Model.GameManagement
 {
 	[TestFixture]
 	public class TriggerManagerTest

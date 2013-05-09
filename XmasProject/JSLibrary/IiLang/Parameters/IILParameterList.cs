@@ -2,7 +2,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace iilang.Parameters
+namespace JSLibrary.IiLang.Parameters
 {
 #pragma warning disable
 	[XmlRoot("parameterList")]

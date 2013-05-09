@@ -1,11 +1,11 @@
 ﻿using System.Linq;
-using GooseEngine;
-using GooseEngine.Entities;
-using GooseEngine.Entities.Interactables;
-using GooseEngine.Entities.Units;
 using NUnit.Framework;
+using XmasEngineModel;
+using XmasEngineModel.Entities;
+using XmasEngineModel.Entities.Interactables;
+using XmasEngineModel.Entities.Units;
 
-namespace GooseEngine_Test.Entities.MapEntities
+namespace XmasEngine_Test.Model.Entities.MapEntities
 {
 	[TestFixture]
 	public class TileTest

@@ -1,6 +1,6 @@
 ﻿using JSLibrary.Data;
 
-namespace GooseEngine.GameManagement.Events
+namespace XmasEngineModel.GameManagement.Events
 {
 	public class UnitMovePostEvent : GameEvent
 	{

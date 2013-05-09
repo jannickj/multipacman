@@ -1,13 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
-using GooseEngine;
-using GooseEngine.GameManagement;
-using GooseEngineController;
-using GooseEngineController.AI;
-using GooseEngineView;
+using XmasEngineController;
+using XmasEngineModel;
+using XmasEngineModel.GameManagement;
+using XmasEngineView;
 
-namespace GooseEngineManager
+namespace XmasEngine
 {
 	public abstract class GooseEngineFactory<TView,TController>
 		where TView : GooseView

@@ -1,13 +1,9 @@
-﻿using GooseEngine;
-using GooseEngineController;
-using GooseEngineController.Console;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using GooseEngineView.Console;
+﻿using XmasEngineController;
+using XmasEngineController.Console;
+using XmasEngineModel;
+using XmasEngineView.Console;
 
-namespace GooseEngineManager
+namespace XmasEngine
 {
     public class ConsoleGooseImplFactory : GooseEngineFactory<GooseConsoleView,GooseController>
     {

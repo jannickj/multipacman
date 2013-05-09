@@ -1,8 +1,8 @@
-﻿using GooseEngine.Entities;
-using GooseEngine.GameManagement.Events;
-using JSLibrary.Data;
+﻿using JSLibrary.Data;
+using XmasEngineModel.Entities;
+using XmasEngineModel.GameManagement.Events;
 
-namespace GooseEngine.GameManagement.Actions
+namespace XmasEngineModel.GameManagement.Actions
 {
 	public class MoveUnit : EntityGameAction<Unit>
 	{

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading;
-using GooseEngine.Perceptions;
 using JSLibrary.Data;
 using JSLibrary.Data.GenericEvents;
+using XmasEngineModel.Perceptions;
 
-namespace GooseEngine.GameManagement
+namespace XmasEngineModel.GameManagement
 {
 	public class GooseFactory
 	{

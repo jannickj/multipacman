@@ -1,10 +1,6 @@
-﻿using GooseEngineController.AI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using XmasEngineController.AI;
 
-namespace GooseEngineController
+namespace XmasEngineController
 {
     public abstract class AgentFactory
     {

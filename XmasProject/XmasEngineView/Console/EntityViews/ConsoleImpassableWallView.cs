@@ -1,17 +1,18 @@
-using System;
-using GooseEngineView.Console;
-using GooseEngine;
+using XmasEngineModel;
 
-public class ConsoleImpassableWallView : ConsoleEntityView
+namespace XmasEngineView.Console.EntityViews
 {
-	public ConsoleImpassableWallView(Entity model)
-		: base(model)
+	public class ConsoleImpassableWallView : ConsoleEntityView
 	{
-	}
+		public ConsoleImpassableWallView(Entity model)
+			: base(model)
+		{
+		}
 	
-	public override char Symbol
-	{
-		get { return 'I'; }
+		public override char Symbol
+		{
+			get { return 'I'; }
+		}
 	}
 }
 
