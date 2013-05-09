@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1A146465-21F3-44D1-A779-6C4958CBD24B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GooseEngine</RootNamespace>
+    <AssemblyName>GooseEngine</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>True</Externalconsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Conversion\GooseConverterToForeign.cs" />
+    <Compile Include="Conversion\GooseConverterToGoose.cs" />
+    <Compile Include="Exceptions\ForceStopEngineException.cs" />
+    <Compile Include="Exceptions\UnableToConvertException.cs" />
+    <Compile Include="Exceptions\UnacceptableActionException.cs" />
+    <Compile Include="Exceptions\UnconvertableException.cs" />
+    <Compile Include="GameManagement\ActionManager.cs" />
+    <Compile Include="GameManagement\Actions\CloseEngine.cs" />
+    <Compile Include="GameManagement\Actions\DamageUnitTarget.cs" />
+    <Compile Include="GameManagement\Actions\SimpleAction.cs" />
+    <Compile Include="GameManagement\EntityGameAction.cs" />
+    <Compile Include="GameManagement\EnvironmentAction.cs" />
+    <Compile Include="GameManagement\Events\EngineCloseEvent.cs" />
+    <Compile Include="GameManagement\Events\UnitTakesDamagePostEvent.cs" />
+    <Compile Include="GameManagement\Events\UnitTakesDamagePreEvent.cs" />
+    <Compile Include="GameManagement\Events\UnitMovePostEvent.cs" />
+    <Compile Include="GameManagement\GameAction.cs" />
+    <Compile Include="GameManagement\Actions\MoveUnit.cs" />
+    <Compile Include="GameManagement\Events\UnitMovePreEvent.cs" />
+    <Compile Include="GameManagement\GameEvent.cs" />
+    <Compile Include="GameManagement\GooseFactory.cs" />
+    <Compile Include="GameManagement\GameTimer.cs" />
+    <Compile Include="GameManagement\Interfaces\GameManager.cs" />
+    <Compile Include="GameManagement\Interfaces\ITrigger.cs" />
+    <Compile Include="GameManagement\Interfaces\ITriggerContainer.cs" />
+    <Compile Include="GameManagement\MultiTrigger.cs" />
+    <Compile Include="GameManagement\ThreadSafeEventManager.cs" />
+    <Compile Include="GameManagement\ThreadSafeEventQueue.cs" />
+    <Compile Include="GameManagement\Trigger.cs" />
+    <Compile Include="Entities\ImpassableWall.cs" />
+    <Compile Include="Entities\Interactable.cs" />
+    <Compile Include="Entities\Interactables\PowerUp.cs" />
+    <Compile Include="Entities\Unit.cs" />
+    <Compile Include="Entities\Units\Agent.cs" />
+    <Compile Include="Entities\Units\Player.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="Enum\Direction.cs" />
+    <Compile Include="Exceptions\EntityException.cs" />
+    <Compile Include="GooseModel.cs" />
+    <Compile Include="GameManagement\EventManager.cs" />
+    <Compile Include="GameManagement\TriggerManager.cs" />
+    <Compile Include="GooesObject.cs" />
+    <Compile Include="Interfaces\IStartable.cs" />
+    <Compile Include="PerceptCollection.cs" />
+    <Compile Include="Perceptions\Vision.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entities\Wall.cs" />
+    <Compile Include="Rule\Conclusion.cs" />
+    <Compile Include="Rule\DontCareConclusion.cs" />
+    <Compile Include="Rule\RuleHierarchy.cs" />
+    <Compile Include="Rule\TransformationRule.cs" />
+    <Compile Include="Rule\Exceptions\MulticonclusionException.cs" />
+    <Compile Include="GameManagement\Actions\GetAllPercepts.cs" />
+    <Compile Include="GameManagement\Events\RetreivePerceptsEvent.cs" />
+    <Compile Include="GooseActor.cs" />
+    <Compile Include="Conversion\GooseConversionTool.cs" />
+    <Compile Include="Conversion\GooseConverter.cs" />
+    <Compile Include="Tile.cs" />
+    <Compile Include="Perceptions\SingleNumeralPercept.cs" />
+    <Compile Include="Percept.cs" />
+    <Compile Include="GooseWorld.cs" />
+    <Compile Include="GooseMap.cs" />
+    <Compile Include="GameManagement\Events\EntityAddedEvent.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\MapEntities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
+      <Project>{46919FE5-0649-4AF3-BDBA-6F25DE0B8FE9}</Project>
+      <Name>JSLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

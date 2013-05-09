@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F0965EBC-FEAF-4445-A43B-998D0A8D249D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XmasEngineExtensions</RootNamespace>
+    <AssemblyName>XmasEngineExtensions</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EisExtension\Controller\AI\EISAgentController.cs" />
+    <Compile Include="EisExtension\Controller\AI\EISAgentServer.cs" />
+    <Compile Include="EisExtension\EisAgentFactory.cs" />
+    <Compile Include="EisExtension\Model\ActionTypes\EISGetAllPercepts.cs" />
+    <Compile Include="EisExtension\Model\ActionTypes\EISMoveUnit.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\Actions\GetAllPerceptsActionConverter.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\Actions\MoveUnitActionConverter.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\EISActionConverter.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\EISConverterToEIS.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\EISPerceptConverter.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\Objects\EISTileSerializer.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\Percepts\EISPerceptCollectionSerializer.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\Percepts\EISSingleNumeralSerializer.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\Percepts\EISVisionSerializer.cs" />
+    <Compile Include="EisExtension\Model\EISAction.cs" />
+    <Compile Include="EisExtension\Model\EISConversionTool.cs" />
+    <Compile Include="EisExtension\Model\IILActionParser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
+      <Project>{d1bfb5f5-681e-4d5f-9910-69403b11c5b5}</Project>
+      <Name>JSLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmasEngineController\XmasEngineController.csproj">
+      <Project>{0fae1368-42fc-48f7-a82b-58cf276188c1}</Project>
+      <Name>XmasEngineController</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmasEngineModel\XmasEngineModel.csproj">
+      <Project>{70abbb17-6a3c-429c-b27e-0f56aacb9f69}</Project>
+      <Name>XmasEngineModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmasEngineView\XmasEngineView.csproj">
+      <Project>{99f1f1f4-2df4-4c9e-8a33-5cd538d2c002}</Project>
+      <Name>XmasEngineView</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmasEngine\XmasEngine.csproj">
+      <Project>{935b3fa0-d1de-4395-a69c-8f64159791f9}</Project>
+      <Name>XmasEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EisExtension\View\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
