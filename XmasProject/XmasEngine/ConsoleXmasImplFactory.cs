@@ -5,21 +5,21 @@ using XmasEngineView.Console;
 
 namespace XmasEngine
 {
-    public class ConsoleXmasImplFactory : GooseEngineFactory<XmasConsoleView,XmasController>
+    public class ConsoleXmasImplFactory : XmasEngineFactory<XmasConsoleView,XmasController>
     {
 
-        public override XmasConsoleView ConstructView(GooseModel model)
+        public override XmasConsoleView ConstructView(XmasModel model)
         {
 			//TODO: FIX view construction
-	        return null; //new GooseConsoleView(model,contructWorldView(model.World));
+	        return null; //new XmasConsoleView(model,contructWorldView(model.World));
         }
 
-        private ConsoleWorldView contructWorldView(GooseWorld modelworld)
+        private ConsoleWorldView contructWorldView(XmasWorld modelworld)
         {
             return new ConsoleWorldView(modelworld);
         }
 
-        public override XmasController ContructController(GooseModel model, XmasConsoleView view)
+        public override XmasController ContructController(XmasModel model, XmasConsoleView view)
         {
             return new ConsoleController(model, view);
         }

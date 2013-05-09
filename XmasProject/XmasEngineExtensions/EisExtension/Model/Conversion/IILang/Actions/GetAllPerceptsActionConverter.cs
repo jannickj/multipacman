@@ -5,7 +5,7 @@ namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Actions
 {
 	public class GetAllPerceptsActionConverter : EISActionConverter<GetAllPercepts, EISGetAllPercepts>
 	{
-		public override GetAllPercepts BeginConversionToGoose(EISGetAllPercepts fobj)
+		public override GetAllPercepts BeginConversionToXmas(EISGetAllPercepts fobj)
 		{
 			return new GetAllPercepts();
 		}

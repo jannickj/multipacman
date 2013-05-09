@@ -6,7 +6,7 @@ using XmasEngineModel.Exceptions;
 namespace XmasEngine_Test.Model.Conversion
 {
 	[TestFixture]
-	public class GooseConversionToolTest
+	public class XmasConversionToolTest
 	{
 		private class XmasA : XmasObject
 		{
@@ -26,7 +26,7 @@ namespace XmasEngine_Test.Model.Conversion
 
 		private class MockAToAConvert : XmasConverter<XmasA, ForeignA>
 		{
-			public override XmasA BeginConversionToGoose(ForeignA fobj)
+			public override XmasA BeginConversionToXmas(ForeignA fobj)
 			{
 				return new XmasA();
 			}
@@ -39,7 +39,7 @@ namespace XmasEngine_Test.Model.Conversion
 
 		private class MockBToBConvert : XmasConverter<XmasB, ForeignB>
 		{
-			public override XmasB BeginConversionToGoose(ForeignB fobj)
+			public override XmasB BeginConversionToXmas(ForeignB fobj)
 			{
 				return new XmasB();
 			}
@@ -51,25 +51,25 @@ namespace XmasEngine_Test.Model.Conversion
 		}
 
 		[Test]
-		public void Convert_ForeignBToGooseBWithConverter_ShouldReturnGooseB()
+		public void Convert_ForeignBToXmasBWithConverter_ShouldReturnXmasB()
 		{
 			XmasConversionTool<ForeignA> ctool = new XmasConversionTool<ForeignA>();
 			ctool.AddConverter(new MockBToBConvert());
 
-			Assert.IsInstanceOf<XmasB>(ctool.ConvertToGoose(new ForeignB()));
+			Assert.IsInstanceOf<XmasB>(ctool.ConvertToXmas(new ForeignB()));
 		}
 
 		[Test]
-		public void Convert_ForeignBToGooseBWithoutConverter_ShouldNOTUseGooseAToForeignAConverterInstead()
+		public void Convert_ForeignBToXmasBWithoutConverter_ShouldNOTUseXmasAToForeignAConverterInstead()
 		{
 			XmasConversionTool<ForeignA> ctool = new XmasConversionTool<ForeignA>();
 			ctool.AddConverter(new MockAToAConvert());
 
-			Assert.Throws<UnconvertableException>(() => ctool.ConvertToGoose(new ForeignB()));
+			Assert.Throws<UnconvertableException>(() => ctool.ConvertToXmas(new ForeignB()));
 		}
 
 		[Test]
-		public void Convert_GooseAToForeignAWithConverter_GoesFromGooseAToForeignA()
+		public void Convert_XmasAToForeignAWithConverter_GoesFromXmasAToForeignA()
 		{
 			XmasConversionTool<ForeignA> ctool = new XmasConversionTool<ForeignA>();
 			ctool.AddConverter(new MockAToAConvert());
@@ -79,7 +79,7 @@ namespace XmasEngine_Test.Model.Conversion
 
 
 		[Test]
-		public void Convert_GooseBToForeignBWithoutConverter_ShouldUseGooseAToForeignAConverterInstead()
+		public void Convert_XmasBToForeignBWithoutConverter_ShouldUseXmasAToForeignAConverterInstead()
 		{
 			XmasConversionTool<ForeignA> ctool = new XmasConversionTool<ForeignA>();
 			ctool.AddConverter(new MockAToAConvert());

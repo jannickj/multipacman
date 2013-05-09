@@ -3,10 +3,10 @@
 	public abstract class XmasConverter
 	{
 		internal abstract object BeginUnsafeConversionToForeign(XmasObject gobj);
-		internal abstract XmasObject BeginUnsafeConversionToGoose(object obj);
+		internal abstract XmasObject BeginUnsafeConversionToXmas(object obj);
 	}
 
-	public abstract class XmasConverter<GooseType, ForeignType> : XmasConverter where GooseType : XmasObject
+	public abstract class XmasConverter<XmasType, ForeignType> : XmasConverter where XmasType : XmasObject
 	{
 		private XmasConversionTool conversionTool;
 
@@ -17,9 +17,9 @@
 		}
 
 
-		public abstract GooseType BeginConversionToGoose(ForeignType fobj);
+		public abstract XmasType BeginConversionToXmas(ForeignType fobj);
 
-		public abstract ForeignType BeginConversionToForeign(GooseType gobj);
+		public abstract ForeignType BeginConversionToForeign(XmasType gobj);
 
 
 		protected object ConvertToForeign(XmasObject gobj)
@@ -27,19 +27,19 @@
 			return conversionTool.ConvertToForeignUnsafe(gobj);
 		}
 
-		protected XmasObject ConvertToGoose(ForeignType fobj)
+		protected XmasObject ConvertToXmas(ForeignType fobj)
 		{
-			return conversionTool.ConvertToGooseUnsafe(fobj);
+			return conversionTool.ConvertToXmasUnsafe(fobj);
 		}
 
 		internal override object BeginUnsafeConversionToForeign(XmasObject gobj)
 		{
-			return BeginConversionToForeign((GooseType) gobj);
+			return BeginConversionToForeign((XmasType) gobj);
 		}
 
-		internal override XmasObject BeginUnsafeConversionToGoose(object obj)
+		internal override XmasObject BeginUnsafeConversionToXmas(object obj)
 		{
-			return BeginConversionToGoose((ForeignType) obj);
+			return BeginConversionToXmas((ForeignType) obj);
 		}
 	}
 }

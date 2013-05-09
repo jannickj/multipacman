@@ -8,7 +8,7 @@ namespace XmasEngineModel.Conversion
 	{
 		internal abstract object ConvertToForeignUnsafe(XmasObject gobj);
 
-		internal abstract XmasObject ConvertToGooseUnsafe(object fobj);
+		internal abstract XmasObject ConvertToXmasUnsafe(object fobj);
 	}
 
 	public class XmasConversionTool<ForeignType> : XmasConversionTool
@@ -23,16 +23,16 @@ namespace XmasEngineModel.Conversion
 			foreignLookup.Add(typeof (object), nocon);
 		}
 
-		public virtual void AddConverter<GooseType, ForeignTyped>(XmasConverter<GooseType, ForeignTyped> converter)
+		public virtual void AddConverter<XmasType, ForeignTyped>(XmasConverter<XmasType, ForeignTyped> converter)
 			where ForeignTyped : ForeignType
-			where GooseType : XmasObject
+			where XmasType : XmasObject
 		{
 			converter.ConversionTool = this;
 
-			if (!(converter is XmasConverterToForeign<GooseType, ForeignTyped>))
+			if (!(converter is XmasConverterToForeign<XmasType, ForeignTyped>))
 				foreignLookup.Add(typeof (ForeignTyped), converter);
-			if (!(converter is XmasConverterToXmas<GooseType, ForeignTyped>))
-				gooseLookup.Add(typeof (GooseType), converter);
+			if (!(converter is XmasConverterToXmas<XmasType, ForeignTyped>))
+				gooseLookup.Add(typeof (XmasType), converter);
 		}
 
 
@@ -48,7 +48,7 @@ namespace XmasEngineModel.Conversion
 					if (gt != original)
 					{
 						SleekConverter sleek = new SleekConverter(converter.BeginUnsafeConversionToForeign,
-						                                          converter.BeginUnsafeConversionToGoose);
+						                                          converter.BeginUnsafeConversionToXmas);
 						gooseLookup.Add(original, sleek);
 					}
 					return (ForeignType) converter.BeginUnsafeConversionToForeign(gobj);
@@ -64,18 +64,18 @@ namespace XmasEngineModel.Conversion
 			return ConvertToForeign(gobj);
 		}
 
-		internal override XmasObject ConvertToGooseUnsafe(object fobj)
+		internal override XmasObject ConvertToXmasUnsafe(object fobj)
 		{
-			return ConvertToGoose((ForeignType) fobj);
+			return ConvertToXmas((ForeignType) fobj);
 		}
 
-		public XmasObject ConvertToGoose(ForeignType foreign)
+		public XmasObject ConvertToXmas(ForeignType foreign)
 		{
 			XmasConverter converter;
 			Type ft = foreign.GetType();
 			if (foreignLookup.TryGetValue(ft, out converter))
 			{
-				return converter.BeginUnsafeConversionToGoose(foreign);
+				return converter.BeginUnsafeConversionToXmas(foreign);
 			}
 			throw new UnconvertableException(foreign);
 		}
@@ -88,7 +88,7 @@ namespace XmasEngineModel.Conversion
 				throw new UnconvertableException(gobj);
 			}
 
-			internal override XmasObject BeginUnsafeConversionToGoose(object obj)
+			internal override XmasObject BeginUnsafeConversionToXmas(object obj)
 			{
 				throw new UnconvertableException(obj);
 			}
@@ -97,12 +97,12 @@ namespace XmasEngineModel.Conversion
 		private class SleekConverter : XmasConverter
 		{
 			private Func<XmasObject, object> toForeign;
-			private Func<object, XmasObject> toGoose;
+			private Func<object, XmasObject> toXmas;
 
-			public SleekConverter(Func<XmasObject, object> toForeign, Func<object, XmasObject> toGoose)
+			public SleekConverter(Func<XmasObject, object> toForeign, Func<object, XmasObject> toXmas)
 			{
 				this.toForeign = toForeign;
-				this.toGoose = toGoose;
+				this.toXmas = toXmas;
 			}
 
 			internal override object BeginUnsafeConversionToForeign(XmasObject gobj)
@@ -110,9 +110,9 @@ namespace XmasEngineModel.Conversion
 				return toForeign(gobj);
 			}
 
-			internal override XmasObject BeginUnsafeConversionToGoose(object obj)
+			internal override XmasObject BeginUnsafeConversionToXmas(object obj)
 			{
-				return toGoose(obj);
+				return toXmas(obj);
 			}
 		}
 	}

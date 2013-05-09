@@ -3,11 +3,11 @@ using XmasEngineView.Console;
 
 namespace XmasEngineController.Console
 {
-    public class ConsoleController : GooseController
+    public class ConsoleController : XmasController
     {
  
 
-        public ConsoleController(XmasModel model, GooseConsoleView view) : base(model,view)
+        public ConsoleController(XmasModel model, XmasConsoleView view) : base(model,view)
         {
            
         }

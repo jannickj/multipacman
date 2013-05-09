@@ -10,7 +10,7 @@ namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Actions
 	{
 		#region implemented abstract members of XmasConverter
 
-		public override MoveUnit BeginConversionToGoose(EISMoveUnit fobj)
+		public override MoveUnit BeginConversionToXmas(EISMoveUnit fobj)
 		{
 			IilNumeral x_num = (IilNumeral) fobj.Parameters[0];
 			IilNumeral y_num = (IilNumeral) fobj.Parameters[1];

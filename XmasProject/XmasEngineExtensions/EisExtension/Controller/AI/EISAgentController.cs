@@ -36,7 +36,7 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 		{
 			IilAction iilaction = (IilAction) deserializer.Deserialize(xreader);
 			EISAction eisaction = actionparser.parseIILAction(iilaction);
-			EntityXmasAction gameaction = (EntityXmasAction) tool.ConvertToGoose(eisaction);
+			EntityXmasAction gameaction = (EntityXmasAction) tool.ConvertToXmas(eisaction);
 			performAction(gameaction);
 		}
 

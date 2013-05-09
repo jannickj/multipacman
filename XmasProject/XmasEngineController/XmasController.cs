@@ -9,10 +9,10 @@ namespace XmasEngineController
 	public abstract class XmasController
 	{
 		private List<AgentServer> aiservs = new List<AgentServer>();
-		private GooseModel model;
+		private XmasModel model;
         private XmasConsoleView view;
 
-        public XmasController(GooseModel model, XmasConsoleView view)
+        public XmasController(XmasModel model, XmasConsoleView view)
         {
             this.model = model;
             this.view = view;
