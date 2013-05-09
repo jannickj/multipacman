@@ -5,7 +5,7 @@ using JSLibrary.Data;
 
 namespace GooseEngineView.Console
 {
-	public class EntityView
+	public abstract class EntityView
 	{
 		protected Entity model;
 		protected Point position;
