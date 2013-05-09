@@ -13,7 +13,7 @@ using XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Actions;
 using XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Percepts;
 using XmasEngineModel;
 using XmasEngineModel.Entities.Units;
-using XmasEngineModel.GameManagement;
+using XmasEngineModel.Management;
 
 namespace XmasEngineExtensions_Test.EisExtension.AI
 {
@@ -46,8 +46,8 @@ namespace XmasEngineExtensions_Test.EisExtension.AI
 		public void SingleUpdate_RecievedGetAllPercepts_PickUpPerceptsAndReturnThemThroughWriter()
 		{
 			ActionManager manager = new ActionManager();
-			GooseWorld world = new GooseWorld(new GooseMap(new Size(4, 4)));
-			GooseFactory fact = new GooseFactory(manager);
+			XmasWorld world = new XmasWorld(new XmasMap(new Size(4, 4)));
+			XmasFactory fact = new XmasFactory(manager);
 			Agent agent = new Agent();
 			agent.ActionManager = manager;
 			agent.World = world;

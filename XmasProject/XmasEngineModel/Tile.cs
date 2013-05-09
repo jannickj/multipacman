@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace XmasEngineModel
 {
-	public class Tile : GooseObject
+	public class Tile : XmasObject
 	{
 		private LinkedList<Entity> entities = new LinkedList<Entity>();
 

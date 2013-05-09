@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Timers;
 using JSLibrary.Data;
 using XmasEngineModel;
-using XmasEngineModel.GameManagement;
-using XmasEngineModel.GameManagement.Events;
+using XmasEngineModel.Management;
+using XmasEngineModel.Management.Events;
 
 namespace XmasEngineView.Console
 {
 	public class GooseConsoleView : GooseView
 	{
-		private GooseModel model;
+		private XmasModel model;
 		private ConsoleWorldView viewWorld;
 		private ThreadSafeEventQueue eventqueue;
 		private ThreadSafeEventManager evtmanager;
 		private ConsoleViewFactory entityFactory;
 
-		public GooseConsoleView(GooseModel model, ConsoleWorldView viewWorld, ConsoleViewFactory entityFactory)
+		public GooseConsoleView(XmasModel model, ConsoleWorldView viewWorld, ConsoleViewFactory entityFactory)
 		{
 			this.model = model;
 			this.viewWorld = viewWorld;

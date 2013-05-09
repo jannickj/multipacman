@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
 using XmasEngineModel.Entities;
 using XmasEngineModel.Entities.Units;
-using XmasEngineModel.GameManagement;
-using XmasEngineModel.GameManagement.Actions;
-using XmasEngineModel.GameManagement.Events;
+using XmasEngineModel.Management;
+using XmasEngineModel.Management.Actions;
+using XmasEngineModel.Management.Events;
 
 namespace XmasEngine_Test.Model.GameManagement
 {
@@ -25,7 +25,7 @@ namespace XmasEngine_Test.Model.GameManagement
 
 			A.Register(mt);
 
-			mt.AddAction<GameEvent>(e => eventfired = true);
+			mt.AddAction<XmasEvent>(e => eventfired = true);
 
 			mt.RegisterEvent<UnitTakesDamagePostEvent>();
 
@@ -52,7 +52,7 @@ namespace XmasEngine_Test.Model.GameManagement
 
 
 			Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => eventFired = true);
-			EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
+			EntityXmasAction ga1 = new DamageUnitTarget(B, dmg);
 
 			gem.AddEntity(B);
 			B.Register(T);
@@ -81,8 +81,8 @@ namespace XmasEngine_Test.Model.GameManagement
 
 
 			Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => actualTimesFired++);
-			EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
-			EntityGameAction ga2 = new DamageUnitTarget(A, dmg);
+			EntityXmasAction ga1 = new DamageUnitTarget(B, dmg);
+			EntityXmasAction ga2 = new DamageUnitTarget(A, dmg);
 
 			gem.Register(T);
 			gem.AddEntity(A);
@@ -128,7 +128,7 @@ namespace XmasEngine_Test.Model.GameManagement
 					actualTaker = e.Target;
 					actualDmg = e.Damage;
 				});
-			EntityGameAction ga = new DamageUnitTarget(expectedTaker, dmg);
+			EntityXmasAction ga = new DamageUnitTarget(expectedTaker, dmg);
 
 			expectedTaker.Register(preT);
 			expectedTaker.Register(postT);
@@ -192,7 +192,7 @@ namespace XmasEngine_Test.Model.GameManagement
 			bool eventfired = false;
 
 			MultiTrigger mt = new MultiTrigger();
-			mt.AddAction<GameEvent>(e => eventfired = true);
+			mt.AddAction<XmasEvent>(e => eventfired = true);
 			mt.RegisterEvent<UnitTakesDamagePostEvent>();
 
 			A.Register(mt);
@@ -223,7 +223,7 @@ namespace XmasEngine_Test.Model.GameManagement
 
 
 			Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => eventFired = true);
-			EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
+			EntityXmasAction ga1 = new DamageUnitTarget(B, dmg);
 
 
 			gem.Register(T);
@@ -252,7 +252,7 @@ namespace XmasEngine_Test.Model.GameManagement
 
 
 			Trigger T = new Trigger<UnitTakesDamagePostEvent>(_ => eventFired = true);
-			EntityGameAction ga1 = new DamageUnitTarget(B, dmg);
+			EntityXmasAction ga1 = new DamageUnitTarget(B, dmg);
 
 
 			B.Register(T);

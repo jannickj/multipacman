@@ -3,8 +3,8 @@ using System.Threading;
 using JSLibrary.Data.GenericEvents;
 using XmasEngineModel;
 using XmasEngineModel.Entities.Units;
-using XmasEngineModel.GameManagement;
-using XmasEngineModel.GameManagement.Events;
+using XmasEngineModel.Management;
+using XmasEngineModel.Management.Events;
 
 namespace XmasEngineController.AI
 {
@@ -22,7 +22,7 @@ namespace XmasEngineController.AI
 
 		protected event UnaryValueHandler<PerceptCollection> PerceptsRecieved;
 
-		public void performAction(EntityGameAction action)
+		public void performAction(EntityXmasAction action)
 		{
 			action.Completed += action_Completed;
 			agent.QueueAction(action);

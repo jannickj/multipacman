@@ -11,8 +11,8 @@ namespace XmasEngine_Test.Model
 		[Test]
 		public void GetEntityPosition_OneAgentInWorld_ReturnThatAgentPosition()
 		{
-			GooseMap map = new GooseMap(new Size(2, 2));
-			GooseWorld world = new GooseWorld(map);
+			XmasMap map = new XmasMap(new Size(2, 2));
+			XmasWorld world = new XmasWorld(map);
 
 			Agent agent = new Agent();
 			world.AddEntity(new Point(1, 2), agent);

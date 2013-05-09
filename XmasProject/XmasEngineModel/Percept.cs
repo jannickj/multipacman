@@ -1,6 +1,6 @@
 ﻿namespace XmasEngineModel
 {
-	public abstract class Percept : GooseObject
+	public abstract class Percept : XmasObject
 	{
 	}
 }

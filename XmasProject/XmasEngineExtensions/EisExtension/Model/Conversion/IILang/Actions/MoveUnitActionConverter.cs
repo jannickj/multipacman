@@ -2,13 +2,13 @@ using System;
 using JSLibrary.Data;
 using JSLibrary.IiLang.Parameters;
 using XmasEngineExtensions.EisExtension.Model.ActionTypes;
-using XmasEngineModel.GameManagement.Actions;
+using XmasEngineModel.Management.Actions;
 
 namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Actions
 {
 	public class MoveUnitActionConverter : EISActionConverter<MoveUnit, EISMoveUnit>
 	{
-		#region implemented abstract members of GooseConverter
+		#region implemented abstract members of XmasConverter
 
 		public override MoveUnit BeginConversionToGoose(EISMoveUnit fobj)
 		{

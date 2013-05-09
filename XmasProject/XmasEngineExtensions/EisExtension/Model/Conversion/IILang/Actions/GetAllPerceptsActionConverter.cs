@@ -1,5 +1,5 @@
 using XmasEngineExtensions.EisExtension.Model.ActionTypes;
-using XmasEngineModel.GameManagement.Actions;
+using XmasEngineModel.Management.Actions;
 
 namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Actions
 {

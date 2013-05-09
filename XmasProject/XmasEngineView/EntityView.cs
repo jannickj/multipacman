@@ -1,7 +1,7 @@
 ﻿using JSLibrary.Data;
 using XmasEngineModel;
-using XmasEngineModel.GameManagement;
-using XmasEngineModel.GameManagement.Events;
+using XmasEngineModel.Management;
+using XmasEngineModel.Management.Events;
 
 namespace XmasEngineView
 {

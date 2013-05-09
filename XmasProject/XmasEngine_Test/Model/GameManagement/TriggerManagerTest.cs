@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
-using XmasEngineModel.GameManagement;
-using XmasEngineModel.GameManagement.Events;
+using XmasEngineModel.Management;
+using XmasEngineModel.Management.Events;
 
 namespace XmasEngine_Test.Model.GameManagement
 {
@@ -39,7 +39,7 @@ namespace XmasEngine_Test.Model.GameManagement
 
 			MultiTrigger mt = new MultiTrigger();
 
-			mt.AddCondition<GameEvent>(e => false);
+			mt.AddCondition<XmasEvent>(e => false);
 
 			Action<UnitTakesDamagePostEvent> action = (e => actionfired = true);
 
@@ -65,7 +65,7 @@ namespace XmasEngine_Test.Model.GameManagement
 
 			tm.Register(mt);
 
-			mt.AddAction<GameEvent>(e => eventfired = true);
+			mt.AddAction<XmasEvent>(e => eventfired = true);
 
 			mt.RegisterEvent<UnitTakesDamagePostEvent>();
 
@@ -108,7 +108,7 @@ namespace XmasEngine_Test.Model.GameManagement
 
 			Predicate<UnitTakesDamagePostEvent> cond = (e => false);
 			mt.AddCondition(cond);
-			mt.AddAction<GameEvent>(e => actionfired = true);
+			mt.AddAction<XmasEvent>(e => actionfired = true);
 			mt.RegisterEvent<UnitTakesDamagePostEvent>();
 
 			tm.Register(mt);
@@ -128,7 +128,7 @@ namespace XmasEngine_Test.Model.GameManagement
 			bool eventfired = false;
 
 			MultiTrigger mt = new MultiTrigger();
-			mt.AddAction<GameEvent>(e => eventfired = true);
+			mt.AddAction<XmasEvent>(e => eventfired = true);
 			mt.RegisterEvent<UnitTakesDamagePostEvent>();
 
 			tm.Register(mt);

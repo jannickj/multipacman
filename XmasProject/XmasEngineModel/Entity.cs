@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using JSLibrary.Data;
 using XmasEngineModel.Exceptions;
-using XmasEngineModel.GameManagement;
+using XmasEngineModel.Management;
 using XmasEngineModel.Rule;
 
 namespace XmasEngineModel
 {
-	public abstract class Entity : GooseActor
+	public abstract class Entity : XmasActor
 	{
 		private const int DEFAULT_VISION = 4;
 		private Conclusion[] conclusions = new Conclusion[2];
@@ -31,7 +31,7 @@ namespace XmasEngineModel
 			get { return World.GetEntityPosition(this); }
 		}
 
-		internal event EventHandler<GameEvent> TriggerRaised;
+		internal event EventHandler<XmasEvent> TriggerRaised;
 
 		protected void AddRuleSuperior<Superior>() where Superior : Entity
 		{
@@ -98,7 +98,7 @@ namespace XmasEngineModel
 			}
 		}
 
-		public void QueueAction(EntityGameAction action)
+		public void QueueAction(EntityXmasAction action)
 		{
 			if (action.IsEntitySupported(this))
 			{
@@ -109,7 +109,7 @@ namespace XmasEngineModel
 				throw new UnacceptableActionException(action, this);
 		}
 
-		internal void Raise(GameEvent evt)
+		internal void Raise(XmasEvent evt)
 		{
 			lock (this)
 			{

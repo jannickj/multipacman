@@ -16,9 +16,9 @@ namespace XmasEngine_Test.Model.Percepts
 		[Test]
 		public void AgentRequests7by7VisionInEmpty3by3World_Return5by5TilesWithImpassableWallsAtEdges()
 		{
-			GooseMap map = new GooseMap(new Size(1, 1));
+			XmasMap map = new XmasMap(new Size(1, 1));
 
-			GooseWorld world = new GooseWorld(map);
+			XmasWorld world = new XmasWorld(map);
 			Vision vision = world.View(new Point(0, 0), 3, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();
@@ -63,7 +63,7 @@ namespace XmasEngine_Test.Model.Percepts
 			 * SSSSSSS
 			 */
 
-			GooseMap map = new GooseMap(new Size(3, 3));
+			XmasMap map = new XmasMap(new Size(3, 3));
 			for (int i = -2; i <= 2; i++)
 			{
 				map[-2, i].AddEntity(new ImpassableWall());
@@ -78,7 +78,7 @@ namespace XmasEngine_Test.Model.Percepts
 
 			map[-3, 0].AddEntity(new Wall());
 
-			GooseWorld world = new GooseWorld(map);
+			XmasWorld world = new XmasWorld(map);
 			Vision vision = world.View(new Point(0, 0), 3, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();
@@ -118,7 +118,7 @@ namespace XmasEngine_Test.Model.Percepts
 			 * WWWWWWW
 			 */
 
-			GooseMap map = new GooseMap(new Size(3, 3));
+			XmasMap map = new XmasMap(new Size(3, 3));
 
 			for (int x = -3; x <= 3; x++)
 			{
@@ -129,7 +129,7 @@ namespace XmasEngine_Test.Model.Percepts
 				}
 			}
 
-			GooseWorld world = new GooseWorld(map);
+			XmasWorld world = new XmasWorld(map);
 			Vision vision = world.View(new Point(0, 0), 3, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();
@@ -169,10 +169,10 @@ namespace XmasEngine_Test.Model.Percepts
 			 * XXXXXXX
 			 */
 
-			GooseMap map = new GooseMap(new Size(3, 3));
+			XmasMap map = new XmasMap(new Size(3, 3));
 			map[-1, 0].AddEntity(new Wall());
 
-			GooseWorld world = new GooseWorld(map);
+			XmasWorld world = new XmasWorld(map);
 			Vision vision = world.View(new Point(0, 0), 2, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();
@@ -205,13 +205,13 @@ namespace XmasEngine_Test.Model.Percepts
 			 * SSXSS
 			 */
 
-			GooseMap map = new GooseMap(new Size(2, 2));
+			XmasMap map = new XmasMap(new Size(2, 2));
 			map[-1, -1].AddEntity(new Wall());
 			map[1, -1].AddEntity(new Wall());
 			map[-1, 1].AddEntity(new Wall());
 			map[1, 1].AddEntity(new Wall());
 
-			GooseWorld world = new GooseWorld(map);
+			XmasWorld world = new XmasWorld(map);
 			Vision vision = world.View(new Point(0, 0), 2, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();
@@ -254,10 +254,10 @@ namespace XmasEngine_Test.Model.Percepts
 			 * XXXXXXX
 			 */
 
-			GooseMap map = new GooseMap(new Size(3, 3));
+			XmasMap map = new XmasMap(new Size(3, 3));
 			map[-1, -1].AddEntity(new Wall());
 
-			GooseWorld world = new GooseWorld(map);
+			XmasWorld world = new XmasWorld(map);
 			Vision vision = world.View(new Point(0, 0), 2, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();
@@ -292,13 +292,13 @@ namespace XmasEngine_Test.Model.Percepts
 			 * XXSXX
 			 */
 
-			GooseMap map = new GooseMap(new Size(2, 2));
+			XmasMap map = new XmasMap(new Size(2, 2));
 			map[-1, 0].AddEntity(new Wall());
 			map[1, 0].AddEntity(new Wall());
 			map[0, -1].AddEntity(new Wall());
 			map[0, 1].AddEntity(new Wall());
 
-			GooseWorld world = new GooseWorld(map);
+			XmasWorld world = new XmasWorld(map);
 			Vision vision = world.View(new Point(0, 0), 2, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();

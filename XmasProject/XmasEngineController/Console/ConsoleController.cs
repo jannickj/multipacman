@@ -7,7 +7,7 @@ namespace XmasEngineController.Console
     {
  
 
-        public ConsoleController(GooseModel model, GooseConsoleView view) : base(model,view)
+        public ConsoleController(XmasModel model, GooseConsoleView view) : base(model,view)
         {
            
         }

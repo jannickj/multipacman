@@ -1,21 +1,21 @@
 ﻿using System;
-using XmasEngineModel.GameManagement;
+using XmasEngineModel.Management;
 
 namespace XmasEngineModel.Exceptions
 {
 	public class UnacceptableActionException : Exception
 	{
-		private GameAction action;
+		private XmasAction action;
 		private Entity entity;
 
-		public UnacceptableActionException(GameAction action, Entity entity)
+		public UnacceptableActionException(XmasAction action, Entity entity)
 			: base("Entity: [" + entity.GetType().Name + "] can't accept action: [" + action.GetType().Name + "]")
 		{
 			this.action = action;
 			this.entity = entity;
 		}
 
-		public GameAction Action
+		public XmasAction Action
 		{
 			get { return action; }
 		}

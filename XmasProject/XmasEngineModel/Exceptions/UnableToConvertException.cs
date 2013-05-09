@@ -5,15 +5,15 @@ namespace XmasEngineModel.Exceptions
 {
 	public class UnableToConvertException : Exception
 	{
-		private GooseConverter converter;
+		private XmasConverter converter;
 
-		public UnableToConvertException(GooseConverter converter)
+		public UnableToConvertException(XmasConverter converter)
 			: base("Converter: " + converter.GetType().Name + "does not support the conversion")
 		{
 			this.converter = converter;
 		}
 
-		public GooseConverter Converter
+		public XmasConverter Converter
 		{
 			get { return converter; }
 		}

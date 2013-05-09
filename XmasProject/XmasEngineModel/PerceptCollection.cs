@@ -2,7 +2,7 @@
 
 namespace XmasEngineModel
 {
-	public class PerceptCollection : GooseObject
+	public class PerceptCollection : XmasObject
 	{
 		private ICollection<Percept> percepts;
 

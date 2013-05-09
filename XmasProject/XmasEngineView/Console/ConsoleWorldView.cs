@@ -7,10 +7,10 @@ namespace XmasEngineView.Console
 {
 	public class ConsoleWorldView
 	{
-		private GooseWorld model;
+		private XmasWorld model;
 		private Dictionary<Entity, ConsoleEntityView> viewlookup = new Dictionary<Entity, ConsoleEntityView>();
 
-		public ConsoleWorldView(GooseWorld model)
+		public ConsoleWorldView(XmasWorld model)
 		{
 			this.model = model;
 		}

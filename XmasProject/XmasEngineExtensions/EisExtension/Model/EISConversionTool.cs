@@ -3,7 +3,7 @@ using XmasEngineModel.Conversion;
 
 namespace XmasEngineExtensions.EisExtension.Model
 {
-	public class EISConversionTool : GooseConversionTool<IILElement>
+	public class EISConversionTool : XmasConversionTool<IILElement>
 	{
 	}
 }

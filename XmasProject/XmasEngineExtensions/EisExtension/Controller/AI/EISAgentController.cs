@@ -7,7 +7,7 @@ using XmasEngineController.AI;
 using XmasEngineExtensions.EisExtension.Model;
 using XmasEngineModel;
 using XmasEngineModel.Entities.Units;
-using XmasEngineModel.GameManagement;
+using XmasEngineModel.Management;
 
 namespace XmasEngineExtensions.EisExtension.Controller.AI
 {
@@ -36,7 +36,7 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 		{
 			IILAction iilaction = (IILAction) deserializer.Deserialize(xreader);
 			EISAction eisaction = actionparser.parseIILAction(iilaction);
-			EntityGameAction gameaction = (EntityGameAction) tool.ConvertToGoose(eisaction);
+			EntityXmasAction gameaction = (EntityXmasAction) tool.ConvertToGoose(eisaction);
 			performAction(gameaction);
 		}
 

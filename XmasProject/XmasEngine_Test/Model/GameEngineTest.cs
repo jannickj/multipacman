@@ -4,9 +4,9 @@ using JSLibrary.Data;
 using NUnit.Framework;
 using XmasEngineModel;
 using XmasEngineModel.Entities.Units;
-using XmasEngineModel.GameManagement;
-using XmasEngineModel.GameManagement.Actions;
-using XmasEngineModel.GameManagement.Events;
+using XmasEngineModel.Management;
+using XmasEngineModel.Management.Actions;
+using XmasEngineModel.Management.Events;
 
 namespace XmasEngine_Test.Model
 {
@@ -16,17 +16,17 @@ namespace XmasEngine_Test.Model
 		[Test]
 		public void RunningGame_MoveActionStarted_MoveActionCompletes()
 		{
-			GooseWorld world = new GooseWorld(new GooseMap(new Size(2, 2)));
+			XmasWorld world = new XmasWorld(new XmasMap(new Size(2, 2)));
 
 			ActionManager actman = new ActionManager();
-			GooseFactory factory = new GooseFactory(actman);
+			XmasFactory factory = new XmasFactory(actman);
 			EventManager evtman = new EventManager();
 			Agent a = new Agent();
 			a.ActionManager = actman;
 
 			evtman.AddEntity(a);
 			world.AddEntity(new Point(0, 0), a);
-			GooseModel engine = new GooseModel(world, actman, evtman, factory);
+			XmasModel engine = new XmasModel(world, actman, evtman, factory);
 
 			Thread thread = new Thread(() => engine.Start());
 			thread.Name = "Engine Thread";

@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using XmasEngineController;
 using XmasEngineModel;
-using XmasEngineModel.GameManagement;
+using XmasEngineModel.Management;
 using XmasEngineView;
 
 namespace XmasEngine
@@ -11,22 +11,22 @@ namespace XmasEngine
 		where TView : GooseView
 		where TController : GooseController
 	{
-		public virtual GooseModel ConstructModel(GooseMap map)
+		public virtual XmasModel ConstructModel(XmasMap map)
 		{
 
 			//TODO: FIX Factory code
-			GooseWorld world = null; //new GooseWorld(map);
+			XmasWorld world = null; //new XmasWorld(map);
 			ActionManager actman = ConstructActionManager();
 			EventManager evtman = ConstructEventManager();
-			GooseFactory fact = ConstructGameFactory(actman);
-			GooseModel engine = new GooseModel(world, actman, evtman, fact);
+			XmasFactory fact = ConstructGameFactory(actman);
+			XmasModel engine = new XmasModel(world, actman, evtman, fact);
 
 			return engine;
 		}
 
-		protected virtual GooseFactory ConstructGameFactory(ActionManager actman)
+		protected virtual XmasFactory ConstructGameFactory(ActionManager actman)
 		{
-			return new GooseFactory(actman);
+			return new XmasFactory(actman);
 		}
 
 		protected virtual EventManager ConstructEventManager()
@@ -39,16 +39,16 @@ namespace XmasEngine
 			return new ActionManager();
 		}
 
-		public abstract TView ConstructView(GooseModel model);
+		public abstract TView ConstructView(XmasModel model);
 
 
-        public abstract TController ContructController(GooseModel model, TView view);
+        public abstract TController ContructController(XmasModel model, TView view);
 
 
         
-		public Tuple<GooseModel,TView,TController> FullConstruct(GooseMap map,params AgentFactory[] agentFactory)
+		public Tuple<XmasModel,TView,TController> FullConstruct(XmasMap map,params AgentFactory[] agentFactory)
 		{
-			GooseModel model = this.ConstructModel(map);
+			XmasModel model = this.ConstructModel(map);
             TView view = this.ConstructView(model);
             TController controller = this.ContructController(model, view);
 
@@ -59,9 +59,9 @@ namespace XmasEngine
 			return Tuple.Create(model, view, controller);
 		}
 
-		public void StartEngine(GooseModel model, GooseView view, GooseController controller)
+		public void StartEngine(XmasModel model, GooseView view, GooseController controller)
 		{
-			GooseFactory fact = model.Factory;
+			XmasFactory fact = model.Factory;
 			Thread modelt = fact.CreateThread(model.Start);
 			Thread viewt = fact.CreateThread(view.Start);
 			Thread cont = fact.CreateThread(controller.Start);

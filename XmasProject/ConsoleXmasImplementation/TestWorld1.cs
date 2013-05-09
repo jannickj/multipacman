@@ -6,7 +6,7 @@ using XmasEngineModel.Entities.Units;
 
 namespace ConsoleXmasImplementation
 {
-	public class TestWorld1 : GooseWorld
+	public class TestWorld1 : XmasWorld
 	{
 		public TestWorld1() : base(new Size(6, 6))
 		{

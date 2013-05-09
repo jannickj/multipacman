@@ -34,9 +34,9 @@ namespace XmasEngineExtensions.EisExtension
 		private EISConversionTool ContructEISConversionTool()
 		{
 			EISConversionTool tool = new EISConversionTool();
-			List<Type> converters = ExtendedType.FindAllDerivedTypes<GooseConverter>();
+			List<Type> converters = ExtendedType.FindAllDerivedTypes<XmasConverter>();
 
-			MethodInfo gmethod = typeof(GooseConversionTool<>).GetMethod("AddConverter");
+			MethodInfo gmethod = typeof(XmasConversionTool<>).GetMethod("AddConverter");
 
 			foreach (Type t in converters.Where(t => t.BaseType != null && t.BaseType.IsGenericType && !t.IsAbstract))
 			{
