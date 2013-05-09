@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using JSLibrary.Data;
 using XmasEngineModel;
 
-namespace XmasEngineView.Console
+namespace ConsoleXmasImplementation
 {
 	public class ConsoleWorldView
 	{

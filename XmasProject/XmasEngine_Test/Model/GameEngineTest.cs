@@ -2,6 +2,8 @@ using System;
 using System.Threading;
 using JSLibrary.Data;
 using NUnit.Framework;
+using XmasEngineExtensions.TileExtension;
+using XmasEngineExtensions.TileExtension.Actions;
 using XmasEngineModel;
 using XmasEngineModel.Entities.Units;
 using XmasEngineModel.Management;

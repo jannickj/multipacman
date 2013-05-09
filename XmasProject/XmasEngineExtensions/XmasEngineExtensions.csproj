@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="TileExtension\TilePoint.cs" />
     <Compile Include="TileExtension\TileWorld.cs" />
+    <Compile Include="TileExtension\TileWorldBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">

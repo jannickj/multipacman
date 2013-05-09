@@ -1,13 +1,13 @@
-﻿using XmasEngineModel;
-using XmasEngineView.Console;
+﻿using XmasEngineController;
+using XmasEngineModel;
 
-namespace XmasEngineController.Console
+namespace ConsoleXmasImplementation.Control
 {
     public class ConsoleController : XmasController
     {
  
 
-        public ConsoleController(XmasModel model, XmasConsoleView view) : base(model,view)
+        public ConsoleController(XmasModel model, ConsoleView view) : base(model,view)
         {
            
         }

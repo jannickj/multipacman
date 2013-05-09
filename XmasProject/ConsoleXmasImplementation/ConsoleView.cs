@@ -5,10 +5,11 @@ using JSLibrary.Data;
 using XmasEngineModel;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
+using XmasEngineView;
 
-namespace XmasEngineView.Console
+namespace ConsoleXmasImplementation
 {
-	public class GooseConsoleView : GooseView
+	public class ConsoleView : XmasView
 	{
 		private XmasModel model;
 		private ConsoleWorldView viewWorld;
@@ -16,7 +17,7 @@ namespace XmasEngineView.Console
 		private ThreadSafeEventManager evtmanager;
 		private ConsoleViewFactory entityFactory;
 
-		public GooseConsoleView(XmasModel model, ConsoleWorldView viewWorld, ConsoleViewFactory entityFactory)
+		public ConsoleView(XmasModel model, ConsoleWorldView viewWorld, ConsoleViewFactory entityFactory)
 		{
 			this.model = model;
 			this.viewWorld = viewWorld;

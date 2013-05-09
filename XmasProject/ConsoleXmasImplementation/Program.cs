@@ -6,7 +6,7 @@ namespace ConsoleXmasImplementation
 	{
 		private static void Main(string[] args)
 		{
-            ConsoleXmasImplFactory factory = new ConsoleXmasImplFactory();
+            ConsoleFactory factory = new ConsoleFactory();
 
 			//var t = factory.FullConstruct(new TestWorld1(),new EisAgentFactory(IPAddress.Parse("127.0.0.1"),33766));
 

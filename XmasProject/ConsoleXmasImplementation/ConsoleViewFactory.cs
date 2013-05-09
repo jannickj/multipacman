@@ -1,10 +1,11 @@
 using System;
+using ConsoleXmasImplementation.EntityViews;
 using XmasEngineModel;
 using XmasEngineModel.Entities;
 using XmasEngineModel.Entities.Units;
-using XmasEngineView.Console.EntityViews;
+using XmasEngineView;
 
-namespace XmasEngineView.Console
+namespace ConsoleXmasImplementation
 {
 	public class ConsoleViewFactory : ViewFactory
 	{

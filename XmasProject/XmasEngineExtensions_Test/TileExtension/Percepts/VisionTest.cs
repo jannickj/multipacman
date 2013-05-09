@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using JSLibrary.Data;
 using NUnit.Framework;
+using XmasEngineExtensions.TileExtension;
 using XmasEngineModel;
 using XmasEngineModel.Entities;
 using XmasEngineModel.Entities.Units;
 using XmasEngineModel.Perceptions;
-using XmasEngineExtensions.TileExtension;
 
-namespace XmasEngine_Test.Model.Percepts
+namespace XmasEngineExtensions_Test.TileExtension.Percepts
 {
 	[TestFixture]
 	public class VisionTest

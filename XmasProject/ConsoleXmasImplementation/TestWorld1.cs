@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using JSLibrary.Data;
+using XmasEngineExtensions.TileExtension;
 using XmasEngineModel;
 using XmasEngineModel.Entities;
 using XmasEngineModel.Entities.Units;
 
 namespace ConsoleXmasImplementation
 {
-	public class TestWorld1 : XmasWorld
+	public class TestWorld1 : TileWorldBuilder
 	{
 		public TestWorld1() : base(new Size(6, 6))
 		{

@@ -1,6 +1,6 @@
 using XmasEngineModel;
 
-namespace XmasEngineView.Console.EntityViews
+namespace ConsoleXmasImplementation.EntityViews
 {
 	public class ConsoleImpassableWallView : ConsoleEntityView
 	{

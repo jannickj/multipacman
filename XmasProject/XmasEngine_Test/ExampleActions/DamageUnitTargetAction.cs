@@ -1,7 +1,8 @@
 ﻿using XmasEngineModel.Entities;
+using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
 
-namespace XmasEngineModel.Management.Actions
+namespace XmasEngine_Test.ExampleActions
 {
 	public class DamageUnitTargetAction : EntityXmasAction<Unit>
 	{

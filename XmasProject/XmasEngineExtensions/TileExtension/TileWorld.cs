@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using JSLibrary.Data;
 using System.Linq;
+using XmasEngineModel;
 using XmasEngineModel.Perceptions;
 using XmasEngineModel.World;
 
-namespace XmasEngineModel
+namespace XmasEngineExtensions.TileExtension
 {
 	public class TileWorld : XmasWorld
 	{

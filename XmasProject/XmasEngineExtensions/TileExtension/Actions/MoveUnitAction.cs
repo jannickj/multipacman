@@ -1,9 +1,9 @@
 ﻿using JSLibrary.Data;
-using XmasEngineExtensions.TileExtension;
 using XmasEngineModel.Entities;
+using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
 
-namespace XmasEngineModel.Management.Actions
+namespace XmasEngineExtensions.TileExtension.Actions
 {
 	public class MoveUnitAction : EntityXmasAction<Unit>
 	{

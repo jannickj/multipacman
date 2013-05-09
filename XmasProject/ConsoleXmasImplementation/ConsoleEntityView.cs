@@ -1,8 +1,9 @@
 using XmasEngineModel;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
+using XmasEngineView;
 
-namespace XmasEngineView.Console
+namespace ConsoleXmasImplementation
 {
 	public abstract class ConsoleEntityView : EntityView
 	{
