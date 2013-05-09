@@ -46,7 +46,7 @@ namespace XmasEngineExtensions_Test.EisExtension.AI
 		public void SingleUpdate_RecievedGetAllPercepts_PickUpPerceptsAndReturnThemThroughWriter()
 		{
 			ActionManager manager = new ActionManager();
-			XmasWorld world = new XmasWorld(new XmasMap(new Size(4, 4)));
+			TileWorld world = new TileWorld(new XmasMap(new Size(4, 4)));
 			XmasFactory fact = new XmasFactory(manager);
 			Agent agent = new Agent();
 			agent.ActionManager = manager;

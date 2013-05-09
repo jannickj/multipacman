@@ -59,11 +59,13 @@
     <Compile Include="Exceptions\UnacceptableActionException.cs" />
     <Compile Include="Exceptions\UnconvertableException.cs" />
     <Compile Include="Management\ActionManager.cs" />
-    <Compile Include="Management\Actions\CloseEngine.cs" />
-    <Compile Include="Management\Actions\DamageUnitTarget.cs" />
-    <Compile Include="Management\Actions\GetAllPercepts.cs" />
-    <Compile Include="Management\Actions\MoveUnit.cs" />
-    <Compile Include="Management\Actions\SimpleAction.cs" />
+    <Compile Include="Management\Actions\CloseEngineAction.cs" />
+    <Compile Include="Management\Actions\GetAllPerceptsAction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Management\Actions\SimpleAction.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Management\EntityXmasAction.cs" />
     <Compile Include="Management\EnvironmentAction.cs" />
     <Compile Include="Management\EventManager.cs" />
@@ -86,11 +88,13 @@
     <Compile Include="Management\ThreadSafeEventQueue.cs" />
     <Compile Include="Management\Trigger.cs" />
     <Compile Include="Management\TriggerManager.cs" />
+    <Compile Include="Management\Actions\AddEntityAction.cs" />
+    <Compile Include="World\EntitySpawnInformation.cs" />
+    <Compile Include="World\XmasPosition.cs" />
     <Compile Include="XmasObject.cs" />
     <Compile Include="XmasActor.cs" />
     <Compile Include="XmasMap.cs" />
     <Compile Include="XmasModel.cs" />
-    <Compile Include="XmasWorld.cs" />
     <Compile Include="Interfaces\IStartable.cs" />
     <Compile Include="Percept.cs" />
     <Compile Include="PerceptCollection.cs" />
@@ -103,6 +107,8 @@
     <Compile Include="Rule\RuleHierarchy.cs" />
     <Compile Include="Rule\TransformationRule.cs" />
     <Compile Include="Tile.cs" />
+    <Compile Include="XmasWorld.cs" />
+    <Compile Include="XmasWorldBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">

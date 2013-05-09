@@ -18,7 +18,7 @@ namespace XmasEngine_Test.Model.Percepts
 		{
 			XmasMap map = new XmasMap(new Size(1, 1));
 
-			XmasWorld world = new XmasWorld(map);
+			TileWorld world = new TileWorld(map);
 			Vision vision = world.View(new Point(0, 0), 3, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();
@@ -78,7 +78,7 @@ namespace XmasEngine_Test.Model.Percepts
 
 			map[-3, 0].AddEntity(new Wall());
 
-			XmasWorld world = new XmasWorld(map);
+			TileWorld world = new TileWorld(map);
 			Vision vision = world.View(new Point(0, 0), 3, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();
@@ -129,7 +129,7 @@ namespace XmasEngine_Test.Model.Percepts
 				}
 			}
 
-			XmasWorld world = new XmasWorld(map);
+			TileWorld world = new TileWorld(map);
 			Vision vision = world.View(new Point(0, 0), 3, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();
@@ -172,7 +172,7 @@ namespace XmasEngine_Test.Model.Percepts
 			XmasMap map = new XmasMap(new Size(3, 3));
 			map[-1, 0].AddEntity(new Wall());
 
-			XmasWorld world = new XmasWorld(map);
+			TileWorld world = new TileWorld(map);
 			Vision vision = world.View(new Point(0, 0), 2, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();
@@ -211,7 +211,7 @@ namespace XmasEngine_Test.Model.Percepts
 			map[-1, 1].AddEntity(new Wall());
 			map[1, 1].AddEntity(new Wall());
 
-			XmasWorld world = new XmasWorld(map);
+			TileWorld world = new TileWorld(map);
 			Vision vision = world.View(new Point(0, 0), 2, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();
@@ -257,7 +257,7 @@ namespace XmasEngine_Test.Model.Percepts
 			XmasMap map = new XmasMap(new Size(3, 3));
 			map[-1, -1].AddEntity(new Wall());
 
-			XmasWorld world = new XmasWorld(map);
+			TileWorld world = new TileWorld(map);
 			Vision vision = world.View(new Point(0, 0), 2, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();
@@ -298,7 +298,7 @@ namespace XmasEngine_Test.Model.Percepts
 			map[0, -1].AddEntity(new Wall());
 			map[0, 1].AddEntity(new Wall());
 
-			XmasWorld world = new XmasWorld(map);
+			TileWorld world = new TileWorld(map);
 			Vision vision = world.View(new Point(0, 0), 2, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();

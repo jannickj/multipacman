@@ -2,7 +2,7 @@
 using System.Threading;
 using XmasEngineController.AI;
 using XmasEngineModel;
-using XmasEngineView.Console;
+using XmasEngineView;
 
 namespace XmasEngineController
 {
@@ -10,9 +10,9 @@ namespace XmasEngineController
 	{
 		private List<AgentServer> aiservs = new List<AgentServer>();
 		private XmasModel model;
-        private XmasConsoleView view;
+        private XmasView view;
 
-        public XmasController(XmasModel model, XmasConsoleView view)
+        public XmasController(XmasModel model, XmasView view)
         {
             this.model = model;
             this.view = view;

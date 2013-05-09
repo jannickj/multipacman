@@ -1,6 +1,19 @@
-﻿namespace XmasEngineView
+﻿using XmasEngineModel;
+
+namespace XmasEngineView
 {
-	public class WorldView
+	public class XmasWorldView
 	{
+		private XmasWorld model;
+
+		public XmasWorldView(XmasWorld world)
+		{
+			this.model = world;
+		}
+
+		public XmasWorld Model
+		{
+			get { return model; }
+		}
 	}
 }

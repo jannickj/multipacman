@@ -4,6 +4,7 @@ using JSLibrary.Data;
 using XmasEngineModel.Exceptions;
 using XmasEngineModel.Management;
 using XmasEngineModel.Rule;
+using XmasEngineModel.World;
 
 namespace XmasEngineModel
 {
@@ -26,7 +27,7 @@ namespace XmasEngineModel
 			get { return DEFAULT_VISION; }
 		}
 
-		public Point Position
+		public XmasPosition Position
 		{
 			get { return World.GetEntityPosition(this); }
 		}
@@ -109,7 +110,7 @@ namespace XmasEngineModel
 				throw new UnacceptableActionException(action, this);
 		}
 
-		internal void Raise(XmasEvent evt)
+		public void Raise(XmasEvent evt)
 		{
 			lock (this)
 			{

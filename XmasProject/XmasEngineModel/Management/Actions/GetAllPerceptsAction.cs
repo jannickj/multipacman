@@ -3,7 +3,7 @@ using XmasEngineModel.Management.Events;
 
 namespace XmasEngineModel.Management.Actions
 {
-	public class GetAllPercepts : EntityXmasAction<Unit>
+	public class GetAllPerceptsAction : EntityXmasAction<Unit>
 	{
 		#region implemented abstract members of GameAction
 

@@ -16,7 +16,7 @@ namespace XmasEngine_Test.Model
 		[Test]
 		public void RunningGame_MoveActionStarted_MoveActionCompletes()
 		{
-			XmasWorld world = new XmasWorld(new XmasMap(new Size(2, 2)));
+			TileWorld world = new TileWorld(new XmasMap(new Size(2, 2)));
 
 			ActionManager actman = new ActionManager();
 			XmasFactory factory = new XmasFactory(actman);
@@ -31,9 +31,9 @@ namespace XmasEngine_Test.Model
 			Thread thread = new Thread(() => engine.Start());
 			thread.Name = "Engine Thread";
 
-			MoveUnit move = new MoveUnit(new Vector(0, 1));
+			MoveUnitAction move = new MoveUnitAction(new Vector(0, 1));
 
-			evtman.Register(new Trigger<UnitMovePostEvent>(_ => actman.Queue(new CloseEngine())));
+			evtman.Register(new Trigger<UnitMovePostEvent>(_ => actman.Queue(new CloseEngineAction())));
 
 			thread.Start();
 

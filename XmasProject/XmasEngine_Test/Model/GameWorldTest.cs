@@ -12,7 +12,7 @@ namespace XmasEngine_Test.Model
 		public void GetEntityPosition_OneAgentInWorld_ReturnThatAgentPosition()
 		{
 			XmasMap map = new XmasMap(new Size(2, 2));
-			XmasWorld world = new XmasWorld(map);
+			TileWorld world = new TileWorld(map);
 
 			Agent agent = new Agent();
 			world.AddEntity(new Point(1, 2), agent);

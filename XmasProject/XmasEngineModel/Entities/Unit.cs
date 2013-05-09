@@ -14,7 +14,7 @@ namespace XmasEngineModel.Entities
 		{
 			AddRuleSuperior<Unit>();
 			AddWillBlock_MovementRule<Unit>(p => p is Unit);
-			perceptCollectors.Add(VisionPercept);
+			//perceptCollectors.Add(VisionPercept);
 			perceptCollectors.Add(HealthPercept);
 		}
 
@@ -42,10 +42,10 @@ namespace XmasEngineModel.Entities
 
 		#region BuiltinPerceptCollectors
 
-		private Percept VisionPercept()
-		{
-			return World.View(this);
-		}
+		//private Percept VisionPercept()
+		//{
+		//	return World.View(this);
+		//}
 
 		private Percept HealthPercept()
 		{

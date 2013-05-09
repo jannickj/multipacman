@@ -3,12 +3,12 @@ using XmasEngineModel.Management.Events;
 
 namespace XmasEngineModel.Management.Actions
 {
-	public class DamageUnitTarget : EntityXmasAction<Unit>
+	public class DamageUnitTargetAction : EntityXmasAction<Unit>
 	{
 		private int dmg;
 		private Unit target;
 
-		public DamageUnitTarget(Unit target, int dmg)
+		public DamageUnitTargetAction(Unit target, int dmg)
 		{
 			this.target = target;
 			this.dmg = dmg;

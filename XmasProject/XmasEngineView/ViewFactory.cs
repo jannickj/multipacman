@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using XmasEngineModel;
-using XmasEngineView.Console;
+
 
 namespace XmasEngineView
 {
@@ -11,7 +11,7 @@ namespace XmasEngineView
 
 		public void AddTypeLink<TModel, TView> () 
 			where TModel : Entity
-			where TView : ConsoleEntityView
+			where TView : EntityView
 		{
 			typeDict.Add (typeof(TModel), typeof(TView));
 		}

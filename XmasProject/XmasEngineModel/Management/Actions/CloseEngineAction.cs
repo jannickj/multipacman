@@ -2,7 +2,7 @@
 
 namespace XmasEngineModel.Management.Actions
 {
-	public class CloseEngine : EnvironmentAction
+	public class CloseEngineAction : EnvironmentAction
 	{
 		protected override void Execute()
 		{

@@ -42,6 +42,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExampleActions\DamageUnitTargetAction.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Model\AgentTest.cs" />
     <Compile Include="Model\Conversion\GooseConversionToolTest.cs" />
     <Compile Include="Model\Data\PointTest.cs" />

@@ -42,7 +42,6 @@
     <Compile Include="AgentFactory.cs" />
     <Compile Include="AI\AgentController.cs" />
     <Compile Include="AI\AgentServer.cs" />
-    <Compile Include="Console\ConsoleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmasController.cs" />
   </ItemGroup>

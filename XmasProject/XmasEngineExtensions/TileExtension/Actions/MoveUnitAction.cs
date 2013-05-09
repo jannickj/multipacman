@@ -1,10 +1,11 @@
 ﻿using JSLibrary.Data;
+using XmasEngineExtensions.TileExtension;
 using XmasEngineModel.Entities;
 using XmasEngineModel.Management.Events;
 
 namespace XmasEngineModel.Management.Actions
 {
-	public class MoveUnit : EntityXmasAction<Unit>
+	public class MoveUnitAction : EntityXmasAction<Unit>
 	{
 		private Vector direction;
 		private double time;
@@ -16,12 +17,12 @@ namespace XmasEngineModel.Management.Actions
 		/// <param name="unit"> The unit that gets moved</param>
 		/// <param name="direction"> the direction vector of the move</param>
 		/// <param name="time"> the time in miliseconds that the move takes</param>
-//		public MoveUnit(Vector direction, double time)
+//		public MoveUnitAction(Vector direction, double time)
 //        {
 //            this.direction = direction.Direction;
 //            this.time = time;
 //        }
-		public MoveUnit(Vector direction)
+		public MoveUnitAction(Vector direction)
 		{
 			this.direction = direction.Direction;
 		}
@@ -33,8 +34,9 @@ namespace XmasEngineModel.Management.Actions
 			time = Source.MoveSpeed;
 			XmasTimer gt = Factory.CreateTimer(() =>
 				{
-					Point newloc = World.GetEntityPosition(Source) + direction;
-					World.SetEntityLocation(newloc, Source);
+					TilePosition tile = World.GetEntityPosition(Source) as TilePosition;
+					Point newloc = tile.Point + direction;
+					World.SetEntityPosition(Source, new TilePosition(newloc));
 					Source.Raise(new UnitMovePostEvent(newloc));
 
 					Complete();

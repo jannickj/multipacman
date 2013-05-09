@@ -27,19 +27,12 @@ namespace XmasEngineModel
 			ActionManager = actman;
 			EventManager = evtman;
 			Factory = factory;
-			this.factory.EntityCreated += factory_EntityCreated;
-
+			
 			EventManager.Register(new Trigger<EngineCloseEvent>(evtman_EngineClose));
 			ActionManager.ActionQueuing += actman_ActionQueuing;
 			ActionManager.ActionQueued += actman_ActionQueued;
 		}
 
-		void factory_EntityCreated(object sender, UnaryValueEvent<Tuple<Entity, Point>> evt)
-		{
-			this.AddEntity(evt.Value.Item1,evt.Value.Item2);
-		}
-
-		
 
 		public void Initialize()
 		{
@@ -72,25 +65,8 @@ namespace XmasEngineModel
 			}
 		}
 
-		public void AddEntity(Entity entity, Point loc)
-		{
-            AddActor(entity);
-			World.AddEntity(loc, entity);
-			this.ActionManager.QueueAction(new SimpleAction(_ => this.EventManager.Raise(new EntityAddedEvent(entity))));
-		}
-
-		public void AddEntity(Entity entity)
-		{
-			AddEntity(entity, new Point(0, 0));
-		}
-
-        public void AddActor(XmasActor actor)
-        {
-            actor.ActionManager = ActionManager;
-            actor.EventManager = EventManager;
-            actor.World = World;
-            actor.Factory = Factory;
-        }
+		
+       
 
 		public bool EngineCrashed(out Exception exception)
 		{
@@ -162,6 +138,14 @@ namespace XmasEngineModel
 		#endregion
 
 
-    
-    }
+
+
+		public void AddActor(XmasActor actor)
+		{
+			actor.ActionManager = ActionManager;
+			actor.EventManager = EventManager;
+			actor.World = World;
+			actor.Factory = Factory; ;
+		}
+	}
 }
