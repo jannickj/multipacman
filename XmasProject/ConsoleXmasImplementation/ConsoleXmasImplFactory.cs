@@ -1,4 +1,4 @@
-﻿using XmasEngineController;
+using XmasEngineController;
 using XmasEngineController.Console;
 using XmasEngineModel;
 using XmasEngineView.Console;
@@ -14,7 +14,7 @@ namespace XmasEngine
 	        return null; //new XmasConsoleView(model,contructWorldView(model.World));
         }
 
-        private ConsoleWorldView contructWorldView(XmasWorld modelworld)
+        private ConsoleWorldView contructWorldView(TileWorld modelworld)
         {
             return new ConsoleWorldView(modelworld);
         }

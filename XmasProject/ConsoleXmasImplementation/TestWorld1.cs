@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using JSLibrary.Data;
 using XmasEngineModel;
 using XmasEngineModel.Entities;
@@ -6,7 +6,7 @@ using XmasEngineModel.Entities.Units;
 
 namespace ConsoleXmasImplementation
 {
-	public class TestWorld1 : XmasWorld
+	public class TestWorld1 : TileWorld
 	{
 		public TestWorld1() : base(new Size(6, 6))
 		{

@@ -9,7 +9,7 @@ namespace XmasEngineModel
 {
 	public abstract class XmasWorld
 	{
-		internal protected abstract void AddEntity(Entity ent, EntitySpawnInformation info);
+		internal protected abstract void AddEntity(Entity entity, EntitySpawnInformation info);
 
 
 		public abstract XmasPosition GetEntityPosition(Entity entity);
