@@ -4,3 +4,4 @@ obj/
 /FlamingGoose/GooseEngine/*.suo
 TestResults/
 *.user
+*.suo
