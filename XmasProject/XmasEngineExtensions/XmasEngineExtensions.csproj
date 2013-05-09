@@ -9,14 +9,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XmasEngineExtensions</RootNamespace>
     <AssemblyName>XmasEngineExtensions</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -24,7 +24,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>True</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -66,23 +66,23 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
-      <Project>{d1bfb5f5-681e-4d5f-9910-69403b11c5b5}</Project>
+      <Project>{D1BFB5F5-681E-4D5F-9910-69403B11C5B5}</Project>
       <Name>JSLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\XmasEngineController\XmasEngineController.csproj">
-      <Project>{0fae1368-42fc-48f7-a82b-58cf276188c1}</Project>
+      <Project>{0FAE1368-42FC-48F7-A82B-58CF276188C1}</Project>
       <Name>XmasEngineController</Name>
     </ProjectReference>
     <ProjectReference Include="..\XmasEngineModel\XmasEngineModel.csproj">
-      <Project>{70abbb17-6a3c-429c-b27e-0f56aacb9f69}</Project>
+      <Project>{70ABBB17-6A3C-429C-B27E-0F56AACB9F69}</Project>
       <Name>XmasEngineModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\XmasEngineView\XmasEngineView.csproj">
-      <Project>{99f1f1f4-2df4-4c9e-8a33-5cd538d2c002}</Project>
+      <Project>{99F1F1F4-2DF4-4C9E-8A33-5CD538D2C002}</Project>
       <Name>XmasEngineView</Name>
     </ProjectReference>
     <ProjectReference Include="..\XmasEngine\XmasEngine.csproj">
-      <Project>{935b3fa0-d1de-4395-a69c-8f64159791f9}</Project>
+      <Project>{935B3FA0-D1DE-4395-A69C-8F64159791F9}</Project>
       <Name>XmasEngine</Name>
     </ProjectReference>
   </ItemGroup>
