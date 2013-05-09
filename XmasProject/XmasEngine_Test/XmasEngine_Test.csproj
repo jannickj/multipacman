@@ -54,7 +54,6 @@
     <Compile Include="Model\GameManagement\TriggerManagerTest.cs" />
     <Compile Include="Model\GameMapTest.cs" />
     <Compile Include="Model\GameWorldTest.cs" />
-    <Compile Include="Model\Percepts\VisionTest.cs" />
     <Compile Include="Model\Rule\RuleHierarchyTest.cs" />
     <Compile Include="Model\Rule\TransformationRuleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,6 +61,7 @@
   <ItemGroup>
     <Folder Include="Model\Conversion\EIS\" />
     <Folder Include="Model\EIS\" />
+    <Folder Include="Model\Percepts\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
@@ -71,6 +71,10 @@
     <ProjectReference Include="..\XmasEngineController\XmasEngineController.csproj">
       <Project>{0FAE1368-42FC-48F7-A82B-58CF276188C1}</Project>
       <Name>XmasEngineController</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmasEngineExtensions\XmasEngineExtensions.csproj">
+      <Project>{f0965ebc-feaf-4445-a43b-998d0a8d249d}</Project>
+      <Name>XmasEngineExtensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\XmasEngineModel\XmasEngineModel.csproj">
       <Project>{70ABBB17-6A3C-429C-B27E-0F56AACB9F69}</Project>

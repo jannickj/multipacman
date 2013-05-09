@@ -7,6 +7,7 @@ using XmasEngineModel;
 using XmasEngineModel.Entities;
 using XmasEngineModel.Entities.Units;
 using XmasEngineModel.Perceptions;
+using XmasEngineExtensions.TileExtension;
 
 namespace XmasEngine_Test.Model.Percepts
 {
@@ -18,7 +19,7 @@ namespace XmasEngine_Test.Model.Percepts
 		{
 			XmasMap map = new XmasMap(new Size(1, 1));
 
-			TileWorld world = new TileWorld(map);
+			 TileWorld world = new TileWorld(map);
 			Vision vision = world.View(new Point(0, 0), 3, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();

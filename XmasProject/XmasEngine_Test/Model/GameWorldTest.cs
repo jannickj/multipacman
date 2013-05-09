@@ -2,6 +2,7 @@ using JSLibrary.Data;
 using NUnit.Framework;
 using XmasEngineModel;
 using XmasEngineModel.Entities.Units;
+using XmasEngineExtensions.TileExtension;
 
 namespace XmasEngine_Test.Model
 {

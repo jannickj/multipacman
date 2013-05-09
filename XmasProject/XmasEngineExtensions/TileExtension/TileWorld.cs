@@ -6,16 +6,16 @@ using XmasEngineModel.Perceptions;
 
 namespace XmasEngineModel
 {
-	public class XmasWorld
+	public class TileWorld
 	{
 		private Dictionary<Entity, Point> entlocs = new Dictionary<Entity, Point>();
 		private XmasMap map;
 
-		public XmasWorld(XmasMap map)
+		public TileWorld(XmasMap map)
 		{
 		}
 
-		public XmasWorld(Size burstSize)
+		public TileWorld(Size burstSize)
 		{
 			this.map = new XmasMap(burstSize);
 			
