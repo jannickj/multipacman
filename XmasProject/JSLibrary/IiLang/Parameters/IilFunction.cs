@@ -8,16 +8,16 @@ namespace JSLibrary.IiLang.Parameters
 {
 #pragma warning disable 
 	[XmlRoot("function")]
-	public class IILFunction : IILMultiParameter
+	public class IilFunction : IilMultiParameter
 	{
 //		public List<Parameter> Parameters { get; private set; }
 
-		public IILFunction()
+		public IilFunction()
 		{
 //			Parameters = new List<Parameter> ();
 		}
 
-		public IILFunction(String name, params IILParameter[] ps) : base(ps)
+		public IilFunction(String name, params IilParameter[] ps) : base(ps)
 		{
 			Name = name;
 //			Parameters = new List<Parameter> (ps);
@@ -53,7 +53,7 @@ namespace JSLibrary.IiLang.Parameters
 			if (GetType() != obj.GetType())
 				return false;
 
-			IILFunction fun = (IILFunction) obj;
+			IilFunction fun = (IilFunction) obj;
 			return (Parameters.SequenceEqual(fun.Parameters) && Name.Equals(fun.Name));
 		}
 	}

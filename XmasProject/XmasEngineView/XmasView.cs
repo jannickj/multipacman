@@ -2,7 +2,7 @@
 
 namespace XmasEngineView
 {
-	public abstract class GooseView : IStartable
+	public abstract class XmasView : IStartable
 	{
 		public virtual void Initialize()
 		{}

@@ -12,8 +12,8 @@ namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Actions
 
 		public override MoveUnit BeginConversionToGoose(EISMoveUnit fobj)
 		{
-			IILNumeral x_num = (IILNumeral) fobj.Parameters[0];
-			IILNumeral y_num = (IILNumeral) fobj.Parameters[1];
+			IilNumeral x_num = (IilNumeral) fobj.Parameters[0];
+			IilNumeral y_num = (IilNumeral) fobj.Parameters[1];
 			int x = Convert.ToInt32(x_num.Value);
 			int y = Convert.ToInt32(y_num.Value);
 

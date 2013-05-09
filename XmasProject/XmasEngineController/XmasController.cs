@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using XmasEngineController.AI;
 using XmasEngineModel;
@@ -6,13 +6,13 @@ using XmasEngineView.Console;
 
 namespace XmasEngineController
 {
-	public abstract class GooseController
+	public abstract class XmasController
 	{
 		private List<AgentServer> aiservs = new List<AgentServer>();
-		private XmasModel model;
-        private GooseConsoleView view;
+		private GooseModel model;
+        private XmasConsoleView view;
 
-        public GooseController(XmasModel model, GooseConsoleView view)
+        public XmasController(GooseModel model, XmasConsoleView view)
         {
             this.model = model;
             this.view = view;

@@ -4,18 +4,18 @@ using System.Xml.Serialization;
 namespace JSLibrary.IiLang.DataContainers
 {
 	[XmlRoot("percept")]
-	public class IILPercept : IILDataContainer
+	public class IilPercept : IilDataContainer
 	{
-		public IILPercept()
+		public IilPercept()
 		{
 		}
 
-		public IILPercept(string name, params IILParameter[] ps)
+		public IilPercept(string name, params IilParameter[] ps)
 			: base(name, ps)
 		{
 		}
 
-		public IILPercept(string name, LinkedList<IILParameter> ps)
+		public IilPercept(string name, LinkedList<IilParameter> ps)
 			: base(name, ps)
 		{
 		}

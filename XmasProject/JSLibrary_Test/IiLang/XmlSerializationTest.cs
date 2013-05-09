@@ -22,13 +22,13 @@ namespace JSLibrary_Test.IiLang
 		[Test]
 		public void PerceptCollectionWriter_XmlOfPerceptCollectionWithTwoPercepts_ReturnPerceptCollectionWithTwoChildren()
 		{
-			IILPerceptCollection actual_src = new IILPerceptCollection(new IILPercept("percept1", new IILNumeral(42)),
-			                                                           new IILPercept("percept2", new IILIdentifier("id"))
+			IilPerceptCollection actual_src = new IilPerceptCollection(new IilPercept("percept1", new IilNumeral(42)),
+			                                                           new IilPercept("percept2", new IilIdentifier("id"))
 				);
 
 			StringBuilder sb = new StringBuilder();
 
-			XmlSerializer serializer = new XmlSerializer(typeof (IILPerceptCollection));
+			XmlSerializer serializer = new XmlSerializer(typeof (IilPerceptCollection));
 			serializer.Serialize(XmlWriter.Create(sb), actual_src);
 
 			XDocument expected = XDocument.Parse(
@@ -55,9 +55,9 @@ namespace JSLibrary_Test.IiLang
 		[Test]
 		public void TryWriteXmlOfFunctionWithoutName_ThrowException()
 		{
-			IILFunction actual_src = new IILFunction();
+			IilFunction actual_src = new IilFunction();
 
-			XmlSerializer serializer = new XmlSerializer(typeof (IILFunction));
+			XmlSerializer serializer = new XmlSerializer(typeof (IilFunction));
 
 			Assert.Catch<Exception>(() => serializer.Serialize(GenerateWriter(), actual_src));
 		}
@@ -65,9 +65,9 @@ namespace JSLibrary_Test.IiLang
 		[Test]
 		public void TryWriteXmlOfIdentifierWithoutValue_ThrowException()
 		{
-			IILIdentifier actual_src = new IILIdentifier();
+			IilIdentifier actual_src = new IilIdentifier();
 
-			XmlSerializer serializer = new XmlSerializer(typeof (IILIdentifier));
+			XmlSerializer serializer = new XmlSerializer(typeof (IilIdentifier));
 
 			Assert.Catch<Exception>(() => serializer.Serialize(GenerateWriter(), actual_src));
 		}
@@ -75,9 +75,9 @@ namespace JSLibrary_Test.IiLang
 		[Test]
 		public void TryWriteXmlOfNumeralWithoutValue_ThrowException()
 		{
-			IILNumeral actual_src = new IILNumeral();
+			IilNumeral actual_src = new IilNumeral();
 
-			XmlSerializer serializer = new XmlSerializer(typeof (IILNumeral));
+			XmlSerializer serializer = new XmlSerializer(typeof (IilNumeral));
 
 			Assert.Catch<Exception>(() => serializer.Serialize(GenerateWriter(), actual_src));
 		}
@@ -85,9 +85,9 @@ namespace JSLibrary_Test.IiLang
 		[Test]
 		public void TryWriteXmlOfPerceptWithoutName_ThrowException()
 		{
-			IILPercept actual_src = new IILPercept();
+			IilPercept actual_src = new IilPercept();
 
-			XmlSerializer serializer = new XmlSerializer(typeof (IILPercept));
+			XmlSerializer serializer = new XmlSerializer(typeof (IilPercept));
 
 			Assert.Catch<Exception>(() => serializer.Serialize(GenerateWriter(), actual_src));
 		}
@@ -95,11 +95,11 @@ namespace JSLibrary_Test.IiLang
 		[Test]
 		public void WriteXmlOfFunctionWithChildren_ReturnXmlWithContentAsChildren()
 		{
-			IILFunction actual_src = new IILFunction("test_fun", new IILNumeral(42));
+			IilFunction actual_src = new IilFunction("test_fun", new IilNumeral(42));
 
 			StringBuilder sb = new StringBuilder();
 
-			XmlSerializer serializer = new XmlSerializer(typeof (IILFunction));
+			XmlSerializer serializer = new XmlSerializer(typeof (IilFunction));
 			serializer.Serialize(XmlWriter.Create(sb), actual_src);
 
 			XDocument expected = XDocument.Parse(
@@ -115,10 +115,10 @@ namespace JSLibrary_Test.IiLang
 		[Test]
 		public void WriteXmlOfIdentifierWithValue_XmlRepresentationOfIdentifierWithValue()
 		{
-			IILIdentifier actual_src = new IILIdentifier("test_id");
+			IilIdentifier actual_src = new IilIdentifier("test_id");
 			StringBuilder sb = new StringBuilder();
 
-			XmlSerializer serializer = new XmlSerializer(typeof (IILIdentifier));
+			XmlSerializer serializer = new XmlSerializer(typeof (IilIdentifier));
 			serializer.Serialize(XmlWriter.Create(sb), actual_src);
 
 			XDocument expected = XDocument.Parse(
@@ -133,7 +133,7 @@ namespace JSLibrary_Test.IiLang
 		[Test]
 		public void WriteXmlOfNumeralWithValue_XmlRepresentationOfNumeralWithValue()
 		{
-			IILNumeral actual_src = new IILNumeral(42);
+			IilNumeral actual_src = new IilNumeral(42);
 
 			StringBuilder sb = new StringBuilder();
 
@@ -152,11 +152,11 @@ namespace JSLibrary_Test.IiLang
 		[Test]
 		public void WriteXmlOfParameterListWithContent_ReturnXmlWithContentAsChildren()
 		{
-			IILParameterList actual_src = new IILParameterList(new IILIdentifier("test_id"), new IILNumeral(42));
+			IilParameterList actual_src = new IilParameterList(new IilIdentifier("test_id"), new IilNumeral(42));
 
 			StringBuilder sb = new StringBuilder();
 
-			XmlSerializer serializer = new XmlSerializer(typeof (IILParameterList));
+			XmlSerializer serializer = new XmlSerializer(typeof (IilParameterList));
 			serializer.Serialize(XmlWriter.Create(sb), actual_src);
 
 			XDocument expected = XDocument.Parse(
@@ -174,11 +174,11 @@ namespace JSLibrary_Test.IiLang
 		[Test]
 		public void WriteXmlOfPerceptWithChildren_ReturnXmlWithRepresentation()
 		{
-			IILPercept actual_src = new IILPercept("test_percept", new IILNumeral(42), new IILIdentifier("test_id"));
+			IilPercept actual_src = new IilPercept("test_percept", new IilNumeral(42), new IilIdentifier("test_id"));
 
 			StringBuilder sb = new StringBuilder();
 
-			XmlSerializer serializer = new XmlSerializer(typeof (IILPercept));
+			XmlSerializer serializer = new XmlSerializer(typeof (IilPercept));
 			serializer.Serialize(XmlWriter.Create(sb), actual_src);
 
 			XDocument expected = XDocument.Parse(

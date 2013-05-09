@@ -1,4 +1,4 @@
-﻿using System.Xml;
+using System.Xml;
 using System.Xml.Serialization;
 using JSLibrary.Data.GenericEvents;
 using JSLibrary.IiLang;
@@ -14,8 +14,8 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 	public class EISAgentController : AgentController
 	{
 		private IILActionParser actionparser;
-		private XmlSerializer deserializer = new XmlSerializer(typeof (IILAction));
-		private XmlSerializer serializer = new XmlSerializer(typeof (IILPerceptCollection));
+		private XmlSerializer deserializer = new XmlSerializer(typeof (IilAction));
+		private XmlSerializer serializer = new XmlSerializer(typeof (IilPerceptCollection));
 		private EISConversionTool tool;
 		private XmlReader xreader;
 		private XmlWriter xwriter;
@@ -34,7 +34,7 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 
 		private void update()
 		{
-			IILAction iilaction = (IILAction) deserializer.Deserialize(xreader);
+			IilAction iilaction = (IilAction) deserializer.Deserialize(xreader);
 			EISAction eisaction = actionparser.parseIILAction(iilaction);
 			EntityXmasAction gameaction = (EntityXmasAction) tool.ConvertToGoose(eisaction);
 			performAction(gameaction);
@@ -56,7 +56,7 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 
 		private void EISAgentController_PerceptsRecieved(object sender, UnaryValueEvent<PerceptCollection> evt)
 		{
-			IILPerceptCollection perceptcollection = (IILPerceptCollection) tool.ConvertToForeign(evt.Value);
+			IilPerceptCollection perceptcollection = (IilPerceptCollection) tool.ConvertToForeign(evt.Value);
 			serializer.Serialize(xwriter, perceptcollection);
 		}
 

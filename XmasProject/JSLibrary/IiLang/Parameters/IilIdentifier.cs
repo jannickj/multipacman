@@ -7,14 +7,14 @@ namespace JSLibrary.IiLang.Parameters
 {
 #pragma warning disable
 	[XmlRoot("identifier")]
-	public class IILIdentifier : IILParameter
+	public class IilIdentifier : IilParameter
 	{
-		public IILIdentifier(string value)
+		public IilIdentifier(string value)
 		{
 			Value = value;
 		}
 
-		public IILIdentifier()
+		public IilIdentifier()
 		{
 		}
 
@@ -45,7 +45,7 @@ namespace JSLibrary.IiLang.Parameters
 			if (GetType() != obj.GetType())
 				return false;
 
-			IILIdentifier id = (IILIdentifier) obj;
+			IilIdentifier id = (IilIdentifier) obj;
 			return (Value == id.Value);
 		}
 	}

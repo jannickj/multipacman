@@ -1,15 +1,15 @@
-﻿using System.Linq;
+using System.Linq;
 using JSLibrary.IiLang;
 using JSLibrary.IiLang.DataContainers;
 using XmasEngineModel;
 
 namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Percepts
 {
-	public class EISPerceptCollectionSerializer : EISConverterToEIS<PerceptCollection, IILPerceptCollection>
+	public class EISPerceptCollectionSerializer : EISConverterToEIS<PerceptCollection, IilPerceptCollection>
 	{
-		public override IILPerceptCollection BeginConversionToForeign(PerceptCollection gobj)
+		public override IilPerceptCollection BeginConversionToForeign(PerceptCollection gobj)
 		{
-			return new IILPerceptCollection(gobj.Percepts.Select(p => (IILPercept) ConvertToForeign(p)).ToArray());
+			return new IilPerceptCollection(gobj.Percepts.Select(p => (IilPercept) ConvertToForeign(p)).ToArray());
 		}
 	}
 }

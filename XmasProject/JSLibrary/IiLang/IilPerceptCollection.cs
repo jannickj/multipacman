@@ -7,21 +7,21 @@ using JSLibrary.IiLang.DataContainers;
 namespace JSLibrary.IiLang
 {
 	[XmlRoot("perceptCollection")]
-	public class IILPerceptCollection : IILElement, IXmlSerializable
+	public class IilPerceptCollection : IilElement, IXmlSerializable
 	{
-		private List<IILPercept> percepts = new List<IILPercept>();
+		private List<IilPercept> percepts = new List<IilPercept>();
 
-		public IILPerceptCollection()
+		public IilPerceptCollection()
 		{
 		}
 
-		public IILPerceptCollection(params IILPercept[] ps)
+		public IilPerceptCollection(params IilPercept[] ps)
 		{
-			foreach (IILPercept p in ps)
+			foreach (IilPercept p in ps)
 				percepts.Add(p);
 		}
 
-		public List<IILPercept> Percepts
+		public List<IilPercept> Percepts
 		{
 			get { return percepts; }
 		}
@@ -99,7 +99,7 @@ namespace JSLibrary.IiLang
 
 		public override void WriteXml(XmlWriter writer)
 		{
-			foreach (IILPercept p in percepts)
+			foreach (IilPercept p in percepts)
 			{
 				writer.WriteStartElement("percept");
 				p.WriteXml(writer);

@@ -20,7 +20,7 @@ namespace XmasEngineExtensions.EisExtension.Model
 			convert.Add(actionName, typeof (EISActionType));
 		}
 
-		public EISAction parseIILAction(IILAction action)
+		public EISAction parseIILAction(IilAction action)
 		{
 			EISAction retval;
 			Type actiontype;

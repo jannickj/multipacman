@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace JSLibrary.IiLang
 {
-	public abstract class IILParameter : IILElement
+	public abstract class IilParameter : IilElement
 	{
 		private static Dictionary<string, Type> typeMap = new Dictionary<string, Type>();
 		//{
@@ -15,9 +15,9 @@ namespace JSLibrary.IiLang
 		//    {"parameterList", typeof(IILParameterList)}
 		//};
 
-		static IILParameter()
+		static IilParameter()
 		{
-			IEnumerable<Type> l = ExtendedType.FindAllDerivedTypes<IILParameter>().Where(t => !t.IsAbstract);
+			IEnumerable<Type> l = ExtendedType.FindAllDerivedTypes<IilParameter>().Where(t => !t.IsAbstract);
 			foreach (Type t in l)
 			{
 				XmlRootAttribute att = t.GetCustomAttributes(typeof (XmlRootAttribute), true).FirstOrDefault() as XmlRootAttribute;
@@ -28,9 +28,9 @@ namespace JSLibrary.IiLang
 			}
 		}
 
-		public static IILParameter fromString(string str)
+		public static IilParameter fromString(string str)
 		{
-			return Activator.CreateInstance(typeMap[str]) as IILParameter;
+			return Activator.CreateInstance(typeMap[str]) as IilParameter;
 		}
 	}
 }

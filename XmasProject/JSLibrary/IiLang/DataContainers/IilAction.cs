@@ -4,18 +4,18 @@ using System.Xml.Serialization;
 namespace JSLibrary.IiLang.DataContainers
 {
 	[XmlRoot("action")]
-	public class IILAction : IILDataContainer
+	public class IilAction : IilDataContainer
 	{
-		public IILAction()
+		public IilAction()
 		{
 		}
 
-		public IILAction(string name, params IILParameter[] ps)
+		public IilAction(string name, params IilParameter[] ps)
 			: base(name, ps)
 		{
 		}
 
-		public IILAction(string name, LinkedList<IILParameter> ps)
+		public IilAction(string name, LinkedList<IilParameter> ps)
 			: base(name, ps)
 		{
 		}

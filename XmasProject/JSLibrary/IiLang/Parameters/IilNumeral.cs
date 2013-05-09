@@ -8,14 +8,14 @@ namespace JSLibrary.IiLang.Parameters
 {
 #pragma warning disable
 	[XmlRoot("number")]
-	public class IILNumeral : IILParameter
+	public class IilNumeral : IilParameter
 	{
-		public IILNumeral(Double value)
+		public IilNumeral(Double value)
 		{
 			Value = value;
 		}
 
-		public IILNumeral()
+		public IilNumeral()
 		{
 			Value = Double.NaN;
 		}
@@ -49,7 +49,7 @@ namespace JSLibrary.IiLang.Parameters
 			if (GetType() != obj.GetType())
 				return false;
 
-			IILNumeral num = (IILNumeral) obj;
+			IilNumeral num = (IilNumeral) obj;
 			return (Value == num.Value);
 		}
 	}

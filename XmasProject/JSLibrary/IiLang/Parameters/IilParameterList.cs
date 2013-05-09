@@ -6,15 +6,15 @@ namespace JSLibrary.IiLang.Parameters
 {
 #pragma warning disable
 	[XmlRoot("parameterList")]
-	public class IILParameterList : IILMultiParameter
+	public class IilParameterList : IilMultiParameter
 	{
 //		public List<Parameter> Parameters { get; private set; }
 
-		public IILParameterList()
+		public IilParameterList()
 		{
 		}
 
-		public IILParameterList(params IILParameter[] ps)
+		public IilParameterList(params IilParameter[] ps)
 			: base(ps)
 		{
 		}
@@ -44,7 +44,7 @@ namespace JSLibrary.IiLang.Parameters
 			if (GetType() != obj.GetType())
 				return false;
 
-			IILParameterList pl = (IILParameterList) obj;
+			IilParameterList pl = (IilParameterList) obj;
 			return (Parameters.SequenceEqual(pl.Parameters));
 		}
 	}

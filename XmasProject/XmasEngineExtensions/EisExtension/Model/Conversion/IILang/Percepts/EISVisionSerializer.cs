@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using JSLibrary.Data;
 using JSLibrary.IiLang.DataContainers;
 using JSLibrary.IiLang.Parameters;
@@ -9,16 +9,16 @@ namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Percepts
 {
 	public class EISVisionSerializer : EISPerceptConverter<Vision>
 	{
-		public override IILPercept BeginConversionToForeign(Vision gobj)
+		public override IilPercept BeginConversionToForeign(Vision gobj)
 		{
-			IILPercept percept = new IILPercept("vision");
+			IilPercept percept = new IilPercept("vision");
 
 			foreach (KeyValuePair<Point, Tile> kvp in gobj.VisibleTiles)
 			{
-				IILFunction fun = new IILFunction("on",
-				                                  new IILNumeral(kvp.Key.X),
-				                                  new IILNumeral(kvp.Key.Y),
-				                                  new IILIdentifier(kvp.Value.ToString())
+				IilFunction fun = new IilFunction("on",
+				                                  new IilNumeral(kvp.Key.X),
+				                                  new IilNumeral(kvp.Key.Y),
+				                                  new IilIdentifier(kvp.Value.ToString())
 					);
 				percept.addParameter(fun);
 			}

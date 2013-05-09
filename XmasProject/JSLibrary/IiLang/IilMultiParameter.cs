@@ -3,27 +3,27 @@ using System.Xml;
 
 namespace JSLibrary.IiLang
 {
-	public abstract class IILMultiParameter : IILParameter
+	public abstract class IilMultiParameter : IilParameter
 	{
-		private List<IILParameter> parameters;
+		private List<IilParameter> parameters;
 
 
-		public IILMultiParameter()
+		public IilMultiParameter()
 		{
-			parameters = new List<IILParameter>();
+			parameters = new List<IilParameter>();
 		}
 
-		public IILMultiParameter(IILParameter[] ps)
+		public IilMultiParameter(IilParameter[] ps)
 		{
-			parameters = new List<IILParameter>(ps);
+			parameters = new List<IilParameter>(ps);
 		}
 
-		public List<IILParameter> Parameters
+		public List<IilParameter> Parameters
 		{
 			get { return parameters; }
 		}
 
-		public void AddParameter(IILParameter p)
+		public void AddParameter(IilParameter p)
 		{
 			parameters.Add(p);
 		}
@@ -42,7 +42,7 @@ namespace JSLibrary.IiLang
 
 			while (reader.MoveToContent() == XmlNodeType.Element)
 			{
-				IILParameter p = fromString(reader.LocalName);
+				IilParameter p = fromString(reader.LocalName);
 				p.ReadXml(reader);
 				parameters.Add(p);
 			}
@@ -51,7 +51,7 @@ namespace JSLibrary.IiLang
 
 		public override void WriteXml(XmlWriter writer)
 		{
-			foreach (IILElement p in parameters)
+			foreach (IilElement p in parameters)
 			{
 				writer.WriteStartElement(p.XmlTag);
 				p.WriteXml(writer);

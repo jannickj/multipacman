@@ -4,13 +4,13 @@ using XmasEngineModel;
 
 namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Objects
 {
-	public class EISTileSerializer : EISConverterToEIS<Tile, IILElement>
+	public class EISTileSerializer : EISConverterToEIS<Tile, IilElement>
 	{
-		public override IILElement BeginConversionToForeign(Tile t)
+		public override IilElement BeginConversionToForeign(Tile t)
 		{
-			IILParameterList pl = new IILParameterList();
+			IilParameterList pl = new IilParameterList();
 			foreach (Entity ent in t.Entities)
-				pl.AddParameter((IILParameter) ConvertToForeign(ent));
+				pl.AddParameter((IilParameter) ConvertToForeign(ent));
 
 			return pl;
 		}

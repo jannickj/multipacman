@@ -7,20 +7,20 @@ using JSLibrary.IiLang.Exceptions;
 namespace JSLibrary.IiLang
 {
 #pragma warning disable
-	public abstract class IILDataContainer : IILElement
+	public abstract class IilDataContainer : IilElement
 	{
-		public IILDataContainer()
+		public IilDataContainer()
 		{
-			Parameters = new List<IILParameter>();
+			Parameters = new List<IilParameter>();
 		}
 
-		public IILDataContainer(String name, IILParameter[] ps)
+		public IilDataContainer(String name, IilParameter[] ps)
 		{
 			Name = name;
-			Parameters = new List<IILParameter>(ps);
+			Parameters = new List<IilParameter>(ps);
 		}
 
-		public IILDataContainer(string name, LinkedList<IILParameter> ps)
+		public IilDataContainer(string name, LinkedList<IilParameter> ps)
 		{
 			Name = name;
 			Parameters = ps.ToList();
@@ -28,16 +28,16 @@ namespace JSLibrary.IiLang
 
 		public abstract string ChildXmlTag { get; }
 		public string Name { get; private set; }
-		public List<IILParameter> Parameters { get; private set; }
+		public List<IilParameter> Parameters { get; private set; }
 
 
-		public virtual void TransferFrom(IILDataContainer con)
+		public virtual void TransferFrom(IilDataContainer con)
 		{
 			Parameters = con.Parameters;
 			Name = con.Name;
 		}
 
-		public void addParameter(IILParameter par)
+		public void addParameter(IilParameter par)
 		{
 			Parameters.Add(par);
 		}
@@ -47,7 +47,7 @@ namespace JSLibrary.IiLang
 			if (GetType() != obj.GetType())
 				return false;
 
-			IILDataContainer dc = (IILDataContainer) obj;
+			IilDataContainer dc = (IilDataContainer) obj;
 			return (Parameters.SequenceEqual(dc.Parameters) && Name.Equals(dc.Name));
 		}
 
@@ -72,7 +72,7 @@ namespace JSLibrary.IiLang
 					reader.ReadStartElement();
 					reader.MoveToContent();
 
-					IILParameter p = IILParameter.fromString(reader.LocalName);
+					IilParameter p = IilParameter.fromString(reader.LocalName);
 					p.ReadXml(reader);
 					Parameters.Add(p);
 					reader.Read();
@@ -87,7 +87,7 @@ namespace JSLibrary.IiLang
 				throw new MissingXmlAttributeException(@"String ""Name"" must not be empty");
 
 			writer.WriteAttributeString("name", Name);
-			foreach (IILParameter p in Parameters)
+			foreach (IilParameter p in Parameters)
 			{
 				writer.WriteStartElement(ChildXmlTag);
 				writer.WriteStartElement(p.XmlTag);

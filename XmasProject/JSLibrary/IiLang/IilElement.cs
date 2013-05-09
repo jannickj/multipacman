@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace JSLibrary.IiLang
 {
-	public abstract class IILElement : IXmlSerializable
+	public abstract class IilElement : IXmlSerializable
 	{
 		public abstract string XmlTag { get; }
 

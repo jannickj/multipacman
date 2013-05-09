@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
@@ -50,8 +50,8 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 			XmlWriterSettings wset = new XmlWriterSettings();
 			wset.OmitXmlDeclaration = true;
 			XmlWriter xwriter = XmlWriter.Create(client.GetStream());
-			XmlSerializer serializer = new XmlSerializer(typeof (IILIdentifier));
-			IILIdentifier ident = (IILIdentifier) serializer.Deserialize(xreader);
+			XmlSerializer serializer = new XmlSerializer(typeof (IilIdentifier));
+			IilIdentifier ident = (IilIdentifier) serializer.Deserialize(xreader);
 			name = ident.Value;
 			Agent agent = TakeControlOf(name);
 
