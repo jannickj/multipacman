@@ -12,17 +12,22 @@ namespace XmasEngineModel
 	{
 		private List<XmasAction> buildactions = new List<XmasAction>();
 
+
 		public void AddEntity(Entity ent, EntitySpawnInformation info)
 		{
-			this.buildactions.Add(new AddEntityAction(ent, info));
+			buildactions.Add(new AddEntityAction(ent, info));
 		}
 
-		internal void Build(ActionManager actman)
+		protected abstract XmasWorld ConstructWorld ();
+
+		private XmasWorld Build(ActionManager actman)
 		{
 			foreach (var buildaction in buildactions.ToArray())
 			{
 				actman.QueueAction(buildaction);
 			}
+
+			return ConstructWorld ();
 		}
 	}
 }

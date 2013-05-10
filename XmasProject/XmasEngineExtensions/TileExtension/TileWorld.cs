@@ -48,11 +48,11 @@ namespace XmasEngineExtensions.TileExtension
 			TilePosition tilePos = (TilePosition) info.Position;
 			return AddEntity (entity, tilePos);
 		}
-
+		
 		private bool AddEntity(Entity entity, TilePosition pos)
 		{
 			Point point = pos.Point;
-
+			
 			Tile tile = map [point.X, point.Y];
 			
 			if (!tile.CanContain(entity))
@@ -62,33 +62,34 @@ namespace XmasEngineExtensions.TileExtension
 			tile.AddEntity (entity);
 			return true;
 		}
-
+		
 		public override XmasPosition GetEntityPosition(Entity entity)
 		{
 			return new TilePosition (entlocs [entity]);
 		}
-
+		
 		public override bool SetEntityPosition(Entity entity, XmasPosition tilePosition)
 		{
 			return SetEntityPosition (entity, (TilePosition)tilePosition);
 		}
-
+		
 		private bool SetEntityPosition (Entity entity, TilePosition pos)
 		{
 			Point oldPoint;
 			bool entityExistsInMap = false;
-
+			
 			if (entlocs.TryGetValue (entity, out oldPoint))
 				entityExistsInMap = true;
-
+			
 			if (!AddEntity (entity, pos))
 				return false;
-
+			
 			if (entityExistsInMap)
 				map [oldPoint].RemoveEntity (entity);
-
+			
 			return true;
 		}
+
 
 //
 //		internal void SetEntityLocation(Point loc, Entity entity)
@@ -107,52 +108,6 @@ namespace XmasEngineExtensions.TileExtension
 //		}
 
 //
-//		private IEnumerable<Point> TilesInChunk(Point start, Point stop, ICollection<Point> exceptions)
-//		{
-//			Point min = new Point(Math.Min(start.X, stop.X), Math.Min(start.Y, stop.Y));
-//			Point max = new Point(Math.Max(start.X, stop.X), Math.Max(start.Y, stop.Y));
-//
-//			for (int x = min.X; x <= max.X; x++)
-//			{
-//				for (int y = min.Y; y <= max.Y; y++)
-//				{
-//					if (exceptions != null && !exceptions.Contains(new Point(x, y)))
-//						yield return new Point(x, y);
-//				}
-//			}
-//		}
-//
-//		public void AddChunk<TEntity>(Point start, Point stop)
-//			where TEntity : Entity, new()
-//		{
-//			AddChunkExcept<TEntity>(start, stop, null);
-//		}
-//
-//		public void RemoveChunk<TEntity>(Point start, Point stop)
-//			where TEntity : Entity, new()
-//		{
-//			RemoveChunkExcept<TEntity>(start, stop, null);
-//		}
-//
-//		public void AddChunkExcept<TEntity>(Point start, Point stop, ICollection<Point> exceptions)
-//			where TEntity : Entity, new()
-//		{
-//			foreach (Point p in TilesInChunk(start, stop, exceptions))
-//			{
-//				TEntity entity = new TEntity();
-//				if (this.map[p.X,p.Y].CanContain(entity))
-//					this.AddEntity(p,entity);
-//			}
-//		}
-//
-//		public void RemoveChunkExcept<TEntity>(Point start, Point stop, ICollection<Point> exceptions)
-//			where TEntity : Entity, new()
-//		{
-//			foreach (Tile tile in TilesInChunk(start, stop, exceptions).Select(p => this.map[p.X,p.Y]))
-//			{
-//				foreach (TEntity entity in tile.Entities.OfType<TEntity>().ToArray())
-//					this.RemoveEntity(entity);
-//			}
-//		}
+
 	}
 }
