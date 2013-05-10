@@ -89,7 +89,7 @@ namespace XmasEngineExtensions.TileExtension
 
 		public Grid<Tile> this[Point p, int range]
 		{
-			get { return this [p.X, p.Y]; }
+			get { return this [p.X, p.Y, range]; }
 		}
 
 		private bool IsOutOfBounds(int x, int y)

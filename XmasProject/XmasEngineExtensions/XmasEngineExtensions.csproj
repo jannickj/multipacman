@@ -66,6 +66,7 @@
     <Compile Include="TileExtension\TileMap.cs" />
     <Compile Include="TileExtension\Tile.cs" />
     <Compile Include="TileExtension\Percepts\Vision.cs" />
+    <Compile Include="TileExtension\TileSpawnInformation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
