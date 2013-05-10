@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using XmasEngineModel;
 
-namespace XmasEngineModel
+namespace XmasEngineExtensions.TileExtension
 {
 	public class Tile : XmasObject
 	{

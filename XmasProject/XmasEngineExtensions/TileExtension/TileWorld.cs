@@ -12,15 +12,15 @@ namespace XmasEngineExtensions.TileExtension
 	public class TileWorld : XmasWorld
 	{
 		private Dictionary<Entity, Point> entlocs = new Dictionary<Entity, Point>();
-		private XmasMap map;
+		private TileMap map;
 
-		public TileWorld(XmasMap map)
+		public TileWorld(TileMap map)
 		{
 		}
 
 		public TileWorld(Size burstSize)
 		{
-			this.map = new XmasMap(burstSize);
+			this.map = new TileMap(burstSize);
 			
 		}
 
@@ -44,12 +44,24 @@ namespace XmasEngineExtensions.TileExtension
 			return View(entity.VisionRange, entity);
 		}
 
-		protected override void AddEntity(Entity entity, EntitySpawnInformation info)
+		protected override bool AddEntity(Entity entity, EntitySpawnInformation info)
 		{
-			//TODO: throw or handle exception in case the position is occupied
-			Point point = ((TilePosition) info.Position).Point;
+			TilePosition tilePos = info.Position;
+			return AddEntity (entity, tilePos);
+		}
+
+		private bool AddEntity(Entity entity, TilePosition pos)
+		{
+			Point point = pos.Point;
+
+			Tile tile = map [point.X, point.Y];
+			
+			if (!tile.CanContain(entity))
+				return false;
+			
 			entlocs.Add (entity, point);
-			map [point.X, point.Y].AddEntity (entity);
+			tile.AddEntity (entity);
+			return true;
 		}
 
 		public override XmasPosition GetEntityPosition(Entity entity)
@@ -57,15 +69,24 @@ namespace XmasEngineExtensions.TileExtension
 			return new TilePosition (entlocs [entity]);
 		}
 
-		public override void SetEntityPosition(Entity entity, XmasPosition tilePosition)
+		public bool SetEntityPosition(Entity entity, XmasPosition tilePosition)
 		{
-			//TODO: throw or handle exception in case the position is occupied
+			AddEntity (entity, tilePosition);
+
 			Point currPoint = entlocs [entity];
 			Point newPoint = ((TilePosition) tilePosition).Point;
 			map [currPoint.X, currPoint.Y].RemoveEntity (entity);
 			map [newPoint.X, newPoint.Y].AddEntity (entity);
 			entlocs [entity] = newPoint;
 		}
+
+		private bool SetEntityPosition (Entity entity, TilePosition pos)
+		{
+			Point point = pos.Point;
+
+
+		}
+
 //
 //		internal void SetEntityLocation(Point loc, Entity entity)
 //		{

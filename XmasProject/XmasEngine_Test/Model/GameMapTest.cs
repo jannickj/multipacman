@@ -13,7 +13,7 @@ namespace XmasEngine_Test.Model
 		[Test]
 		public void OutOfBoundsTile_GetTileOutSideMap_ReturnsTileWithImpassableWall()
 		{
-			XmasMap map = new XmasMap (new Size (0, 0));
+			TileMap map = new TileMap (new Size (0, 0));
 			Entity actual = map [0, 1].Entities.First ();
 
 			Assert.IsInstanceOf<ImpassableWall> (actual);
@@ -22,7 +22,7 @@ namespace XmasEngine_Test.Model
 		[Test]
 		public void BuildWallChunk_BuildSquareWall_ReturnsSquareWall()
 		{
-			XmasMap map = new XmasMap (new Size (1, 1));
+			TileMap map = new TileMap (new Size (1, 1));
 			//map.AddChunk<Wall> (new Point (-1, -1), new Point (1, 1));
 
 			foreach (Tile tile in map.Tiles)
@@ -32,7 +32,7 @@ namespace XmasEngine_Test.Model
 		[Test]
 		public void OutOfBoundsWallChunk_RequestBuildWallOutsideMap_ReturnWallNotBuilt()
 		{
-			XmasMap map = new XmasMap (new Size (0, 0));
+			TileMap map = new TileMap (new Size (0, 0));
 			//map.AddChunk<Wall> (new Point (1, 1), new Point (1, 1));
 			Entity actual = map [1, 1].Entities.First ();
 
@@ -42,7 +42,7 @@ namespace XmasEngine_Test.Model
 		[Test] 
 		public void MisplacedWallChunk_RequestBuildWallOnUnit_ReturnWallNotBuilt()
 		{
-			XmasMap map = new XmasMap (new Size (0, 0));
+			TileMap map = new TileMap (new Size (0, 0));
 
 			map [0, 0].AddEntity (new Player ());
 			//map.AddChunk<Wall> (new Point (0, 0), new Point (0, 0));
