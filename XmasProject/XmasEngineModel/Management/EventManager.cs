@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using XmasEngineModel.EntityLib;
 
 namespace XmasEngineModel.Management
 {
 	public class EventManager
 	{
-		private HashSet<Entity> trackedEntities = new HashSet<Entity>();
+		private HashSet<XmasEntity> trackedEntities = new HashSet<XmasEntity>();
 		private TriggerManager triggerManager = new TriggerManager();
 
 		public void Raise(XmasEvent evt)
@@ -12,18 +13,18 @@ namespace XmasEngineModel.Management
 			triggerManager.Raise(evt);
 		}
 
-		public void AddEntity(Entity entity)
+		public void AddEntity(XmasEntity xmasEntity)
 		{
-			trackedEntities.Add(entity);
+			trackedEntities.Add(xmasEntity);
 
-			entity.TriggerRaised += entity_TriggerRaised;
+			xmasEntity.TriggerRaised += entity_TriggerRaised;
 		}
 
-		public void RemoveEntity(Entity entity)
+		public void RemoveEntity(XmasEntity xmasEntity)
 		{
-			trackedEntities.Remove(entity);
+			trackedEntities.Remove(xmasEntity);
 
-			entity.TriggerRaised -= entity_TriggerRaised;
+			xmasEntity.TriggerRaised -= entity_TriggerRaised;
 		}
 
 		public void Register(Trigger trigger)
@@ -36,9 +37,9 @@ namespace XmasEngineModel.Management
 			triggerManager.Deregister(trigger);
 		}
 
-		public ThreadSafeEventQueue ConstructEventQueue ()
+		public ThreadSafeEventQueue ConstructEventQueue()
 		{
-			return new ThreadSafeEventQueue (triggerManager);
+			return new ThreadSafeEventQueue(triggerManager);
 		}
 
 		#region EVENTS

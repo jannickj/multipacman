@@ -1,10 +1,8 @@
-using XmasEngineModel;
-
 namespace ConsoleXmasImplementation.EntityViews
 {
 	public class ConsoleWallView : ConsoleEntityView
 	{
-		public ConsoleWallView(Entity model)
+		public ConsoleWallView(XmasEntity model)
 			: base(model)
 		{
 		}

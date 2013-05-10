@@ -3,8 +3,7 @@ using JSLibrary.Data;
 using JSLibrary.IiLang.DataContainers;
 using JSLibrary.IiLang.Parameters;
 using XmasEngineExtensions.TileExtension;
-using XmasEngineModel;
-using XmasEngineModel.Perceptions;
+using XmasEngineExtensions.TileExtension.Percepts;
 
 namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Percepts
 {

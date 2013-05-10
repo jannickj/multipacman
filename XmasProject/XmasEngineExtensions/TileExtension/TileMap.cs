@@ -1,5 +1,5 @@
 ﻿using JSLibrary.Data;
-using XmasEngineModel.Entities;
+using XmasEngineExtensions.TileExtension.Entities;
 
 namespace XmasEngineExtensions.TileExtension
 {
@@ -85,7 +85,5 @@ namespace XmasEngineExtensions.TileExtension
 		{
 			return (x > burstSize.Width || x < -burstSize.Width || y > burstSize.Height || y < -burstSize.Height);
 		}
-
-		
 	}
 }

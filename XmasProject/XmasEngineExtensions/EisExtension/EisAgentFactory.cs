@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using JSLibrary;
 using System.Reflection;
+using JSLibrary;
 using XmasEngineController;
 using XmasEngineController.AI;
 using XmasEngineExtensions.EisExtension.Controller.AI;
@@ -14,16 +14,16 @@ using XmasEngineModel.Conversion;
 
 namespace XmasEngineExtensions.EisExtension
 {
-    public class EisAgentFactory : AgentFactory
+	public class EisAgentFactory : AgentFactory
 	{
-        private IPAddress ip;
-        private int port;
+		private IPAddress ip;
+		private int port;
 
-        public EisAgentFactory(IPAddress ip, int port)
-        {
-            this.ip = ip;
-            this.port = port;
-        }
+		public EisAgentFactory(IPAddress ip, int port)
+		{
+			this.ip = ip;
+			this.port = port;
+		}
 
 		private IILActionParser ConstructIILActionParser()
 		{
@@ -36,7 +36,7 @@ namespace XmasEngineExtensions.EisExtension
 			EISConversionTool tool = new EISConversionTool();
 			List<Type> converters = ExtendedType.FindAllDerivedTypes<XmasConverter>();
 
-			MethodInfo gmethod = typeof(XmasConversionTool<>).GetMethod("AddConverter");
+			MethodInfo gmethod = typeof (XmasConversionTool<>).GetMethod("AddConverter");
 
 			foreach (Type t in converters.Where(t => t.BaseType != null && t.BaseType.IsGenericType && !t.IsAbstract))
 			{
@@ -45,26 +45,22 @@ namespace XmasEngineExtensions.EisExtension
 				Type EISconvert = typeof (EISConverterToEIS<,>);
 
 				Type basetype = t.BaseType.GetGenericTypeDefinition();
-				
+
 				if (basetype == actionType || basetype == perceptType || basetype == EISconvert)
 				{
 					MethodInfo typedmethod = gmethod.MakeGenericMethod(t.GetGenericArguments());
-					typedmethod.Invoke(tool,new object[]{Activator.CreateInstance(t)});
+					typedmethod.Invoke(tool, new[] {Activator.CreateInstance(t)});
 				}
-
 			}
 			return tool;
 		}
 
 
-
-        public override AgentServer ContructServer()
-        {
-            TcpListener listener = new TcpListener(ip, port);
-            EISAgentServer server = new EISAgentServer(listener, ContructEISConversionTool(), ConstructIILActionParser());
-            return server;
-        }
-
-
-    }
+		public override AgentServer ContructServer()
+		{
+			TcpListener listener = new TcpListener(ip, port);
+			EISAgentServer server = new EISAgentServer(listener, ContructEISConversionTool(), ConstructIILActionParser());
+			return server;
+		}
+	}
 }

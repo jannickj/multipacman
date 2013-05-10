@@ -10,15 +10,14 @@ namespace XmasEngineModel.Management
 		private ConcurrentQueue<XmasEvent> queue = new ConcurrentQueue<XmasEvent>();
 		private TriggerManager triggerManager = new TriggerManager();
 
-		internal event EventHandler EventRecieved;
-
 		public ThreadSafeEventQueue(TriggerManager unsafeTriggers)
 		{
 			foreignTriggermanager = unsafeTriggers;
 			foreignTriggermanager.EventRaised += foreignTriggermanager_EventRaised;
 		}
 
-		
+		internal event EventHandler EventRecieved;
+
 
 		public bool ExecuteNext()
 		{
@@ -31,7 +30,6 @@ namespace XmasEngineModel.Management
 			return false;
 		}
 
-	
 
 		public void Register(Trigger trigger)
 		{
@@ -44,7 +42,6 @@ namespace XmasEngineModel.Management
 
 			if (buffer != null)
 				buffer(this, new EventArgs());
-			
 		}
 	}
 }

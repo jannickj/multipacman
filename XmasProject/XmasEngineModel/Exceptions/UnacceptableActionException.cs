@@ -1,4 +1,5 @@
 ﻿using System;
+using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
 
 namespace XmasEngineModel.Exceptions
@@ -6,13 +7,13 @@ namespace XmasEngineModel.Exceptions
 	public class UnacceptableActionException : Exception
 	{
 		private XmasAction action;
-		private Entity entity;
+		private XmasEntity xmasEntity;
 
-		public UnacceptableActionException(XmasAction action, Entity entity)
-			: base("Entity: [" + entity.GetType().Name + "] can't accept action: [" + action.GetType().Name + "]")
+		public UnacceptableActionException(XmasAction action, XmasEntity xmasEntity)
+			: base("XmasEntity: [" + xmasEntity.GetType().Name + "] can't accept action: [" + action.GetType().Name + "]")
 		{
 			this.action = action;
-			this.entity = entity;
+			this.xmasEntity = xmasEntity;
 		}
 
 		public XmasAction Action
@@ -20,9 +21,9 @@ namespace XmasEngineModel.Exceptions
 			get { return action; }
 		}
 
-		public Entity Entity
+		public XmasEntity XmasEntity
 		{
-			get { return entity; }
+			get { return xmasEntity; }
 		}
 	}
 }

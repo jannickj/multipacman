@@ -10,24 +10,24 @@ namespace XmasEngineController
 	{
 		private List<AgentServer> aiservs = new List<AgentServer>();
 		private XmasModel model;
-        private XmasView view;
+		private XmasView view;
 
-        public XmasController(XmasModel model, XmasView view)
-        {
-            this.model = model;
-            this.view = view;
-        }
+		public XmasController(XmasModel model, XmasView view)
+		{
+			this.model = model;
+			this.view = view;
+		}
 
 		public void AddAiServer(AgentServer server)
 		{
-            model.AddActor(server);
+			model.AddActor(server);
 			aiservs.Add(server);
 		}
 
 		public virtual void Initialize()
 		{
-            foreach (AgentServer serv in aiservs)
-                serv.Initialize();
+			foreach (AgentServer serv in aiservs)
+				serv.Initialize();
 		}
 
 		public void Start()

@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using JSLibrary.Data;
 using XmasEngineExtensions.TileExtension;
-using XmasEngineModel;
+using XmasEngineModel.EntityLib;
 
 namespace ConsoleXmasImplementation
 {
 	public class ConsoleWorldView
 	{
 		private TileWorld model;
-		private Dictionary<Entity, ConsoleEntityView> viewlookup = new Dictionary<Entity, ConsoleEntityView>();
+		private Dictionary<XmasEntity, ConsoleEntityView> viewlookup = new Dictionary<XmasEntity, ConsoleEntityView>();
 
 		public ConsoleWorldView(TileWorld model)
 		{
@@ -34,7 +34,7 @@ namespace ConsoleXmasImplementation
 		public Dictionary<Point, ConsoleEntityView> AllEntities()
 		{
 			Dictionary<Point, ConsoleEntityView> locs = new Dictionary<Point, ConsoleEntityView>();
-			foreach (KeyValuePair<Entity, ConsoleEntityView> kv in viewlookup)
+			foreach (KeyValuePair<XmasEntity, ConsoleEntityView> kv in viewlookup)
 				locs.Add(kv.Value.Position, kv.Value);
 
 			return locs;
@@ -42,7 +42,6 @@ namespace ConsoleXmasImplementation
 
 		public void gooseWorld_EntityAdded(object sender, EventArgs e)
 		{
-
 		}
 	}
 }

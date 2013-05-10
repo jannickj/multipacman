@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using XmasEngineController;
 using XmasEngineModel;
 using XmasEngineModel.Management;
@@ -11,7 +10,6 @@ namespace XmasEngine
 	{
 		public virtual XmasModel ConstructModel(XmasWorldBuilder builder)
 		{
-
 			//TODO: FIX Factory code
 			XmasWorld world = ConstructWorld(builder);
 			ActionManager actman = ConstructActionManager();
@@ -21,7 +19,6 @@ namespace XmasEngine
 
 			return engine;
 		}
-
 
 
 		protected virtual XmasFactory ConstructGameFactory(ActionManager actman)
@@ -44,23 +41,21 @@ namespace XmasEngine
 		public abstract XmasWorld ConstructWorld(XmasWorldBuilder builder);
 
 
-        public abstract XmasController ContructController(XmasModel model, XmasView view);
+		public abstract XmasController ContructController(XmasModel model, XmasView view);
 
 
-        
-		public Tuple<XmasModel,XmasView,XmasController> FullConstruct(XmasWorldBuilder builder,params AgentFactory[] agentFactory)
+		public Tuple<XmasModel, XmasView, XmasController> FullConstruct(XmasWorldBuilder builder,
+		                                                                params AgentFactory[] agentFactory)
 		{
-			XmasModel model = this.ConstructModel(builder);
-            XmasView view = this.ConstructView(model);
-            XmasController controller = this.ContructController(model, view);
+			XmasModel model = ConstructModel(builder);
+			XmasView view = ConstructView(model);
+			XmasController controller = ContructController(model, view);
 
-            foreach (AgentFactory afact in agentFactory)
-                controller.AddAiServer(afact.ContructServer());
-           
+			foreach (AgentFactory afact in agentFactory)
+				controller.AddAiServer(afact.ContructServer());
+
 
 			return Tuple.Create(model, view, controller);
 		}
-
-		
 	}
 }

@@ -12,8 +12,6 @@ using XmasEngineExtensions.EisExtension.Model;
 using XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Percepts;
 using XmasEngineExtensions.EisTileExtension;
 using XmasEngineExtensions.TileExtension;
-using XmasEngineModel;
-using XmasEngineModel.Entities.Units;
 using XmasEngineModel.Management;
 
 namespace XmasEngineExtensions_Test.EisExtension.AI

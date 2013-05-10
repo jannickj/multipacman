@@ -1,10 +1,10 @@
-using XmasEngineModel;
+using XmasEngineModel.EntityLib;
 
 namespace ConsoleXmasImplementation.EntityViews
 {
 	public class ConsoleAgentView : ConsoleEntityView
 	{
-		public ConsoleAgentView(Entity model)
+		public ConsoleAgentView(XmasEntity model)
 			: base(model)
 		{
 		}

@@ -6,7 +6,7 @@ using JSLibrary.IiLang.DataContainers;
 using XmasEngineController.AI;
 using XmasEngineExtensions.EisExtension.Model;
 using XmasEngineModel;
-using XmasEngineModel.Entities.Units;
+using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
 
 namespace XmasEngineExtensions.EisExtension.Controller.AI

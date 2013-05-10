@@ -1,41 +1,42 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using XmasEngineModel;
+using XmasEngineModel.EntityLib;
 
 namespace XmasEngineExtensions.TileExtension
 {
 	public class Tile : XmasObject
 	{
-		private LinkedList<Entity> entities = new LinkedList<Entity>();
+		private LinkedList<XmasEntity> entities = new LinkedList<XmasEntity>();
 
-		public ICollection<Entity> Entities
+		public ICollection<XmasEntity> Entities
 		{
 			get { return entities.ToList(); }
 		}
 
-		public void AddEntity(Entity entity)
+		public void AddEntity(XmasEntity xmasEntity)
 		{
-			entities.AddFirst(entity);
+			entities.AddFirst(xmasEntity);
 		}
 
-		public void RemoveEntity(Entity entity)
+		public void RemoveEntity(XmasEntity xmasEntity)
 		{
-			entities.Remove(entity);
+			entities.Remove(xmasEntity);
 		}
 
-		public bool CanContain(Entity entity)
+		public bool CanContain(XmasEntity xmasEntity)
 		{
-			foreach (Entity xent in entities)
+			foreach (XmasEntity xent in entities)
 			{
-				if (xent.IsMovementBlocking(entity))
+				if (xent.IsMovementBlocking(xmasEntity))
 					return false;
 			}
 			return true;
 		}
 
-		public bool IsVisionBlocking(Entity entity)
+		public bool IsVisionBlocking(XmasEntity xmasEntity)
 		{
-			return entities.Any(e => e.IsVisionBlocking(entity));
+			return entities.Any(e => e.IsVisionBlocking(xmasEntity));
 		}
 	}
 }

@@ -5,7 +5,6 @@ using NUnit.Framework;
 using XmasEngineExtensions.TileExtension;
 using XmasEngineExtensions.TileExtension.Actions;
 using XmasEngineModel;
-using XmasEngineModel.Entities.Units;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Actions;
 using XmasEngineModel.Management.Events;

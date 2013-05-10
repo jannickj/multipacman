@@ -1,5 +1,5 @@
 ﻿using JSLibrary.Data;
-using XmasEngineModel.Entities;
+using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
 

@@ -1,17 +1,19 @@
+using XmasEngineModel.EntityLib;
+
 namespace XmasEngineModel.Management.Events
 {
 	public class EntityAddedEvent : XmasEvent
 	{
-		private Entity addedEntity;
+		private XmasEntity _addedXmasEntity;
 
-		public Entity AddedEntity {
-			get { return addedEntity; }
+		public EntityAddedEvent(XmasEntity _addedXmasEntity)
+		{
+			this._addedXmasEntity = _addedXmasEntity;
 		}
 
-		public EntityAddedEvent (Entity addedEntity)
+		public XmasEntity AddedXmasEntity
 		{
-			this.addedEntity = addedEntity;
+			get { return _addedXmasEntity; }
 		}
 	}
 }
-

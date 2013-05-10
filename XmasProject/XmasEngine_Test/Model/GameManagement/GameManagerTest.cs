@@ -1,8 +1,5 @@
 ﻿using NUnit.Framework;
-using XmasEngineModel.Entities;
-using XmasEngineModel.Entities.Units;
 using XmasEngineModel.Management;
-using XmasEngineModel.Management.Actions;
 using XmasEngineModel.Management.Events;
 using XmasEngine_Test.ExampleActions;
 

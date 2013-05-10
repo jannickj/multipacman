@@ -1,7 +1,5 @@
 using JSLibrary.Data;
 using NUnit.Framework;
-using XmasEngineModel;
-using XmasEngineModel.Entities.Units;
 using XmasEngineExtensions.TileExtension;
 
 namespace XmasEngine_Test.Model
@@ -19,7 +17,7 @@ namespace XmasEngine_Test.Model
 			world.AddEntity(new Point(1, 2), agent);
 
 			Point expected = new Point(1, 2);
-			Point actual = ((TilePosition)world.GetEntityPosition(agent)).Point;
+			Point actual = ((TilePosition) world.GetEntityPosition(agent)).Point;
 			Assert.AreEqual(expected, actual);
 		}
 	}

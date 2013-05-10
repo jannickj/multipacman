@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading;
 using XmasEngine.Exceptions;
 using XmasEngineController;
@@ -16,7 +13,7 @@ namespace XmasEngine
 		private XmasEngineFactory factory;
 
 		private Thread modelThread;
-		private List<Thread> otherThreads = new List<Thread>(); 
+		private List<Thread> otherThreads = new List<Thread>();
 
 		public XmasEngine(XmasEngineFactory factory)
 		{
@@ -47,14 +44,8 @@ namespace XmasEngine
 			cont.Start();
 
 			modelThread = modelt;
-			this.otherThreads.Add(viewt);
-			this.otherThreads.Add(cont);
+			otherThreads.Add(viewt);
+			otherThreads.Add(cont);
 		}
-
-		
-
-
-
-
 	}
 }

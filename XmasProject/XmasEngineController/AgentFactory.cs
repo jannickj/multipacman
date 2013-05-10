@@ -2,9 +2,8 @@
 
 namespace XmasEngineController
 {
-    public abstract class AgentFactory
-    {
-        public abstract AgentServer ContructServer();
-
-    }
+	public abstract class AgentFactory
+	{
+		public abstract AgentServer ContructServer();
+	}
 }

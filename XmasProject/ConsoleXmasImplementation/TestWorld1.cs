@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using JSLibrary.Data;
 using XmasEngineExtensions.TileExtension;
-using XmasEngineModel;
-using XmasEngineModel.Entities;
-using XmasEngineModel.Entities.Units;
+using XmasEngineExtensions.TileExtension.Entities;
 
 namespace ConsoleXmasImplementation
 {

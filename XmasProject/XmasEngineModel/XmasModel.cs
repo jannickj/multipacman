@@ -1,24 +1,22 @@
 using System;
 using System.Threading;
-using JSLibrary.Data;
 using JSLibrary.Data.GenericEvents;
 using XmasEngineModel.Exceptions;
-using XmasEngineModel.Management;
-using XmasEngineModel.Management.Actions;
-using XmasEngineModel.Management.Events;
 using XmasEngineModel.Interfaces;
+using XmasEngineModel.Management;
+using XmasEngineModel.Management.Events;
 
 namespace XmasEngineModel
 {
 	public class XmasModel : IStartable
 	{
+		private AutoResetEvent actionRecieved = new AutoResetEvent(false);
 		private ActionManager actman;
 		private Exception engineCrash;
 		private EventManager evtman;
 		private XmasFactory factory;
 		private bool stopEngine;
 		private XmasWorld world;
-        private AutoResetEvent actionRecieved = new AutoResetEvent(false);
 
 
 		public XmasModel(XmasWorld world, ActionManager actman, EventManager evtman, XmasFactory factory)
@@ -27,7 +25,7 @@ namespace XmasEngineModel
 			ActionManager = actman;
 			EventManager = evtman;
 			Factory = factory;
-			
+
 			EventManager.Register(new Trigger<EngineCloseEvent>(evtman_EngineClose));
 			ActionManager.ActionQueuing += actman_ActionQueuing;
 			ActionManager.ActionQueued += actman_ActionQueued;
@@ -36,7 +34,6 @@ namespace XmasEngineModel
 
 		public void Initialize()
 		{
-			
 		}
 
 		public void Start()
@@ -48,12 +45,12 @@ namespace XmasEngineModel
 				while (true)
 				{
 					ActionManager.ExecuteActions();
-                    lock (this)
-                    {
-                        if (stopEngine)
-                            break;
-                    }
-                    actionRecieved.WaitOne();
+					lock (this)
+					{
+						if (stopEngine)
+							break;
+					}
+					actionRecieved.WaitOne();
 				}
 			}
 			catch (ForceStopEngineException)
@@ -65,8 +62,6 @@ namespace XmasEngineModel
 			}
 		}
 
-		
-       
 
 		public bool EngineCrashed(out Exception exception)
 		{
@@ -80,13 +75,22 @@ namespace XmasEngineModel
 			return false;
 		}
 
+		public void AddActor(XmasActor actor)
+		{
+			actor.ActionManager = ActionManager;
+			actor.EventManager = EventManager;
+			actor.World = World;
+			actor.Factory = Factory;
+			;
+		}
+
 		#region EVENTS
 
 		private void evtman_EngineClose(EngineCloseEvent e)
 		{
-            stopEngine = true;
+			stopEngine = true;
 
-            this.actionRecieved.Set();
+			actionRecieved.Set();
 		}
 
 		private void actman_ActionQueuing(object sender, UnaryValueEvent<XmasAction> evt)
@@ -136,16 +140,5 @@ namespace XmasEngineModel
 		}
 
 		#endregion
-
-
-
-
-		public void AddActor(XmasActor actor)
-		{
-			actor.ActionManager = ActionManager;
-			actor.EventManager = EventManager;
-			actor.World = World;
-			actor.Factory = Factory; ;
-		}
 	}
 }

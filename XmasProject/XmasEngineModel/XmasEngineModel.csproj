@@ -44,14 +44,12 @@
     <Compile Include="Conversion\XmasConverter.cs" />
     <Compile Include="Conversion\XmasConverterToForeign.cs" />
     <Compile Include="Conversion\XmasConverterToXmas.cs" />
-    <Compile Include="Entities\ImpassableWall.cs" />
-    <Compile Include="Entities\Interactable.cs" />
-    <Compile Include="Entities\Interactables\PowerUp.cs" />
-    <Compile Include="Entities\Unit.cs" />
-    <Compile Include="Entities\Units\Agent.cs" />
-    <Compile Include="Entities\Units\Player.cs" />
-    <Compile Include="Entities\Wall.cs" />
-    <Compile Include="Entity.cs" />
+    <Compile Include="EntityLib\Module\EntityModule.cs" />
+    <Compile Include="EntityLib\Module\RuleBasedModule.cs" />
+    <Compile Include="EntityLib\Unit.cs" />
+    <Compile Include="EntityLib\Agent.cs" />
+    <Compile Include="EntityLib\Player.cs" />
+    <Compile Include="EntityLib\XmasEntity.cs" />
     <Compile Include="Enum\Direction.cs" />
     <Compile Include="Exceptions\EntityException.cs" />
     <Compile Include="Exceptions\ForceStopEngineException.cs" />
@@ -114,7 +112,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\MapEntities\" />
+    <Folder Include="EntityLib\Units\" />
     <Folder Include="Perceptions\EISPercepts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

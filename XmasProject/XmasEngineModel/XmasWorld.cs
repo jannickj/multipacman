@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JSLibrary.Data;
+﻿using XmasEngineModel.EntityLib;
 using XmasEngineModel.World;
 
 namespace XmasEngineModel
 {
 	public abstract class XmasWorld
 	{
-		internal protected abstract bool AddEntity(Entity entity, EntitySpawnInformation info);
+		protected internal abstract bool AddEntity(XmasEntity xmasEntity, EntitySpawnInformation info);
 
-		public abstract XmasPosition GetEntityPosition(Entity entity);
+		public abstract XmasPosition GetEntityPosition(XmasEntity xmasEntity);
 
-		public abstract bool SetEntityPosition(Entity entity, XmasPosition tilePosition);
+		public abstract bool SetEntityPosition(XmasEntity xmasEntity, XmasPosition tilePosition);
 	}
 }

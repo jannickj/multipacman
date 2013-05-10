@@ -1,4 +1,4 @@
-﻿namespace XmasEngineModel.Entities.Units
+﻿namespace XmasEngineModel.EntityLib
 {
 	public class Agent : Unit
 	{

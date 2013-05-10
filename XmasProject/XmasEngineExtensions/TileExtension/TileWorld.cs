@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using JSLibrary.Data;
-using System.Linq;
+using XmasEngineExtensions.TileExtension.Percepts;
 using XmasEngineModel;
-using XmasEngineModel.Perceptions;
+using XmasEngineModel.EntityLib;
 using XmasEngineModel.World;
-using XmasEngineExtensions.TileExtension;
 
 namespace XmasEngineExtensions.TileExtension
 {
 	public class TileWorld : XmasWorld
 	{
-		private Dictionary<Entity, Point> entlocs = new Dictionary<Entity, Point>();
+		private Dictionary<XmasEntity, Point> entlocs = new Dictionary<XmasEntity, Point>();
 		private TileMap map;
 
 		public TileWorld(TileMap map)
@@ -20,8 +18,7 @@ namespace XmasEngineExtensions.TileExtension
 
 		public TileWorld(Size burstSize)
 		{
-			this.map = new TileMap(burstSize);
-			
+			map = new TileMap(burstSize);
 		}
 
 		public Size Size
@@ -29,60 +26,60 @@ namespace XmasEngineExtensions.TileExtension
 			get { return map.Size; }
 		}
 
-		public Vision View(Point p, int range, Entity entity)
+		public Vision View(Point p, int range, XmasEntity xmasEntity)
 		{
-			return new Vision(map[p.X, p.Y, range], entity);
+			return new Vision(map[p.X, p.Y, range], xmasEntity);
 		}
 
-		public Vision View(int range, Entity entity)
+		public Vision View(int range, XmasEntity xmasEntity)
 		{
-			return View(entlocs[entity], range, entity);
+			return View(entlocs[xmasEntity], range, xmasEntity);
 		}
 
-		public Vision View(Entity entity)
+		public Vision View(XmasEntity xmasEntity)
 		{
-			return View(entity.VisionRange, entity);
+			return View(xmasEntity.VisionRange, xmasEntity);
 		}
 
-		protected override bool AddEntity(Entity entity, EntitySpawnInformation info)
+		protected override bool AddEntity(XmasEntity xmasEntity, EntitySpawnInformation info)
 		{
 			TilePosition tilePos = (TilePosition) info.Position;
-			return AddEntity (entity, tilePos);
+			return AddEntity(xmasEntity, tilePos);
 		}
 
-		private bool AddEntity(Entity entity, TilePosition pos)
+		private bool AddEntity(XmasEntity xmasEntity, TilePosition pos)
 		{
 			Point point = pos.Point;
 
-			Tile tile = map [point.X, point.Y];
-			
-			if (!tile.CanContain(entity))
+			Tile tile = map[point.X, point.Y];
+
+			if (!tile.CanContain(xmasEntity))
 				return false;
-			
-			entlocs.Add (entity, point);
-			tile.AddEntity (entity);
+
+			entlocs.Add(xmasEntity, point);
+			tile.AddEntity(xmasEntity);
 			return true;
 		}
 
-		public override XmasPosition GetEntityPosition(Entity entity)
+		public override XmasPosition GetEntityPosition(XmasEntity xmasEntity)
 		{
-			return new TilePosition (entlocs [entity]);
+			return new TilePosition(entlocs[xmasEntity]);
 		}
 
-		public override bool SetEntityPosition(Entity entity, XmasPosition tilePosition)
+		public override bool SetEntityPosition(XmasEntity xmasEntity, XmasPosition tilePosition)
 		{
-			AddEntity (entity, (TilePosition) tilePosition);
+			AddEntity(xmasEntity, (TilePosition) tilePosition);
 
-			Point currPoint = entlocs [entity];
+			Point currPoint = entlocs[xmasEntity];
 			Point newPoint = ((TilePosition) tilePosition).Point;
-			map [currPoint.X, currPoint.Y].RemoveEntity (entity);
-			map [newPoint.X, newPoint.Y].AddEntity (entity);
-			entlocs [entity] = newPoint;
+			map[currPoint.X, currPoint.Y].RemoveEntity(xmasEntity);
+			map[newPoint.X, newPoint.Y].AddEntity(xmasEntity);
+			entlocs[xmasEntity] = newPoint;
 
 			return false;
 		}
 
-		private bool SetEntityPosition (Entity entity, TilePosition pos)
+		private bool SetEntityPosition(XmasEntity xmasEntity, TilePosition pos)
 		{
 			Point point = pos.Point;
 
@@ -90,17 +87,17 @@ namespace XmasEngineExtensions.TileExtension
 		}
 
 //
-//		internal void SetEntityLocation(Point loc, Entity entity)
+//		internal void SetEntityLocation(Point loc, XmasEntity XmasEntity)
 //		{
-//			map[loc.X, loc.Y].AddEntity(entity);
+//			map[loc.X, loc.Y].AddEntity(XmasEntity);
 //		}
 
-//		public Entity[] RemoveAllEntities()
+//		public XmasEntity[] RemoveAllEntities()
 //		{
-//			Entity[] ents = this.entlocs.Keys.ToArray();
-//			foreach (var entity in ents)
+//			XmasEntity[] ents = this.entlocs.Keys.ToArray();
+//			foreach (var XmasEntity in ents)
 //			{
-//				this.RemoveEntity(entity);
+//				this.RemoveEntity(XmasEntity);
 //			}
 //			return ents;
 //		}
@@ -122,35 +119,35 @@ namespace XmasEngineExtensions.TileExtension
 //		}
 //
 //		public void AddChunk<TEntity>(Point start, Point stop)
-//			where TEntity : Entity, new()
+//			where TEntity : XmasEntity, new()
 //		{
 //			AddChunkExcept<TEntity>(start, stop, null);
 //		}
 //
 //		public void RemoveChunk<TEntity>(Point start, Point stop)
-//			where TEntity : Entity, new()
+//			where TEntity : XmasEntity, new()
 //		{
 //			RemoveChunkExcept<TEntity>(start, stop, null);
 //		}
 //
 //		public void AddChunkExcept<TEntity>(Point start, Point stop, ICollection<Point> exceptions)
-//			where TEntity : Entity, new()
+//			where TEntity : XmasEntity, new()
 //		{
 //			foreach (Point p in TilesInChunk(start, stop, exceptions))
 //			{
-//				TEntity entity = new TEntity();
-//				if (this.map[p.X,p.Y].CanContain(entity))
-//					this.AddEntity(p,entity);
+//				TEntity XmasEntity = new TEntity();
+//				if (this.map[p.X,p.Y].CanContain(XmasEntity))
+//					this.AddEntity(p,XmasEntity);
 //			}
 //		}
 //
 //		public void RemoveChunkExcept<TEntity>(Point start, Point stop, ICollection<Point> exceptions)
-//			where TEntity : Entity, new()
+//			where TEntity : XmasEntity, new()
 //		{
 //			foreach (Tile tile in TilesInChunk(start, stop, exceptions).Select(p => this.map[p.X,p.Y]))
 //			{
-//				foreach (TEntity entity in tile.Entities.OfType<TEntity>().ToArray())
-//					this.RemoveEntity(entity);
+//				foreach (TEntity XmasEntity in tile.Entities.OfType<TEntity>().ToArray())
+//					this.RemoveEntity(XmasEntity);
 //			}
 //		}
 	}

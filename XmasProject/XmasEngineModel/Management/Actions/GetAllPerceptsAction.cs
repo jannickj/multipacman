@@ -1,4 +1,4 @@
-using XmasEngineModel.Entities;
+using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management.Events;
 
 namespace XmasEngineModel.Management.Actions

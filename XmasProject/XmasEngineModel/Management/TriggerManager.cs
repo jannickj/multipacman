@@ -9,7 +9,7 @@ namespace XmasEngineModel.Management
 	{
 		private DictionaryList<Type, Trigger> triggers = new DictionaryList<Type, Trigger>();
 
-		internal event UnaryValueHandler<XmasEvent> EventRaised; 
+		internal event UnaryValueHandler<XmasEvent> EventRaised;
 
 		public void Raise(XmasEvent evt)
 		{
@@ -19,7 +19,6 @@ namespace XmasEngineModel.Management
 				if (t.CheckCondition(evt))
 					t.Execute(evt);
 			}
-
 		}
 
 		public void Register(Trigger trigger)

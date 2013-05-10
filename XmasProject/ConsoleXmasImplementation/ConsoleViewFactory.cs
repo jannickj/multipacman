@@ -1,8 +1,6 @@
 using System;
 using ConsoleXmasImplementation.EntityViews;
-using XmasEngineModel;
-using XmasEngineModel.Entities;
-using XmasEngineModel.Entities.Units;
+using XmasEngineExtensions.TileExtension.Entities;
 using XmasEngineView;
 
 namespace ConsoleXmasImplementation
@@ -13,22 +11,19 @@ namespace ConsoleXmasImplementation
 
 		public ConsoleViewFactory()
 		{
-			AddTypeLink<Agent, ConsoleAgentView> ();
-			AddTypeLink<Wall, ConsoleWallView> ();
-			AddTypeLink<Player, ConsolePlayerView> ();
-			AddTypeLink<ImpassableWall, ConsoleImpassableWallView> ();
+			AddTypeLink<Agent, ConsoleAgentView>();
+			AddTypeLink<Wall, ConsoleWallView>();
+			AddTypeLink<Player, ConsolePlayerView>();
+			AddTypeLink<ImpassableWall, ConsoleImpassableWallView>();
 		}
 
-		public override EntityView ConstructEntityView (Entity model)
+		public override EntityView ConstructEntityView(XmasEntity model)
 		{
-			ConsoleEntityView retval = (ConsoleEntityView) Activator.CreateInstance (typeDict [model.GetType ()]);
+			ConsoleEntityView retval = (ConsoleEntityView) Activator.CreateInstance(typeDict[model.GetType()]);
 			retval.Model = model;
 			return retval;
 		}
 
 		#endregion
-
-
-
 	}
 }

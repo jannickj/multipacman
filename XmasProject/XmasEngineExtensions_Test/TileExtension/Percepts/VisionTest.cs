@@ -4,10 +4,8 @@ using System.Linq;
 using JSLibrary.Data;
 using NUnit.Framework;
 using XmasEngineExtensions.TileExtension;
-using XmasEngineModel;
-using XmasEngineModel.Entities;
-using XmasEngineModel.Entities.Units;
-using XmasEngineModel.Perceptions;
+using XmasEngineExtensions.TileExtension.Entities;
+using XmasEngineExtensions.TileExtension.Percepts;
 
 namespace XmasEngineExtensions_Test.TileExtension.Percepts
 {
@@ -19,7 +17,7 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 		{
 			TileMap map = new TileMap(new Size(1, 1));
 
-			 TileWorld world = new TileWorld(map);
+			TileWorld world = new TileWorld(map);
 			Vision vision = world.View(new Point(0, 0), 3, new Player());
 
 			List<KeyValuePair<Point, Tile>> expected = vision.AllTiles();
@@ -50,7 +48,7 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 		public void AgentWithSecondRingFilledByWalls7By7Grid_CorrectVisionObject()
 		{
 			/* This is our expected vision. Legend: 
-			 * (P): The viewing entity
+			 * (P): The viewing XmasEntity
 			 * (W): A vision blocking wall
 			 * (X): Visible tiles
 			 * (S): Invisible tiles
@@ -105,7 +103,7 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 		public void AgentWithTwoOuterRingsFilledWithWalls7By7Grid_CorrectVisionObject()
 		{
 			/* This is our expected vision. Legend: 
-			 * (P): The viewing entity
+			 * (P): The viewing XmasEntity
 			 * (W): A vision blocking wall
 			 * (X): Visible tiles
 			 * (S): Invisible tiles
@@ -156,7 +154,7 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 		public void AgentWithWallToTheWest7by7Grid_CorrectVisionObject()
 		{
 			/* This is our expected vision. Legend: 
-			 * (P): The viewing entity
+			 * (P): The viewing XmasEntity
 			 * (W): A vision blocking wall
 			 * (X): Visible tiles
 			 * (S): Invisible tiles
@@ -194,7 +192,7 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 		public void AgentWithWallsInCornersFiveTimesFiveGrid_CorrectVisionObject()
 		{
 			/* This is our expected vision. Legend: 
-			 * (P): The viewing entity
+			 * (P): The viewing XmasEntity
 			 * (W): A vision blocking wall
 			 * (X): Visible tiles
 			 * (S): Invisible tiles
@@ -241,7 +239,7 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 		public void AgentWithWallsInNWCorner7by7Grid_CorrectVisionObject()
 		{
 			/* This is our expected vision. Legend: 
-			 * (P): The viewing entity
+			 * (P): The viewing XmasEntity
 			 * (W): A vision blocking wall
 			 * (X): Visible tiles
 			 * (S): Invisible tiles
@@ -281,7 +279,7 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 		public void AgentWithWallsOnSidesFiveTimesFiveGrid_CorrectVisionObject()
 		{
 			/* This is our expected vision. Legend: 
-			 * (P): The viewing entity
+			 * (P): The viewing XmasEntity
 			 * (W): A vision blocking wall
 			 * (X): Visible tiles
 			 * (S): Invisible tiles

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading;
 using XmasEngineModel;
-using XmasEngineModel.Entities.Units;
+using XmasEngineModel.EntityLib;
 using XmasEngineModel.Interfaces;
 
 namespace XmasEngineController.AI
 {
-    public abstract class AgentServer : XmasActor, IStartable
+	public abstract class AgentServer : XmasActor, IStartable
 	{
 		private Dictionary<AgentController, AgentControllerInfomation> agents =
 			new Dictionary<AgentController, AgentControllerInfomation>();
@@ -136,9 +136,5 @@ namespace XmasEngineController.AI
 				return name + " Controller Thread";
 			}
 		}
-
-
-
-
-    }
+	}
 }

@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using JSLibrary.Data;
 using XmasEngineModel;
+using XmasEngineModel.EntityLib;
 
-namespace XmasEngineExtensions.TileExtension
+namespace XmasEngineExtensions.TileExtension.Percepts
 {
 	public class Vision : Percept
 	{
 		private Grid<Tile> grid;
-		private Entity owner;
+		private XmasEntity owner;
 		private List<KeyValuePair<Point, Tile>> visibleTiles = new List<KeyValuePair<Point, Tile>>();
 
-		public Vision(Grid<Tile> grid, Entity owner)
+		public Vision(Grid<Tile> grid, XmasEntity owner)
 		{
 			this.grid = grid;
 			this.owner = owner;
 			FindVisibleTiles();
 		}
 
-		public Entity Owner
+		public XmasEntity Owner
 		{
 			get { return owner; }
 		}

@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 using JSLibrary.IiLang.Parameters;
 using XmasEngineController.AI;
 using XmasEngineExtensions.EisExtension.Model;
-using XmasEngineModel.Entities.Units;
+using XmasEngineModel.EntityLib;
 
 namespace XmasEngineExtensions.EisExtension.Controller.AI
 {

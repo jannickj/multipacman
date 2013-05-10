@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using JSLibrary.Data.GenericEvents;
 using XmasEngineModel;
-using XmasEngineModel.Entities.Units;
+using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
 

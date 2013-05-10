@@ -24,7 +24,7 @@ namespace JSLibrary.Data
 
 		public ICollection<TValue> Get(TKey key)
 		{
-			lock(dic)
+			lock (dic)
 			{
 				return this[key].ToArray();
 			}
@@ -46,7 +46,7 @@ namespace JSLibrary.Data
 
 		public bool Remove(TKey key, TValue val)
 		{
-			lock(dic)
+			lock (dic)
 			{
 				HashSet<TValue> vals;
 				if (dic.TryGetValue(key, out vals))

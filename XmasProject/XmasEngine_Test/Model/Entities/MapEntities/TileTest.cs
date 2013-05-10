@@ -1,9 +1,5 @@
-﻿using System.Linq;
-using NUnit.Framework;
-using XmasEngineModel;
-using XmasEngineModel.Entities;
-using XmasEngineModel.Entities.Interactables;
-using XmasEngineModel.Entities.Units;
+﻿using NUnit.Framework;
+using XmasEngineExtensions.TileExtension.Entities;
 
 namespace XmasEngine_Test.Model.Entities.MapEntities
 {

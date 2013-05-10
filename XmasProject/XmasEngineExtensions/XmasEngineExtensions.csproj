@@ -60,6 +60,11 @@
     <Compile Include="TileExtension\Actions\MoveUnitAction.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TileExtension\Entities\ImpassableWall.cs" />
+    <Compile Include="TileExtension\Entities\Wall.cs" />
+    <Compile Include="TileExtension\Modules\BlockingModule.cs" />
+    <Compile Include="TileExtension\Modules\MovementBlockingModule.cs" />
+    <Compile Include="TileExtension\Modules\RuleBasedMovementModule.cs" />
     <Compile Include="TileExtension\TilePoint.cs" />
     <Compile Include="TileExtension\TileWorld.cs" />
     <Compile Include="TileExtension\TileWorldBuilder.cs" />
@@ -92,7 +97,6 @@
   <ItemGroup>
     <Folder Include="EisExtension\Model\Conversion\IILang\Actions\" />
     <Folder Include="EisExtension\View\" />
-    <Folder Include="TileExtension\Percepts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

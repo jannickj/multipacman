@@ -2,6 +2,7 @@
 using System.Threading;
 using JSLibrary.Data;
 using JSLibrary.Data.GenericEvents;
+using XmasEngineModel.EntityLib;
 using XmasEngineModel.Perceptions;
 
 namespace XmasEngineModel.Management
@@ -9,12 +10,13 @@ namespace XmasEngineModel.Management
 	public class XmasFactory
 	{
 		private ActionManager actman;
-		internal event UnaryValueHandler<Tuple<Entity,Point>> EntityCreated; 
 
 		public XmasFactory(ActionManager actman)
 		{
 			this.actman = actman;
 		}
+
+		internal event UnaryValueHandler<Tuple<XmasEntity, Point>> EntityCreated;
 
 		public XmasTimer CreateTimer(Action action)
 		{
@@ -22,16 +24,16 @@ namespace XmasEngineModel.Management
 			return gt;
 		}
 
-		public Entity CreateEntity<TEntity>(Point p) where TEntity : Entity
+		public XmasEntity CreateEntity<TEntity>(Point p) where TEntity : XmasEntity
 		{
 			TEntity e = Activator.CreateInstance<TEntity>();
-			if(EntityCreated!=null)
-				EntityCreated(this,new UnaryValueEvent<Tuple<Entity,Point>>(Tuple.Create((Entity)e,p)));
+			if (EntityCreated != null)
+				EntityCreated(this, new UnaryValueEvent<Tuple<XmasEntity, Point>>(Tuple.Create((XmasEntity) e, p)));
 			return e;
 		}
 
 		//TODO: move this to tileworld
-//		public virtual Vision CreateVisionPercept(Grid<Tile> grid, Entity owner)
+//		public virtual Vision CreateVisionPercept(Grid<Tile> grid, XmasEntity owner)
 //		{
 //			return new Vision(grid, owner);
 //		}

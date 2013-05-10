@@ -1,7 +1,7 @@
 using JSLibrary.IiLang;
 using JSLibrary.IiLang.Parameters;
 using XmasEngineExtensions.TileExtension;
-using XmasEngineModel;
+using XmasEngineModel.EntityLib;
 
 namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Objects
 {
@@ -10,7 +10,7 @@ namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Objects
 		public override IilElement BeginConversionToForeign(Tile t)
 		{
 			IilParameterList pl = new IilParameterList();
-			foreach (Entity ent in t.Entities)
+			foreach (XmasEntity ent in t.Entities)
 				pl.AddParameter((IilParameter) ConvertToForeign(ent));
 
 			return pl;

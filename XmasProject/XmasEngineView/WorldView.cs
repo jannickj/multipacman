@@ -8,7 +8,7 @@ namespace XmasEngineView
 
 		public XmasWorldView(XmasWorld world)
 		{
-			this.model = world;
+			model = world;
 		}
 
 		public XmasWorld Model

@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace XmasEngineModel.Entities
+namespace XmasEngineModel.EntityLib
 {
-	public abstract class Unit : Entity
+	public abstract class Unit : XmasEntity
 	{
 		private int health = 1;
 		private double moveSpeed = 500;

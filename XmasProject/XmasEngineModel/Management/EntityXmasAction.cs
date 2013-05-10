@@ -1,12 +1,13 @@
 ﻿using System;
+using XmasEngineModel.EntityLib;
 
 namespace XmasEngineModel.Management
 {
 	public abstract class EntityXmasAction : XmasAction
 	{
-		private Entity source;
+		private XmasEntity source;
 
-		public Entity Source
+		public XmasEntity Source
 		{
 			get { return source; }
 			internal set { source = value; }
@@ -15,14 +16,14 @@ namespace XmasEngineModel.Management
 		protected internal abstract Type SupportedEntityType();
 
 
-		internal bool IsEntitySupported(Entity entity)
+		internal bool IsEntitySupported(XmasEntity xmasEntity)
 		{
-			return entity.GetType().IsSubclassOf(SupportedEntityType());
+			return xmasEntity.GetType().IsSubclassOf(SupportedEntityType());
 		}
 	}
 
 
-	public abstract class EntityXmasAction<T> : EntityXmasAction where T : Entity
+	public abstract class EntityXmasAction<T> : EntityXmasAction where T : XmasEntity
 	{
 		public new T Source
 		{

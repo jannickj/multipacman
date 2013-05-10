@@ -1,25 +1,26 @@
 ﻿using System;
+using XmasEngineModel.EntityLib;
 
 namespace XmasEngineModel.Exceptions
 {
 	public class EntityException : Exception
 	{
-		private Entity entity;
+		private XmasEntity xmasEntity;
 
-		public EntityException(Entity entity)
+		public EntityException(XmasEntity xmasEntity)
 		{
 			// TODO: Complete member initialization
-			this.entity = entity;
+			this.xmasEntity = xmasEntity;
 		}
 
-		public EntityException(Entity e, string msg) : base(msg)
+		public EntityException(XmasEntity e, string msg) : base(msg)
 		{
-			entity = e;
+			xmasEntity = e;
 		}
 
-		public Entity Entity
+		public XmasEntity XmasEntity
 		{
-			get { return entity; }
+			get { return xmasEntity; }
 		}
 	}
 }

@@ -1,5 +1,4 @@
-﻿using XmasEngineModel.Entities;
-using XmasEngineModel.Management;
+﻿using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
 
 namespace XmasEngine_Test.ExampleActions
