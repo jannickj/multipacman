@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using JSLibrary.Data;
+using XmasEngineExtensions.TileExtension;
 using XmasEngineModel;
 
 namespace ConsoleXmasImplementation
@@ -15,15 +16,15 @@ namespace ConsoleXmasImplementation
 			this.model = model;
 		}
 
-		//public int Width
-		//{
-		//	get { return model.Size.Width; }
-		//}
+		public int Width
+		{
+			get { return model.Size.Width; }
+		}
 
-		//public int Height
-		//{
-		//	get { return model.Size.Height; }
-		//}
+		public int Height
+		{
+			get { return model.Size.Height; }
+		}
 
 		public void AddEntity(ConsoleEntityView entview)
 		{

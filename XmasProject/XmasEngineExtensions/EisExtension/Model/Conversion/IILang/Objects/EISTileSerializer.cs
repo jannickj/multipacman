@@ -1,5 +1,6 @@
 using JSLibrary.IiLang;
 using JSLibrary.IiLang.Parameters;
+using XmasEngineExtensions.TileExtension;
 using XmasEngineModel;
 
 namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Objects

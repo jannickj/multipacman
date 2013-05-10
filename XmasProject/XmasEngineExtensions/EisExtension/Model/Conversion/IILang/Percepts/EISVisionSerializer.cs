@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using JSLibrary.Data;
 using JSLibrary.IiLang.DataContainers;
 using JSLibrary.IiLang.Parameters;
+using XmasEngineExtensions.TileExtension;
 using XmasEngineModel;
 using XmasEngineModel.Perceptions;
 
