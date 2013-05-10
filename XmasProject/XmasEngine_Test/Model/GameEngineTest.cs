@@ -18,7 +18,7 @@ namespace XmasEngine_Test.Model
 		[Test]
 		public void RunningGame_MoveActionStarted_MoveActionCompletes()
 		{
-			TileWorld world = new TileWorld(new XmasMap(new Size(2, 2)));
+			TileWorld world = new TileWorld(new TileMap(new Size(2, 2)));
 
 			ActionManager actman = new ActionManager();
 			XmasFactory factory = new XmasFactory(actman);

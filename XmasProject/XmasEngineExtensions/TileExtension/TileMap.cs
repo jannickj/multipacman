@@ -1,9 +1,9 @@
 ﻿using JSLibrary.Data;
 using XmasEngineModel.Entities;
 
-namespace XmasEngineModel
+namespace XmasEngineExtensions.TileExtension
 {
-	public class XmasMap
+	public class TileMap
 	{
 		private Size burstSize;
 		private Point center;
@@ -11,7 +11,7 @@ namespace XmasEngineModel
 		private Size size;
 		private Tile[,] tiles;
 
-		public XmasMap(Size burstSize)
+		public TileMap(Size burstSize)
 		{
 			outofmaptile.AddEntity(new ImpassableWall());
 			this.burstSize = burstSize;

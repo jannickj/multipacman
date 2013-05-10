@@ -17,7 +17,7 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 		[Test]
 		public void AgentRequests7by7VisionInEmpty3by3World_Return5by5TilesWithImpassableWallsAtEdges()
 		{
-			XmasMap map = new XmasMap(new Size(1, 1));
+			TileMap map = new TileMap(new Size(1, 1));
 
 			 TileWorld world = new TileWorld(map);
 			Vision vision = world.View(new Point(0, 0), 3, new Player());
@@ -64,7 +64,7 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 			 * SSSSSSS
 			 */
 
-			XmasMap map = new XmasMap(new Size(3, 3));
+			TileMap map = new TileMap(new Size(3, 3));
 			for (int i = -2; i <= 2; i++)
 			{
 				map[-2, i].AddEntity(new ImpassableWall());
@@ -119,7 +119,7 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 			 * WWWWWWW
 			 */
 
-			XmasMap map = new XmasMap(new Size(3, 3));
+			TileMap map = new TileMap(new Size(3, 3));
 
 			for (int x = -3; x <= 3; x++)
 			{
@@ -170,7 +170,7 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 			 * XXXXXXX
 			 */
 
-			XmasMap map = new XmasMap(new Size(3, 3));
+			TileMap map = new TileMap(new Size(3, 3));
 			map[-1, 0].AddEntity(new Wall());
 
 			TileWorld world = new TileWorld(map);
@@ -206,7 +206,7 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 			 * SSXSS
 			 */
 
-			XmasMap map = new XmasMap(new Size(2, 2));
+			TileMap map = new TileMap(new Size(2, 2));
 			map[-1, -1].AddEntity(new Wall());
 			map[1, -1].AddEntity(new Wall());
 			map[-1, 1].AddEntity(new Wall());
@@ -255,7 +255,7 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 			 * XXXXXXX
 			 */
 
-			XmasMap map = new XmasMap(new Size(3, 3));
+			TileMap map = new TileMap(new Size(3, 3));
 			map[-1, -1].AddEntity(new Wall());
 
 			TileWorld world = new TileWorld(map);
@@ -293,7 +293,7 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 			 * XXSXX
 			 */
 
-			XmasMap map = new XmasMap(new Size(2, 2));
+			TileMap map = new TileMap(new Size(2, 2));
 			map[-1, 0].AddEntity(new Wall());
 			map[1, 0].AddEntity(new Wall());
 			map[0, -1].AddEntity(new Wall());

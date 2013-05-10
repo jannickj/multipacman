@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JSLibrary.Data;
 
-namespace XmasEngineModel.Perceptions
+namespace XmasEngineExtensions.TileExtension
 {
 	public class Vision : Percept
 	{
