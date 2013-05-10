@@ -78,13 +78,15 @@ namespace XmasEngineExtensions.TileExtension
 			map [currPoint.X, currPoint.Y].RemoveEntity (entity);
 			map [newPoint.X, newPoint.Y].AddEntity (entity);
 			entlocs [entity] = newPoint;
+
+			return false;
 		}
 
 		private bool SetEntityPosition (Entity entity, TilePosition pos)
 		{
 			Point point = pos.Point;
 
-
+			return false;
 		}
 
 //
