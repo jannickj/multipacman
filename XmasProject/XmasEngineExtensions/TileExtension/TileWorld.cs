@@ -20,8 +20,7 @@ namespace XmasEngineExtensions.TileExtension
 
 		public TileWorld(Size burstSize)
 		{
-			this.map = new TileMap(burstSize);
-			
+			this.map = new TileMap(burstSize);			
 		}
 
 		public Size Size
@@ -71,22 +70,24 @@ namespace XmasEngineExtensions.TileExtension
 
 		public override bool SetEntityPosition(Entity entity, XmasPosition tilePosition)
 		{
-			AddEntity (entity, (TilePosition) tilePosition);
-
-			Point currPoint = entlocs [entity];
-			Point newPoint = ((TilePosition) tilePosition).Point;
-			map [currPoint.X, currPoint.Y].RemoveEntity (entity);
-			map [newPoint.X, newPoint.Y].AddEntity (entity);
-			entlocs [entity] = newPoint;
-
-			return false;
+			return SetEntityPosition (entity, (TilePosition)tilePosition);
 		}
 
 		private bool SetEntityPosition (Entity entity, TilePosition pos)
 		{
-			Point point = pos.Point;
+			Point oldPoint;
+			bool entityExistsInMap = false;
 
-			return false;
+			if (entlocs.TryGetValue (entity, out oldPoint))
+				entityExistsInMap = true;
+
+			if (!AddEntity (entity, pos))
+				return false;
+
+			if (entityExistsInMap)
+				map [oldPoint].RemoveEntity (entity);
+
+			return true;
 		}
 
 //
