@@ -46,7 +46,7 @@ namespace XmasEngineExtensions.TileExtension
 
 		protected override bool AddEntity(Entity entity, EntitySpawnInformation info)
 		{
-			TilePosition tilePos = info.Position;
+			TilePosition tilePos = (TilePosition) info.Position;
 			return AddEntity (entity, tilePos);
 		}
 
@@ -69,9 +69,9 @@ namespace XmasEngineExtensions.TileExtension
 			return new TilePosition (entlocs [entity]);
 		}
 
-		public bool SetEntityPosition(Entity entity, XmasPosition tilePosition)
+		public override bool SetEntityPosition(Entity entity, XmasPosition tilePosition)
 		{
-			AddEntity (entity, tilePosition);
+			AddEntity (entity, (TilePosition) tilePosition);
 
 			Point currPoint = entlocs [entity];
 			Point newPoint = ((TilePosition) tilePosition).Point;
