@@ -7,15 +7,13 @@ using XmasEngineView;
 
 namespace XmasEngine
 {
-	public abstract class XmasEngineFactory<TView,TController>
-		where TView : XmasView
-		where TController : XmasController
+	public abstract class XmasEngineFactory
 	{
-		public virtual XmasModel ConstructModel(XmasMap map)
+		public virtual XmasModel ConstructModel(XmasWorldBuilder builder)
 		{
 
 			//TODO: FIX Factory code
-			XmasWorld world = null; //new XmasWorld(map);
+			XmasWorld world = ConstructWorld(builder);
 			ActionManager actman = ConstructActionManager();
 			EventManager evtman = ConstructEventManager();
 			XmasFactory fact = ConstructGameFactory(actman);
@@ -23,6 +21,8 @@ namespace XmasEngine
 
 			return engine;
 		}
+
+
 
 		protected virtual XmasFactory ConstructGameFactory(ActionManager actman)
 		{
@@ -39,18 +39,20 @@ namespace XmasEngine
 			return new ActionManager();
 		}
 
-		public abstract TView ConstructView(XmasModel model);
+		public abstract XmasView ConstructView(XmasModel model);
+
+		public abstract XmasWorld ConstructWorld(XmasWorldBuilder builder);
 
 
-        public abstract TController ContructController(XmasModel model, TView view);
+        public abstract XmasController ContructController(XmasModel model, XmasView view);
 
 
         
-		public Tuple<XmasModel,TView,TController> FullConstruct(XmasMap map,params AgentFactory[] agentFactory)
+		public Tuple<XmasModel,XmasView,XmasController> FullConstruct(XmasWorldBuilder builder,params AgentFactory[] agentFactory)
 		{
-			XmasModel model = this.ConstructModel(map);
-            TView view = this.ConstructView(model);
-            TController controller = this.ContructController(model, view);
+			XmasModel model = this.ConstructModel(builder);
+            XmasView view = this.ConstructView(model);
+            XmasController controller = this.ContructController(model, view);
 
             foreach (AgentFactory afact in agentFactory)
                 controller.AddAiServer(afact.ContructServer());
@@ -59,24 +61,6 @@ namespace XmasEngine
 			return Tuple.Create(model, view, controller);
 		}
 
-		public void StartEngine(XmasModel model, XmasView view, XmasController controller)
-		{
-			XmasFactory fact = model.Factory;
-			Thread modelt = fact.CreateThread(model.Start);
-			Thread viewt = fact.CreateThread(view.Start);
-			Thread cont = fact.CreateThread(controller.Start);
-
-			modelt.Name = "Model Thread";
-			viewt.Name = "View Thread";
-			cont.Name = "Controller Thread";
-
-			model.Initialize();
-			view.Initialize();
-			controller.Initialize();
-
-			modelt.Start();
-			viewt.Start();
-			cont.Start();
-		}
+		
 	}
 }

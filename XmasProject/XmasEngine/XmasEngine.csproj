@@ -39,7 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\EngineAlreadyStartedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmasEngine.cs" />
     <Compile Include="XmasEngineFactory.cs" />
   </ItemGroup>
   <ItemGroup>
