@@ -48,11 +48,17 @@ namespace XmasEngineExtensions.TileExtension
 				}
 				return tiles[center.X + x, center.Y - y];
 			}
-			set
+			internal set
 			{
 				if (!IsOutOfBounds(x, y))
 					tiles[center.X + x, center.Y - y] = value;
 			}
+		}
+
+		public Tile this[Point p]
+		{
+			get { return this[p.X, p.Y]; }
+			internal set { this[p.X, p.Y] = value; }
 		}
 
 		public Grid<Tile> this[int x, int y, int range]
@@ -79,6 +85,11 @@ namespace XmasEngineExtensions.TileExtension
 
 				return grid;
 			}
+		}
+
+		public Grid<Tile> this[Point p, int range]
+		{
+			get { return this [p.X, p.Y, range]; }
 		}
 
 		private bool IsOutOfBounds(int x, int y)
