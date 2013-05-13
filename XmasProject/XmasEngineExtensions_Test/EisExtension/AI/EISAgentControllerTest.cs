@@ -12,6 +12,7 @@ using XmasEngineExtensions.EisExtension.Model;
 using XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Percepts;
 using XmasEngineExtensions.EisTileExtension;
 using XmasEngineExtensions.TileExtension;
+using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
 
 namespace XmasEngineExtensions_Test.EisExtension.AI
@@ -45,13 +46,19 @@ namespace XmasEngineExtensions_Test.EisExtension.AI
 		public void SingleUpdate_RecievedGetAllPercepts_PickUpPerceptsAndReturnThemThroughWriter()
 		{
 			ActionManager manager = new ActionManager();
-			TileWorld world = new TileWorld(new TileMap(new Size(4, 4)));
-			XmasFactory fact = new XmasFactory(manager);
+			TileWorldBuilder worldBuilder = new TileWorldBuilder(new Size(4, 4));
+			
+			
 			Agent agent = new Agent();
+			worldBuilder.AddEntity(agent, new TileSpawnInformation(new TilePosition(new Point(0, 0))));
+
+			XmasFactory fact = new XmasFactory(manager);
+			TileWorld world = (TileWorld)worldBuilder.Build(manager);
 			agent.ActionManager = manager;
 			agent.World = world;
 			agent.Factory = fact;
-			world.AddEntity(new Point(0, 0), agent);
+
+
 
 
 			Thread thread1 = new Thread(test2);

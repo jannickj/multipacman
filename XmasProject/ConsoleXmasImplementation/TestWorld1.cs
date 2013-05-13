@@ -2,6 +2,7 @@
 using JSLibrary.Data;
 using XmasEngineExtensions.TileExtension;
 using XmasEngineExtensions.TileExtension.Entities;
+using XmasEngineModel.EntityLib;
 
 namespace ConsoleXmasImplementation
 {
@@ -46,11 +47,12 @@ namespace ConsoleXmasImplementation
 
 			foreach (int idx in AlternateRange(-5, 5, 2))
 			{
-				AddChunk<Wall>(new Point(idx, start*factor), new Point(idx, stop*factor));
+				AddChunk(() => new Wall(), new Point(idx, start*factor), new Point(idx, stop*factor));
 				factor *= -1;
 			}
 
-			this.AddEntity(new Point(0, 0), new Player());
+			this.AddEntity(new Player(), new Point(0, 0));
+			
 		}
 
 		public IEnumerable<int> AlternateRange(int start, int count, int inc)

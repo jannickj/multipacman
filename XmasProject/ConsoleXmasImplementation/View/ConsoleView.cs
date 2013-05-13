@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Timers;
 using JSLibrary.Data;
 using XmasEngineModel;
@@ -7,10 +8,13 @@ using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
 using XmasEngineView;
 
-namespace ConsoleXmasImplementation
+namespace ConsoleXmasImplementation.View
 {
 	public class ConsoleView : XmasView
 	{
+		private const int UPDATE_DELAY = 1000/25;
+		private const int WORK_PCT = 90;
+
 		private ConsoleViewFactory entityFactory;
 		private ThreadSafeEventQueue eventqueue;
 		private ThreadSafeEventManager evtmanager;
@@ -31,14 +35,9 @@ namespace ConsoleXmasImplementation
 		{
 		}
 
-		private void timer_Elapsed(object sender, ElapsedEventArgs e)
+		private void Draw()
 		{
-			draw();
-		}
-
-		private void draw()
-		{
-			;
+			
 			Console.SetCursorPosition(0, 0);
 			Console.Write(Area());
 		}
@@ -68,19 +67,35 @@ namespace ConsoleXmasImplementation
 			return drawchars;
 		}
 
+		private void Update()
+		{
+			DateTime start = DateTime.Now;
+			Draw();
+
+			Func<int> remainPct =() => ((DateTime.Now.Millisecond - start.Millisecond)*100) / UPDATE_DELAY;
+			while (this.evtmanager.ExecuteNext() && remainPct() <= WORK_PCT)
+			{
+			
+			}
+
+			int sleeptime = UPDATE_DELAY - (DateTime.Now.Millisecond - start.Millisecond);
+			if(sleeptime > 0)
+				Thread.Sleep(sleeptime);
+		}
+
 		public override void Start()
 		{
-//            System.Console.SetWindowSize(viewWorld.Width, viewWorld.Height);
-			Timer timer = new Timer();
-			timer.Elapsed += timer_Elapsed;
-			timer.Interval = 1000/25;
-			timer.Start();
+			while (true)
+			{
+				Update();
+			}	
 		}
+
+		
 
 		private void Model_EntityAdded(EntityAddedEvent evt)
 		{
-			//TODO: FIX Adding
-			//viewWorld.AddEntity (entityFactory.ConstructEntityView (evt._addedXmasEntity));
+			viewWorld.AddEntity((ConsoleEntityView)entityFactory.ConstructEntityView(evt.AddedXmasEntity));
 		}
 	}
 }

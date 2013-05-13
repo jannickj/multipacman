@@ -10,6 +10,11 @@ namespace XmasEngineExtensions.TileExtension
 	{
 		private Size size;
 
+		public void AddEntity(XmasEntity entity, Point p)
+		{
+			this.AddEntity(entity, new TileSpawnInformation(new TilePosition(p)));
+		}
+
 		public TileWorldBuilder(Size size)
 		{
 			this.size = size;

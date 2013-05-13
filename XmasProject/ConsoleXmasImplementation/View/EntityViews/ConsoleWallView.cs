@@ -1,4 +1,6 @@
-namespace ConsoleXmasImplementation.EntityViews
+using XmasEngineModel.EntityLib;
+
+namespace ConsoleXmasImplementation.View.EntityViews
 {
 	public class ConsoleWallView : ConsoleEntityView
 	{

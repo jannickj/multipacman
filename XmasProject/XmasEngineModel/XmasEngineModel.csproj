@@ -70,8 +70,6 @@
     <Compile Include="Management\Events\EngineCloseEvent.cs" />
     <Compile Include="Management\Events\EntityAddedEvent.cs" />
     <Compile Include="Management\Events\RetreivePerceptsEvent.cs" />
-    <Compile Include="Management\Events\UnitMovePostEvent.cs" />
-    <Compile Include="Management\Events\UnitMovePreEvent.cs" />
     <Compile Include="Management\Events\UnitTakesDamagePostEvent.cs" />
     <Compile Include="Management\Events\UnitTakesDamagePreEvent.cs" />
     <Compile Include="Management\XmasAction.cs" />

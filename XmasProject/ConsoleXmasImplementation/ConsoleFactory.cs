@@ -1,25 +1,24 @@
-﻿using ConsoleXmasImplementation.Control;
+﻿using ConsoleXmasImplementation.Controller;
+using ConsoleXmasImplementation.View;
+using XmasEngine;
 using XmasEngineController;
+using XmasEngineExtensions.TileExtension;
 using XmasEngineModel;
+using XmasEngineView;
 
 namespace ConsoleXmasImplementation
 {
-	public class ConsoleFactory : XmasEngineFactory<ConsoleView, XmasController>
+	public class ConsoleFactory : XmasEngineFactory
 	{
-		public override ConsoleView ConstructView(XmasModel model)
+		public override XmasView ConstructView(XmasModel model)
 		{
-			//TODO: FIX view construction
-			return null; //new ConsoleView(model,contructWorldView(model.World));
+			return new ConsoleView(model, new ConsoleWorldView((TileWorld) model.World), new ConsoleViewFactory());
 		}
 
-		private ConsoleWorldView contructWorldView(XmasWorld modelworld)
-		{
-			return new ConsoleWorldView(modelworld);
-		}
 
-		public override XmasController ContructController(XmasModel model, ConsoleView view)
+		public override XmasController ContructController(XmasModel model, XmasView view)
 		{
-			return new ConsoleController(model, view);
+			return new ConsoleController(model, (ConsoleView) view);
 		}
 	}
 }

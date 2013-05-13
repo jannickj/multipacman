@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using JSLibrary.Data;
 using XmasEngineExtensions.TileExtension;
 using XmasEngineModel.EntityLib;
 
-namespace ConsoleXmasImplementation
+namespace ConsoleXmasImplementation.View
 {
 	public class ConsoleWorldView
 	{
@@ -33,15 +32,13 @@ namespace ConsoleXmasImplementation
 
 		public Dictionary<Point, ConsoleEntityView> AllEntities()
 		{
-			Dictionary<Point, ConsoleEntityView> locs = new Dictionary<Point, ConsoleEntityView>();
+			var locs = new Dictionary<Point, ConsoleEntityView>();
 			foreach (KeyValuePair<XmasEntity, ConsoleEntityView> kv in viewlookup)
-				locs.Add(kv.Value.Position, kv.Value);
+				locs.Add(((TilePosition)kv.Value.Position).Point, kv.Value);
 
 			return locs;
 		}
 
-		public void gooseWorld_EntityAdded(object sender, EventArgs e)
-		{
-		}
+	
 	}
 }

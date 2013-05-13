@@ -8,12 +8,10 @@ namespace XmasEngineView
 	{
 		protected ThreadSafeEventQueue eventqueue;
 		protected XmasEntity model;
-		protected XmasPosition position;
 
 		public EntityView(XmasEntity model)
 		{
 			this.model = model;
-			position = model.Position;
 			eventqueue = model.ConstructEventQueue();
 			//eventqueue.Register (new Trigger<UnitMovePostEvent> (UnitMoved));
 		}
@@ -29,10 +27,7 @@ namespace XmasEngineView
 			set { model = value; }
 		}
 
-		public XmasPosition Position
-		{
-			get { return position; }
-		}
+		public abstract XmasPosition Position { get; protected set; }
 
 		//protected virtual void UnitMoved(UnitMovePostEvent evt)
 		//{

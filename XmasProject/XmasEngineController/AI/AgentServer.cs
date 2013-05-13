@@ -15,12 +15,11 @@ namespace XmasEngineController.AI
 
 		private HashSet<Agent> availableAgents = new HashSet<Agent>();
 		private Dictionary<string, Agent> knownAgents = new Dictionary<string, Agent>();
-		private TcpListener listener;
+		
 
-
-		public AgentServer(TcpListener listener)
+		public AgentServer()
 		{
-			this.listener = listener;
+		
 		}
 
 

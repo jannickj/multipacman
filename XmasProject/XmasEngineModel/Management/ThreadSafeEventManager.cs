@@ -17,11 +17,16 @@ namespace XmasEngineModel.Management
 			awaitingEvents.Enqueue(() => ((ThreadSafeEventQueue) sender).ExecuteNext());
 		}
 
-		public void ExecuteNext()
+		public bool ExecuteNext()
 		{
 			Action a;
 			if (awaitingEvents.TryDequeue(out a))
+			{
 				a();
+				return true;
+			}
+			else
+				return false;
 		}
 	}
 }

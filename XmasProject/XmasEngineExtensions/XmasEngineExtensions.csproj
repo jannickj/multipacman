@@ -62,6 +62,8 @@
     </Compile>
     <Compile Include="TileExtension\Entities\ImpassableWall.cs" />
     <Compile Include="TileExtension\Entities\Wall.cs" />
+    <Compile Include="TileExtension\Events\UnitMovePostEvent.cs" />
+    <Compile Include="TileExtension\Events\UnitMovePreEvent.cs" />
     <Compile Include="TileExtension\Modules\BlockingModule.cs" />
     <Compile Include="TileExtension\Modules\VisionBlockingModule.cs" />
     <Compile Include="TileExtension\Modules\MovementBlockingModule.cs" />

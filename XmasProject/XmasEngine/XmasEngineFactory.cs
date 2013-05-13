@@ -10,9 +10,8 @@ namespace XmasEngine
 	{
 		public virtual XmasModel ConstructModel(XmasWorldBuilder builder)
 		{
-			//TODO: FIX Factory code
-			XmasWorld world = ConstructWorld(builder);
 			ActionManager actman = ConstructActionManager();
+			XmasWorld world = builder.Build(actman);
 			EventManager evtman = ConstructEventManager();
 			XmasFactory fact = ConstructGameFactory(actman);
 			XmasModel engine = new XmasModel(world, actman, evtman, fact);
@@ -37,8 +36,6 @@ namespace XmasEngine
 		}
 
 		public abstract XmasView ConstructView(XmasModel model);
-
-		public abstract XmasWorld ConstructWorld(XmasWorldBuilder builder);
 
 
 		public abstract XmasController ContructController(XmasModel model, XmasView view);

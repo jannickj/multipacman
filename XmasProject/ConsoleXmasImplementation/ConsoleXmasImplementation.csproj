@@ -42,19 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleEntityView.cs" />
-    <Compile Include="ConsoleViewFactory.cs" />
-    <Compile Include="ConsoleWorldView.cs" />
+    <Compile Include="View\ConsoleEntityView.cs" />
+    <Compile Include="View\ConsoleViewFactory.cs" />
+    <Compile Include="View\ConsoleWorldView.cs" />
     <Compile Include="ConsoleFactory.cs" />
-    <Compile Include="EntityViews\ConsoleAgentView.cs" />
-    <Compile Include="EntityViews\ConsoleImpassableWallView.cs" />
-    <Compile Include="EntityViews\ConsolePlayerView.cs" />
-    <Compile Include="EntityViews\ConsoleWallView.cs" />
-    <Compile Include="ConsoleView.cs" />
+    <Compile Include="Controller\HumanInterfaceController.cs" />
+    <Compile Include="Controller\HumanInterfaceServer.cs" />
+    <Compile Include="View\EntityViews\ConsoleAgentView.cs" />
+    <Compile Include="View\EntityViews\ConsoleImpassableWallView.cs" />
+    <Compile Include="View\EntityViews\ConsolePlayerView.cs" />
+    <Compile Include="View\EntityViews\ConsoleWallView.cs" />
+    <Compile Include="View\ConsoleView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestWorld1.cs" />
-    <Compile Include="Control\ConsoleController.cs" />
+    <Compile Include="Controller\ConsoleController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -87,7 +89,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
-    <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

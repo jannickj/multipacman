@@ -1,6 +1,6 @@
 using XmasEngineModel.EntityLib;
 
-namespace ConsoleXmasImplementation.EntityViews
+namespace ConsoleXmasImplementation.View.EntityViews
 {
 	public class ConsoleAgentView : ConsoleEntityView
 	{

@@ -6,6 +6,7 @@ using NUnit.Framework;
 using XmasEngineExtensions.TileExtension;
 using XmasEngineExtensions.TileExtension.Entities;
 using XmasEngineExtensions.TileExtension.Percepts;
+using XmasEngineModel.EntityLib;
 
 namespace XmasEngineExtensions_Test.TileExtension.Percepts
 {

@@ -10,6 +10,7 @@ namespace XmasEngineModel
 	{
 		private List<XmasAction> buildactions = new List<XmasAction>();
 
+		
 
 		public void AddEntity(XmasEntity ent, EntitySpawnInformation info)
 		{
@@ -18,7 +19,7 @@ namespace XmasEngineModel
 
 		protected abstract XmasWorld ConstructWorld ();
 
-		private XmasWorld Build(ActionManager actman)
+		public XmasWorld Build(ActionManager actman)
 		{
 			foreach (XmasAction buildaction in buildactions.ToArray())
 			{

@@ -8,14 +8,14 @@ using XmasEngineView;
 
 namespace XmasEngine
 {
-	public class XmasEngine
+	public class XmasEngineManager
 	{
 		private XmasEngineFactory factory;
 
 		private Thread modelThread;
 		private List<Thread> otherThreads = new List<Thread>();
 
-		public XmasEngine(XmasEngineFactory factory)
+		public XmasEngineManager(XmasEngineFactory factory)
 		{
 			this.factory = factory;
 		}
