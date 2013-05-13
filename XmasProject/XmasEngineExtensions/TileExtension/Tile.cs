@@ -2,6 +2,7 @@
 using System.Linq;
 using XmasEngineModel;
 using XmasEngineModel.EntityLib;
+using XmasEngineExtensions.TileExtension.Modules;
 
 namespace XmasEngineExtensions.TileExtension
 {
@@ -28,7 +29,7 @@ namespace XmasEngineExtensions.TileExtension
 		{
 			foreach (XmasEntity xent in entities)
 			{
-				if (xent.IsMovementBlocking(xmasEntity))
+				if (xent.Module<MovementBlockingModule>().IsMovementBlocking(xmasEntity))
 					return false;
 			}
 			return true;
@@ -36,7 +37,7 @@ namespace XmasEngineExtensions.TileExtension
 
 		public bool IsVisionBlocking(XmasEntity xmasEntity)
 		{
-			return entities.Any(e => e.IsVisionBlocking(xmasEntity));
+			return entities.Any(e => e.Module<VisionBlockingModule>().IsVisionBlocking(xmasEntity));
 		}
 	}
 }

@@ -2,6 +2,7 @@
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
+using XmasEngineExtensions.TileExtension.Modules;
 
 namespace XmasEngineExtensions.TileExtension.Actions
 {
@@ -31,7 +32,7 @@ namespace XmasEngineExtensions.TileExtension.Actions
 		{
 			UnitMovePreEvent before = new UnitMovePreEvent();
 			Source.Raise(before);
-			time = Source.MoveSpeed;
+			time = Source.Module<SpeedModule>().Speed;
 			XmasTimer gt = Factory.CreateTimer(() =>
 				{
 					TilePosition tile = World.GetEntityPosition(Source) as TilePosition;

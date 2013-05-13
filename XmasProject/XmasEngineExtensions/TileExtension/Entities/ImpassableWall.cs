@@ -1,4 +1,6 @@
 ﻿using XmasEngineModel.EntityLib;
+using XmasEngineExtensions.TileExtension;
+using XmasEngineExtensions.TileExtension.Modules;
 
 namespace XmasEngineExtensions.TileExtension.Entities
 {
@@ -6,13 +8,7 @@ namespace XmasEngineExtensions.TileExtension.Entities
 	{
 		public ImpassableWall()
 		{
-			AddRuleSuperior<ImpassableWall>();
-			AddWillBlock_MovementRule<ImpassableWall>(_ => true);
-		}
-
-		public override bool IsVisionBlocking(XmasEntity xmasEntity)
-		{
-			return true;
+			RegisterModule (new RuleBasedMovementModule ());
 		}
 	}
 }

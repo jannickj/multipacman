@@ -10,7 +10,7 @@ namespace XmasEngineExtensions.TileExtension.Modules
 	public abstract class VisionBlockingModule : EntityModule
 	{
 
-		public abstract bool IsMovementBlocking(XmasEntity entity);
+		public abstract bool IsVisionBlocking(XmasEntity entity);
 
 		public override Type ModuleType
 		{
