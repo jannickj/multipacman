@@ -6,7 +6,6 @@ namespace XmasEngineModel.EntityLib.Module
 	public abstract class RuleBasedModule<TEntity> : EntityModule where TEntity : XmasEntity
 	{
 		private RuleHierarchy<Type,TEntity> ruleHierarchy = new RuleHierarchy<Type, TEntity>();
- 
 
 		protected void AddRule(Type toLayer, Predicate<TEntity> rule, Conclusion conclusion)
 		{
@@ -18,12 +17,9 @@ namespace XmasEngineModel.EntityLib.Module
 			}
 		}
 
-
 		protected void PushRuleLayer(Type layer)
 		{
 			ruleHierarchy.AddLayer(layer, new TransformationRule<TEntity>());
 		}
-
-		
 	}
 }

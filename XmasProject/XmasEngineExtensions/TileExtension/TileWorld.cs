@@ -38,7 +38,7 @@ namespace XmasEngineExtensions.TileExtension
 
 		public Vision View(XmasEntity xmasEntity)
 		{
-			return View(xmasEntity.VisionRange, xmasEntity);
+			return View(xmasEntity.Module<VisionRangeModule>().VisionRange, xmasEntity);
 		}
 
 		protected override bool AddEntity(XmasEntity xmasEntity, EntitySpawnInformation info)
