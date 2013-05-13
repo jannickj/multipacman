@@ -1,5 +1,8 @@
-﻿using JSLibrary.Data;
+﻿using System;
+using System.Collections.Generic;
+using JSLibrary.Data;
 using XmasEngineModel;
+using XmasEngineModel.EntityLib;
 
 namespace XmasEngineExtensions.TileExtension
 {
@@ -36,12 +39,12 @@ namespace XmasEngineExtensions.TileExtension
 			}
 		}
 
-		public void AddChunk (Func<Entity> constructEntity, Point start, Point stop)
+		public void AddChunk (Func<XmasEntity> constructEntity, Point start, Point stop)
 		{
 			AddChunkExcept(constructEntity, start, stop, null);
 		}
 
-		public void AddChunkExcept (Func<Entity> constructEntity, Point start, Point stop, ICollection<Point> exceptions)
+		public void AddChunkExcept (Func<XmasEntity> constructEntity, Point start, Point stop, ICollection<Point> exceptions)
 		{
 			foreach (Point p in TilesInChunk(start, stop, exceptions))
 			{

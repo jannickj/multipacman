@@ -12,6 +12,8 @@ namespace XmasEngineModel.EntityLib.Module
 			internal set { xmasEntity = value; }
 		}
 
-		public abstract Type ModuleType { get; }
+		public virtual Type ModuleType
+		{ get { return this.GetType();  } }
+	
 	}
 }

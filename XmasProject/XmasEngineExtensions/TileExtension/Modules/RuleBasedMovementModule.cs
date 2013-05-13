@@ -12,7 +12,7 @@ namespace XmasEngineExtensions.TileExtension.Modules
 		
 		public RuleBasedMovementModule()
 		{
-		
+			
 		}
 
 
@@ -36,9 +36,5 @@ namespace XmasEngineExtensions.TileExtension.Modules
 			this.block.AddNewRuleLayer<TDecider>();
 		}
 
-		public override Type ModuleType
-		{
-			get { return typeof (MovementBlockingModule); }
-		}
 	}
 }

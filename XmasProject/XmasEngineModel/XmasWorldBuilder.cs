@@ -11,7 +11,7 @@ namespace XmasEngineModel
 		private List<XmasAction> buildactions = new List<XmasAction>();
 
 
-		public void AddEntity(Entity ent, EntitySpawnInformation info)
+		public void AddEntity(XmasEntity ent, EntitySpawnInformation info)
 		{
 			buildactions.Add(new AddEntityAction(ent, info));
 		}

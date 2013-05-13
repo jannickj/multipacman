@@ -68,22 +68,20 @@ namespace XmasEngineExtensions.TileExtension
 		
 		public override bool SetEntityPosition(XmasEntity xmasEntity, XmasPosition tilePosition)
 		{
-			return SetEntityPosition (entity, (TilePosition)tilePosition);
+			return SetEntityPosition (xmasEntity, (TilePosition)tilePosition);
 		}
 		
 		private bool SetEntityPosition(XmasEntity xmasEntity, TilePosition pos)
 		{
 			Point oldPoint;
-			bool entityExistsInMap = false;
+			bool entityExistsInMap = entlocs.TryGetValue(xmasEntity, out oldPoint);
 			
-			if (entlocs.TryGetValue (entity, out oldPoint))
-				entityExistsInMap = true;
 			
-			if (!AddEntity (entity, pos))
+			if (!AddEntity (xmasEntity, pos))
 				return false;
 			
 			if (entityExistsInMap)
-				map [oldPoint].RemoveEntity (entity);
+				map [oldPoint].RemoveEntity (xmasEntity);
 			
 			return true;
 		}
