@@ -33,11 +33,22 @@ namespace ConsoleXmasImplementation.View
 		public Dictionary<Point, ConsoleEntityView> AllEntities()
 		{
 			var locs = new Dictionary<Point, ConsoleEntityView>();
+
+			Size wbSize = this.model.BurstSize;
+
 			foreach (KeyValuePair<XmasEntity, ConsoleEntityView> kv in viewlookup)
-				locs.Add(((TilePosition)kv.Value.Position).Point, kv.Value);
+			{
+				Point p = ((TilePosition) kv.Value.Position).Point;
+				Point transp = new Point(p.X + wbSize.Width, p.Y + wbSize.Height);
+				
+
+				locs.Add(transp, kv.Value);
+			}
 
 			return locs;
 		}
+
+
 
 	
 	}

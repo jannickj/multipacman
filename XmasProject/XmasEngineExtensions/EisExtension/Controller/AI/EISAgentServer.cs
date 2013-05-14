@@ -12,7 +12,7 @@ using XmasEngineModel.EntityLib;
 
 namespace XmasEngineExtensions.EisExtension.Controller.AI
 {
-	public class EISAgentServer : AgentServer
+	public class EISAgentServer : AgentManager
 	{
 		private TcpListener listener;
 		private IILActionParser parser;

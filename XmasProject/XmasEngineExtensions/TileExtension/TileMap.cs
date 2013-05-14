@@ -38,6 +38,11 @@ namespace XmasEngineExtensions.TileExtension
 			get { return size; }
 		}
 
+		public Size BurstSize
+		{
+			get { return this.burstSize; }
+		}
+		
 		public Tile this[int x, int y]
 		{
 			get

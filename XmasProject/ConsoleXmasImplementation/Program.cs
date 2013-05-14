@@ -13,6 +13,8 @@ namespace ConsoleXmasImplementation
 			var t = factory.FullConstruct(new TestWorld1(),new EisAgentFactory(IPAddress.Parse("127.0.0.1"),33766));
 
 			var engine = new XmasEngineManager(factory);
+
+			engine.StartEngine(t.Item1,t.Item2,t.Item3);
 		}
 	}
 }

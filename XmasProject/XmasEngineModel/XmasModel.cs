@@ -29,6 +29,11 @@ namespace XmasEngineModel
 			EventManager.Register(new Trigger<EngineCloseEvent>(evtman_EngineClose));
 			ActionManager.ActionQueuing += actman_ActionQueuing;
 			ActionManager.ActionQueued += actman_ActionQueued;
+
+			foreach (var action in ActionManager.QueuedActions)
+			{
+				this.AddActor(action);
+			}
 		}
 
 
@@ -81,7 +86,7 @@ namespace XmasEngineModel
 			actor.EventManager = EventManager;
 			actor.World = World;
 			actor.Factory = Factory;
-			;
+			
 		}
 
 		#region EVENTS

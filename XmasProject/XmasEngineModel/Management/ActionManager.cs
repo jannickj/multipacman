@@ -15,6 +15,11 @@ namespace XmasEngineModel.Management
 			get { return runningActions.ToArray(); }
 		}
 
+		public ICollection<XmasAction> QueuedActions
+		{
+			get { return awaitingActions.ToArray(); }
+		}
+
 		#region EVENTS
 
 		private void action_Completed(object sender, EventArgs e)
@@ -45,6 +50,7 @@ namespace XmasEngineModel.Management
 
 				foreach (XmasAction action in actions)
 				{
+					
 					runningActions.Add(action);
 					action.Completed += action_Completed;
 					action.Fire();

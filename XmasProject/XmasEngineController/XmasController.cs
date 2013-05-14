@@ -8,7 +8,7 @@ namespace XmasEngineController
 {
 	public abstract class XmasController
 	{
-		private List<AgentServer> aiservs = new List<AgentServer>();
+		private List<AgentManager> aiservs = new List<AgentManager>();
 		private XmasModel model;
 		private XmasView view;
 
@@ -18,21 +18,21 @@ namespace XmasEngineController
 			this.view = view;
 		}
 
-		public void AddAiServer(AgentServer server)
+		public void AddAiServer(AgentManager manager)
 		{
-			model.AddActor(server);
-			aiservs.Add(server);
+			model.AddActor(manager);
+			aiservs.Add(manager);
 		}
 
 		public virtual void Initialize()
 		{
-			foreach (AgentServer serv in aiservs)
+			foreach (AgentManager serv in aiservs)
 				serv.Initialize();
 		}
 
-		public void Start()
+		public virtual void Start()
 		{
-			foreach (AgentServer ac in aiservs)
+			foreach (AgentManager ac in aiservs)
 			{
 				Thread t = model.Factory.CreateThread(ac.Start);
 				t.Name = ac.GetType().Name + " thread";

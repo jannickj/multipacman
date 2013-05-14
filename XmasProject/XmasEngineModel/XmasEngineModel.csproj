@@ -48,7 +48,6 @@
     <Compile Include="EntityLib\Module\RuleBasedModule.cs" />
     <Compile Include="EntityLib\Unit.cs" />
     <Compile Include="EntityLib\Agent.cs" />
-    <Compile Include="EntityLib\Player.cs" />
     <Compile Include="EntityLib\XmasEntity.cs" />
     <Compile Include="Enum\Direction.cs" />
     <Compile Include="Exceptions\EntityException.cs" />

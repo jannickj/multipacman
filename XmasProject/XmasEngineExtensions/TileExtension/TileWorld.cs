@@ -12,9 +12,6 @@ namespace XmasEngineExtensions.TileExtension
 		private Dictionary<XmasEntity, Point> entlocs = new Dictionary<XmasEntity, Point>();
 		private TileMap map;
 
-		public TileWorld(TileMap map)
-		{
-		}
 
 		public TileWorld(Size burstSize)
 		{
@@ -24,6 +21,11 @@ namespace XmasEngineExtensions.TileExtension
 		public Size Size
 		{
 			get { return map.Size; }
+		}
+
+		public Size BurstSize
+		{
+			get { return this.map.BurstSize; }
 		}
 
 		public Vision View(Point p, int range, XmasEntity xmasEntity)

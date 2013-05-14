@@ -19,6 +19,9 @@ namespace XmasEngineModel.Management
 				if (t.CheckCondition(evt))
 					t.Execute(evt);
 			}
+			var buffer = EventRaised;
+			if(buffer != null)
+				buffer(this, new UnaryValueEvent<XmasEvent>(evt));
 		}
 
 		public void Register(Trigger trigger)

@@ -28,6 +28,7 @@ namespace ConsoleXmasImplementation.View
 			this.entityFactory = entityFactory;
 			evtmanager = new ThreadSafeEventManager();
 			eventqueue = model.EventManager.ConstructEventQueue();
+			evtmanager.AddEventQueue(eventqueue);
 			eventqueue.Register(new Trigger<EntityAddedEvent>(Model_EntityAdded));
 		}
 
@@ -38,49 +39,51 @@ namespace ConsoleXmasImplementation.View
 		private void Draw()
 		{
 			
-			Console.SetCursorPosition(0, 0);
+			Console.SetCursorPosition(0, 1);
 			Console.Write(Area());
 		}
 
 		public Char[] Area()
 		{
+			int width = viewWorld.Width;
+			int height = viewWorld.Height;
 			Dictionary<Point, ConsoleEntityView> entities = viewWorld.AllEntities();
-			char[] drawchars = new char[viewWorld.Height*viewWorld.Width + viewWorld.Height];
+			DrawSceen screen = new DrawSceen(width, height);
 
-			for (int i = 0; i < viewWorld.Height*viewWorld.Width; i++)
-			{
-				drawchars[i] = ' ';
-			}
-			for (int i = 0; i < viewWorld.Height; i++)
-			{
-				drawchars[viewWorld.Width + i*viewWorld.Height] = '\n';
-			}
+			for (int x = 0; x < width; x++)
+				for (int y = 0; y < height; y++ )
+					screen[x,y] = ' ';
 
 			foreach (KeyValuePair<Point, ConsoleEntityView> kv in entities)
 			{
 				int x = kv.Key.X;
 				int y = kv.Key.Y;
-				int cord = x + y*viewWorld.Width;
 
-				drawchars[cord] = kv.Value.Symbol;
+				screen[x,y] = kv.Value.Symbol;
 			}
-			return drawchars;
+			return screen.GenerateScreen();
 		}
 
 		private void Update()
 		{
 			DateTime start = DateTime.Now;
+			
 			Draw();
 
-			Func<int> remainPct =() => ((DateTime.Now.Millisecond - start.Millisecond)*100) / UPDATE_DELAY;
+			Func<long> remainPct =() => ((DateTime.Now.Ticks - start.Ticks)/10000) / UPDATE_DELAY;
 			while (this.evtmanager.ExecuteNext() && remainPct() <= WORK_PCT)
 			{
 			
 			}
 
-			int sleeptime = UPDATE_DELAY - (DateTime.Now.Millisecond - start.Millisecond);
+			long sleeptime = UPDATE_DELAY - ((DateTime.Now.Ticks - start.Ticks)/10000);
+			Console.SetCursorPosition(0, 0);
+			long pct = remainPct();
+			Console.Write("LOAD:					");
+			if(pct >= 0)
+				Console.Write("\rLOAD: "+ pct +"%");
 			if(sleeptime > 0)
-				Thread.Sleep(sleeptime);
+				Thread.Sleep((int)sleeptime);
 		}
 
 		public override void Start()

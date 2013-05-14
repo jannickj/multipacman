@@ -8,7 +8,7 @@ using XmasEngineModel.Interfaces;
 
 namespace XmasEngineController.AI
 {
-	public abstract class AgentServer : XmasActor, IStartable
+	public abstract class AgentManager : XmasActor, IStartable
 	{
 		private Dictionary<AgentController, AgentControllerInfomation> agents =
 			new Dictionary<AgentController, AgentControllerInfomation>();
@@ -17,7 +17,7 @@ namespace XmasEngineController.AI
 		private Dictionary<string, Agent> knownAgents = new Dictionary<string, Agent>();
 		
 
-		public AgentServer()
+		public AgentManager()
 		{
 		
 		}

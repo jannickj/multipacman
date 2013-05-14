@@ -56,11 +56,11 @@ namespace XmasEngineExtensions.EisExtension
 		}
 
 
-		public override AgentServer ContructServer()
+		public override AgentManager ContructServer()
 		{
 			TcpListener listener = new TcpListener(ip, port);
-			EISAgentServer server = new EISAgentServer(listener, ContructEISConversionTool(), ConstructIILActionParser());
-			return server;
+			EISAgentServer manager = new EISAgentServer(listener, ContructEISConversionTool(), ConstructIILActionParser());
+			return manager;
 		}
 	}
 }

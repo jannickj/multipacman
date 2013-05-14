@@ -11,6 +11,7 @@ namespace ConsoleXmasImplementation.Controller
 	{
 		public HumanInterfaceController(Agent agent) : base(agent)
 		{
+			
 		}
 
 		public override void Start()

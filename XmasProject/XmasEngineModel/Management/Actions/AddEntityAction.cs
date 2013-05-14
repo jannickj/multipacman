@@ -1,4 +1,5 @@
 ﻿using XmasEngineModel.EntityLib;
+using XmasEngineModel.Management.Events;
 using XmasEngineModel.World;
 
 namespace XmasEngineModel.Management.Actions
@@ -21,6 +22,8 @@ namespace XmasEngineModel.Management.Actions
 			ent.World = World;
 			ent.Factory = Factory;
 			World.AddEntity(ent, info);
+			this.EventManager.Raise(new EntityAddedEvent(ent));
+			this.Complete();
 		}
 	}
 }

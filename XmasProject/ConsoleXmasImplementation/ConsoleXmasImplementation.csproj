@@ -42,12 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Player.cs" />
     <Compile Include="View\ConsoleEntityView.cs" />
     <Compile Include="View\ConsoleViewFactory.cs" />
     <Compile Include="View\ConsoleWorldView.cs" />
     <Compile Include="ConsoleFactory.cs" />
     <Compile Include="Controller\HumanInterfaceController.cs" />
-    <Compile Include="Controller\HumanInterfaceServer.cs" />
+    <Compile Include="Controller\HumanInterfaceManager.cs" />
+    <Compile Include="View\DrawSceen.cs" />
     <Compile Include="View\EntityViews\ConsoleAgentView.cs" />
     <Compile Include="View\EntityViews\ConsoleImpassableWallView.cs" />
     <Compile Include="View\EntityViews\ConsolePlayerView.cs" />
@@ -87,9 +89,7 @@
       <Name>XmasEngine</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
