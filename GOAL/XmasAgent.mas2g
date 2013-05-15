@@ -14,4 +14,3 @@ launchpolicy{
 	% insert appropriate launch rules for your environment and agents below.
 	when entity@env do launch agentName : filename .
 }
-

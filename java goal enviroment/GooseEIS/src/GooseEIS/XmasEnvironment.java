@@ -41,7 +41,7 @@ import eis.iilang.Percept;
 public class XmasEnvironment extends EIDefaultImpl 
 {
 	private static final long serialVersionUID = 1L;
-	private int port = 444444;
+	private int port = 44444;
 	private Socket socket;
 	private InputStream sockreader;
 	private PrintWriter sockwriter;
@@ -58,11 +58,11 @@ public class XmasEnvironment extends EIDefaultImpl
 		super.init(parameters);
 		
 		Identifier Name;
-		if (parameters.containsKey("name") && parameters.get("name") instanceof Identifier)
-			Name = ((Identifier) parameters.get("name"));
+		if (parameters.containsKey("agentName") && parameters.get("agentName") instanceof Identifier)
+			Name = ((Identifier) parameters.get("agentName"));
 		else
 			throw new RuntimeErrorException(
-					new Error("No mapping from 'name' to Identifier could be found in parameters")
+					new Error("No mapping from 'agentName' to Identifier could be found in parameters")
 					);
 		
 		System.out.println("connecting to socket on port " + port);
