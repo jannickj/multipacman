@@ -46,6 +46,7 @@ public class XmasEnvironment extends EIDefaultImpl
 	private InputStream sockreader;
 	private PrintWriter sockwriter;
 	XMLReader xmlreader;
+	private String Name;
 	
 	public XmasEnvironment()
 	{
@@ -57,15 +58,19 @@ public class XmasEnvironment extends EIDefaultImpl
 		System.out.println("init");
 		super.init(parameters);
 		
-		Identifier Name;
+		Identifier nameId;
 		if (parameters.containsKey("agentName") && parameters.get("agentName") instanceof Identifier)
-			Name = ((Identifier) parameters.get("agentName"));
+		{
+			nameId = ((Identifier) parameters.get("agentName"));
+			Name = nameId.getValue();
+		}
 		else
 			throw new RuntimeErrorException(
 					new Error("No mapping from 'agentName' to Identifier could be found in parameters")
 					);
 		
-		System.out.println("connecting to socket on port " + port);
+		System.out.println("Agent name = " + Name);
+		printDebugMsg("Connecting to socket on port " + port);
 		
 		try {
 			socket = new Socket("localhost", port);
@@ -76,9 +81,9 @@ public class XmasEnvironment extends EIDefaultImpl
 			e.printStackTrace();
 		}
 		
-		System.out.println("connected to socket, sending handshake");
+		printDebugMsg("Connected to socket, sending handshake");
 		
-		sockwriter.print(Name.toXML());
+		sockwriter.print(nameId.toXML());
 		//TODO: Look into making it an actual handshake (ie. receive a confirmation)
 		
 		try {
@@ -88,6 +93,11 @@ public class XmasEnvironment extends EIDefaultImpl
 		}
 		
 		setState(EnvironmentState.PAUSED);
+	}
+	
+	private void printDebugMsg(String str)
+	{
+		System.out.println(Name + ":: " + str);
 	}
 
 	@Override
