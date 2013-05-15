@@ -1,6 +1,9 @@
-﻿namespace XmasEngineModel.EntityLib
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace XmasEngineModel.EntityLib
 {
-	public class Agent : Unit
+	public class Agent : XmasEntity
 	{
 		private string name;
 
@@ -8,6 +11,14 @@
 		{
 			get { return name; }
 			protected set { name = value; }
+		}
+
+		public ICollection<Percept> Percepts
+		{
+			get 
+			{ 
+				return moduleMap.Values.SelectMany(m => m.Percepts);
+			}
 		}
 	}
 }

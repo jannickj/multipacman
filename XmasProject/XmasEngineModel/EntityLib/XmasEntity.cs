@@ -28,7 +28,7 @@ namespace XmasEngineModel.EntityLib
 			}	
 		}
 
-		public EntityModule RegisterModule(EntityModule module)
+		public virtual EntityModule RegisterModule(EntityModule module)
 		{
 			EntityModule oldModule;
 			module.XmasEntity = this;
@@ -39,7 +39,7 @@ namespace XmasEngineModel.EntityLib
 			return oldModule;
 		}
 
-		public void DeregisterModule(EntityModule module)
+		public virtual void DeregisterModule(EntityModule module)
 		{
 			moduleMap.Remove (module.ModuleType);
 		}

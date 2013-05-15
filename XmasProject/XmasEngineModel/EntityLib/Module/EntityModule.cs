@@ -16,22 +16,10 @@ namespace XmasEngineModel.EntityLib.Module
 		public virtual Type ModuleType { 
 			get { return this.GetType (); } 
 		}
-	}
 
-	public class ModuleEqualityComparer : IEqualityComparer<EntityModule>
-	{
-		#region IEqualityComparer implementation
-
-		public bool Equals (EntityModule x, EntityModule y)
+		public virtual ICollection<Percept> Percepts
 		{
-			return x.ModuleType.Equals (y.ModuleType);
+			get { return new Percept[0]; }
 		}
-
-		public int GetHashCode (EntityModule obj)
-		{
-			return obj.ModuleType.GetHashCode ();
-		}
-
-		#endregion
 	}
 }
