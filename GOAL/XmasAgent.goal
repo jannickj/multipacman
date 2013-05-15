@@ -1,0 +1,38 @@
+init module {
+	knowledge{
+		% insert knowledge here, if any, or remove section.
+	}
+	
+	beliefs{
+		% insert initial beliefs here, if any, or remove section.
+	}
+	
+	goals{
+		% insert initial goals here, if any, or remove section.
+	}
+	
+	program {
+        % insert one-time rules here, or remove section
+    }
+	
+	actionspec{
+		move(X,Y) {
+			pre {true }
+			post {true }
+		}
+	}
+}
+	
+main module{
+	program {
+		if true then move(1,0).
+	}
+}
+
+%event module{
+%	program{
+		% insert action rules here.
+%	}
+%}
+
+% insert additional modules, if any, here.

@@ -38,7 +38,7 @@ import eis.iilang.Identifier;
 import eis.iilang.Parameter;
 import eis.iilang.Percept;
 
-public class Environment extends EIDefaultImpl 
+public class XmasEnvironment extends EIDefaultImpl 
 {
 	private static final long serialVersionUID = 1L;
 	private int port = 444444;
@@ -47,7 +47,7 @@ public class Environment extends EIDefaultImpl
 	private PrintWriter sockwriter;
 	XMLReader xmlreader;
 	
-	public Environment()
+	public XmasEnvironment()
 	{
 	}
 	
@@ -65,6 +65,8 @@ public class Environment extends EIDefaultImpl
 					new Error("No mapping from 'name' to Identifier could be found in parameters")
 					);
 		
+		System.out.println("connecting to socket on port " + port);
+		
 		try {
 			socket = new Socket("localhost", port);
 			sockreader = socket.getInputStream();
@@ -73,6 +75,8 @@ public class Environment extends EIDefaultImpl
 		} catch (IOException | SAXException e) {
 			e.printStackTrace();
 		}
+		
+		System.out.println("connected to socket, sending handshake");
 		
 		sockwriter.print(Name.toXML());
 		//TODO: Look into making it an actual handshake (ie. receive a confirmation)
@@ -93,7 +97,7 @@ public class Environment extends EIDefaultImpl
 	
 	public static void main(String[] args) {
 		System.out.println("main");
-		new Environment();
+		new XmasEnvironment();
 	}
 	
 	@Override
