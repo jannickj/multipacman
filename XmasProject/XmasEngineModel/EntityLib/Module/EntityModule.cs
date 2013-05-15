@@ -17,7 +17,7 @@ namespace XmasEngineModel.EntityLib.Module
 			get { return this.GetType (); } 
 		}
 
-		public virtual ICollection<Percept> Percepts
+		public virtual IEnumerable<Percept> Percepts
 		{
 			get { return new Percept[0]; }
 		}

@@ -11,7 +11,7 @@ namespace XmasEngineModel.EntityLib
 	public abstract class XmasEntity : XmasActor
 	{
 		private TriggerManager triggers = new TriggerManager();
-		private Dictionary<Type, EntityModule> moduleMap = new Dictionary<Type, EntityModule>();
+		internal Dictionary<Type, EntityModule> moduleMap = new Dictionary<Type, EntityModule>();
 
 		public XmasEntity()
 		{

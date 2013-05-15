@@ -13,7 +13,7 @@ namespace XmasEngineModel.EntityLib
 			protected set { name = value; }
 		}
 
-		public ICollection<Percept> Percepts
+		public IEnumerable<Percept> Percepts
 		{
 			get 
 			{ 
