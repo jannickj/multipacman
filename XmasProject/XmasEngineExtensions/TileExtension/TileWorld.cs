@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using JSLibrary.Data;
+using XmasEngineExtensions.TileExtension.Modules;
 using XmasEngineExtensions.TileExtension.Percepts;
 using XmasEngineModel;
 using XmasEngineModel.EntityLib;

@@ -9,8 +9,9 @@ using JSLibrary.Data;
 using NUnit.Framework;
 using XmasEngineExtensions.EisExtension.Controller.AI;
 using XmasEngineExtensions.EisExtension.Model;
+using XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Actions;
 using XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Percepts;
-using XmasEngineExtensions.EisTileExtension;
+using XmasEngineExtensions.TileEisExtension.Conversion;
 using XmasEngineExtensions.TileExtension;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
@@ -74,7 +75,7 @@ namespace XmasEngineExtensions_Test.EisExtension.AI
 			StringBuilder sb = new StringBuilder();
 
 
-			EISConversionTool ctool = new EISConversionTool();
+			EisConversionTool ctool = new EisConversionTool();
 			ctool.AddConverter(new GetAllPerceptsActionConverter());
 			ctool.AddConverter(new EISPerceptCollectionSerializer());
 			ctool.AddConverter(new EISVisionSerializer());

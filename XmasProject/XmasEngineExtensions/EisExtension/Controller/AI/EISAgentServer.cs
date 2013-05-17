@@ -18,9 +18,9 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 	{
 		private TcpListener listener;
 		private IILActionParser parser;
-		private EISConversionTool tool;
+		private EisConversionTool tool;
 
-		public EISAgentServer(TcpListener listener, EISConversionTool tool, IILActionParser parser)
+		public EISAgentServer(TcpListener listener, EisConversionTool tool, IILActionParser parser)
 		{
 			this.listener = listener;
 			this.tool = tool;

@@ -12,7 +12,6 @@ namespace XmasEngineExtensions.EisExtension.Model
 		public IILActionParser()
 		{
 			Add<EISGetAllPercepts>("getAllPercepts");
-			Add<EISMoveUnit>("move");
 		}
 
 		public void Add<EISActionType>(string actionName) where EISActionType : EISAction

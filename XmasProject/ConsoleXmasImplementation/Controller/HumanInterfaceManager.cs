@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using ConsoleXmasImplementation.Model;
 using XmasEngineController.AI;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;

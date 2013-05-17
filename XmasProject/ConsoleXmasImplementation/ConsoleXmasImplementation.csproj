@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\ConsoleEisAgentFactory.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="View\ConsoleEntityView.cs" />
     <Compile Include="View\ConsoleViewFactory.cs" />

@@ -1,9 +1,10 @@
 using JSLibrary.IiLang;
 using JSLibrary.IiLang.Parameters;
+using XmasEngineExtensions.EisExtension.Model.Conversion.IILang;
 using XmasEngineExtensions.TileExtension;
 using XmasEngineModel.EntityLib;
 
-namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Objects
+namespace XmasEngineExtensions.TileEisExtension.Conversion
 {
 	public class EISTileSerializer : EISConverterToEIS<Tile, IilElement>
 	{

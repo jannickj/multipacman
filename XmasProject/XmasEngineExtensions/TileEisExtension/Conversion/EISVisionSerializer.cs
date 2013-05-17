@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using JSLibrary.Data;
 using JSLibrary.IiLang.DataContainers;
 using JSLibrary.IiLang.Parameters;
+using XmasEngineExtensions.EisExtension.Model.Conversion.IILang;
 using XmasEngineExtensions.TileExtension;
 using XmasEngineExtensions.TileExtension.Percepts;
 
-namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Percepts
+namespace XmasEngineExtensions.TileEisExtension.Conversion
 {
 	public class EISVisionSerializer : EISPerceptConverter<Vision>
 	{

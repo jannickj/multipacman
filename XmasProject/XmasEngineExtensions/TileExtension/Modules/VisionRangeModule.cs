@@ -1,7 +1,6 @@
-using System;
 using XmasEngineModel.EntityLib.Module;
 
-namespace XmasEngineExtensions
+namespace XmasEngineExtensions.TileExtension.Modules
 {
 	public class VisionRangeModule : EntityModule
 	{

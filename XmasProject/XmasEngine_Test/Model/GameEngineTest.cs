@@ -4,6 +4,7 @@ using JSLibrary.Data;
 using NUnit.Framework;
 using XmasEngineExtensions.TileExtension;
 using XmasEngineExtensions.TileExtension.Actions;
+using XmasEngineExtensions.TileExtension.Events;
 using XmasEngineModel;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Actions;

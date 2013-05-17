@@ -1,11 +1,11 @@
 using System;
 using JSLibrary.Data;
 using JSLibrary.IiLang.Parameters;
-using XmasEngineExtensions.EisExtension.Model.ActionTypes;
 using XmasEngineExtensions.EisExtension.Model.Conversion.IILang;
+using XmasEngineExtensions.TileEisExtension.ActionTypes;
 using XmasEngineExtensions.TileExtension.Actions;
 
-namespace XmasEngineExtensions.EisTileExtension
+namespace XmasEngineExtensions.TileEisExtension.Conversion
 {
 	public class MoveUnitActionConverter : EISActionConverter<MoveUnitAction, EISMoveUnit>
 	{

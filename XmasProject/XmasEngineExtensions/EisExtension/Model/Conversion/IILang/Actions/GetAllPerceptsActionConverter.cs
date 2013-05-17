@@ -1,8 +1,7 @@
 using XmasEngineExtensions.EisExtension.Model.ActionTypes;
-using XmasEngineExtensions.EisExtension.Model.Conversion.IILang;
 using XmasEngineModel.Management.Actions;
 
-namespace XmasEngineExtensions.EisTileExtension
+namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Actions
 {
 	public class GetAllPerceptsActionConverter : EISActionConverter<GetAllPerceptsAction, EISGetAllPercepts>
 	{

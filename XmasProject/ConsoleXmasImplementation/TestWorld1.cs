@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ConsoleXmasImplementation.Model;
 using JSLibrary.Data;
 using XmasEngineExtensions.TileExtension;
 using XmasEngineExtensions.TileExtension.Entities;

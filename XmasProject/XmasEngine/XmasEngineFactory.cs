@@ -1,5 +1,6 @@
 using System;
 using XmasEngineController;
+using XmasEngineController.AI;
 using XmasEngineModel;
 using XmasEngineModel.Management;
 using XmasEngineView;
@@ -42,14 +43,14 @@ namespace XmasEngine
 
 
 		public Tuple<XmasModel, XmasView, XmasController> FullConstruct(XmasWorldBuilder builder,
-		                                                                params AgentFactory[] agentFactory)
+		                                                                params AgentManager[] agentmanagers)
 		{
 			XmasModel model = ConstructModel(builder);
 			XmasView view = ConstructView(model);
 			XmasController controller = ContructController(model, view);
 
-			foreach (AgentFactory afact in agentFactory)
-				controller.AddAiServer(afact.ContructServer());
+			foreach (AgentManager aman in agentmanagers)
+				controller.AddAiServer(aman);
 
 
 			return Tuple.Create(model, view, controller);

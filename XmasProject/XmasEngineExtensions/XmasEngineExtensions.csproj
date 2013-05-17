@@ -41,21 +41,22 @@
   <ItemGroup>
     <Compile Include="EisExtension\Controller\AI\EISAgentController.cs" />
     <Compile Include="EisExtension\Controller\AI\EISAgentServer.cs" />
-    <Compile Include="EisExtension\EisAgentFactory.cs" />
     <Compile Include="EisExtension\Model\ActionTypes\EISGetAllPercepts.cs" />
-    <Compile Include="EisTileExtension\ActionTypes\EISMoveUnit.cs" />
+    <Compile Include="TileEisExtension\ActionTypes\EISMoveUnit.cs" />
     <Compile Include="EisExtension\Model\Conversion\IILang\Actions\GetAllPerceptsActionConverter.cs" />
-    <Compile Include="EisTileExtension\Conversion\MoveUnitActionConverter.cs" />
+    <Compile Include="TileEisExtension\Conversion\MoveUnitActionConverter.cs" />
     <Compile Include="EisExtension\Model\Conversion\IILang\EISActionConverter.cs" />
     <Compile Include="EisExtension\Model\Conversion\IILang\EISConverterToEIS.cs" />
     <Compile Include="EisExtension\Model\Conversion\IILang\EISPerceptConverter.cs" />
-    <Compile Include="EisExtension\Model\Conversion\IILang\Objects\EISTileSerializer.cs" />
+    <Compile Include="TileEisExtension\Conversion\EISTileSerializer.cs" />
     <Compile Include="EisExtension\Model\Conversion\IILang\Percepts\EISPerceptCollectionSerializer.cs" />
     <Compile Include="EisExtension\Model\Conversion\IILang\Percepts\EISSingleNumeralSerializer.cs" />
-    <Compile Include="EisExtension\Model\Conversion\IILang\Percepts\EISVisionSerializer.cs" />
+    <Compile Include="TileEisExtension\Conversion\EISVisionSerializer.cs" />
     <Compile Include="EisExtension\Model\EISAction.cs" />
-    <Compile Include="EisExtension\Model\EISConversionTool.cs" />
+    <Compile Include="EisExtension\Model\EisConversionTool.cs" />
     <Compile Include="EisExtension\Model\IILActionParser.cs" />
+    <Compile Include="TileEisExtension\TileEisConversionTool.cs" />
+    <Compile Include="TileEisExtension\TileIilActionParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TileExtension\Actions\MoveUnitAction.cs">
       <SubType>Code</SubType>
@@ -103,6 +104,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="EisExtension\Model\Conversion\IILang\Objects\" />
     <Folder Include="EisExtension\Model\XmasActions\" />
     <Folder Include="EisExtension\View\" />
   </ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using JSLibrary.Data;
+using XmasEngineModel.Management;
 
-namespace XmasEngineModel.Management.Events
+namespace XmasEngineExtensions.TileExtension.Events
 {
 	public class UnitMovePostEvent : XmasEvent
 	{

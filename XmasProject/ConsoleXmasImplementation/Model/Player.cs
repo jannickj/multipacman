@@ -1,4 +1,6 @@
-﻿namespace XmasEngineModel.EntityLib
+﻿using XmasEngineModel.EntityLib;
+
+namespace ConsoleXmasImplementation.Model
 {
 	public class Player : Agent
 	{

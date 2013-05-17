@@ -16,12 +16,12 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 		private IILActionParser actionparser;
 		private XmlSerializer deserializer = new XmlSerializer(typeof (IilAction));
 		private XmlSerializer serializer = new XmlSerializer(typeof (IilPerceptCollection));
-		private EISConversionTool tool;
+		private EisConversionTool tool;
 		private XmlReader xreader;
 		private XmlWriter xwriter;
 
 
-		public EISAgentController(Agent agent, XmlReader xreader, XmlWriter xwriter, EISConversionTool tool,
+		public EISAgentController(Agent agent, XmlReader xreader, XmlWriter xwriter, EisConversionTool tool,
 		                          IILActionParser actionparser)
 			: base(agent)
 		{

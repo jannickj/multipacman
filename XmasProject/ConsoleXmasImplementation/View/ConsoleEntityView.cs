@@ -1,5 +1,6 @@
 using JSLibrary.Data;
 using XmasEngineExtensions.TileExtension;
+using XmasEngineExtensions.TileExtension.Events;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
