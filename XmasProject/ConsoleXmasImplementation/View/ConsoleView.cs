@@ -26,6 +26,8 @@ namespace ConsoleXmasImplementation.View
 			this.model = model;
 			this.viewWorld = viewWorld;
 			this.entityFactory = entityFactory;
+
+			//TODO: Move evtmanager out of here and add it to the other views
 			evtmanager = new ThreadSafeEventManager();
 			eventqueue = model.EventManager.ConstructEventQueue();
 			evtmanager.AddEventQueue(eventqueue);
@@ -67,22 +69,23 @@ namespace ConsoleXmasImplementation.View
 		private void Update()
 		{
 			DateTime start = DateTime.Now;
-			
+
 			Draw();
 
-			Func<long> remainPct =() => ((DateTime.Now.Ticks - start.Ticks)/10000) / UPDATE_DELAY;
+			Func<long> remainPct = () => ((DateTime.Now.Ticks - start.Ticks) / 10000) / UPDATE_DELAY;
 			while (this.evtmanager.ExecuteNext() && remainPct() <= WORK_PCT)
 			{
-			
+
 			}
 
-			long sleeptime = UPDATE_DELAY - ((DateTime.Now.Ticks - start.Ticks)/10000);
+			long sleeptime = UPDATE_DELAY - ((DateTime.Now.Ticks - start.Ticks) / 10000);
 			Console.SetCursorPosition(0, 0);
 			long pct = remainPct();
-			
-			Console.Write("\rLOAD: "+ pct +"%\t\t\t");
-			if(sleeptime > 0)
+
+			Console.Write("\rLOAD: " + pct + "%\t\t\t");
+			if (sleeptime > 0)
 				Thread.Sleep((int)sleeptime);
+
 		}
 
 		public override void Start()

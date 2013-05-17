@@ -108,10 +108,7 @@ namespace XmasEngineModel
 
 		private void actman_ActionQueued(object sender, UnaryValueEvent<XmasAction> evt)
 		{
-			lock (ActionManager)
-			{
-				Monitor.PulseAll(ActionManager);
-			}
+			this.actionRecieved.Set();
 		}
 
 		#endregion

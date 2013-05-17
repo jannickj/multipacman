@@ -12,16 +12,8 @@ namespace XmasEngineModel.Management
 			get { return source; }
 			internal set { source = value; }
 		}
-
-		protected internal abstract Type SupportedEntityType();
-
-
-		internal bool IsEntitySupported(XmasEntity xmasEntity)
-		{
-			return xmasEntity.GetType().IsSubclassOf(SupportedEntityType());
-		}
+	
 	}
-
 
 	public abstract class EntityXmasAction<T> : EntityXmasAction where T : XmasEntity
 	{
@@ -31,9 +23,5 @@ namespace XmasEngineModel.Management
 		}
 
 
-		protected internal override Type SupportedEntityType()
-		{
-			return typeof (T);
-		}
 	}
 }

@@ -13,7 +13,8 @@ namespace ConsoleXmasImplementation.View
 
 		public ConsoleViewFactory()
 		{
-			AddTypeLink<Agent, ConsoleAgentView>();
+
+			AddTypeLink<Ghost, ConsoleGhostView>();
 			AddTypeLink<Wall, ConsoleWallView>();
 			AddTypeLink<Player, ConsolePlayerView>();
 			AddTypeLink<ImpassableWall, ConsoleImpassableWallView>();

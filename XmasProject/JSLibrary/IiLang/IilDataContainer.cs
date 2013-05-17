@@ -75,10 +75,11 @@ namespace JSLibrary.IiLang
 					IilParameter p = IilParameter.fromString(reader.LocalName);
 					p.ReadXml(reader);
 					Parameters.Add(p);
-					reader.Read();
+					reader.ReadEndElement();
 				}
 			}
-            reader.Read();
+
+			//reader.Read();
 		}
 
 		public override void WriteXml(XmlWriter writer)

@@ -1,3 +1,5 @@
+using System;
+
 namespace JSLibrary.Data
 {
 	public struct Vector
@@ -32,8 +34,8 @@ namespace JSLibrary.Data
 		{
 			get
 			{
-				int newX = x == 0 ? 0 : x/x;
-				int newY = x == 0 ? 0 : y/y;
+				int newX = x == 0 ? 0 : x/Math.Abs(x);
+				int newY = y == 0 ? 0 : y/Math.Abs(y);
 
 				return new Vector(newX, newY);
 			}

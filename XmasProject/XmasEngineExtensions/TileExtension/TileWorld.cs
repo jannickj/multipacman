@@ -59,7 +59,7 @@ namespace XmasEngineExtensions.TileExtension
 			if (!tile.CanContain(xmasEntity))
 				return false;
 
-			entlocs.Add(xmasEntity, point);
+			entlocs[xmasEntity] = point;
 			tile.AddEntity(xmasEntity);
 			return true;
 		}

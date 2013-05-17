@@ -46,6 +46,7 @@
     <Compile Include="Data\Point.cs" />
     <Compile Include="Data\Size.cs" />
     <Compile Include="Data\Vector.cs" />
+    <Compile Include="ExtendedString.cs" />
     <Compile Include="ExtendedType.cs" />
     <Compile Include="IiLang\Exceptions\MissingXmlAttributeException.cs" />
     <Compile Include="IiLang\SingleParameter.cs" />

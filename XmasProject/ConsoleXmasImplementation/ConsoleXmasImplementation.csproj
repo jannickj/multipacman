@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Ghost.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="View\ConsoleEntityView.cs" />
     <Compile Include="View\ConsoleViewFactory.cs" />
@@ -50,7 +51,7 @@
     <Compile Include="Controller\HumanInterfaceController.cs" />
     <Compile Include="Controller\HumanInterfaceManager.cs" />
     <Compile Include="View\DrawSceen.cs" />
-    <Compile Include="View\EntityViews\ConsoleAgentView.cs" />
+    <Compile Include="View\EntityViews\ConsoleGhostView.cs" />
     <Compile Include="View\EntityViews\ConsoleImpassableWallView.cs" />
     <Compile Include="View\EntityViews\ConsolePlayerView.cs" />
     <Compile Include="View\EntityViews\ConsoleWallView.cs" />

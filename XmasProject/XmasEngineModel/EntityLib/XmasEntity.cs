@@ -72,13 +72,8 @@ namespace XmasEngineModel.EntityLib
 
 		public void QueueAction(EntityXmasAction action)
 		{
-			if (action.IsEntitySupported(this))
-			{
-				action.Source = this;
-				ActionManager.QueueAction(action);
-			}
-			else
-				throw new UnacceptableActionException(action, this);
+			action.Source = this;
+			ActionManager.QueueAction(action);
 		}
 
 		public void Raise(XmasEvent evt)

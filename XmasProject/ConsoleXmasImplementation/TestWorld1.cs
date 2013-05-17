@@ -55,7 +55,7 @@ namespace ConsoleXmasImplementation
 			this.AddEntity(new Wall(), new Point(0, 1));
 			this.AddEntity(new Wall(), new Point(1, 1));
 			this.AddEntity(new Player(), new Point(0, 0));
-            this.AddEntity(new Agent("testname"), new Point(1, 0));
+            this.AddEntity(new Ghost("testname"), new Point(1, 0));
 			
 		}
 

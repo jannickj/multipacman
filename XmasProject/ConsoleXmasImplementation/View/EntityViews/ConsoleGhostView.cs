@@ -2,16 +2,16 @@ using XmasEngineModel.EntityLib;
 
 namespace ConsoleXmasImplementation.View.EntityViews
 {
-	public class ConsoleAgentView : ConsoleEntityView
+	public class ConsoleGhostView : ConsoleEntityView
 	{
-		public ConsoleAgentView(XmasEntity model)
+		public ConsoleGhostView(XmasEntity model)
 			: base(model)
 		{
 		}
 
 		public override char Symbol
 		{
-			get { return 'A'; }
+			get { return 'G'; }
 		}
 	}
 }

@@ -1,6 +1,10 @@
 using System;
+using System.IO;
+using System.Text;
+using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using JSLibrary;
 using JSLibrary.IiLang.DataContainers;
 using JSLibrary.IiLang.Exceptions;
 using JSLibrary.IiLang.Parameters;
@@ -43,17 +47,28 @@ namespace JSLibrary_Test.IiLang
 
 			XmlSerializer serializer = new XmlSerializer(typeof (IilAction));
 
-			XElement actual_src = XElement.Parse(
-				@"<action name=""moveTo"">
-					<actionParameter>
-						<number value=""2.0"" />
-					</actionParameter>
-					<actionParameter>
-						<number value=""3.0"" />
-					</actionParameter>
-				</action>");
 
-			IilAction actual = (IilAction) serializer.Deserialize(actual_src.CreateReader());
+			string xmldata = "<action name=\"moveTo\">\n"+
+								"<actionParameter>\n" +
+									"<number value=\"2\" />\n" +
+								"</actionParameter>\n" +
+								"<actionParameter>\n" +
+									"<number value=\"3\" />\n" +
+								"</actionParameter>\n" +
+							"</action>\n";
+
+			
+
+			StreamReader sreader = new StreamReader(ExtendedString.ToStream(xmldata), Encoding.UTF8);
+			XmlReaderSettings rset = new XmlReaderSettings();
+			rset.ConformanceLevel = ConformanceLevel.Fragment;
+			XmlReader xreader = XmlReader.Create(sreader, rset);
+
+//			XElement actual_src = XElement.Parse(
+//				);
+			
+
+			IilAction actual = (IilAction) serializer.Deserialize(xreader);
 			Assert.AreEqual(expected, actual);
 		}
 

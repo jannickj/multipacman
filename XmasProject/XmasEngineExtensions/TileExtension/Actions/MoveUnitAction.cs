@@ -7,7 +7,7 @@ using XmasEngineExtensions.TileExtension.Modules;
 
 namespace XmasEngineExtensions.TileExtension.Actions
 {
-	public class MoveUnitAction : EntityXmasAction<Unit>
+	public class MoveUnitAction : EntityXmasAction<Agent>
 	{
 		private Vector direction;
 		private double time;
@@ -24,6 +24,7 @@ namespace XmasEngineExtensions.TileExtension.Actions
 //            this.direction = direction.Direction;
 //            this.time = time;
 //        }
+
 		public MoveUnitAction(Vector direction)
 		{
 			this.direction = direction.Direction;
