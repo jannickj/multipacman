@@ -24,7 +24,6 @@ namespace XmasEngineView
 		public XmasEntity Model
 		{
 			get { return model; }
-			set { model = value; }
 		}
 
 		public abstract XmasPosition Position { get; protected set; }

@@ -21,7 +21,6 @@ namespace ConsoleXmasImplementation.View
 		public override EntityView ConstructEntityView(XmasEntity model)
 		{
 			ConsoleEntityView retval = (ConsoleEntityView) Activator.CreateInstance(typeDict[model.GetType()], model);
-			retval.Model = model;
 			return retval;
 		}
 

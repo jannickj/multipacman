@@ -43,9 +43,9 @@
     <Compile Include="EisExtension\Controller\AI\EISAgentServer.cs" />
     <Compile Include="EisExtension\EisAgentFactory.cs" />
     <Compile Include="EisExtension\Model\ActionTypes\EISGetAllPercepts.cs" />
-    <Compile Include="EisExtension\Model\ActionTypes\EISMoveUnit.cs" />
-    <Compile Include="EisTileExtension\GetAllPerceptsActionConverter.cs" />
-    <Compile Include="EisTileExtension\MoveUnitActionConverter.cs" />
+    <Compile Include="EisTileExtension\ActionTypes\EISMoveUnit.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\Actions\GetAllPerceptsActionConverter.cs" />
+    <Compile Include="EisTileExtension\Conversion\MoveUnitActionConverter.cs" />
     <Compile Include="EisExtension\Model\Conversion\IILang\EISActionConverter.cs" />
     <Compile Include="EisExtension\Model\Conversion\IILang\EISConverterToEIS.cs" />
     <Compile Include="EisExtension\Model\Conversion\IILang\EISPerceptConverter.cs" />
@@ -102,7 +102,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EisExtension\Model\Conversion\IILang\Actions\" />
+    <Folder Include="EisExtension\Model\XmasActions\" />
     <Folder Include="EisExtension\View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

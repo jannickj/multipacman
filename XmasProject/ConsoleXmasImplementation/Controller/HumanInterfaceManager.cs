@@ -24,10 +24,10 @@ namespace ConsoleXmasImplementation.Controller
 
 		protected override Func<KeyValuePair<string, AgentController>> AquireAgentControllerContructor()
 		{
-			return agentControllerConstructor;
+			return AgentControllerConstructor;
 		}
 
-		private KeyValuePair<string, AgentController> agentControllerConstructor()
+		private KeyValuePair<string, AgentController> AgentControllerConstructor()
 		{
 			Agent player = this.TakeControlOf("player");
 			var kv = new KeyValuePair<string, AgentController>(player.Name,new HumanInterfaceController(player));

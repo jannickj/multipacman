@@ -27,6 +27,8 @@ namespace ConsoleXmasImplementation.Controller
 				Thread.Sleep(200);
 			}
 		}
+
+		
  
 	}
 }

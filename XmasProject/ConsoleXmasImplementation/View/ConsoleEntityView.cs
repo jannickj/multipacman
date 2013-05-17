@@ -14,7 +14,6 @@ namespace ConsoleXmasImplementation.View
 
 		public ConsoleEntityView(XmasEntity model) : base(model)
 		{
-			this.model = model;
 			this.Position = model.Position;
 			eventqueue = model.ConstructEventQueue();
 			eventqueue.Register(new Trigger<UnitMovePostEvent>(entityView_UnitMovePostEvent));

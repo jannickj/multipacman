@@ -79,9 +79,8 @@ namespace ConsoleXmasImplementation.View
 			long sleeptime = UPDATE_DELAY - ((DateTime.Now.Ticks - start.Ticks)/10000);
 			Console.SetCursorPosition(0, 0);
 			long pct = remainPct();
-			Console.Write("LOAD:					");
-			if(pct >= 0)
-				Console.Write("\rLOAD: "+ pct +"%");
+			
+			Console.Write("\rLOAD: "+ pct +"%\t\t\t");
 			if(sleeptime > 0)
 				Thread.Sleep((int)sleeptime);
 		}

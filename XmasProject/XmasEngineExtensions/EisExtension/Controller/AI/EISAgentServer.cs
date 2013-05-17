@@ -46,7 +46,10 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 
 		private AgentController CreateAgentController(TcpClient client, out string name)
 		{
-			XmlReader xreader = XmlReader.Create(new StreamReader(client.GetStream(), Encoding.UTF8));
+			Stream agentStream = client.GetStream();
+			//StreamReader sreader = new StreamReader(agentStream, Encoding.UTF8);
+
+			XmlReader xreader = XmlReader.Create(agentStream);
 			XmlWriterSettings wset = new XmlWriterSettings();
 			wset.OmitXmlDeclaration = true;
 			XmlWriter xwriter = XmlWriter.Create(client.GetStream());
