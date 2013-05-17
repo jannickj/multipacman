@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.ContentHandlerFactory;
 import java.net.Socket;
@@ -44,11 +46,22 @@ public class XmasEnvironment extends EIDefaultImpl
 	private int port = 44444;
 	private Socket socket;
 	private InputStream sockreader;
-	private PrintWriter sockwriter;
+	private PrintStream sockwriter;
 	XMLReader xmlreader;
+	private String Name;
 	
 	public XmasEnvironment()
 	{
+//		Map<String, Parameter> m = new HashMap<String, Parameter>();
+//		
+//		Identifier param = new Identifier("testname");
+//		m.put("agentName", param);
+//		try {
+//			this.init(m);
+//		} catch (ManagementException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	@Override
@@ -57,37 +70,48 @@ public class XmasEnvironment extends EIDefaultImpl
 		System.out.println("init");
 		super.init(parameters);
 		
-		Identifier Name;
+		Identifier nameId;
 		if (parameters.containsKey("agentName") && parameters.get("agentName") instanceof Identifier)
-			Name = ((Identifier) parameters.get("agentName"));
+		{
+			nameId = ((Identifier) parameters.get("agentName"));
+			Name = nameId.getValue();
+		}
 		else
 			throw new RuntimeErrorException(
 					new Error("No mapping from 'agentName' to Identifier could be found in parameters")
 					);
 		
-		System.out.println("connecting to socket on port " + port);
+		System.out.println("Agent name = " + Name);
+		printDebugMsg("Connecting to socket on port " + port);
 		
 		try {
 			socket = new Socket("localhost", port);
 			sockreader = socket.getInputStream();
-			sockwriter = new PrintWriter (socket.getOutputStream(), true);
+			sockwriter = new PrintStream (socket.getOutputStream(), true);
+			
 			xmlreader = XMLReaderFactory.createXMLReader();
 		} catch (IOException | SAXException e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println("connected to socket, sending handshake");
+		printDebugMsg("Connected to socket, sending handshake");
 		
-		sockwriter.print(Name.toXML());
+		System.out.println("WRITING: "+nameId.toXML());
+		sockwriter.print(nameId.toXML());
 		//TODO: Look into making it an actual handshake (ie. receive a confirmation)
 		
 		try {
-			this.addEntity("agent");
+			this.addEntity(this.Name);
 		} catch (EntityException e) {
 			e.printStackTrace();
 		}
 		
 		setState(EnvironmentState.PAUSED);
+	}
+	
+	private void printDebugMsg(String str)
+	{
+		System.out.println(Name + ":: " + str);
 	}
 
 	@Override
@@ -110,6 +134,7 @@ public class XmasEnvironment extends EIDefaultImpl
 			throws PerceiveException, NoEnvironmentException 
 	{
 		Action action = new Action ("getAllPercepts");
+		System.out.println("WRITING: "+action.toXML());
 		sockwriter.print (action.toXML());
 		
 		PerceptCollectionHandler handler = new PerceptCollectionHandler(xmlreader);
@@ -132,6 +157,7 @@ public class XmasEnvironment extends EIDefaultImpl
 	protected Percept performEntityAction(String arg0, Action action)
 			throws ActException 
 	{
+		System.out.println("WRITING: "+action.toXML());
 		sockwriter.print (action.toXML());
 		return null;
 	}

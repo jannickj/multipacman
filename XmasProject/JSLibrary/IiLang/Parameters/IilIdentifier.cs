@@ -35,9 +35,10 @@ namespace JSLibrary.IiLang.Parameters
 
 		public override void ReadXml(XmlReader reader)
 		{
-			reader.MoveToContent();
+            reader.MoveToContent();
 			Value = reader["value"];
-			reader.Read();
+            reader.Read();
+            
 		}
 
 		public override bool Equals(object obj)

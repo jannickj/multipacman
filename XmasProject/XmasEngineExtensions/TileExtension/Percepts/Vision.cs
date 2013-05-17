@@ -11,7 +11,8 @@ namespace XmasEngineExtensions.TileExtension.Percepts
 	{
 		private Grid<Tile> grid;
 		private XmasEntity owner;
-		private List<KeyValuePair<Point, Tile>> visibleTiles = new List<KeyValuePair<Point, Tile>>();
+//		private List<KeyValuePair<Point, Tile>> visibleTiles = new List<KeyValuePair<Point, Tile>>();
+		private Dictionary<Point, Tile> visibleTiles = new Dictionary<Point, Tile> ();
 
 		public Vision(Grid<Tile> grid, XmasEntity owner)
 		{
@@ -25,7 +26,7 @@ namespace XmasEngineExtensions.TileExtension.Percepts
 			get { return owner; }
 		}
 
-		public ICollection<KeyValuePair<Point, Tile>> VisibleTiles
+		public Dictionary<Point, Tile> VisibleTiles
 		{
 			get { return visibleTiles; }
 		}
@@ -46,7 +47,7 @@ namespace XmasEngineExtensions.TileExtension.Percepts
 				{
 					if (isTileVisible(p))
 					{
-						visibleTiles.Add(new KeyValuePair<Point, Tile>(p, grid[p.X, p.Y]));
+						visibleTiles[p] = grid[p.X, p.Y];
 
 						if (!grid[p.X, p.Y].IsVisionBlocking(owner) && !explored.Contains(p))
 							frontier.Add(p);
@@ -59,16 +60,17 @@ namespace XmasEngineExtensions.TileExtension.Percepts
 		{
 			for (int x = 0; x < grid.Size.Width; x++)
 				for (int y = 0; y < grid.Size.Height; y++)
-					if (isTileVisible(new Point(x, y)))
-						visibleTiles.Add(new KeyValuePair<Point, Tile>(new Point(x, y) - grid.Center, grid[x, y]));
+					if (isTileVisible (new Point (x, y)))
+//						visibleTiles.Add(new KeyValuePair<Point, Tile>(new Point(x, y) - grid.Center, grid[x, y]));
+						visibleTiles [new Point (x, y) - grid.Center] = grid [x, y];
 		}
 
-		public List<KeyValuePair<Point, Tile>> AllTiles()
+		public Dictionary<Point, Tile> AllTiles()
 		{
-			List<KeyValuePair<Point, Tile>> tiles = new List<KeyValuePair<Point, Tile>>();
+			Dictionary<Point, Tile> tiles = new Dictionary<Point, Tile> ();
 			for (int x = 0; x < grid.Size.Width; x++)
 				for (int y = 0; y < grid.Size.Height; y++)
-					tiles.Add(new KeyValuePair<Point, Tile>(new Point(x, y) - grid.Center, grid[x, y]));
+					tiles[new Point(x, y) - grid.Center] = grid[x, y];
 			return tiles;
 		}
 

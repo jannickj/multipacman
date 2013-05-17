@@ -1,5 +1,9 @@
 using System;
 using XmasEngineModel.EntityLib.Module;
+using XmasEngineModel;
+using System.Collections.Generic;
+using XmasEngineModel.Perceptions;
+using System.Linq;
 
 namespace XmasEngineExtensions.TileExtension.Modules
 {
@@ -16,6 +20,12 @@ namespace XmasEngineExtensions.TileExtension.Modules
 		public HealthModule (int health)
 		{
 			this.health = health;
+		}
+
+		public override IEnumerable<Percept> Percepts {
+			get {
+				return new Percept[] { new SingleNumeralPercept("health", health) };
+			}
 		}
 	}
 }

@@ -23,22 +23,13 @@ namespace ConsoleXmasImplementation.View
 
 		public override XmasPosition Position
 		{
-			get
-			{
-				return new TilePosition(pos);
-			}
+			get { return new TilePosition(pos); }
 			protected set { this.pos = ((TilePosition)value).Point; }
-			
 		}
-
-	
 
 		private void entityView_UnitMovePostEvent(UnitMovePostEvent evt)
 		{
 			this.pos = evt.NewPos;
 		}
-
-		
-		
 	}
 }

@@ -2,9 +2,9 @@
 {
 	public class Player : Agent
 	{
-		public Player()
+		public Player() : base("player")
 		{
-			this.Name = "player";
+
 		}
 	}
 }

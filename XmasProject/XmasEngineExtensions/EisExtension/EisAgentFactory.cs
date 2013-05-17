@@ -16,13 +16,11 @@ namespace XmasEngineExtensions.EisExtension
 {
 	public class EisAgentFactory : AgentFactory
 	{
-		private IPAddress ip;
-		private int port;
+        protected TcpListener listener;
 
-		public EisAgentFactory(IPAddress ip, int port)
+		public EisAgentFactory(TcpListener listener)
 		{
-			this.ip = ip;
-			this.port = port;
+            this.listener = listener;
 		}
 
 		private IILActionParser ConstructIILActionParser()
@@ -58,7 +56,7 @@ namespace XmasEngineExtensions.EisExtension
 
 		public override AgentManager ContructServer()
 		{
-			TcpListener listener = new TcpListener(ip, port);
+			
 			EISAgentServer manager = new EISAgentServer(listener, ContructEISConversionTool(), ConstructIILActionParser());
 			return manager;
 		}
