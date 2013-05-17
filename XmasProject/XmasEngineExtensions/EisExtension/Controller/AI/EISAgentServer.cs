@@ -53,12 +53,7 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
             StreamReader sreader = new StreamReader(client.GetStream(), Encoding.UTF8);
             XmlReaderSettings rset = new XmlReaderSettings();
             rset.ConformanceLevel = ConformanceLevel.Fragment;
-
 			XmlReader xreader = XmlReader.Create(sreader,rset);
-			Stream agentStream = client.GetStream();
-			//StreamReader sreader = new StreamReader(agentStream, Encoding.UTF8);
-
-			XmlReader xreader = XmlReader.Create(agentStream);
 			XmlWriterSettings wset = new XmlWriterSettings();
 			wset.OmitXmlDeclaration = true;
 			XmlWriter xwriter = XmlWriter.Create(client.GetStream());
