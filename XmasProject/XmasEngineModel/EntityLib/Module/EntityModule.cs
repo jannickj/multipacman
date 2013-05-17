@@ -5,7 +5,7 @@ namespace XmasEngineModel.EntityLib.Module
 {
 	public abstract class EntityModule
 	{
-		private XmasEntity xmasEntity;
+		protected XmasEntity xmasEntity;
 
 		public XmasEntity XmasEntity
 		{
@@ -20,6 +20,11 @@ namespace XmasEngineModel.EntityLib.Module
 		public virtual IEnumerable<Percept> Percepts
 		{
 			get { return new Percept[0]; }
+		}
+
+		public virtual void RegisterTo(XmasEntity entity)
+		{
+			xmasEntity = entity;
 		}
 	}
 }

@@ -40,16 +40,11 @@ namespace ConsoleXmasImplementation.View
 			{
 				Point p = ((TilePosition) kv.Value.Position).Point;
 				Point transp = new Point(p.X + wbSize.Width, p.Y + wbSize.Height);
-				
 
 				locs.Add(transp, kv.Value);
 			}
 
 			return locs;
 		}
-
-
-
-	
 	}
 }

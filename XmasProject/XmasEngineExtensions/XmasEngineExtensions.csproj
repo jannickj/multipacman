@@ -78,6 +78,7 @@
     <Compile Include="TileExtension\Modules\HealthModule.cs" />
     <Compile Include="TileExtension\Modules\SpeedModule.cs" />
     <Compile Include="TileExtension\Modules\VisionRangeModule.cs" />
+    <Compile Include="TileExtension\Modules\VisionModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
