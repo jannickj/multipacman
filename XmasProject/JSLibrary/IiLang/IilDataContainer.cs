@@ -78,7 +78,7 @@ namespace JSLibrary.IiLang
 					reader.Read();
 				}
 			}
-			//reader.Read();
+            reader.Read();
 		}
 
 		public override void WriteXml(XmlWriter writer)

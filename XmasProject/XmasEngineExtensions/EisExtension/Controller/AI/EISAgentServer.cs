@@ -9,6 +9,8 @@ using JSLibrary.IiLang.Parameters;
 using XmasEngineController.AI;
 using XmasEngineExtensions.EisExtension.Model;
 using XmasEngineModel.EntityLib;
+using XmasEngineModel.Management;
+using XmasEngineModel.Management.Events;
 
 namespace XmasEngineExtensions.EisExtension.Controller.AI
 {
@@ -23,10 +25,12 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 			this.listener = listener;
 			this.tool = tool;
 			this.parser = parser;
+            
 		}
 
 		public override void Initialize()
 		{
+            this.EventManager.Register(new Trigger<EntityAddedEvent>(engine_EntityAdded));
 			listener.Start();
 		}
 
@@ -46,7 +50,11 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 
 		private AgentController CreateAgentController(TcpClient client, out string name)
 		{
-			XmlReader xreader = XmlReader.Create(new StreamReader(client.GetStream(), Encoding.UTF8));
+            StreamReader sreader = new StreamReader(client.GetStream(), Encoding.UTF8);
+            XmlReaderSettings rset = new XmlReaderSettings();
+            rset.ConformanceLevel = ConformanceLevel.Fragment;
+
+			XmlReader xreader = XmlReader.Create(sreader,rset);
 			XmlWriterSettings wset = new XmlWriterSettings();
 			wset.OmitXmlDeclaration = true;
 			XmlWriter xwriter = XmlWriter.Create(client.GetStream());
@@ -60,5 +68,13 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 
 			return con;
 		}
+
+        private void engine_EntityAdded(EntityAddedEvent evt)
+        {
+            Agent a = evt.AddedXmasEntity as Agent;
+            if (a == null)
+                return;
+            this.AddAgent(a);
+        }
 	}
 }

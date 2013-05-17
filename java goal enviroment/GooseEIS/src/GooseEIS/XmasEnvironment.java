@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.ContentHandlerFactory;
 import java.net.Socket;
@@ -44,12 +46,22 @@ public class XmasEnvironment extends EIDefaultImpl
 	private int port = 44444;
 	private Socket socket;
 	private InputStream sockreader;
-	private PrintWriter sockwriter;
+	private PrintStream sockwriter;
 	XMLReader xmlreader;
 	private String Name;
 	
 	public XmasEnvironment()
 	{
+//		Map<String, Parameter> m = new HashMap<String, Parameter>();
+//		
+//		Identifier param = new Identifier("testname");
+//		m.put("agentName", param);
+//		try {
+//			this.init(m);
+//		} catch (ManagementException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	@Override
@@ -75,7 +87,8 @@ public class XmasEnvironment extends EIDefaultImpl
 		try {
 			socket = new Socket("localhost", port);
 			sockreader = socket.getInputStream();
-			sockwriter = new PrintWriter (socket.getOutputStream(), true);
+			sockwriter = new PrintStream (socket.getOutputStream(), true);
+			
 			xmlreader = XMLReaderFactory.createXMLReader();
 		} catch (IOException | SAXException e) {
 			e.printStackTrace();
@@ -83,11 +96,12 @@ public class XmasEnvironment extends EIDefaultImpl
 		
 		printDebugMsg("Connected to socket, sending handshake");
 		
+		System.out.println("WRITING: "+nameId.toXML());
 		sockwriter.print(nameId.toXML());
 		//TODO: Look into making it an actual handshake (ie. receive a confirmation)
 		
 		try {
-			this.addEntity("agent");
+			this.addEntity(this.Name);
 		} catch (EntityException e) {
 			e.printStackTrace();
 		}
@@ -120,6 +134,7 @@ public class XmasEnvironment extends EIDefaultImpl
 			throws PerceiveException, NoEnvironmentException 
 	{
 		Action action = new Action ("getAllPercepts");
+		System.out.println("WRITING: "+action.toXML());
 		sockwriter.print (action.toXML());
 		
 		PerceptCollectionHandler handler = new PerceptCollectionHandler(xmlreader);
@@ -142,6 +157,7 @@ public class XmasEnvironment extends EIDefaultImpl
 	protected Percept performEntityAction(String arg0, Action action)
 			throws ActException 
 	{
+		System.out.println("WRITING: "+action.toXML());
 		sockwriter.print (action.toXML());
 		return null;
 	}

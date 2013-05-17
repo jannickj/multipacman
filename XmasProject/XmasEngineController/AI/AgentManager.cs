@@ -44,7 +44,7 @@ namespace XmasEngineController.AI
 			KeyValuePair<string, AgentController> agent;
 			try
 			{
-				TryExecute(constructor, 2000, out agent);
+				TryExecute(constructor, 2000000000, out agent);
 				AgentControllerInfomation ainfo = new AgentControllerInfomation();
 				ainfo.Thread = Thread.CurrentThread;
 				ainfo.Name = agent.Key;
