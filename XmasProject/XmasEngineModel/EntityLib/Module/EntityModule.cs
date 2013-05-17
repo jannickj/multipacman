@@ -5,12 +5,13 @@ namespace XmasEngineModel.EntityLib.Module
 {
 	public abstract class EntityModule
 	{
-		protected XmasEntity xmasEntity;
+		protected XmasEntity entityHost;
+		protected EntityModule replacedModule;
 
-		public XmasEntity XmasEntity
+		public XmasEntity EntityHost
 		{
-			get { return xmasEntity; }
-			internal set { xmasEntity = value; }
+			get { return entityHost; }
+			internal set { entityHost = value; }
 		}
 
 		public virtual Type ModuleType { 
@@ -22,9 +23,18 @@ namespace XmasEngineModel.EntityLib.Module
 			get { return new Percept[0]; }
 		}
 
-		public virtual void RegisterTo(XmasEntity entity)
+		public virtual void AttachToEntity(XmasEntity entityHost, EntityModule replacedModule)
 		{
-			xmasEntity = entity;
+			this.entityHost = entityHost;
+
+			if (replacedModule != null && replacedModule.ModuleType == this.ModuleType)
+				this.replacedModule = replacedModule;
+		}
+
+		public virtual void DetachFromEntity()
+		{
+			if (replacedModule != null && replacedModule.ModuleType == this.ModuleType)
+				entityHost.RegisterModule (replacedModule);
 		}
 	}
 }

@@ -21,11 +21,10 @@ namespace XmasEngineExtensions.TileExtension.Modules
 			this.visionBuilder = visionBuilder;
 		}
 
-		public override void RegisterTo (XmasEntity entity)
+		public override void AttachToEntity (XmasEntity entityHost, EntityModule replacedModule)
 		{
-			base.RegisterTo (entity);
-			xmasEntity.Register (new Trigger<UnitMovePostEvent> (xmasEntity_UnitMovedPost));
-
+			base.AttachToEntity (entityHost, replacedModule);
+			entityHost.Register (new Trigger<UnitMovePostEvent> (xmasEntity_UnitMovedPost));
 		}
 
 		public override IEnumerable<Percept> Percepts {
@@ -36,7 +35,7 @@ namespace XmasEngineExtensions.TileExtension.Modules
 
 		internal void UpdateVision()
 		{
-			Vision newVision = visionBuilder (xmasEntity);
+			Vision newVision = visionBuilder (entityHost);
 			IEnumerable<Tile> oldTiles = vision.VisibleTiles.Values;
 			IEnumerable<Tile> newTiles = newVision.VisibleTiles.Values;
 
