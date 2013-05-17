@@ -31,10 +31,12 @@ namespace XmasEngineModel.EntityLib
 		public virtual EntityModule RegisterModule(EntityModule module)
 		{
 			EntityModule oldModule;
-			module.XmasEntity = this;
+			module.EntityHost = this;
 
 			moduleMap.TryGetValue (module.ModuleType, out oldModule);
 			moduleMap [module.ModuleType] = module;
+
+			module.AttachToEntity (this, oldModule);
 
 			return oldModule;
 		}
@@ -42,6 +44,7 @@ namespace XmasEngineModel.EntityLib
 		public virtual void DeregisterModule(EntityModule module)
 		{
 			moduleMap.Remove (module.ModuleType);
+			module.DetachFromEntity ();
 		}
 
 		public XmasPosition Position
