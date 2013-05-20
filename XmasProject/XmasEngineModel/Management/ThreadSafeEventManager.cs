@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Threading;
 
 namespace XmasEngineModel.Management
 {
 	public class ThreadSafeEventManager
 	{
 		private ConcurrentQueue<Action> awaitingEvents = new ConcurrentQueue<Action>();
+		private AutoResetEvent waitForItemEvent = new AutoResetEvent (false);
 
 		public void AddEventQueue(ThreadSafeEventQueue queue)
 		{
@@ -14,19 +16,31 @@ namespace XmasEngineModel.Management
 
 		private void queue_EventRecieved(object sender, EventArgs e)
 		{
-			awaitingEvents.Enqueue(() => ((ThreadSafeEventQueue) sender).ExecuteNext());
+			awaitingEvents.Enqueue (() => ((ThreadSafeEventQueue)sender).ExecuteNext ());
+			waitForItemEvent.Set ();
 		}
 
 		public bool ExecuteNext()
 		{
 			Action a;
-			if (awaitingEvents.TryDequeue(out a))
-			{
-				a();
-				return true;
+			bool retval;
+			if (awaitingEvents.TryDequeue (out a)) {
+				a ();
+				retval = true;
+			} else {
+				retval = false;
 			}
-			else
-				return false;
+
+			if (!awaitingEvents.IsEmpty)
+				waitForItemEvent.Set ();
+
+			return retval;
+		}
+
+		public void ExecuteNextWhenReady()
+		{
+			waitForItemEvent.WaitOne ();
+			ExecuteNext ();
 		}
 	}
 }

@@ -29,7 +29,6 @@ namespace ConsoleXmasImplementation.View
 			this.viewWorld = viewWorld;
 			this.entityFactory = entityFactory;
 
-			//TODO: Move evtmanager out of here and add it to the other views
 			this.evtmanager = evtmanager;
 			eventqueue = model.EventManager.ConstructEventQueue();
 			evtmanager.AddEventQueue(eventqueue);

@@ -14,7 +14,6 @@ namespace XmasEngineModel.Management.Events
 
 		public UnitTakesDamagePreEvent(Agent source, Agent target, int dmg)
 		{
-			// TODO: Complete member initialization
 			this.source = source;
 			this.target = target;
 			this.dmg = dmg;

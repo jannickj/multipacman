@@ -9,7 +9,6 @@ namespace XmasEngineModel.Exceptions
 
 		public EntityException(XmasEntity xmasEntity)
 		{
-			// TODO: Complete member initialization
 			this.xmasEntity = xmasEntity;
 		}
 

@@ -11,7 +11,6 @@ namespace XmasEngineModel.Management.Events
 
 		public UnitTakesDamagePostEvent(Agent source, Agent target, int dmg, int actualDmg)
 		{
-			// TODO: Complete member initialization
 			this.source = source;
 			this.target = target;
 			this.dmg = dmg;

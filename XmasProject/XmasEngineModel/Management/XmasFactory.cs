@@ -32,12 +32,6 @@ namespace XmasEngineModel.Management
 			return e;
 		}
 
-		//TODO: move this to tileworld
-//		public virtual Vision CreateVisionPercept(Grid<Tile> grid, XmasEntity owner)
-//		{
-//			return new Vision(grid, owner);
-//		}
-
 		public virtual SingleNumeralPercept CreateSingleNumeralPercept(string name, double value)
 		{
 			return new SingleNumeralPercept(name, value);
