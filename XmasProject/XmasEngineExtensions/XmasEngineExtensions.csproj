@@ -44,17 +44,10 @@
     <Compile Include="EisExtension\Model\ActionTypes\EISGetAllPercepts.cs" />
     <Compile Include="LoggerExtension\LoggerView.cs" />
     <Compile Include="TileEisExtension\ActionTypes\EISMoveUnit.cs" />
-    <Compile Include="EisExtension\Model\Conversion\IiLang\Actions\GetAllPerceptsActionConverter.cs" />
     <Compile Include="TileEisExtension\Conversion\MoveUnitActionConverter.cs" />
-    <Compile Include="EisExtension\Model\Conversion\IiLang\EISActionConverter.cs" />
-    <Compile Include="EisExtension\Model\Conversion\IiLang\EISConverterToEIS.cs" />
-    <Compile Include="EisExtension\Model\Conversion\IiLang\EISPerceptConverter.cs" />
     <Compile Include="TileEisExtension\Conversion\EISTileSerializer.cs" />
-    <Compile Include="EisExtension\Model\Conversion\IiLang\Percepts\EISPerceptCollectionSerializer.cs" />
-    <Compile Include="EisExtension\Model\Conversion\IiLang\Percepts\EISSingleNumeralSerializer.cs" />
     <Compile Include="TileEisExtension\Conversion\EISVisionSerializer.cs" />
     <Compile Include="EisExtension\Model\EISAction.cs" />
-    <Compile Include="EisExtension\Model\EisConversionTool.cs" />
     <Compile Include="EisExtension\Model\IILActionParser.cs" />
     <Compile Include="TileEisExtension\TileEisConversionTool.cs" />
     <Compile Include="TileEisExtension\TileIilActionParser.cs" />
@@ -81,6 +74,15 @@
     <Compile Include="TileExtension\Modules\SpeedModule.cs" />
     <Compile Include="TileExtension\Modules\VisionRangeModule.cs" />
     <Compile Include="TileExtension\Modules\VisionModule.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\Actions\GetAllPerceptsActionConverter.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\EISActionConverter.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\EISConverterToEIS.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\EISPerceptConverter.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\Percepts\EISPerceptCollectionSerializer.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\Percepts\EISSingleNumeralSerializer.cs" />
+    <Compile Include="EisExtension\Model\EISConversionTool.cs" />
+    <Compile Include="LoggerExtension\Logger.cs" />
+    <Compile Include="LoggerExtension\DebugLevel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
@@ -105,9 +107,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EisExtension\Model\Conversion\IiLang\Objects\" />
     <Folder Include="EisExtension\Model\XmasActions\" />
     <Folder Include="EisExtension\View\" />
+    <Folder Include="EisExtension\Model\Conversion\IILang\Objects\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

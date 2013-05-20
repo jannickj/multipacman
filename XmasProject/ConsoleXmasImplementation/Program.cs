@@ -9,6 +9,11 @@ using XmasEngineExtensions.EisExtension.Controller.AI;
 using XmasEngineExtensions.LoggerExtension;
 using XmasEngineExtensions.TileEisExtension;
 using XmasEngineView;
+using ConsoleXmasImplementation.ConsoleLogger;
+using XmasEngineModel.Management;
+using System;
+using XmasEngineExtensions;
+using XmasEngineModel;
 
 namespace ConsoleXmasImplementation
 {
@@ -25,13 +30,21 @@ namespace ConsoleXmasImplementation
 			
 
 
-			var t = factory.FullConstruct(new TestWorld1(),eisserver);
+			Tuple<XmasModel, XmasView, XmasController> t = factory.FullConstruct(new TestWorld1(),eisserver);
 
-			StreamWriter sw = File.CreateText("error.log");
+			StreamWriter logstream = File.CreateText("error.log");
+			Logger log = new Logger (logstream, DebugLevel.AllInformation);
 
 			List<XmasView> views = new List<XmasView>();
 
-			views.Add(new LoggerView(t.Item1,sw));
+			views.Add(
+				new ConsoleLoggerView(
+					t.Item1, 
+					new LoggerViewFactory(new ThreadSafeEventManager(), log), 
+					new ThreadSafeEventManager(), 
+					log
+					)
+				);
 			views.Add(t.Item2);
 			
 			List<XmasController> controllers = new List<XmasController>();

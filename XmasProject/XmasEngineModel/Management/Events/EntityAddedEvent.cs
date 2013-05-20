@@ -4,16 +4,16 @@ namespace XmasEngineModel.Management.Events
 {
 	public class EntityAddedEvent : XmasEvent
 	{
-		private XmasEntity _addedXmasEntity;
+		private XmasEntity addedXmasEntity;
 
-		public EntityAddedEvent(XmasEntity _addedXmasEntity)
+		public EntityAddedEvent(XmasEntity addedXmasEntity)
 		{
-			this._addedXmasEntity = _addedXmasEntity;
+			this.addedXmasEntity = addedXmasEntity;
 		}
 
 		public XmasEntity AddedXmasEntity
 		{
-			get { return _addedXmasEntity; }
+			get { return addedXmasEntity; }
 		}
 	}
 }

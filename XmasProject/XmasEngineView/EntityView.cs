@@ -14,7 +14,6 @@ namespace XmasEngineView
 			this.model = model;
 			eventqueue = model.ConstructEventQueue();
 			tman.AddEventQueue(eventqueue);
-			//eventqueue.Register (new Trigger<UnitMovePostEvent> (UnitMoved));
 		}
 
 		public ThreadSafeEventQueue EventQueue
@@ -28,10 +27,5 @@ namespace XmasEngineView
 		}
 
 		public abstract XmasPosition Position { get; protected set; }
-
-		//protected virtual void UnitMoved(UnitMovePostEvent evt)
-		//{
-		//	position = evt.NewPos;
-		//}
 	}
 }

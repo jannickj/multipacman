@@ -60,6 +60,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestWorld1.cs" />
     <Compile Include="Controller\ConsoleController.cs" />
+    <Compile Include="ConsoleLogger\LoggerViewFactory.cs" />
+    <Compile Include="ConsoleLogger\LoggerEntityView.cs" />
+    <Compile Include="ConsoleLogger\ConsoleLoggerView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -99,4 +102,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="ConsoleLogger\" />
+  </ItemGroup>
 </Project>
