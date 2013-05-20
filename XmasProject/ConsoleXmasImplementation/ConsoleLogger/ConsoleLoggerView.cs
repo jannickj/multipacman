@@ -38,7 +38,7 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 		private void model_EntityAdded(EntityAddedEvent evt)
 		{
 			entities.Add((LoggerEntityView)entityFactory.ConstructEntityView(evt.AddedXmasEntity));
-			log.LogStringWithTimeStamp (String.Format ("The entity {0} was added to the world"), DebugLevel.AllInformation);
+			log.LogStringWithTimeStamp (String.Format ("The entity {0} was added to the world", evt.AddedXmasEntity.GetType().Name), DebugLevel.AllInformation);
 		}
 
 		private void engine_ActionFailed(ActionFailedEvent evt)

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using ConsoleXmasImplementation.ConsoleLogger;
 using ConsoleXmasImplementation.Controller;
 using ConsoleXmasImplementation.View;
 using XmasEngine;
@@ -34,8 +35,9 @@ namespace ConsoleXmasImplementation
 			StreamWriter sw = File.CreateText("error.log");
 
 			List<XmasView> views = new List<XmasView>();
-
-			views.Add(new LoggerView(model,sw));
+			var loggerevtman = new ThreadSafeEventManager();
+			var logger = new Logger(sw, DebugLevel.AllInformation);
+			views.Add(new ConsoleLoggerView(model,new LoggerViewFactory(loggerevtman,logger),loggerevtman,logger));
 			views.Add(view);
 			
 
