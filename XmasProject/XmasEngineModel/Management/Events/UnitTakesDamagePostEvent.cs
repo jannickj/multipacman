@@ -6,10 +6,10 @@ namespace XmasEngineModel.Management.Events
 	{
 		private int actualDmg;
 		private int dmg;
-		private Unit source;
-		private Unit target;
+		private Agent source;
+		private Agent target;
 
-		public UnitTakesDamagePostEvent(Unit source, Unit target, int dmg, int actualDmg)
+		public UnitTakesDamagePostEvent(Agent source, Agent target, int dmg, int actualDmg)
 		{
 			// TODO: Complete member initialization
 			this.source = source;
@@ -30,12 +30,12 @@ namespace XmasEngineModel.Management.Events
 			get { return actualDmg; }
 		}
 
-		public Unit Source
+		public Agent Source
 		{
 			get { return source; }
 		}
 
-		public Unit Target
+		public Agent Target
 		{
 			get { return target; }
 		}

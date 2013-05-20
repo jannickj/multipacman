@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Timers;
 using JSLibrary.Data;
@@ -49,19 +51,30 @@ namespace ConsoleXmasImplementation.View
 		{
 			int width = viewWorld.Width;
 			int height = viewWorld.Height;
-			Dictionary<Point, ConsoleEntityView> entities = viewWorld.AllEntities();
+			DictionaryList<Point, ConsoleEntityView> entities = viewWorld.AllEntities();
 			DrawSceen screen = new DrawSceen(width, height);
 
 			for (int x = 0; x < width; x++)
 				for (int y = 0; y < height; y++ )
 					screen[x,y] = ' ';
 
-			foreach (KeyValuePair<Point, ConsoleEntityView> kv in entities)
+			foreach (Point p in entities.Keys)
 			{
-				int x = kv.Key.X;
-				int y = kv.Key.Y;
-
-				screen[x,y] = kv.Value.Symbol;
+				int x = p.X;
+				int y = p.Y;
+				ICollection<ConsoleEntityView> ents;
+				if (entities.TryGetValues(p, out ents))
+				{
+					int count = ents.Count;
+					if (count > 1)
+					{
+						screen[x, y] = count.ToString().ToArray()[0];
+					}
+					else
+					{
+						screen[x, y] = ents.First().Symbol;
+					}
+				}
 			}
 			return screen.GenerateScreen();
 		}
@@ -69,16 +82,14 @@ namespace ConsoleXmasImplementation.View
 		private void Update()
 		{
 			DateTime start = DateTime.Now;
-
 			Draw();
-
-			Func<long> remainPct = () => ((DateTime.Now.Ticks - start.Ticks) / 10000) / UPDATE_DELAY;
+			Func<long> remainPct = () => ((DateTime.Now.Ticks - start.Ticks) / 100) / UPDATE_DELAY;
 			while (this.evtmanager.ExecuteNext() && remainPct() <= WORK_PCT)
 			{
 
 			}
 
-			long sleeptime = UPDATE_DELAY - ((DateTime.Now.Ticks - start.Ticks) / 10000);
+			long sleeptime = UPDATE_DELAY - ((DateTime.Now.Ticks - start.Ticks) / 100);
 			Console.SetCursorPosition(0, 0);
 			long pct = remainPct();
 

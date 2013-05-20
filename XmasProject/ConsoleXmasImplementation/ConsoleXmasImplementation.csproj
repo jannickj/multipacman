@@ -42,8 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\KeyboardSettings.cs" />
+    <Compile Include="Model\ConsoleAgent.cs" />
+    <Compile Include="Model\ConsoleEntity.cs" />
     <Compile Include="Model\Ghost.cs" />
     <Compile Include="Model\Player.cs" />
+    <Compile Include="Model\Wall.cs" />
     <Compile Include="View\ConsoleEntityView.cs" />
     <Compile Include="View\ConsoleViewFactory.cs" />
     <Compile Include="View\ConsoleWorldView.cs" />
@@ -59,7 +63,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestWorld1.cs" />
-    <Compile Include="Controller\ConsoleController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

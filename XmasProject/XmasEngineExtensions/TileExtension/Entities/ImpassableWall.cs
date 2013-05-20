@@ -8,7 +8,10 @@ namespace XmasEngineExtensions.TileExtension.Entities
 	{
 		public ImpassableWall()
 		{
-			RegisterModule (new RuleBasedMovementModule ());
+			RegisterModule (new RuleBasedMovementModule());
+			RuleBasedMovementModule movement = (RuleBasedMovementModule)this.Module<MovementBlockingModule>();
+			movement.AddNewRuleLayer<ImpassableWall>();
+			movement.AddWillBlockRule<ImpassableWall>(_ => true);
 		}
 	}
 }

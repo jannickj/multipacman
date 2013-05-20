@@ -2,12 +2,17 @@
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using ConsoleXmasImplementation.Controller;
+using ConsoleXmasImplementation.View;
 using XmasEngine;
 using XmasEngineController;
 using XmasEngineExtensions.EisExtension;
 using XmasEngineExtensions.EisExtension.Controller.AI;
 using XmasEngineExtensions.LoggerExtension;
 using XmasEngineExtensions.TileEisExtension;
+using XmasEngineExtensions.TileExtension;
+using XmasEngineModel;
+using XmasEngineModel.Management;
 using XmasEngineView;
 
 namespace ConsoleXmasImplementation
@@ -18,29 +23,44 @@ namespace ConsoleXmasImplementation
 		{
 			ConsoleFactory factory = new ConsoleFactory();
 
-			var listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 44444);
-			var EisConverter = new TileEisConversionTool();
-			var IilParser = new TileIilActionParser();
-			var eisserver = new EISAgentServer(listener,EisConverter, IilParser);
-			
+			//Model contruction
+			XmasModel model = factory.ConstructModel(new TestWorld1());
 
+			//View construction
+			ThreadSafeEventManager evtman = new ThreadSafeEventManager();
+			ConsoleView view = new ConsoleView(model, new ConsoleWorldView((TileWorld)model.World), new ConsoleViewFactory(evtman), evtman);
 
-			var t = factory.FullConstruct(new TestWorld1(),eisserver);
 
 			StreamWriter sw = File.CreateText("error.log");
 
 			List<XmasView> views = new List<XmasView>();
 
-			views.Add(new LoggerView(t.Item1,sw));
-			views.Add(t.Item2);
+			views.Add(new LoggerView(model,sw));
+			views.Add(view);
 			
+
+			//Controller construction
+			var listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 44444);
+			var eisConverter = new TileEisConversionTool();
+			var iilParser = new TileIilActionParser();
+			var eisserver = new EISAgentServer(listener, eisConverter, iilParser);
+
+
+			var humancontroller = new HumanInterfaceManager(new KeyboardSettings());
+
 			List<XmasController> controllers = new List<XmasController>();
 
-			controllers.Add(t.Item3);
+			controllers.Add(eisserver);
+			controllers.Add(humancontroller);
+
 
 			var engine = new XmasEngineManager(factory);
 
-			engine.StartEngine(t.Item1,views,controllers);
+			engine.StartEngine(model,views,controllers);
 		}
+
+
+		
+
 	}
 }

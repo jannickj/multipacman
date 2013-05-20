@@ -10,13 +10,13 @@ namespace XmasEngine
 {
 	public class XmasEngineManager
 	{
-		private XmasEngineFactory factory;
+		private XmasModelFactory factory;
 
 		private Thread modelThread;
 		private List<Thread> viewThreads = new List<Thread>();
 		private List<Thread> controllerThreads = new List<Thread>();
 
-		public XmasEngineManager(XmasEngineFactory factory)
+		public XmasEngineManager(XmasModelFactory factory)
 		{
 			this.factory = factory;
 		}
@@ -36,6 +36,7 @@ namespace XmasEngine
 
 			foreach (var xmasView in views)
 			{
+				model.AddActor(xmasView);
 				xmasView.Initialize();
 				Thread viewt = fact.CreateThread(xmasView.Start);
 				viewt.Name = "View Thread "+i;
@@ -46,9 +47,10 @@ namespace XmasEngine
 			i = 1;
 			foreach (var xmasController in controllers)
 			{
+				model.AddActor(xmasController);
 				xmasController.Initialize();
 				Thread cont = fact.CreateThread(xmasController.Start);
-				cont.Name = "Controller Thread " + i;
+				cont.Name = xmasController.ThreadName()+" "+ i;
 				i++;
 				controllerThreads.Add(cont);
 			}

@@ -9,10 +9,10 @@ namespace XmasEngineModel.Management.Events
 		private double dmgMultiplier = 1;
 		private int dmgPostMultiplier;
 		private int dmgPreMultiplier;
-		private Unit source;
-		private Unit target;
+		private Agent source;
+		private Agent target;
 
-		public UnitTakesDamagePreEvent(Unit source, Unit target, int dmg)
+		public UnitTakesDamagePreEvent(Agent source, Agent target, int dmg)
 		{
 			// TODO: Complete member initialization
 			this.source = source;

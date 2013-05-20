@@ -50,6 +50,7 @@ namespace XmasEngineController.AI
 		private void action_Completed(object sender, EventArgs e)
 		{
 			actionComplete.Set();
+			((XmasAction) sender).Resolved -= action_Completed;
 		}
 
 		private void agent_RetrievePercepts(RetreivePerceptsEvent e)

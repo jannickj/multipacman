@@ -7,7 +7,7 @@ using XmasEngineView;
 
 namespace XmasEngine
 {
-	public abstract class XmasEngineFactory
+	public class XmasModelFactory
 	{
 		public virtual XmasModel ConstructModel(XmasWorldBuilder builder)
 		{
@@ -36,24 +36,5 @@ namespace XmasEngine
 			return new ActionManager(evtman);
 		}
 
-		public abstract XmasView ConstructView(XmasModel model);
-
-
-		public abstract XmasController ContructController(XmasModel model, XmasView view);
-
-
-		public Tuple<XmasModel, XmasView, XmasController> FullConstruct(XmasWorldBuilder builder,
-		                                                                params AgentManager[] agentmanagers)
-		{
-			XmasModel model = ConstructModel(builder);
-			XmasView view = ConstructView(model);
-			XmasController controller = ContructController(model, view);
-
-			foreach (AgentManager aman in agentmanagers)
-				controller.AddAiServer(aman);
-
-
-			return Tuple.Create(model, view, controller);
-		}
 	}
 }

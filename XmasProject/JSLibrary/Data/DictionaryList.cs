@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -62,5 +63,26 @@ namespace JSLibrary.Data
 			}
 		}
 
+		public ICollection<TKey> Keys
+		{
+			get { return this.dic.Keys.ToArray(); }
+		}
+
+
+
+
+
+
+		public bool TryGetValues(TKey key, out ICollection<TValue> values)
+		{
+			HashSet<TValue> vals;
+			if (this.dic.TryGetValue(key, out vals))
+			{
+				values = vals.ToArray();
+				return true;
+			}
+			values = null;
+			return false;
+		}
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using ConsoleXmasImplementation.Model;
 using XmasEngineController.AI;
 using XmasEngineModel.EntityLib;
@@ -13,9 +14,12 @@ namespace ConsoleXmasImplementation.Controller
 {
 	public class HumanInterfaceManager : AgentManager
 	{
-		public HumanInterfaceManager()
-		{
+		private KeyboardSettings settings;
+		private AutoResetEvent playerFlagEvent = new AutoResetEvent(false);
 
+		public HumanInterfaceManager(KeyboardSettings settings)
+		{
+			this.settings = settings;
 		}
 
 		public override void Initialize()
@@ -31,17 +35,29 @@ namespace ConsoleXmasImplementation.Controller
 		private KeyValuePair<string, AgentController> AgentControllerConstructor()
 		{
 			Agent player = this.TakeControlOf("player");
-			var kv = new KeyValuePair<string, AgentController>(player.Name,new HumanInterfaceController(player));
+			var kv = new KeyValuePair<string, AgentController>(player.Name,new HumanInterfaceController(player,settings));
 
 			return kv;
+		}
+
+		public override void Start()
+		{
+			playerFlagEvent.WaitOne();
+			var con = AgentControllerConstructor();
+			con.Value.Start();
 		}
 
 		private void game_EntityAdded(EntityAddedEvent evt)
 		{
 			if (evt.AddedXmasEntity is Player)
 			{
-				this.AddAgent(evt.AddedXmasEntity as Player);
+				this.playerFlagEvent.Set();
 			}
+		}
+
+		public override string ThreadName()
+		{
+			return "Human Controller";
 		}
 
 	}

@@ -8,22 +8,23 @@ using XmasEngineModel.Rule;
 
 namespace XmasEngineExtensions.TileExtension.Modules
 {
-	public class BlockingModule<TEntity> : RuleBasedModule<TEntity> where TEntity : XmasEntity
+	internal class BlockingModule<TEntity> : RuleBasedModule<TEntity> where TEntity : XmasEntity
 	{
 		private Conclusion[] conclusions = new Conclusion[2];
-		private RuleHierarchy<Type, TEntity> movementRules = new RuleHierarchy<Type, TEntity>();
+		
 
 
 		public BlockingModule()
 		{
 			conclusions[0] = new Conclusion("Non blocking");
 			conclusions[1] = new Conclusion("Blocking");
+
 			
 		}
 
 		public bool IsBlocking(TEntity ent)
 		{
-			Conclusion c = movementRules.Conclude(ent);
+			Conclusion c = this.Conclude(ent);
 
 			if (c == conclusions[0])
 				return false;
@@ -34,6 +35,7 @@ namespace XmasEngineExtensions.TileExtension.Modules
 			return false;
 		}
 
+		
 		public void AddNewRuleLayer<TDecider>()
 		{
 			this.PushRuleLayer(typeof(TDecider));

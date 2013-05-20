@@ -30,7 +30,7 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 
 		public override void Initialize()
 		{
-            this.EventManager.Register(new Trigger<EntityAddedEvent>(engine_EntityAdded));
+           
 			listener.Start();
 		}
 
@@ -70,12 +70,6 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 			return con;
 		}
 
-        private void engine_EntityAdded(EntityAddedEvent evt)
-        {
-            Agent a = evt.AddedXmasEntity as Agent;
-            if (a == null)
-                return;
-            this.AddAgent(a);
-        }
+       
 	}
 }

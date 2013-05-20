@@ -30,9 +30,9 @@ namespace ConsoleXmasImplementation.View
 			viewlookup.Add(entview.Model, entview);
 		}
 
-		public Dictionary<Point, ConsoleEntityView> AllEntities()
+		public DictionaryList<Point, ConsoleEntityView> AllEntities()
 		{
-			var locs = new Dictionary<Point, ConsoleEntityView>();
+			var locs = new DictionaryList<Point, ConsoleEntityView>();
 
 			Size wbSize = this.model.BurstSize;
 

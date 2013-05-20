@@ -7,11 +7,16 @@ using XmasEngineModel.EntityLib;
 
 namespace ConsoleXmasImplementation.Model
 {
-	public class Ghost : Agent
+	public class Ghost : ConsoleAgent
 	{
 		public Ghost(string name) : base(name)
 		{
-			this.RegisterModule(new SpeedModule(100));
+			
+		}
+
+		protected override SpeedModule ConstructSpeedModule()
+		{
+			return new SpeedModule(100);
 		}
 	}
 }

@@ -25,5 +25,6 @@ namespace XmasEngineModel.EntityLib
 				return moduleMap.Values.SelectMany(m => m.Percepts);
 			}
 		}
+
 	}
 }

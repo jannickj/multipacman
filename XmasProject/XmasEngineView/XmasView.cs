@@ -1,8 +1,9 @@
-﻿using XmasEngineModel.Interfaces;
+﻿using XmasEngineModel;
+using XmasEngineModel.Interfaces;
 
 namespace XmasEngineView
 {
-	public abstract class XmasView : IStartable
+	public abstract class XmasView : XmasActor, IStartable
 	{
 		public virtual void Initialize()
 		{

@@ -21,5 +21,10 @@ namespace XmasEngineModel.EntityLib.Module
 		{
 			ruleHierarchy.AddLayer(layer, new TransformationRule<TEntity>());
 		}
+
+		protected Conclusion Conclude(TEntity ent)
+		{
+			return this.ruleHierarchy.Conclude(ent);
+		}
 	}
 }

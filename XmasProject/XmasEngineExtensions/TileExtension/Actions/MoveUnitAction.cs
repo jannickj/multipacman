@@ -39,8 +39,10 @@ namespace XmasEngineExtensions.TileExtension.Actions
 				{
 					TilePosition tile = World.GetEntityPosition(Source) as TilePosition;
 					Point newloc = tile.Point + direction;
-					World.SetEntityPosition(Source, new TilePosition(newloc));
-					Source.Raise(new UnitMovePostEvent(newloc));
+					if(World.SetEntityPosition(Source, new TilePosition(newloc)))
+						Source.Raise(new UnitMovePostEvent(newloc));
+					else
+						Source.Raise(new UnitMovePostEvent(tile.Point));
 
 					Complete();
 				});

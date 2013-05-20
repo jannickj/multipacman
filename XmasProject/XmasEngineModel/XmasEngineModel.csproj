@@ -46,12 +46,14 @@
     <Compile Include="Conversion\XmasConverterToXmas.cs" />
     <Compile Include="EntityLib\Module\EntityModule.cs" />
     <Compile Include="EntityLib\Module\RuleBasedModule.cs" />
-    <Compile Include="EntityLib\Unit.cs" />
     <Compile Include="EntityLib\Agent.cs" />
     <Compile Include="EntityLib\XmasEntity.cs" />
     <Compile Include="Enum\Direction.cs" />
+    <Compile Include="Exceptions\AgentAlreadyExistsException.cs" />
+    <Compile Include="Exceptions\AgentHasNoNameException.cs" />
     <Compile Include="Exceptions\EntityException.cs" />
     <Compile Include="Exceptions\ForceStopEngineException.cs" />
+    <Compile Include="Exceptions\MissingModuleException.cs" />
     <Compile Include="Exceptions\UnableToConvertException.cs" />
     <Compile Include="Exceptions\UnacceptableActionException.cs" />
     <Compile Include="Exceptions\UnconvertableException.cs" />

@@ -23,8 +23,7 @@ namespace XmasEngineModel.EntityLib
 			try {
 				return moduleMap [typeof(TModule)] as TModule;
 			} catch (KeyNotFoundException e) {
-				//TODO: raise ModuleNotFoundException or something like that
-				throw new NotImplementedException();
+				throw new MissingModuleException(this,typeof(TModule));
 			}	
 		}
 

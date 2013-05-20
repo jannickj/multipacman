@@ -2,20 +2,16 @@
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading;
+using JSLibrary;
 using XmasEngineModel;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Interfaces;
 
 namespace XmasEngineController.AI
 {
-	public abstract class AgentManager : XmasActor, IStartable
+	public abstract class AgentManager : XmasController, IStartable
 	{
-		private Dictionary<AgentController, AgentControllerInfomation> agents =
-			new Dictionary<AgentController, AgentControllerInfomation>();
 
-		private HashSet<Agent> availableAgents = new HashSet<Agent>();
-		private Dictionary<string, Agent> knownAgents = new Dictionary<string, Agent>();
-		
 
 		public AgentManager()
 		{
@@ -23,7 +19,7 @@ namespace XmasEngineController.AI
 		}
 
 
-		public void Start()
+		public override void Start()
 		{
 			while (true)
 			{
@@ -34,7 +30,6 @@ namespace XmasEngineController.AI
 			}
 		}
 
-		public abstract void Initialize();
 
 		protected abstract Func<KeyValuePair<string, AgentController>> AquireAgentControllerContructor();
 
@@ -44,13 +39,15 @@ namespace XmasEngineController.AI
 			KeyValuePair<string, AgentController> agent;
 			try
 			{
-				TryExecute(constructor, 2000000000, out agent);
-				AgentControllerInfomation ainfo = new AgentControllerInfomation();
-				ainfo.Thread = Thread.CurrentThread;
-				ainfo.Name = agent.Key;
-				lock (this)
-					agents.Add(agent.Value, ainfo);
+				if (this.AgentControllerConstructionTimeOut == 0)
+				{
+					agent = constructor();
+				}
+				else
+					Parallel.TryExecute(constructor, this.AgentControllerConstructionTimeOut, out agent);
 
+				Thread.CurrentThread.Name = agent.Key+" Thread";
+				
 				agent.Value.Start();
 			}
 			catch (TimeoutException)
@@ -64,9 +61,8 @@ namespace XmasEngineController.AI
 			lock (this)
 			{
 				Agent agent;
-				if (knownAgents.TryGetValue(name, out agent))
+				if (this.World.TryGetAgent(name, out agent))
 				{
-					availableAgents.Remove(agent);
 					return agent;
 				}
 				else
@@ -74,66 +70,17 @@ namespace XmasEngineController.AI
 			}
 		}
 
-		public void AddAgent(Agent agent)
+		public virtual int AgentControllerConstructionTimeOut
 		{
-			lock (this)
+			get
 			{
-				knownAgents.Add(agent.Name, agent);
-				availableAgents.Add(agent);
+				return 0;
 			}
 		}
+		
 
-		public static T Execute<T>(Func<T> func, int timeout)
-		{
-			T result;
-			TryExecute(func, timeout, out result);
-			return result;
-		}
+		
 
-		public static bool TryExecute<T>(Func<T> func, int timeout, out T result)
-		{
-			T t = default(T);
-			Thread thread = new Thread(() => t = func());
-			thread.Start();
-			bool completed = thread.Join(timeout);
-			if (!completed)
-			{
-				thread.Abort();
-				throw new TimeoutException();
-			}
-			result = t;
-			return completed;
-		}
-
-		private class AgentControllerInfomation
-		{
-			private String name;
-			private Thread thread;
-
-			public String Name
-			{
-				set
-				{
-					name = value;
-					if (thread != null && thread.Name == null)
-						thread.Name = ThreadName();
-				}
-			}
-
-			public Thread Thread
-			{
-				set
-				{
-					thread = value;
-					if (name != null && thread.Name == null)
-						thread.Name = ThreadName();
-				}
-			}
-
-			private string ThreadName()
-			{
-				return name + " Controller Thread";
-			}
-		}
+		
 	}
 }

@@ -50,6 +50,7 @@
     <Compile Include="ExtendedType.cs" />
     <Compile Include="IiLang\Exceptions\MissingXmlAttributeException.cs" />
     <Compile Include="IiLang\SingleParameter.cs" />
+    <Compile Include="Parallel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IiLang\DataContainers\IilAction.cs" />
     <Compile Include="IiLang\DataContainers\IilPercept.cs" />

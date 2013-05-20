@@ -42,7 +42,7 @@
     <Compile Include="Exceptions\EngineAlreadyStartedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmasEngine.cs" />
-    <Compile Include="XmasEngineFactory.cs" />
+    <Compile Include="XmasModelFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
