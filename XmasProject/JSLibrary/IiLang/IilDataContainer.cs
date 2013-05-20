@@ -62,8 +62,10 @@ namespace JSLibrary.IiLang
 
 			if (reader.IsEmptyElement)
 			{
-				reader.Read();
+				reader.ReadEndElement();
+				return;
 			}
+
 
 			if (reader.ReadToDescendant(ChildXmlTag))
 			{
@@ -78,7 +80,9 @@ namespace JSLibrary.IiLang
 					reader.ReadEndElement();
 				}
 			}
+			
 
+			//reader.ReadEndElement();
 			//reader.Read();
 		}
 

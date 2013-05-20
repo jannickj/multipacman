@@ -11,9 +11,11 @@ namespace XmasEngineModel.Management
 		private bool single;
 		private DateTime stopped;
 		private Timer timer = new Timer();
+		private XmasAction owner;
 
-		public XmasTimer(ActionManager actman, Action action)
+		public XmasTimer(ActionManager actman, XmasAction owner, Action action)
 		{
+			this.owner = owner;
 			this.actman = actman;
 			this.action = action;
 			timer.AutoReset = false;
@@ -26,7 +28,17 @@ namespace XmasEngineModel.Management
 			if (!single)
 				timer.Start();
 
-			actman.Queue(new SimpleAction(sa => action()));
+			SimpleAction sa = new SimpleAction(_ => action());
+			sa.Failed += simpleAction_Failed;
+
+			actman.Queue(sa);
+		}
+
+		void simpleAction_Failed(object sender, EventArgs e)
+		{
+			this.owner.Fail();
+
+			((SimpleAction) sender).Failed -= simpleAction_Failed;
 		}
 
 		private void start(double m)

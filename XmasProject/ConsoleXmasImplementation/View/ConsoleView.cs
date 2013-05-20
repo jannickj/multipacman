@@ -21,14 +21,14 @@ namespace ConsoleXmasImplementation.View
 		private XmasModel model;
 		private ConsoleWorldView viewWorld;
 
-		public ConsoleView(XmasModel model, ConsoleWorldView viewWorld, ConsoleViewFactory entityFactory)
+		public ConsoleView(XmasModel model, ConsoleWorldView viewWorld, ConsoleViewFactory entityFactory, ThreadSafeEventManager evtmanager)
 		{
 			this.model = model;
 			this.viewWorld = viewWorld;
 			this.entityFactory = entityFactory;
 
 			//TODO: Move evtmanager out of here and add it to the other views
-			evtmanager = new ThreadSafeEventManager();
+			this.evtmanager = evtmanager;
 			eventqueue = model.EventManager.ConstructEventQueue();
 			evtmanager.AddEventQueue(eventqueue);
 			eventqueue.Register(new Trigger<EntityAddedEvent>(Model_EntityAdded));

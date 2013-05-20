@@ -5,6 +5,7 @@ using XmasEngineController;
 using XmasEngineExtensions.EisExtension.Controller.AI;
 using XmasEngineExtensions.TileExtension;
 using XmasEngineModel;
+using XmasEngineModel.Management;
 using XmasEngineView;
 
 namespace ConsoleXmasImplementation
@@ -15,7 +16,8 @@ namespace ConsoleXmasImplementation
 
 		public override XmasView ConstructView(XmasModel model)
 		{
-			return new ConsoleView(model, new ConsoleWorldView((TileWorld) model.World), new ConsoleViewFactory());
+			ThreadSafeEventManager evtman = new ThreadSafeEventManager();
+			return new ConsoleView(model, new ConsoleWorldView((TileWorld) model.World), new ConsoleViewFactory(evtman),evtman);
 		}
 
 

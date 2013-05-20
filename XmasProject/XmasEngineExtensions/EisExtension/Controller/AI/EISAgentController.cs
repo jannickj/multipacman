@@ -34,7 +34,17 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 
 		private void update()
 		{
-			IilAction iilaction = (IilAction) deserializer.Deserialize(xreader);
+			IilAction iilaction = null;
+
+			while (iilaction == null)
+			{
+				iilaction = (IilAction)deserializer.Deserialize(xreader);
+				
+				if (iilaction == null)
+					xreader.ReadEndElement();
+			}
+			
+			
 			EISAction eisaction = actionparser.parseIILAction(iilaction);
 			EntityXmasAction gameaction = (EntityXmasAction) tool.ConvertToXmas(eisaction);
 			performAction(gameaction);

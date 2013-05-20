@@ -13,10 +13,9 @@ namespace ConsoleXmasImplementation.View
 	{
 		private Point pos;
 
-		public ConsoleEntityView(XmasEntity model) : base(model)
+		public ConsoleEntityView(XmasEntity model, ThreadSafeEventManager evtman) : base(model,evtman)
 		{
 			this.Position = model.Position;
-			eventqueue = model.ConstructEventQueue();
 			eventqueue.Register(new Trigger<UnitMovePostEvent>(entityView_UnitMovePostEvent));
 		}
 

@@ -66,6 +66,7 @@
     <Compile Include="Management\EntityXmasAction.cs" />
     <Compile Include="Management\EnvironmentAction.cs" />
     <Compile Include="Management\EventManager.cs" />
+    <Compile Include="Management\Events\ActionFailedEvent.cs" />
     <Compile Include="Management\Events\EngineCloseEvent.cs" />
     <Compile Include="Management\Events\EntityAddedEvent.cs" />
     <Compile Include="Management\Events\RetreivePerceptsEvent.cs" />

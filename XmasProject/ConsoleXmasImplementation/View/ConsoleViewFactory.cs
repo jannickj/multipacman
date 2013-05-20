@@ -3,6 +3,7 @@ using ConsoleXmasImplementation.Model;
 using ConsoleXmasImplementation.View.EntityViews;
 using XmasEngineExtensions.TileExtension.Entities;
 using XmasEngineModel.EntityLib;
+using XmasEngineModel.Management;
 using XmasEngineView;
 
 namespace ConsoleXmasImplementation.View
@@ -11,9 +12,11 @@ namespace ConsoleXmasImplementation.View
 	{
 		#region implemented abstract members of ViewFactory
 
-		public ConsoleViewFactory()
-		{
+		private ThreadSafeEventManager evtman;
 
+		public ConsoleViewFactory(ThreadSafeEventManager evtman)
+		{
+			this.evtman = evtman;
 			AddTypeLink<Ghost, ConsoleGhostView>();
 			AddTypeLink<Wall, ConsoleWallView>();
 			AddTypeLink<Player, ConsolePlayerView>();
@@ -22,7 +25,7 @@ namespace ConsoleXmasImplementation.View
 
 		public override EntityView ConstructEntityView(XmasEntity model)
 		{
-			ConsoleEntityView retval = (ConsoleEntityView) Activator.CreateInstance(typeDict[model.GetType()], model);
+			ConsoleEntityView retval = (ConsoleEntityView) Activator.CreateInstance(typeDict[model.GetType()], model, evtman);
 			return retval;
 		}
 

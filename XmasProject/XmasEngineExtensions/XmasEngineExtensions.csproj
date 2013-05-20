@@ -42,6 +42,7 @@
     <Compile Include="EisExtension\Controller\AI\EISAgentController.cs" />
     <Compile Include="EisExtension\Controller\AI\EISAgentServer.cs" />
     <Compile Include="EisExtension\Model\ActionTypes\EISGetAllPercepts.cs" />
+    <Compile Include="LoggerExtension\LoggerView.cs" />
     <Compile Include="TileEisExtension\ActionTypes\EISMoveUnit.cs" />
     <Compile Include="EisExtension\Model\Conversion\IILang\Actions\GetAllPerceptsActionConverter.cs" />
     <Compile Include="TileEisExtension\Conversion\MoveUnitActionConverter.cs" />

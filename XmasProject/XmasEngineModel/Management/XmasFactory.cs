@@ -18,9 +18,9 @@ namespace XmasEngineModel.Management
 
 		internal event UnaryValueHandler<Tuple<XmasEntity, Point>> EntityCreated;
 
-		public XmasTimer CreateTimer(Action action)
+		public XmasTimer CreateTimer(XmasAction owner, Action action)
 		{
-			XmasTimer gt = new XmasTimer(actman, action);
+			XmasTimer gt = new XmasTimer(actman, owner, action);
 			return gt;
 		}
 

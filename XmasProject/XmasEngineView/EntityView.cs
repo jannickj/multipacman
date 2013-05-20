@@ -9,10 +9,11 @@ namespace XmasEngineView
 		protected ThreadSafeEventQueue eventqueue;
 		protected XmasEntity model;
 
-		public EntityView(XmasEntity model)
+		public EntityView(XmasEntity model, ThreadSafeEventManager tman)
 		{
 			this.model = model;
 			eventqueue = model.ConstructEventQueue();
+			tman.AddEventQueue(eventqueue);
 			//eventqueue.Register (new Trigger<UnitMovePostEvent> (UnitMoved));
 		}
 

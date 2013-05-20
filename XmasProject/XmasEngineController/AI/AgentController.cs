@@ -24,7 +24,7 @@ namespace XmasEngineController.AI
 
 		public void performAction(EntityXmasAction action)
 		{
-			action.Completed += action_Completed;
+			action.Resolved += action_Completed;
 			agent.QueueAction(action);
 
 			actionComplete.WaitOne();
@@ -36,7 +36,7 @@ namespace XmasEngineController.AI
 				newpercepts = null;
 			}
 
-			if (PerceptsRecieved != null && activepercepts != null)
+			if (PerceptsRecieved != null && activepercepts != null && action.ActionFailed == false)
 			{
 				PerceptsRecieved(this, new UnaryValueEvent<PerceptCollection>(activepercepts));
 			}

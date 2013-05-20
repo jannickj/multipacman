@@ -11,9 +11,9 @@ namespace XmasEngine
 	{
 		public virtual XmasModel ConstructModel(XmasWorldBuilder builder)
 		{
-			ActionManager actman = ConstructActionManager();
-			XmasWorld world = builder.Build(actman);
 			EventManager evtman = ConstructEventManager();
+			ActionManager actman = ConstructActionManager(evtman); 
+			XmasWorld world = builder.Build(actman);
 			XmasFactory fact = ConstructGameFactory(actman);
 			XmasModel engine = new XmasModel(world, actman, evtman, fact);
 
@@ -31,9 +31,9 @@ namespace XmasEngine
 			return new EventManager();
 		}
 
-		protected virtual ActionManager ConstructActionManager()
+		protected virtual ActionManager ConstructActionManager(EventManager evtman)
 		{
-			return new ActionManager();
+			return new ActionManager(evtman);
 		}
 
 		public abstract XmasView ConstructView(XmasModel model);

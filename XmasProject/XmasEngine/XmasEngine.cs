@@ -13,14 +13,15 @@ namespace XmasEngine
 		private XmasEngineFactory factory;
 
 		private Thread modelThread;
-		private List<Thread> otherThreads = new List<Thread>();
+		private List<Thread> viewThreads = new List<Thread>();
+		private List<Thread> controllerThreads = new List<Thread>();
 
 		public XmasEngineManager(XmasEngineFactory factory)
 		{
 			this.factory = factory;
 		}
 
-		public void StartEngine(XmasModel model, XmasView view, XmasController controller)
+		public void StartEngine(XmasModel model,ICollection<XmasView> views, ICollection<XmasController> controllers)
 		{
 			if (modelThread != null)
 			{
@@ -28,24 +29,46 @@ namespace XmasEngine
 			}
 			XmasFactory fact = model.Factory;
 			Thread modelt = fact.CreateThread(model.Start);
-			Thread viewt = fact.CreateThread(view.Start);
-			Thread cont = fact.CreateThread(controller.Start);
-
-			modelt.Name = "Model Thread";
-			viewt.Name = "View Thread";
-			cont.Name = "Controller Thread";
 
 			model.Initialize();
-			view.Initialize();
-			controller.Initialize();
+
+			int i = 1;
+
+			foreach (var xmasView in views)
+			{
+				xmasView.Initialize();
+				Thread viewt = fact.CreateThread(xmasView.Start);
+				viewt.Name = "View Thread "+i;
+				i++;
+				viewThreads.Add(viewt);
+			}
+
+			i = 1;
+			foreach (var xmasController in controllers)
+			{
+				xmasController.Initialize();
+				Thread cont = fact.CreateThread(xmasController.Start);
+				cont.Name = "Controller Thread " + i;
+				i++;
+				controllerThreads.Add(cont);
+			}
+
+			modelt.Name = "Model Thread";
+			modelThread = modelt;
 
 			modelt.Start();
-			viewt.Start();
-			cont.Start();
+			foreach (var viewThread in viewThreads)
+			{
+				viewThread.Start();
+			}
 
-			modelThread = modelt;
-			otherThreads.Add(viewt);
-			otherThreads.Add(cont);
+			foreach (var controllerThread in controllerThreads)
+			{
+				controllerThread.Start();
+			}
+
+			
+			
 		}
 	}
 }

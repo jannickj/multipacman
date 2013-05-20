@@ -35,7 +35,7 @@ namespace XmasEngineExtensions.TileExtension.Actions
 			UnitMovePreEvent before = new UnitMovePreEvent();
 			Source.Raise(before);
 			time = Source.Module<SpeedModule>().Speed;
-			XmasTimer gt = Factory.CreateTimer(() =>
+			XmasTimer gt = Factory.CreateTimer(this,() =>
 				{
 					TilePosition tile = World.GetEntityPosition(Source) as TilePosition;
 					Point newloc = tile.Point + direction;

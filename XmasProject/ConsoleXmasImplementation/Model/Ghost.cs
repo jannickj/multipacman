@@ -11,7 +11,7 @@ namespace ConsoleXmasImplementation.Model
 	{
 		public Ghost(string name) : base(name)
 		{
-			this.RegisterModule(new SpeedModule(1000));
+			this.RegisterModule(new SpeedModule(100));
 		}
 	}
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using JSLibrary.Data.GenericEvents;
+using XmasEngineModel.Exceptions;
+using XmasEngineModel.Management.Events;
 
 namespace XmasEngineModel.Management
 {
@@ -9,6 +11,13 @@ namespace XmasEngineModel.Management
 	{
 		private Queue<XmasAction> awaitingActions = new Queue<XmasAction>();
 		private HashSet<XmasAction> runningActions = new HashSet<XmasAction>();
+		private EventManager evtman;
+
+		public ActionManager(EventManager evtman)
+		{
+			this.evtman = evtman;
+		}
+
 
 		public ICollection<XmasAction> RunningActions
 		{
@@ -22,11 +31,11 @@ namespace XmasEngineModel.Management
 
 		#region EVENTS
 
-		private void action_Completed(object sender, EventArgs e)
+		private void action_Resolved(object sender, EventArgs e)
 		{
 			XmasAction ga = (XmasAction) sender;
 			runningActions.Remove(ga);
-			ga.Completed -= action_Completed;
+			ga.Resolved -= action_Resolved;
 		}
 
 		#endregion
@@ -50,11 +59,23 @@ namespace XmasEngineModel.Management
 
 				foreach (XmasAction action in actions)
 				{
-					
 					runningActions.Add(action);
-					action.Completed += action_Completed;
-					action.Fire();
-					actionsExecuted++;
+					action.Resolved += action_Resolved;
+					try
+					{
+						action.Fire();
+						actionsExecuted++;
+					}
+					catch (ForceStopEngineException e)
+					{
+						throw e;
+					}
+					catch (Exception e)
+					{
+						action.Fail();
+						this.evtman.Raise(new ActionFailedEvent(e));
+					}
+					
 				}
 				lock (this)
 				{
