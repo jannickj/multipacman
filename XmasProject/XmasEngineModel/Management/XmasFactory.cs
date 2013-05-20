@@ -3,7 +3,7 @@ using System.Threading;
 using JSLibrary.Data;
 using JSLibrary.Data.GenericEvents;
 using XmasEngineModel.EntityLib;
-using XmasEngineModel.Perceptions;
+using XmasEngineModel.Percepts;
 
 namespace XmasEngineModel.Management
 {

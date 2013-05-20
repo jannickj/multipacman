@@ -1,8 +1,8 @@
 using JSLibrary.IiLang.DataContainers;
 using JSLibrary.IiLang.Parameters;
-using XmasEngineModel.Perceptions;
+using XmasEngineModel.Percepts;
 
-namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Percepts
+namespace XmasEngineExtensions.EisExtension.Model.Conversion.IiLang.Percepts
 {
 	public class EISSingleNumeralSerializer : EISPerceptConverter<SingleNumeralPercept>
 	{

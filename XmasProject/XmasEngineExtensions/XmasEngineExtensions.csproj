@@ -44,14 +44,14 @@
     <Compile Include="EisExtension\Model\ActionTypes\EISGetAllPercepts.cs" />
     <Compile Include="LoggerExtension\LoggerView.cs" />
     <Compile Include="TileEisExtension\ActionTypes\EISMoveUnit.cs" />
-    <Compile Include="EisExtension\Model\Conversion\IILang\Actions\GetAllPerceptsActionConverter.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IiLang\Actions\GetAllPerceptsActionConverter.cs" />
     <Compile Include="TileEisExtension\Conversion\MoveUnitActionConverter.cs" />
-    <Compile Include="EisExtension\Model\Conversion\IILang\EISActionConverter.cs" />
-    <Compile Include="EisExtension\Model\Conversion\IILang\EISConverterToEIS.cs" />
-    <Compile Include="EisExtension\Model\Conversion\IILang\EISPerceptConverter.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IiLang\EISActionConverter.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IiLang\EISConverterToEIS.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IiLang\EISPerceptConverter.cs" />
     <Compile Include="TileEisExtension\Conversion\EISTileSerializer.cs" />
-    <Compile Include="EisExtension\Model\Conversion\IILang\Percepts\EISPerceptCollectionSerializer.cs" />
-    <Compile Include="EisExtension\Model\Conversion\IILang\Percepts\EISSingleNumeralSerializer.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IiLang\Percepts\EISPerceptCollectionSerializer.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IiLang\Percepts\EISSingleNumeralSerializer.cs" />
     <Compile Include="TileEisExtension\Conversion\EISVisionSerializer.cs" />
     <Compile Include="EisExtension\Model\EISAction.cs" />
     <Compile Include="EisExtension\Model\EisConversionTool.cs" />
@@ -105,7 +105,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EisExtension\Model\Conversion\IILang\Objects\" />
+    <Folder Include="EisExtension\Model\Conversion\IiLang\Objects\" />
     <Folder Include="EisExtension\Model\XmasActions\" />
     <Folder Include="EisExtension\View\" />
   </ItemGroup>

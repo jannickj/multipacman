@@ -1,7 +1,7 @@
 using System;
 using JSLibrary.Data;
 using JSLibrary.IiLang.Parameters;
-using XmasEngineExtensions.EisExtension.Model.Conversion.IILang;
+using XmasEngineExtensions.EisExtension.Model.Conversion.IiLang;
 using XmasEngineExtensions.TileEisExtension.ActionTypes;
 using XmasEngineExtensions.TileExtension.Actions;
 

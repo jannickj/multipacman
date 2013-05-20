@@ -93,7 +93,7 @@
     <Compile Include="Interfaces\IStartable.cs" />
     <Compile Include="Percept.cs" />
     <Compile Include="PerceptCollection.cs" />
-    <Compile Include="Perceptions\SingleNumeralPercept.cs" />
+    <Compile Include="Percepts\SingleNumeralPercept.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rule\Conclusion.cs" />
     <Compile Include="Rule\DontCareConclusion.cs" />
@@ -109,9 +109,7 @@
       <Name>JSLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Perceptions\EISPercepts\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

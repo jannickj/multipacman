@@ -1,4 +1,4 @@
-namespace XmasEngineModel.Perceptions
+namespace XmasEngineModel.Percepts
 {
 	public class SingleNumeralPercept : Percept
 	{

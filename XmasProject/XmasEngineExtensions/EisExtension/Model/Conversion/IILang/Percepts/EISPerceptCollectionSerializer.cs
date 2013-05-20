@@ -3,7 +3,7 @@ using JSLibrary.IiLang;
 using JSLibrary.IiLang.DataContainers;
 using XmasEngineModel;
 
-namespace XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Percepts
+namespace XmasEngineExtensions.EisExtension.Model.Conversion.IiLang.Percepts
 {
 	public class EISPerceptCollectionSerializer : EISConverterToEIS<PerceptCollection, IilPerceptCollection>
 	{

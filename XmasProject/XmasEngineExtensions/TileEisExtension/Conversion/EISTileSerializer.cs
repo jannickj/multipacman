@@ -1,6 +1,6 @@
 using JSLibrary.IiLang;
 using JSLibrary.IiLang.Parameters;
-using XmasEngineExtensions.EisExtension.Model.Conversion.IILang;
+using XmasEngineExtensions.EisExtension.Model.Conversion.IiLang;
 using XmasEngineExtensions.TileExtension;
 using XmasEngineModel.EntityLib;
 

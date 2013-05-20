@@ -1,6 +1,6 @@
 using JSLibrary.IiLang;
-using XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Actions;
-using XmasEngineExtensions.EisExtension.Model.Conversion.IILang.Percepts;
+using XmasEngineExtensions.EisExtension.Model.Conversion.IiLang.Actions;
+using XmasEngineExtensions.EisExtension.Model.Conversion.IiLang.Percepts;
 using XmasEngineModel.Conversion;
 
 namespace XmasEngineExtensions.EisExtension.Model

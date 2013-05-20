@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using JSLibrary.Data;
 using JSLibrary.IiLang.DataContainers;
 using JSLibrary.IiLang.Parameters;
-using XmasEngineExtensions.EisExtension.Model.Conversion.IILang;
+using XmasEngineExtensions.EisExtension.Model.Conversion.IiLang;
 using XmasEngineExtensions.TileExtension;
 using XmasEngineExtensions.TileExtension.Percepts;
 
