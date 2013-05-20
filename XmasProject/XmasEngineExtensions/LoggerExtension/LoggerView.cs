@@ -30,12 +30,7 @@ namespace XmasEngineExtensions.LoggerExtension
 		{
 			while (true)
 			{
-				while (evtman.ExecuteNext())
-				{
-
-				}
-				Thread.Sleep(200);
-				
+				evtman.ExecuteNextWhenReady();
 			}
 			
 		}
