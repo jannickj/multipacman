@@ -87,13 +87,14 @@ namespace ConsoleXmasImplementation.View
 			while (remainPct() <= WORK_PCT)
 				evtmanager.ExecuteNextWhenReady (new TimeSpan (remainingTicks ()));
 
-//			long sleeptime = UPDATE_DELAY - ((DateTime.Now.Ticks - start.Ticks) / 100);
+			long sleeptime = UPDATE_DELAY - ((DateTime.Now.Ticks - start.Ticks) / 100);
 			Console.SetCursorPosition(0, 0);
 			long pct = remainPct();
 
-			Console.Write("\rLOAD: " + pct + "%\t\t\t");
-//			if (sleeptime > 0)
-//				Thread.Sleep((int)sleeptime);
+			Console.Write ("LOAD: {0,3}%\t\t\t", pct);
+//			Console.Write("\rLOAD: " + pct + "%\t\t\t");
+			if (sleeptime > 0)
+				Thread.Sleep((int)sleeptime);
 
 		}
 
