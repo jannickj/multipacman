@@ -9,30 +9,50 @@ namespace XmasEngineModel
 		private XmasFactory factory;
 		private XmasWorld world;
 
-		public XmasWorld World
+		public virtual XmasWorld World
 		{
 			get { return world; }
-			set { world = value; }
+			internal protected set { world = value; }
 		}
 
-		public XmasFactory Factory
+		public TWorld WorldAs<TWorld>() where TWorld : XmasWorld
+		{
+			return (TWorld) World;
+		}
+
+		public virtual XmasFactory Factory
 		{
 			get { return factory; }
 
-			set { factory = value; }
+			internal protected set { factory = value; }
+		}
+
+		public TFactory FactoryAs<TFactory>() where TFactory : XmasFactory
+		{
+			return (TFactory)Factory;
 		}
 
 
-		public EventManager EventManager
+		public virtual EventManager EventManager
 		{
 			get { return evtman; }
-			internal set { evtman = value; }
+			internal protected set { evtman = value; }
 		}
 
-		public ActionManager ActionManager
+		public TEvtman EventManagerAs<TEvtman>() where TEvtman : EventManager
+		{
+			return (TEvtman)EventManager;
+		}
+
+		public virtual ActionManager ActionManager
 		{
 			get { return actman; }
-			set { actman = value; }
+			internal protected set { actman = value; }
+		}
+
+		public TActman ActionManagerAs<TActman>() where TActman : ActionManager
+		{
+			return (TActman)ActionManager;
 		}
 	}
 }

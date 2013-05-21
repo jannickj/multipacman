@@ -53,6 +53,26 @@ namespace JSLibrary_Test.IiLang
 		}
 
 		[Test]
+		public void PerceptCollectionWriter_XmlOfPerceptCollectionWithNoPercepts_ReturnEmptyPerceptCollection()
+		{
+			IilPerceptCollection actual_src = new IilPerceptCollection();
+
+			StringBuilder sb = new StringBuilder();
+
+			XmlSerializer serializer = new XmlSerializer(typeof(IilPerceptCollection));
+			serializer.Serialize(XmlWriter.Create(sb), actual_src);
+
+			XDocument expected = XDocument.Parse(
+				@"<?xml version=""1.0"" encoding=""utf-16""?>
+				<perceptCollection/>"
+				);
+
+			XDocument actual = XDocument.Parse(sb.ToString());
+
+			Assert.AreEqual(expected.ToString(), actual.ToString());
+		}
+
+		[Test]
 		public void TryWriteXmlOfFunctionWithoutName_ThrowException()
 		{
 			IilFunction actual_src = new IilFunction();

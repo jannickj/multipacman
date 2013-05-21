@@ -94,5 +94,6 @@ namespace XmasEngineModel.EntityLib
 		{
 			return string.Format ("{0} [{1}] at {2}", GetType().Name, Id, Position);
 		}
+
 	}
 }

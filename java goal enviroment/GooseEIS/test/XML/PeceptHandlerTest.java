@@ -49,6 +49,24 @@ public class PeceptHandlerTest {
 	}
 	
 	@Test
+	public void XmlParsing_PerceptCollectionWithNoPercepts_ReturnsEmptyCollection() throws SAXException, IOException 
+	{
+		String xml ="<perceptCollection/>";
+		XMLReader reader = XMLReaderFactory.createXMLReader();
+		PerceptCollectionHandler handler = new PerceptCollectionHandler(reader);
+		reader.setContentHandler(handler);
+		InputStream is = new ByteArrayInputStream(xml.getBytes());
+		InputSource sc = new InputSource(is);
+		reader.parse(sc);
+		
+		int size = handler.<LinkedList<Percept>>getElementAs().size();
+		
+		
+		Assert.assertEquals(0, size);
+		
+	}
+	
+	@Test
 	public void ComplexXmlParsing_AllTypesOfParametersInTwoPercepts_ReturnsTwoPerceptsWithAllTypesOfParameters() throws Exception
 	{
 		String xml = "<perceptCollection>" +

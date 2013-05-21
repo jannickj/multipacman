@@ -2,6 +2,7 @@ package GooseEIS;
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,6 +55,7 @@ public class XmasEnvironment extends EIDefaultImpl
 	
 	public XmasEnvironment()
 	{
+<<<<<<< HEAD
 		Map<String, Parameter> m = new HashMap<String, Parameter>();
 		
 		Identifier param = new Identifier("testname");
@@ -71,6 +73,27 @@ public class XmasEnvironment extends EIDefaultImpl
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+=======
+//		Map<String, Parameter> m = new HashMap<String, Parameter>();
+//		
+//		Identifier param = new Identifier("testname");
+//		m.put("agentName", param);
+//		try {
+//			this.init(m);
+//		} catch (ManagementException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		try {
+//			getAllPerceptsFromEntity("");
+//		} catch (PerceiveException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (NoEnvironmentException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+>>>>>>> 3dea9fff32315f093aeeaef4b91bd8da698822ec
 	}
 	
 	@Override
@@ -161,16 +184,31 @@ public class XmasEnvironment extends EIDefaultImpl
 		PerceptCollectionHandler handler = new PerceptCollectionHandler(xmlreader);
 		xmlreader.setContentHandler (handler);
 		
+<<<<<<< HEAD
 		try {
 			xmlreader.parse(new InputSource(inputStream.getPacketStream()));
+=======
+		try 
+		{
+
+			
+			xmlreader.parse(new InputSource(sockreader));
+			
+>>>>>>> 3dea9fff32315f093aeeaef4b91bd8da698822ec
 		} catch (IOException | SAXException e) {
 			try {
 				throw new Exception ("Could not parse XML in agent " + arg0, e);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
+<<<<<<< HEAD
 		} catch (Exception e) {
 			System.out.println("FINITO");
+=======
+		} catch(FinishedParsingException e)
+		{
+			
+>>>>>>> 3dea9fff32315f093aeeaef4b91bd8da698822ec
 		}
 		
 		LinkedList<Percept> percepts = handler.<LinkedList<Percept>>getElementAs();
