@@ -23,7 +23,7 @@ namespace XmasEngineModel.Management
 
 		protected void Complete()
 		{
-			var buffer = Completed;
+			EventHandler buffer = Completed;
 			if (buffer != null)
 				buffer(this, new EventArgs());
 
@@ -34,7 +34,7 @@ namespace XmasEngineModel.Management
 		internal void Fail()
 		{
 			this.actionfailed = true;
-			var buffer = Failed;
+			EventHandler buffer = Failed;
 			if (buffer != null)
 				buffer(this, new EventArgs());
 			Resolve();
@@ -43,7 +43,7 @@ namespace XmasEngineModel.Management
 
 		private void Resolve()
 		{
-			var buffer = Resolved;
+			EventHandler buffer = Resolved;
 			if (buffer != null)
 				buffer(this, new EventArgs());
 		}

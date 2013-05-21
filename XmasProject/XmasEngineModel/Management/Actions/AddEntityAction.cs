@@ -21,9 +21,14 @@ namespace XmasEngineModel.Management.Actions
 			ent.EventManager = EventManager;
 			ent.World = World;
 			ent.Factory = Factory;
-			World.FullAddEntity(ent, info);
-			this.EventManager.Raise(new EntityAddedEvent(ent));
-			this.Complete();
+
+			if (World.FullAddEntity (ent, info)) {
+				this.EventManager.Raise (new EntityAddedEvent (ent));
+				this.Complete ();
+			} else {
+				this.Fail ();
+			}
+
 		}
 	}
 }
