@@ -2,6 +2,7 @@ package GooseEIS;
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -59,6 +60,15 @@ public class XmasEnvironment extends EIDefaultImpl
 //		try {
 //			this.init(m);
 //		} catch (ManagementException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		try {
+//			getAllPerceptsFromEntity("");
+//		} catch (PerceiveException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (NoEnvironmentException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
@@ -140,14 +150,21 @@ public class XmasEnvironment extends EIDefaultImpl
 		PerceptCollectionHandler handler = new PerceptCollectionHandler(xmlreader);
 		xmlreader.setContentHandler (handler);
 		
-		try {
+		try 
+		{
+
+			
 			xmlreader.parse(new InputSource(sockreader));
+			
 		} catch (IOException | SAXException e) {
 			try {
 				throw new Exception ("Could not parse XML in agent " + arg0, e);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
+		} catch(FinishedParsingException e)
+		{
+			
 		}
 		
 		LinkedList<Percept> percepts = handler.<LinkedList<Percept>>getElementAs();

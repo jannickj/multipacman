@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import org.xml.sax.Attributes;
 import org.xml.sax.XMLReader;
 
+import GooseEIS.FinishedParsingException;
+
 import eis.iilang.Parameter;
 import eis.iilang.Percept;
 
@@ -13,6 +15,7 @@ public class PerceptCollectionHandler extends ParameterHandler {
 	public PerceptCollectionHandler(XMLReader reader) {
 		super(null, reader, null);
 		reader.setContentHandler(this);
+		
 	}
 	
 	@Override
@@ -38,6 +41,9 @@ public class PerceptCollectionHandler extends ParameterHandler {
 		this.setElement(percepts);
 		
 		super.endElement(uri, name, qname);
+		
+		throw new FinishedParsingException();
+		
 	}
 
 }

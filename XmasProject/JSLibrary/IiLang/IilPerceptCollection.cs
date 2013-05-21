@@ -99,6 +99,7 @@ namespace JSLibrary.IiLang
 
 		public override void WriteXml(XmlWriter writer)
 		{
+			
 			foreach (IilPercept p in percepts)
 			{
 				writer.WriteStartElement("percept");

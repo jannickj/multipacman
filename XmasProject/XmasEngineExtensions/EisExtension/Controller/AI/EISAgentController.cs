@@ -39,11 +39,11 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 			while (iilaction == null)
 			{
 				iilaction = (IilAction)deserializer.Deserialize(xreader);
-				
+
 				if (iilaction == null)
 					xreader.ReadEndElement();
 			}
-			
+			//iilaction = (IilAction)deserializer.Deserialize(xreader);
 			
 			EISAction eisaction = actionparser.parseIILAction(iilaction);
 			EntityXmasAction gameaction = (EntityXmasAction) tool.ConvertToXmas(eisaction);

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using XmasEngineModel.Management;
 
 namespace XmasEngineModel.EntityLib.Module
 {
-	public abstract class EntityModule
+	public abstract class EntityModule : XmasActor
 	{
-		protected XmasEntity entityHost;
-		protected EntityModule replacedModule;
+		private XmasEntity entityHost;
+		private EntityModule replacedModule;
 
 		public XmasEntity EntityHost
 		{
@@ -33,8 +34,33 @@ namespace XmasEngineModel.EntityLib.Module
 
 		public virtual void DetachFromEntity()
 		{
-			if (replacedModule != null && replacedModule.ModuleType == this.ModuleType)
-				entityHost.RegisterModule (replacedModule);
+			if (ReplacedModule != null && ReplacedModule.ModuleType == this.ModuleType)
+				entityHost.RegisterModule (ReplacedModule);
+		}
+
+		public override ActionManager ActionManager
+		{
+			get { return this.entityHost.ActionManager; }
+		}
+
+		public override EventManager EventManager
+		{
+			get { return this.entityHost.EventManager; }
+		}
+
+		public override XmasFactory Factory
+		{
+			get { return this.entityHost.Factory; }
+		}
+
+		public override XmasWorld World
+		{
+			get { return this.entityHost.World; }
+		}
+
+		protected EntityModule ReplacedModule
+		{
+			get { return replacedModule; }
 		}
 	}
 }
