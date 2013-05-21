@@ -33,7 +33,7 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 			if (pos.Equals (evt.NewPos))
 				return;
 
-			string info = String.Format ("<{0}> finished moving from {1} to {2}", model, pos, evt.NewPos);
+			string info = String.Format ("{{{0}}} finished moving from {1} to {2}", model, pos, evt.NewPos);
 			logstream.LogStringWithTimeStamp (info, DebugLevel.Info);
 			pos = evt.NewPos;
 		}
@@ -43,8 +43,8 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 			if (pos.Equals (evt.NewPos))
 				return;
 
-			string info = String.Format ("<{0}> started moving from {1} to {2}", model, pos, evt.NewPos);
-			logstream.LogStringWithTimeStamp (info, DebugLevel.Info);
+			string info = String.Format("{{{0}}} started moving from {1} to {2}", model, pos, evt.NewPos);
+			logstream.LogStringWithTimeStamp (info, DebugLevel.All);
 		}
 
 		#region implemented abstract members of EntityView

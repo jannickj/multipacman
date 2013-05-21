@@ -84,9 +84,13 @@ namespace ConsoleXmasImplementation.View
 			Func<long> remainingTicks = () => workTicks - (DateTime.Now.Ticks - start.Ticks);
 
 //			while (this.evtmanager.ExecuteNext() && remainPct() <= WORK_PCT) { }
-			while (remainPct() <= WORK_PCT)
-				evtmanager.ExecuteNextWhenReady (new TimeSpan (remainingTicks ()));
-
+			while (true)
+			{
+				var ticksLeft = remainingTicks();
+				if(ticksLeft < 0)
+					break;
+				evtmanager.ExecuteNextWhenReady(new TimeSpan(ticksLeft));
+			}
 			long sleeptime = UPDATE_DELAY - ((DateTime.Now.Ticks - start.Ticks) / 100);
 			Console.SetCursorPosition(0, 0);
 			long pct = remainPct();

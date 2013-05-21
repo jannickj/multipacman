@@ -7,7 +7,8 @@ namespace XmasEngineExtensions.LoggerExtension
 		None,
 		Critical,
 		Error,
-		Info
+		Info,
+		All
 	};
 }
 

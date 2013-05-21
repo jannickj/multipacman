@@ -36,11 +36,11 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 
 		private void model_EntityAdded(EntityAddedEvent evt)
 		{
-			log.LogStringWithTimeStamp (String.Format ("<{0}> was added to the world", evt.AddedXmasEntity), DebugLevel.Info);
+			log.LogStringWithTimeStamp(String.Format("{{{0}}} was added to the world", evt.AddedXmasEntity), DebugLevel.Info);
 
 			//prevent player spam
-			if (evt.AddedXmasEntity is Player)
-				return;
+			//if (evt.AddedXmasEntity is Player)
+			//	return;
 			entities.Add((LoggerEntityView)entityFactory.ConstructEntityView(evt.AddedXmasEntity));
 		}
 
