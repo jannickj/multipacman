@@ -5,6 +5,7 @@ using XmasEngineModel.Management;
 using XmasEngineView;
 using XmasEngineModel.Management.Events;
 using System.Collections.Generic;
+using ConsoleXmasImplementation.Model;
 
 namespace ConsoleXmasImplementation.ConsoleLogger
 {
@@ -37,13 +38,17 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 
 		private void model_EntityAdded(EntityAddedEvent evt)
 		{
+			log.LogStringWithTimeStamp (String.Format ("{0} was added to the world", evt.AddedXmasEntity), DebugLevel.Info);
+
+			//prevent player spam
+			if (evt.AddedXmasEntity is Player)
+				return;
 			entities.Add((LoggerEntityView)entityFactory.ConstructEntityView(evt.AddedXmasEntity));
-			log.LogStringWithTimeStamp (String.Format ("The entity {0} was added to the world", evt.AddedXmasEntity.GetType().Name), DebugLevel.AllInformation);
 		}
 
 		private void engine_ActionFailed(ActionFailedEvent evt)
 		{
-			log.LogStringWithTimeStamp (evt.ActionException.Message, DebugLevel.Errors);
+			log.LogStringWithTimeStamp (evt.ActionException.Message, DebugLevel.Error);
 		}
 
 		#region implemented abstract members of XmasView

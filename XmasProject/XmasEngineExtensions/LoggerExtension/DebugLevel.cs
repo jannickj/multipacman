@@ -5,9 +5,9 @@ namespace XmasEngineExtensions.LoggerExtension
 	public enum DebugLevel
 	{
 		None,
-		CriticalErrors,
-		Errors,
-		AllInformation
+		Critical,
+		Error,
+		Info
 	};
 }
 

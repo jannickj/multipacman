@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -36,7 +36,7 @@ namespace ConsoleXmasImplementation
 
 			List<XmasView> views = new List<XmasView>();
 			var loggerevtman = new ThreadSafeEventManager();
-			var logger = new Logger(sw, DebugLevel.AllInformation);
+			var logger = new Logger(sw, DebugLevel.Info);
 			views.Add(new ConsoleLoggerView(model,new LoggerViewFactory(loggerevtman,logger),loggerevtman,logger));
 			views.Add(view);
 			

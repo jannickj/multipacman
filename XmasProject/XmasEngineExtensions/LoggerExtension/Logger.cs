@@ -5,25 +5,24 @@ namespace XmasEngineExtensions.LoggerExtension
 {
 	public class Logger
 	{
-		private StreamWriter logstream;
-		private DebugLevel debugLevel;
+		public Func<DebugLevel,StreamWriter> StreamSelector { get; protected set; }
 
-		public DebugLevel DebugLevel {
-			get { return debugLevel; }
-			set { debugLevel = value; }
+		public Logger (StreamWriter logstream, DebugLevel MaxDebugLevel)
+		{
+			StreamSelector = (dl => (dl <= MaxDebugLevel) ? logstream : null);
 		}
 
-		public Logger (StreamWriter logstream, DebugLevel debugLevel)
+		public Logger (Func<DebugLevel, StreamWriter> streamSelector)
 		{
-			this.logstream = logstream;
-			this.debugLevel = debugLevel;
+			this.StreamSelector = streamSelector;
 		}
 
 		public void LogStringWithTimeStamp (string str, DebugLevel debugLevel)
 		{
-			if (debugLevel <= this.DebugLevel) {
-				logstream.WriteLine ("{0} : {1}", TimeStamp(), str);
-				logstream.Flush ();
+			StreamWriter stream = StreamSelector (debugLevel);
+			if (stream != null) {
+				stream.WriteLine ("{0} : [{1}] {2}", TimeStamp(), debugLevel.ToString(), str);
+				stream.Flush ();
 			}
 		}
 		

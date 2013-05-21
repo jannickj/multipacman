@@ -4,7 +4,6 @@
 	{
 		private ulong id = 0;
 
-
 		public ulong Id
 		{
 			get { return id; }

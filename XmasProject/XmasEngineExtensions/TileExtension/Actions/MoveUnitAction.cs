@@ -32,13 +32,14 @@ namespace XmasEngineExtensions.TileExtension.Actions
 
 		protected override void Execute()
 		{
-			UnitMovePreEvent before = new UnitMovePreEvent();
+			TilePosition tile = World.GetEntityPosition(Source) as TilePosition;
+			Point newloc = tile.Point + direction;
+			UnitMovePreEvent before = new UnitMovePreEvent(newloc);
+
 			Source.Raise(before);
 			time = Source.Module<SpeedModule>().Speed;
 			XmasTimer gt = Factory.CreateTimer(this,() =>
 				{
-					TilePosition tile = World.GetEntityPosition(Source) as TilePosition;
-					Point newloc = tile.Point + direction;
 					if(World.SetEntityPosition(Source, new TilePosition(newloc)))
 						Source.Raise(new UnitMovePostEvent(newloc));
 					else

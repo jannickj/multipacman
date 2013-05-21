@@ -16,5 +16,10 @@ namespace XmasEngineExtensions.TileExtension
 		{
 			get { return point; }
 		}
+
+		public override string ToString ()
+		{
+			return Point.ToString();
+		}
 	}
 }

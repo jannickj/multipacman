@@ -24,16 +24,27 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 		{
 			this.logstream = logstream;
 			Position = model.Position;
-			eventqueue.Register(new Trigger<UnitMovePostEvent>(loggerEntityView_UnitMovePostEvent));
+			eventqueue.Register (new Trigger<UnitMovePostEvent> (loggerEntityView_UnitMovePostEvent));
+			eventqueue.Register (new Trigger<UnitMovePreEvent> (loggerEntityView_UnitMovePreEvent));
 		}
 
 		private void loggerEntityView_UnitMovePostEvent(UnitMovePostEvent evt)
 		{
-			//TODO: add ID, name? when implmented
-			logstream.LogStringWithTimeStamp (String.Format ("Unit moved from {0} to {1}", pos, evt.NewPos), 
-			                                  DebugLevel.AllInformation
-			                                  );
+			if (pos.Equals (evt.NewPos))
+				return;
+
+			string info = String.Format ("{0} finished moving from {1} to {2}", model, pos, evt.NewPos);
+			logstream.LogStringWithTimeStamp (info, DebugLevel.Info);
 			pos = evt.NewPos;
+		}
+
+		private void loggerEntityView_UnitMovePreEvent(UnitMovePreEvent evt)
+		{
+			if (pos.Equals (evt.NewPos))
+				return;
+
+			string info = String.Format ("{0} started moving from {1} to {2}", model, pos, evt.NewPos);
+			logstream.LogStringWithTimeStamp (info, DebugLevel.Info);
 		}
 
 		#region implemented abstract members of EntityView

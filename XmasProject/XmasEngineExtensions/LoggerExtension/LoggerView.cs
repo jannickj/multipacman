@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -34,7 +34,7 @@ namespace XmasEngineExtensions.LoggerExtension
 
 		private void engine_ActionFailed(ActionFailedEvent evt)
 		{
-			log.LogStringWithTimeStamp (evt.ActionException.Message, DebugLevel.Errors);
+			log.LogStringWithTimeStamp (evt.ActionException.Message, DebugLevel.Error);
 		}
 	}
 }
