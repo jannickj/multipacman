@@ -42,5 +42,11 @@ namespace XmasEngineModel.Management
 			waitForItemEvent.WaitOne ();
 			ExecuteNext ();
 		}
+
+		public void ExecuteNextWhenReady(TimeSpan ts)
+		{
+			waitForItemEvent.WaitOne (ts);
+			ExecuteNext ();
+		}
 	}
 }

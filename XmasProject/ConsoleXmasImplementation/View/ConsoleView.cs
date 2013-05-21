@@ -64,13 +64,9 @@ namespace ConsoleXmasImplementation.View
 				{
 					int count = ents.Count;
 					if (count > 1)
-					{
 						screen[x, y] = count.ToString().ToArray()[0];
-					}
 					else
-					{
 						screen[x, y] = ents.First().Symbol;
-					}
 				}
 			}
 			return screen.GenerateScreen();
@@ -80,19 +76,24 @@ namespace ConsoleXmasImplementation.View
 		{
 			DateTime start = DateTime.Now;
 			Draw();
+
+			long updateDelayTicks = UPDATE_DELAY * 10000;
+			long workTicks = (long)((WORK_PCT / 100.0) * updateDelayTicks);
+
 			Func<long> remainPct = () => ((DateTime.Now.Ticks - start.Ticks) / 100) / UPDATE_DELAY;
-			while (this.evtmanager.ExecuteNext() && remainPct() <= WORK_PCT)
-			{
+			Func<long> remainingTicks = () => workTicks - (DateTime.Now.Ticks - start.Ticks);
 
-			}
+//			while (this.evtmanager.ExecuteNext() && remainPct() <= WORK_PCT) { }
+			while (remainPct() <= WORK_PCT)
+				evtmanager.ExecuteNextWhenReady (new TimeSpan (remainingTicks ()));
 
-			long sleeptime = UPDATE_DELAY - ((DateTime.Now.Ticks - start.Ticks) / 100);
+//			long sleeptime = UPDATE_DELAY - ((DateTime.Now.Ticks - start.Ticks) / 100);
 			Console.SetCursorPosition(0, 0);
 			long pct = remainPct();
 
 			Console.Write("\rLOAD: " + pct + "%\t\t\t");
-			if (sleeptime > 0)
-				Thread.Sleep((int)sleeptime);
+//			if (sleeptime > 0)
+//				Thread.Sleep((int)sleeptime);
 
 		}
 
