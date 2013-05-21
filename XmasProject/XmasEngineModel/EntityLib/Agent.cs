@@ -28,7 +28,7 @@ namespace XmasEngineModel.EntityLib
 
 		public override string ToString ()
 		{
-			return string.Format ("<{0} '{1}' [{2}] at {3}>", GetType().Name, name, Id, Position);
+			return string.Format ("{0} '{1}' [{2}] at {3}", GetType().Name, name, Id, Position);
 		}
 	}
 }
