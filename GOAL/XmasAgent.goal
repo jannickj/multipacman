@@ -25,7 +25,7 @@ init module {
 	
 main module{
 	program {
-		if true then move(1,0).
+		if true then move(0,1).
 	}
 }
 
