@@ -42,6 +42,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IiLang\PacketStreamTest.cs" />
     <Compile Include="IiLang\XmlDeserializationTest.cs" />
     <Compile Include="IiLang\XmlSerializationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

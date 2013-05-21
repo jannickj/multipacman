@@ -68,6 +68,7 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 		{
 			IilPerceptCollection perceptcollection = (IilPerceptCollection) tool.ConvertToForeign(evt.Value);
 			serializer.Serialize(xwriter, perceptcollection);
+			xwriter.Flush();
 		}
 
 		#endregion

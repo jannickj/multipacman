@@ -6,6 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using JSLibrary.IiLang.Parameters;
+using JSLibrary.Network;
 using XmasEngineController.AI;
 using XmasEngineExtensions.EisExtension.Model;
 using XmasEngineModel.EntityLib;
@@ -50,8 +51,8 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 
 		private AgentController CreateAgentController(TcpClient client, out string name)
 		{
-
-			StreamReader sreader = new StreamReader(client.GetStream(), Encoding.UTF8);
+			PacketStream packet = new PacketStream(client.GetStream());
+			StreamReader sreader = new StreamReader(packet, Encoding.UTF8);
             XmlReaderSettings rset = new XmlReaderSettings();
             rset.ConformanceLevel = ConformanceLevel.Fragment;
 			XmlReader xreader = XmlReader.Create(sreader,rset);
@@ -59,7 +60,7 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 			XmlWriterSettings wset = new XmlWriterSettings();
 			wset.OmitXmlDeclaration = true;
 			wset.ConformanceLevel = ConformanceLevel.Fragment;
-			XmlWriter xwriter = XmlWriter.Create(client.GetStream());
+			XmlWriter xwriter = XmlWriter.Create(packet);
 			XmlSerializer serializer = new XmlSerializer(typeof (IilIdentifier));
 			IilIdentifier ident = (IilIdentifier) serializer.Deserialize(xreader);
 			name = ident.Value;
