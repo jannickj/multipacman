@@ -106,7 +106,6 @@ namespace XmasEngineExtensions.TileExtension.Percepts
 			foreach (Point p in walkAlongVector(v))
 			{
 				Point transp = origin + p;
-				bool blocking = grid[transp.X, transp.Y].IsVisionBlocking(owner);
 				if (grid[transp.X, transp.Y].IsVisionBlocking(owner))
 					return false;
 			}

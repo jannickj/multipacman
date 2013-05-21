@@ -13,10 +13,9 @@ namespace XmasEngineModel
 
 		internal bool FullAddEntity(XmasEntity xmasEntity, EntitySpawnInformation info)
 		{
-			Agent agent = xmasEntity as Agent;
-
-			if (agent != null)
+			if (xmasEntity is Agent)
 			{
+				Agent agent = xmasEntity as Agent;
 				Agent otheragent;
 				if(string.IsNullOrEmpty(agent.Name))
 					throw new AgentHasNoNameException(agent);

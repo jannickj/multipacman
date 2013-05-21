@@ -13,7 +13,6 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 	{
 		private HashSet<LoggerEntityView> entities = new HashSet<LoggerEntityView> ();
 		private Logger log;
-		private XmasModel model;
 		private LoggerViewFactory entityFactory;
 		private ThreadSafeEventManager evtman;
 		private ThreadSafeEventQueue evtqueue;
@@ -24,7 +23,6 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 		                         , Logger log
 		                         )
 		{
-			this.model = model;
 			this.entityFactory = entityFactory;
 			this.log = log;
 			this.evtman = evtman;

@@ -20,12 +20,10 @@ namespace ConsoleXmasImplementation.View
 		private ConsoleViewFactory entityFactory;
 		private ThreadSafeEventQueue eventqueue;
 		private ThreadSafeEventManager evtmanager;
-		private XmasModel model;
 		private ConsoleWorldView viewWorld;
 
 		public ConsoleView(XmasModel model, ConsoleWorldView viewWorld, ConsoleViewFactory entityFactory, ThreadSafeEventManager evtmanager)
 		{
-			this.model = model;
 			this.viewWorld = viewWorld;
 			this.entityFactory = entityFactory;
 
