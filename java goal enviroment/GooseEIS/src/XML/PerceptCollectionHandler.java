@@ -41,13 +41,9 @@ public class PerceptCollectionHandler extends ParameterHandler {
 		this.setElement(percepts);
 		
 		super.endElement(uri, name, qname);
-		
-<<<<<<< HEAD
-		throw new RuntimeException("HEJHEJ");
-=======
+	
 		throw new FinishedParsingException();
 		
->>>>>>> 3dea9fff32315f093aeeaef4b91bd8da698822ec
 	}
 
 }
