@@ -38,7 +38,7 @@ namespace XmasEngineExtensions.TileExtension
 			{
 				for (int y = min.Y; y <= max.Y; y++)
 				{
-					if (exceptions != null && !exceptions.Contains(new Point(x, y)))
+					if (exceptions == null || !exceptions.Contains(new Point(x, y)))
 						yield return new Point(x, y);
 				}
 			}
@@ -52,10 +52,7 @@ namespace XmasEngineExtensions.TileExtension
 		public void AddChunkExcept (Func<XmasEntity> constructEntity, Point start, Point stop, ICollection<Point> exceptions)
 		{
 			foreach (Point p in TilesInChunk(start, stop, exceptions))
-			{
-				TileSpawnInformation info = new TileSpawnInformation(new TilePosition (p));
-				AddEntity(constructEntity(), info);
-			}
+				AddEntity(constructEntity(), p);
 		}
 		
 //		public void RemoveChunk<TEntity>(Point start, Point stop)

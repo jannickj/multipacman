@@ -73,7 +73,7 @@
       <Name>XmasEngineController</Name>
     </ProjectReference>
     <ProjectReference Include="..\XmasEngineExtensions\XmasEngineExtensions.csproj">
-      <Project>{f0965ebc-feaf-4445-a43b-998d0a8d249d}</Project>
+      <Project>{F0965EBC-FEAF-4445-A43B-998D0A8D249D}</Project>
       <Name>XmasEngineExtensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\XmasEngineModel\XmasEngineModel.csproj">

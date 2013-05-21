@@ -42,8 +42,8 @@ namespace ConsoleXmasImplementation
 			 * 
 			 */
 
-			int start = -6;
-			int stop = 5;
+			int start = 6;
+			int stop = -5;
 			int factor = 1;
 
 			foreach (int idx in AlternateRange(-5, 5, 2))
@@ -52,16 +52,18 @@ namespace ConsoleXmasImplementation
 				factor *= -1;
 			}
 
-			this.AddEntity(new Wall(), new Point(0, 1));
-			this.AddEntity(new Wall(), new Point(1, 1));
+//			AddChunk (() => new Wall (), new Point (-1, -1), new Point (-2, -2));
+
+//			this.AddEntity(new Wall(), new Point(0, 1));
+//			this.AddEntity(new Wall(), new Point(1, 1));
 			this.AddEntity(new Player(), new Point(0, 0));
-            this.AddEntity(new Ghost("testname"), new Point(1, 0));
+            this.AddEntity(new Ghost("testname"), new Point(0, 1));
 			
 		}
 
-		public IEnumerable<int> AlternateRange(int start, int count, int inc)
+		public IEnumerable<int> AlternateRange(int start, int end, int inc)
 		{
-			for (int i = start; i < start + count; i += inc)
+			for (int i = start; i <= end; i += inc)
 			{
 				yield return i;
 			}

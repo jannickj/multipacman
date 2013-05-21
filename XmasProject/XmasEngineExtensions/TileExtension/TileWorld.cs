@@ -66,7 +66,13 @@ namespace XmasEngineExtensions.TileExtension
 		
 		public override XmasPosition GetEntityPosition(XmasEntity xmasEntity)
 		{
-			return new TilePosition(entlocs[xmasEntity]);
+			try
+			{
+				return new TilePosition(entlocs[xmasEntity]);
+			} catch (KeyNotFoundException)
+			{
+				return new TilePosition(new Point(0,0));
+			}
 		}
 		
 		public override bool SetEntityPosition(XmasEntity xmasEntity, XmasPosition tilePosition)
