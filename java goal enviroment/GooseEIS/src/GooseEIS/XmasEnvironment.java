@@ -26,6 +26,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
+import PacketStream.InputPacketStream;
+import PacketStream.OutputPacketStream;
 import XML.PerceptCollectionHandler;
 import XML.PerceptHandler;
 
@@ -46,32 +48,30 @@ public class XmasEnvironment extends EIDefaultImpl
 	private static final long serialVersionUID = 1L;
 	private int port = 44444;
 	private Socket socket;
-	private InputStream sockreader;
-	private PrintStream sockwriter;
+	InputPacketStream inputStream;
+	OutputPacketStream outputStream;
 	XMLReader xmlreader;
 	private String Name;
 	
 	public XmasEnvironment()
 	{
-//		Map<String, Parameter> m = new HashMap<String, Parameter>();
-//		
-//		Identifier param = new Identifier("testname");
-//		m.put("agentName", param);
-//		try {
-//			this.init(m);
-//		} catch (ManagementException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			getAllPerceptsFromEntity("");
-//		} catch (PerceiveException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (NoEnvironmentException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		Map<String, Parameter> m = new HashMap<String, Parameter>();
+		
+		Identifier param = new Identifier("testname");
+		m.put("agentName", param);
+		try {
+			this.init(m);
+		} catch (ManagementException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			getAllPerceptsFromEntity("");
+		} catch (PerceiveException | NoEnvironmentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -96,8 +96,8 @@ public class XmasEnvironment extends EIDefaultImpl
 		
 		try {
 			socket = new Socket("localhost", port);
-			sockreader = socket.getInputStream();
-			sockwriter = new PrintStream (socket.getOutputStream(), true);
+			inputStream = new InputPacketStream(socket.getInputStream());
+			outputStream = new OutputPacketStream(new PrintStream (socket.getOutputStream(), true));
 			
 			xmlreader = XMLReaderFactory.createXMLReader();
 		} catch (IOException | SAXException e) {
@@ -107,7 +107,13 @@ public class XmasEnvironment extends EIDefaultImpl
 		printDebugMsg("Connected to socket, sending handshake");
 		
 		System.out.println("WRITING: "+nameId.toXML());
-		sockwriter.print(nameId.toXML());
+		try {
+			outputStream.SendPacket(nameId.toXML());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+//		sockwriter.print(nameId.toXML());
 		//TODO: Look into making it an actual handshake (ie. receive a confirmation)
 		
 		try {
@@ -145,17 +151,19 @@ public class XmasEnvironment extends EIDefaultImpl
 	{
 		Action action = new Action ("getAllPercepts");
 		System.out.println("WRITING: "+action.toXML());
-		sockwriter.print (action.toXML());
+//		sockwriter.print (action.toXML());
+		try {
+			outputStream.SendPacket(action.toXML());
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		
 		PerceptCollectionHandler handler = new PerceptCollectionHandler(xmlreader);
 		xmlreader.setContentHandler (handler);
 		
-		try 
-		{
-
-			
-			xmlreader.parse(new InputSource(sockreader));
-			
+		try {
+			xmlreader.parse(new InputSource(inputStream.getPacketStream()));
 		} catch (IOException | SAXException e) {
 			try {
 				throw new Exception ("Could not parse XML in agent " + arg0, e);
@@ -164,7 +172,9 @@ public class XmasEnvironment extends EIDefaultImpl
 			}
 		} catch(FinishedParsingException e)
 		{
-			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		LinkedList<Percept> percepts = handler.<LinkedList<Percept>>getElementAs();
@@ -180,7 +190,13 @@ public class XmasEnvironment extends EIDefaultImpl
 			throws ActException 
 	{
 		System.out.println("WRITING: "+action.toXML());
-		sockwriter.print (action.toXML());
+//		sockwriter.print (action.toXML());
+		try {
+			outputStream.SendPacket(action.toXML());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 

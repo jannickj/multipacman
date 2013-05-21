@@ -41,7 +41,7 @@ public class PerceptCollectionHandler extends ParameterHandler {
 		this.setElement(percepts);
 		
 		super.endElement(uri, name, qname);
-		
+	
 		throw new FinishedParsingException();
 		
 	}
