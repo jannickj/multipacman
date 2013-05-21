@@ -149,7 +149,12 @@ public class XmasEnvironment extends EIDefaultImpl
 				e1.printStackTrace();
 			}
 		}
-		 
+		
+		LinkedList<Percept> percepts = handler.<LinkedList<Percept>>getElementAs();
+		for (Percept p : percepts) {
+			System.out.println(p);
+		}
+		
 		return handler.<LinkedList<Percept>>getElementAs();
 	}
 	
