@@ -54,6 +54,12 @@ namespace XmasEngineExtensions.TileExtension
 			foreach (Point p in TilesInChunk(start, stop, exceptions))
 				AddEntity(constructEntity(), p);
 		}
+
+		public void AddCollection (Func<XmasEntity> constructEntity, IEnumerable<Point> points)
+		{
+			foreach (Point p in points)
+				AddEntity (constructEntity (), p);
+		}
 		
 //		public void RemoveChunk<TEntity>(Point start, Point stop)
 //			where TEntity : Entity, new()

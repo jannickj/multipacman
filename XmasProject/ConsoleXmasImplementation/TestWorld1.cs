@@ -16,6 +16,8 @@ namespace ConsoleXmasImplementation
 
 		private void BuildMap()
 		{
+
+
 			/*	Map to be built:
 			 * 
 			 * IIIIIIIIIIIIIII
@@ -42,22 +44,22 @@ namespace ConsoleXmasImplementation
 			 * 
 			 */
 
-			int start = 6;
-			int stop = -5;
-			int factor = 1;
-
-			foreach (int idx in AlternateRange(-5, 5, 2))
-			{
-				AddChunk(() => new Wall(), new Point(idx, start * factor), new Point(idx, stop * factor));
-				factor *= -1;
-			}
-
-//			AddChunk (() => new Wall (), new Point (-1, -1), new Point (-2, -2));
-
-//			this.AddEntity(new Wall(), new Point(0, 1));
-//			this.AddEntity(new Wall(), new Point(1, 1));
-			this.AddEntity(new Player(), new Point(0, 0));
-            this.AddEntity(new Ghost("testname"), new Point(0, 1));
+//			int start = 6;
+//			int stop = -5;
+//			int factor = 1;
+//
+//			foreach (int idx in AlternateRange(-5, 5, 2))
+//			{
+//				AddChunk(() => new Wall(), new Point(idx, start * factor), new Point(idx, stop * factor));
+//				factor *= -1;
+//			}
+//
+////			AddChunk (() => new Wall (), new Point (-1, -1), new Point (-2, -2));
+//
+////			this.AddEntity(new Wall(), new Point(0, 1));
+////			this.AddEntity(new Wall(), new Point(1, 1));
+//			this.AddEntity(new Player(), new Point(0, 0));
+//            this.AddEntity(new Ghost("testname"), new Point(0, 1));
 			
 		}
 
