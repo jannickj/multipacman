@@ -5,6 +5,7 @@ using JSLibrary.IiLang;
 using JSLibrary.IiLang.DataContainers;
 using XmasEngineController.AI;
 using XmasEngineExtensions.EisExtension.Model;
+using XmasEngineExtensions.EisExtension.Model.Events;
 using XmasEngineModel;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
@@ -12,9 +13,9 @@ using JSLibrary.Network;
 using System.IO;
 using JSLibrary;
 using System;
-using XmasEngineExtensions.EisExtension.Model.XmasActions;
 using System.Threading;
 using System.Net.Sockets;
+using XmasEngineModel.Management.Actions;
 
 namespace XmasEngineExtensions.EisExtension.Controller.AI
 {
@@ -79,7 +80,7 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
             }
             catch
             {
-                this.actman.Queue(new EisAgentDisconnected(this.Agent));
+                this.actman.Queue(new SimpleAction(sa => sa.EventManager.Raise(new EisAgentDisconnectedEvent(this.Agent))));
             }
 		}
 
