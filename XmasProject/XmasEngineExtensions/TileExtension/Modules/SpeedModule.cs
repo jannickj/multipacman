@@ -17,7 +17,7 @@ namespace XmasEngineExtensions.TileExtension.Modules
 
 		public override IEnumerable<Percept> Percepts
 		{
-			get { return new Percept[] {new SingleNumeralPercept("speed", speed)}; }
+			get { return new Percept[] {new SingleNumeralPercept ("speed", speed)}; }
 		}
 
 		public SpeedModule (double speed)

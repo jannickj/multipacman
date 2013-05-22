@@ -12,7 +12,7 @@ namespace XmasEngineExtensions.TileExtension
 
 		public ICollection<XmasEntity> Entities
 		{
-			get { return entities.ToList(); }
+			get { return entities.ToArray(); }
 		}
 
 		public void AddEntity(XmasEntity xmasEntity)

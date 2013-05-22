@@ -31,7 +31,7 @@ namespace XmasEngineModel.Management
 
 		}
 
-		internal void Fail()
+		public void Fail()
 		{
 			this.actionfailed = true;
 			EventHandler buffer = Failed;

@@ -104,6 +104,8 @@
     <Compile Include="Rule\TransformationRule.cs" />
     <Compile Include="XmasWorld.cs" />
     <Compile Include="XmasWorldBuilder.cs" />
+    <Compile Include="Management\Actions\RemoveEntityAction.cs" />
+    <Compile Include="Management\Events\EntityRemovedEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">

@@ -4,7 +4,7 @@ using XmasEngineModel.World;
 
 namespace XmasEngineModel.Management.Actions
 {
-	public class AddEntityAction : XmasAction
+	public class AddEntityAction : EnvironmentAction
 	{
 		private XmasEntity ent;
 		private EntitySpawnInformation info;
