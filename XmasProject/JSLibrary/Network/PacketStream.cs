@@ -20,15 +20,17 @@ namespace JSLibrary.Network
 
 		public void ReadNextPackage()
 		{
-			input.Position = 0;
 			int mustRead = 4;
 			byte[] packetLengthArray = new byte[mustRead];
 			while(mustRead>0)
 				mustRead-= input.Read(packetLengthArray, 0, mustRead);
 
+            Array.Reverse(packetLengthArray);
+
 			int packetLength = BitConverter.ToInt32(packetLengthArray, 0);
 
 			memsIn.Position = 0;
+            memsIn.SetLength(0);
 			mustRead = packetLength;
 			while (mustRead > 0)
 			{
@@ -48,7 +50,11 @@ namespace JSLibrary.Network
 
 		public override void Flush()
 		{
+            if (memsOut.Length == 0)
+                return;
+
 			byte[] len = BitConverter.GetBytes((int)memsOut.Length);
+            Array.Reverse(len);
 			this.input.Write(len,0,len.Length);
 			this.memsOut.WriteTo(input);
 			this.input.Flush();
@@ -68,9 +74,6 @@ namespace JSLibrary.Network
 
 		public override int Read(byte[] buffer, int offset, int count)
 		{
-			if(memsIn.Length == memsIn.Position)
-				this.ReadNextPackage();
-
 			return this.memsIn.Read(buffer, offset, count);
 		}
 
@@ -81,7 +84,7 @@ namespace JSLibrary.Network
 
 		public override bool CanRead
 		{
-			get { return this.memsIn.CanRead; }
+            get { return this.memsIn.CanRead; }
 		}
 
 		public override bool CanSeek

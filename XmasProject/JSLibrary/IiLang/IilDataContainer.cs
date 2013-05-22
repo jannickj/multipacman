@@ -81,8 +81,8 @@ namespace JSLibrary.IiLang
 				}
 			}
 			
-
-			//reader.ReadEndElement();
+            
+			reader.ReadEndElement();
 			//reader.Read();
 		}
 

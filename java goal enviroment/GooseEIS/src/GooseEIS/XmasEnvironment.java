@@ -3,6 +3,7 @@ import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.ContentHandlerFactory;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -40,6 +42,7 @@ import eis.exceptions.PerceiveException;
 import eis.iilang.Action;
 import eis.iilang.EnvironmentState;
 import eis.iilang.Identifier;
+import eis.iilang.Numeral;
 import eis.iilang.Parameter;
 import eis.iilang.Percept;
 
@@ -48,30 +51,42 @@ public class XmasEnvironment extends EIDefaultImpl
 	private static final long serialVersionUID = 1L;
 	private int port = 44444;
 	private Socket socket;
-	InputPacketStream inputStream;
-	OutputPacketStream outputStream;
-	XMLReader xmlreader;
+	private InputPacketStream inputStream;
+	private OutputPacketStream outputStream;
+	private XMLReader xmlreader;
 	private String Name;
+	
+
 	
 	public XmasEnvironment()
 	{
-		Map<String, Parameter> m = new HashMap<String, Parameter>();
-		
-		Identifier param = new Identifier("testname");
-		m.put("agentName", param);
-		try {
-			this.init(m);
-		} catch (ManagementException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
-			getAllPerceptsFromEntity("");
-		} catch (PerceiveException | NoEnvironmentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		Map<String, Parameter> m = new HashMap<String, Parameter>();
+//		
+//		Identifier param = new Identifier("testname");
+//		m.put("agentName", param);
+//		try {
+//			this.init(m);
+//		} catch (ManagementException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		try {
+//			getAllPerceptsFromEntity("");
+//		
+//			LinkedList<Parameter> params = new LinkedList<>();
+//			params.add(new Numeral(0));
+//			params.add(new Numeral(1));
+//			this.performEntityAction("", new Action("move",params));
+//			
+//			String s = readFully(this.inputStream.getPacketStream());
+//			
+//			this.getAllPerceptsFromEntity("");
+//			
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	@Override
@@ -163,16 +178,16 @@ public class XmasEnvironment extends EIDefaultImpl
 		xmlreader.setContentHandler (handler);
 		
 		try {
-			xmlreader.parse(new InputSource(inputStream.getPacketStream()));
+			xmlreader.parse(new InputSource(this.inputStream.getPacketStream()));
+			
+			
 		} catch (IOException | SAXException e) {
 			try {
 				throw new Exception ("Could not parse XML in agent " + arg0, e);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-		} catch(FinishedParsingException e)
-		{
-		} catch (Exception e) {
+		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

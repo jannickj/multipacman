@@ -6,6 +6,7 @@ using XmasEngineView;
 using XmasEngineModel.Management.Events;
 using System.Collections.Generic;
 using ConsoleXmasImplementation.Model;
+using XmasEngineExtensions.EisExtension.Model.Events;
 
 namespace ConsoleXmasImplementation.ConsoleLogger
 {
@@ -32,7 +33,13 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 
 			evtqueue.Register (new Trigger<EntityAddedEvent> (model_EntityAdded));
 			evtqueue.Register (new Trigger<ActionFailedEvent> (engine_ActionFailed));
+            evtqueue.Register(new Trigger<EisAgentDisconnectedEvent>(controller_AgentDisconnected));
 		}
+
+        private void controller_AgentDisconnected(EisAgentDisconnectedEvent evt)
+        {
+            log.LogStringWithTimeStamp(string.Format("{{{0}}}'s Controller was disconnected", evt.Agent), DebugLevel.Error);
+        }
 
 		private void model_EntityAdded(EntityAddedEvent evt)
 		{

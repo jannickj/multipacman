@@ -39,7 +39,6 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 		{
 			TcpClient client = listener.AcceptTcpClient();
 
-
 			return () =>
 				{
 					string name;
@@ -53,21 +52,18 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 		{
 			PacketStream packet = new PacketStream(client.GetStream());
 			StreamReader sreader = new StreamReader(packet, Encoding.UTF8);
-            XmlReaderSettings rset = new XmlReaderSettings();
-            rset.ConformanceLevel = ConformanceLevel.Fragment;
-			XmlReader xreader = XmlReader.Create(sreader,rset);
+            StreamWriter swriter = new StreamWriter(packet, Encoding.UTF8);
+            packet.ReadNextPackage();
 
-			XmlWriterSettings wset = new XmlWriterSettings();
-			wset.OmitXmlDeclaration = true;
-			wset.ConformanceLevel = ConformanceLevel.Fragment;
-			XmlWriter xwriter = XmlWriter.Create(packet);
 			XmlSerializer serializer = new XmlSerializer(typeof (IilIdentifier));
-			IilIdentifier ident = (IilIdentifier) serializer.Deserialize(xreader);
+
+            
+			IilIdentifier ident = (IilIdentifier) serializer.Deserialize(sreader);
 			name = ident.Value;
 			Agent agent = TakeControlOf(name);
 
 
-			EISAgentController con = new EISAgentController(agent, xreader, xwriter, tool, parser);
+			EISAgentController con = new EISAgentController(agent, client, this.ActionManager, packet, sreader, swriter, tool, parser);
 
 			return con;
 		}

@@ -22,7 +22,7 @@ public class OutputPacketStream {
 		ByteBuffer buf = ByteBuffer.allocate(4);
 		
 		buf.putInt(bytes.length);
-		
+
 		stream.write(buf.array());
 		
 		stream.write(bytes);

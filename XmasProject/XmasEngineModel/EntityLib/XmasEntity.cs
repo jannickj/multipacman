@@ -22,7 +22,7 @@ namespace XmasEngineModel.EntityLib
 		{
 			try {
 				return moduleMap [typeof(TModule)] as TModule;
-			} catch (KeyNotFoundException e) {
+			} catch {
 				throw new MissingModuleException(this,typeof(TModule));
 			}	
 		}

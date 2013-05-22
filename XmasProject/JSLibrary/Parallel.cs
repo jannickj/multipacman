@@ -29,5 +29,25 @@ namespace JSLibrary
 			result = t;
 			return completed;
 		}
+
+        public static void ExecuteWithPollingCheck(Action action, double intervalMiliSec, Func<bool> ThreadAbortCondition)
+        {
+            Thread t = Thread.CurrentThread;
+            System.Timers.Timer timer = new System.Timers.Timer(intervalMiliSec);
+            timer.Elapsed += delegate
+            {  
+                if(ThreadAbortCondition())
+                {
+                    timer.Stop();
+                  
+                    t.Abort();
+
+                }
+            };
+
+            action();
+            timer.Stop();
+
+        }
 	}
 }

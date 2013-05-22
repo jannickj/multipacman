@@ -42,6 +42,8 @@
     <Compile Include="EisExtension\Controller\AI\EISAgentController.cs" />
     <Compile Include="EisExtension\Controller\AI\EISAgentServer.cs" />
     <Compile Include="EisExtension\Model\ActionTypes\EISGetAllPercepts.cs" />
+    <Compile Include="EisExtension\Model\Events\EisAgentDisconnectedEvent.cs" />
+    <Compile Include="EisExtension\Model\XmasActions\EisAgentDisconnected.cs" />
     <Compile Include="LoggerExtension\LoggerView.cs" />
     <Compile Include="TileEisExtension\ActionTypes\EISMoveUnit.cs" />
     <Compile Include="TileEisExtension\Conversion\MoveUnitActionConverter.cs" />
@@ -106,9 +108,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EisExtension\Model\XmasActions\" />
-    <Folder Include="EisExtension\View\" />
     <Folder Include="EisExtension\Model\Conversion\IILang\Objects\" />
+    <Folder Include="EisExtension\View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

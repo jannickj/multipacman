@@ -8,6 +8,13 @@ using XmasEngineExtensions.EisExtension.Model;
 using XmasEngineModel;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
+using JSLibrary.Network;
+using System.IO;
+using JSLibrary;
+using System;
+using XmasEngineExtensions.EisExtension.Model.XmasActions;
+using System.Threading;
+using System.Net.Sockets;
 
 namespace XmasEngineExtensions.EisExtension.Controller.AI
 {
@@ -17,33 +24,42 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 		private XmlSerializer deserializer = new XmlSerializer(typeof (IilAction));
 		private XmlSerializer serializer = new XmlSerializer(typeof (IilPerceptCollection));
 		private EisConversionTool tool;
-		private XmlReader xreader;
-		private XmlWriter xwriter;
+		private StreamReader sreader;
+        private StreamWriter swriter;
+        private PacketStream packetstream;
+        private ActionManager actman;
+        private TcpClient client;
 
-
-		public EISAgentController(Agent agent, XmlReader xreader, XmlWriter xwriter, EisConversionTool tool,
+		public EISAgentController(Agent agent, TcpClient client, ActionManager actman, PacketStream packetstream, StreamReader sreader, StreamWriter swriter, EisConversionTool tool,
 		                          IILActionParser actionparser)
 			: base(agent)
 		{
-			this.xreader = xreader;
-			this.xwriter = xwriter;
+            this.client = client;
+            this.packetstream = packetstream;
+            this.sreader = sreader;
+            this.swriter = swriter;
 			PerceptsRecieved += EISAgentController_PerceptsRecieved;
 			this.tool = tool;
 			this.actionparser = actionparser;
+            this.actman = actman;
 		}
 
 		private void update()
 		{
-			IilAction iilaction = null;
+            //IilAction iilaction = null;
 
-			while (iilaction == null)
-			{
-				iilaction = (IilAction)deserializer.Deserialize(xreader);
+            //while (iilaction == null)
+            //{
+				
 
-				if (iilaction == null)
-					xreader.ReadEndElement();
-			}
-			//iilaction = (IilAction)deserializer.Deserialize(xreader);
+            //    if (iilaction == null)
+            //        xreader.ReadEndElement();
+            //}
+            packetstream.ReadNextPackage();
+            //Parallel.ExecuteWithPollingCheck(packetstream.ReadNextPackage, 5000, () => !client.Connected);
+
+            //string action = sreader.ReadToEnd();
+            IilAction iilaction = (IilAction)deserializer.Deserialize(sreader);
 			
 			EISAction eisaction = actionparser.parseIILAction(iilaction);
 			EntityXmasAction gameaction = (EntityXmasAction) tool.ConvertToXmas(eisaction);
@@ -54,10 +70,17 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 
 		public override void Start()
 		{
-			while (true)
-			{
-				update();
-			}
+            try
+            {
+                while (true)
+                {
+                    update();
+                }
+            }
+            catch
+            {
+                this.actman.Queue(new EisAgentDisconnected(this.Agent));
+            }
 		}
 
 		#endregion
@@ -67,8 +90,8 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 		private void EISAgentController_PerceptsRecieved(object sender, UnaryValueEvent<PerceptCollection> evt)
 		{
 			IilPerceptCollection perceptcollection = (IilPerceptCollection) tool.ConvertToForeign(evt.Value);
-			serializer.Serialize(xwriter, perceptcollection);
-			xwriter.Flush();
+			serializer.Serialize(swriter, perceptcollection);
+			swriter.Flush();
 		}
 
 		#endregion

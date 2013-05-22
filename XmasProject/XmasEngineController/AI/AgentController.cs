@@ -11,7 +11,7 @@ namespace XmasEngineController.AI
 	public abstract class AgentController
 	{
 		private AutoResetEvent actionComplete = new AutoResetEvent(false);
-		private Agent agent;
+        private Agent agent;
 		private PerceptCollection newpercepts;
 
 		public AgentController(Agent agent)
@@ -19,6 +19,12 @@ namespace XmasEngineController.AI
 			this.agent = agent;
 			agent.Register(new Trigger<RetreivePerceptsEvent>(agent_RetrievePercepts));
 		}
+
+
+        public Agent Agent
+        {
+            get { return agent; }
+        }
 
 		protected event UnaryValueHandler<PerceptCollection> PerceptsRecieved;
 
