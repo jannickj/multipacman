@@ -28,6 +28,11 @@ namespace JSLibrary.IiLang
 			parameters.Add(p);
 		}
 
+		public void AddParameter(IEnumerable<IilParameter> ps)
+		{
+			parameters.AddRange(ps);
+		}
+
 		#region IXmlSerializable implementation
 
 		public override void ReadXml(XmlReader reader)

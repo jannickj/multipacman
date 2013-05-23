@@ -1,7 +1,17 @@
 init module {
 	knowledge{
-		findStreet(SL, L) :-findall(Z,((member(M,L), M = on(X,Y, contains(HL)), Z=(X,Y), (HL = []; member(entity(E),HL), E\=wall, E\=impassablewall))),SL).
-	
+		findStreet(M) :- M = vision(X,Y, HL), Z=(X,Y), (HL = []; member(E,HL), E\=wall, E\=impassablewall).
+		transpose( (X, Y), (Nx, Ny)) :- position(Px,Py), Nx is X + Px, Ny is Y + Py.
+		
+		visionContainsAt(vision(X,Y,L), Entity, Tx, Ty) :- transpose((X,Y),(Tx,Ty)), member(Entity,L).
+		
+		nextStreet(X,Y,Nx,Ny) :- Nnx is X + 1, street(Nnx, Y).
+		nextStreet(X,Y,Nx,Ny) :- Nnx is X - 1, street(Nnx, Y).
+		nextStreet(X,Y,Nx,Ny) :- Nny is Y + 1, street(X, Nny).
+		nextStreet(X,Y,Nx,Ny) :- Nny is Y - 1, street(X, Nny).
+		
+		goToFromUsing(Tx, Ty, GoalX, GoalY, L) :- nextStreet(Tx, Ty, Nx, Ny), goToFromUsing(Nx,Ny,GoalX,GoalY,[(Nx,Ny)|L]). 
+		goToFromUsing(Gx,Gy,Gx,Gy,_).
 	}
 	
 	beliefs{
@@ -31,6 +41,7 @@ init module {
 	
 main module{
 	program {
+		if bel(position(Tx,Ty), on(Tx,Ty,package)) then grab.
 		if true then move(0,0).
 	}
 }
@@ -41,6 +52,11 @@ event module{
 		if bel( percept(position(X,Y)) ) then insert ( position(X,Y) ).
 		if bel( percept(speed(X)) ) then insert ( myspeed(X) ).	
 		
-		forall bel (percept(vision(V)), findStreet(Ws,V), member(W,Ws), W = (X,Y)  ) do insert (street(X,Y)).
+		if bel( V = vision(_,_,_), percept(V), visionContainsAt(V, package, Tx, Ty) ) then insert (on(Tx, Ty, package)).
+		if bel( on(Tx,Ty,package), percept(vision(X, Y, L)), transpose((X, Y), (Tx, Ty)), \+ member(package,L) ) then delete (on(Tx,Ty,package)).
+		if bel( V = vision(_,_,_), percept(V), visionContainsAt(V, dropzone, Tx, Ty) ) then insert (on(Tx, Ty, dropzone)).
+
+		
+		forall bel (percept(V), V = vision(X,Y,Ents), findStreet(V), transpose( (X,Y),(Nx,Ny)) ) do insert (street(Nx,Ny)).
 	}
 }

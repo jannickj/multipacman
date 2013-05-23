@@ -1,5 +1,6 @@
 using ConsoleXmasImplementation.Model.Modules;
 using XmasEngineExtensions.TileExtension.Modules;
+using XmasEngineModel.EntityLib.Module;
 
 namespace ConsoleXmasImplementation.Model.Entities
 {
@@ -7,7 +8,10 @@ namespace ConsoleXmasImplementation.Model.Entities
 	{
 		public GrabberAgent (string name) : base(name)
 		{
-			RegisterModule(new PackageGrabbingModule(false));
+			this.RegisterModule(new VisionModule());
+			this.RegisterModule(new VisionRangeModule(5));
+			this.RegisterModule(new PositionModule());
+			this.RegisterModule(new PackageGrabbingModule(false));
 		}
 
 		protected override SpeedModule ConstructSpeedModule ()

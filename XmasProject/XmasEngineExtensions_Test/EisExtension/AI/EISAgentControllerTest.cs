@@ -78,7 +78,7 @@ namespace XmasEngineExtensions_Test.EisExtension.AI
 			EisConversionTool ctool = new EisConversionTool();
 			ctool.AddConverter(new GetAllPerceptsActionConverter());
 			ctool.AddConverter(new EISPerceptCollectionSerializer());
-			ctool.AddConverter(new EISVisionSerializer());
+			ctool.AddConverter(new EisTileVisionSerializer());
 			ctool.AddConverter(new EISSingleNumeralSerializer());
 
 			IILActionParser parser = new IILActionParser();

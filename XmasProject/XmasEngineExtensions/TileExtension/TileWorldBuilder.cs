@@ -82,7 +82,7 @@ namespace XmasEngineExtensions.TileExtension
 ////			foreach (Tile tile in TilesInChunk(start, stop, exceptions).Select(p => this.map[p.X,p.Y]))
 ////			{
 ////				foreach (TEntity entity in tile.Entities.OfType<TEntity>().ToArray())
-////					this.RemoveEntity(entity);
+////					this.OnRemoveEntity(entity);
 ////			}
 //		}
 	}

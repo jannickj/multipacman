@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Exceptions;
+using XmasEngineModel.Management;
+using XmasEngineModel.Management.Events;
 using XmasEngineModel.World;
 
 namespace XmasEngineModel
@@ -9,9 +11,16 @@ namespace XmasEngineModel
 	{
 		private ulong nextId = 1;
 		private Dictionary<string,Agent> agentLookup = new Dictionary<string, Agent>();
-		private Dictionary<ulong,XmasEntity> entityLookup = new Dictionary<ulong, XmasEntity>(); 
+		private Dictionary<ulong,XmasEntity> entityLookup = new Dictionary<ulong, XmasEntity>();
+		private EventManager evtman;
 
-		internal bool FullAddEntity(XmasEntity xmasEntity, EntitySpawnInformation info)
+		public EventManager EventManager
+		{
+			get { return evtman; }
+			internal set { evtman = value; }
+		}
+
+		public bool AddEntity(XmasEntity xmasEntity, EntitySpawnInformation info)
 		{
 			if (xmasEntity is Agent)
 			{
@@ -29,17 +38,20 @@ namespace XmasEngineModel
 				}
 			}
 
-			bool entityadded = AddEntity(xmasEntity, info);
+			bool entityadded = OnAddEntity(xmasEntity, info);
 			if (entityadded)
 			{
 				xmasEntity.Id = nextId;
 				this.entityLookup.Add(xmasEntity.Id,xmasEntity);
 				nextId++;
+
+				evtman.Raise(new EntityAddedEvent(xmasEntity));
 			}
+
 			return entityadded;
 		}
 
-		internal void FullRemoveEntity(XmasEntity entity)
+		internal void RemoveEntity(XmasEntity entity)
 		{
 			if (entity is Agent) {
 				Agent agent = entity as Agent;
@@ -49,12 +61,15 @@ namespace XmasEngineModel
 
 			entityLookup.Remove (entity.Id);
 
-			RemoveEntity(entity);
+			OnRemoveEntity(entity);
+
+			evtman.Raise(new EntityRemovedEvent(entity));
+
 		}
 
-		protected abstract bool AddEntity(XmasEntity xmasEntity, EntitySpawnInformation info);
+		protected abstract bool OnAddEntity(XmasEntity xmasEntity, EntitySpawnInformation info);
 
-		protected abstract void RemoveEntity(XmasEntity entity);
+		protected abstract void OnRemoveEntity(XmasEntity entity);
 
 		public abstract XmasPosition GetEntityPosition(XmasEntity xmasEntity);
 

@@ -25,6 +25,7 @@ namespace XmasEngineModel
 			ActionManager = actman;
 			EventManager = evtman;
 			Factory = factory;
+			world.EventManager = evtman;
 
 			EventManager.Register(new Trigger<EngineCloseEvent>(evtman_EngineClose));
 			ActionManager.ActionQueuing += actman_ActionQueuing;

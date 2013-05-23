@@ -8,9 +8,8 @@ namespace XmasEngineExtensions.TileEisExtension
 
 		public TileEisConversionTool()
 		{
-			this.AddConverter(new EISVisionSerializer());
+			this.AddConverter(new EisTileVisionSerializer());
 			this.AddConverter(new MoveUnitActionConverter());
-			this.AddConverter(new EISTileSerializer());
 			this.AddConverter(new EisPositionSerializer());
 		}
 	}

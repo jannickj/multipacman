@@ -47,8 +47,7 @@
     <Compile Include="TileEisExtension\ActionTypes\EISMoveUnit.cs" />
     <Compile Include="TileEisExtension\Conversion\EisPositionSerializer.cs" />
     <Compile Include="TileEisExtension\Conversion\MoveUnitActionConverter.cs" />
-    <Compile Include="TileEisExtension\Conversion\EISTileSerializer.cs" />
-    <Compile Include="TileEisExtension\Conversion\EISVisionSerializer.cs" />
+    <Compile Include="TileEisExtension\Conversion\EisTileVisionSerializer.cs" />
     <Compile Include="EisExtension\Model\EISAction.cs" />
     <Compile Include="EisExtension\Model\IILActionParser.cs" />
     <Compile Include="TileEisExtension\TileEisConversionTool.cs" />
@@ -65,6 +64,7 @@
     <Compile Include="TileExtension\Modules\VisionBlockingModule.cs" />
     <Compile Include="TileExtension\Modules\MovementBlockingModule.cs" />
     <Compile Include="TileExtension\Modules\RuleBasedMovementBlockingModule.cs" />
+    <Compile Include="TileExtension\Percepts\TileVisionPercept.cs" />
     <Compile Include="TileExtension\TileWorld.cs" />
     <Compile Include="TileExtension\TileWorldBuilder.cs" />
     <Compile Include="TileExtension\TileMap.cs" />

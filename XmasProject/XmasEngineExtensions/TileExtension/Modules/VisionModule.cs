@@ -29,7 +29,7 @@ namespace XmasEngineExtensions.TileExtension.Modules
 		public override IEnumerable<Percept> Percepts {
 			get {
 				UpdateVision();
-				return new Percept[] { Vision };
+				return vision.VisibleTiles.Select(kv => new TileVisionPercept(kv.Key, kv.Value)).ToArray();
 			}
 		}
 

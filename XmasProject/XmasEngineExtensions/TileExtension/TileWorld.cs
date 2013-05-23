@@ -44,7 +44,7 @@ namespace XmasEngineExtensions.TileExtension
 			return View(xmasEntity.Module<VisionRangeModule>().VisionRange, xmasEntity);
 		}
 
-		protected override bool AddEntity(XmasEntity xmasEntity, EntitySpawnInformation info)
+		protected override bool OnAddEntity(XmasEntity xmasEntity, EntitySpawnInformation info)
 		{
 			TilePosition tilePos = (TilePosition) info.Position;
 			return AddEntity(xmasEntity, tilePos);
@@ -95,7 +95,7 @@ namespace XmasEngineExtensions.TileExtension
 			return map [p].Entities;
 		}
 
-		protected override void RemoveEntity (XmasEntity entity)
+		protected override void OnRemoveEntity (XmasEntity entity)
 		{
 			map [entlocs [entity]].RemoveEntity (entity);
 			entlocs.Remove (entity);
