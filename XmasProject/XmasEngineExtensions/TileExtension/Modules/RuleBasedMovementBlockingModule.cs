@@ -26,7 +26,7 @@ namespace XmasEngineExtensions.TileExtension.Modules
 			this.block.AddWillBlockRule<TDecider>(rule);
 		}
 
-		public void AddWillNotBLockRule<TDecider>(Predicate<XmasEntity> rule)
+		public void AddWillNotBlockRule<TDecider>(Predicate<XmasEntity> rule)
 		{
 			this.block.AddNotBlockRule<TDecider>(rule);
 		}

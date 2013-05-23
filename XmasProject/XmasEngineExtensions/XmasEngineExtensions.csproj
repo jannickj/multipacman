@@ -84,6 +84,7 @@
     <Compile Include="LoggerExtension\Logger.cs" />
     <Compile Include="LoggerExtension\DebugLevel.cs" />
     <Compile Include="TileExtension\TilePosition.cs" />
+    <Compile Include="EisExtension\Model\Conversion\IILang\Percepts\EISEmptyNamedPerceptSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">

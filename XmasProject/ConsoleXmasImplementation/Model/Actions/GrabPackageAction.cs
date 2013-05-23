@@ -7,6 +7,7 @@ using XmasEngineModel.Management;
 using XmasEngineModel.Management.Actions;
 using ConsoleXmasImplementation.Model;
 using ConsoleXmasImplementation.Model.Events;
+using ConsoleXmasImplementation.Model.Modules;
 
 namespace XmasEngineExtensions.TileExtension.Actions
 {
@@ -24,7 +25,9 @@ namespace XmasEngineExtensions.TileExtension.Actions
 			if (package == null) {
 				Fail ();
 			}
-		
+
+			Source.Module<PackageGrabbingModule> ().PackageGrabbed = true;
+
 			ActionManager.Queue (new RemoveEntityAction (package));
 
 			Complete ();

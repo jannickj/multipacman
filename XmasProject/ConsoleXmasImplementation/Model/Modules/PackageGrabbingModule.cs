@@ -1,12 +1,27 @@
 using System;
+using XmasEngineModel.EntityLib.Module;
+using XmasEngineModel;
+using System.Collections.Generic;
+using XmasEngineModel.Percepts;
 
-namespace ConsoleXmasImplementation
+namespace ConsoleXmasImplementation.Model.Modules
 {
-	public class PackageGrabbingModule
+	public class PackageGrabbingModule : EntityModule
 	{
-		public PackageGrabbingModule ()
-		{
+		public bool PackageGrabbed { get; set; }
 
+		public PackageGrabbingModule (bool packageGrabbed)
+		{
+			PackageGrabbed = packageGrabbed;
+		}
+
+		public override IEnumerable<Percept> Percepts {
+			get {
+				if (PackageGrabbed)
+					return new Percept[] { new EmptyNamedPercept ("holdingPackage") };
+
+				return new Percept[0];
+			}
 		}
 	}
 }

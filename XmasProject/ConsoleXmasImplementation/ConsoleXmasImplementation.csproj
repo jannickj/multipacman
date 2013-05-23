@@ -73,6 +73,8 @@
     <Compile Include="Model\Actions\GrabPackageAction.cs" />
     <Compile Include="Model\Events\PackageGrabbedEvent.cs" />
     <Compile Include="Model\Modules\PackageGrabbingModule.cs" />
+    <Compile Include="Model\Entities\DropZone.cs" />
+    <Compile Include="View\EntityViews\ConsoleDropZoneView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -118,5 +120,7 @@
     <Folder Include="Model\Actions\" />
     <Folder Include="Model\Events\" />
     <Folder Include="Model\Modules\" />
+    <Folder Include="Model\Percepts\" />
+    <Folder Include="Model\Conversion\" />
   </ItemGroup>
 </Project>
