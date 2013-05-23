@@ -18,6 +18,7 @@ namespace ConsoleXmasImplementation.View
 		public ConsoleWorldView(TileWorld model)
 		{
 			this.model = model;
+            this.focusCheck = _ => false;
 		}
 
 		public ConsoleWorldView(TileWorld model, Func<XmasEntity, bool> focusCheck) : this(model)

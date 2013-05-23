@@ -16,6 +16,7 @@ using XmasEngineExtensions.TileExtension;
 using XmasEngineModel;
 using XmasEngineModel.Management;
 using XmasEngineView;
+using JSLibrary.Data;
 
 namespace ConsoleXmasImplementation
 {
@@ -29,9 +30,11 @@ namespace ConsoleXmasImplementation
 			XmasModel model = factory.ConstructModel(new TestWorld1());
 
 			//View construction
-			ThreadSafeEventManager evtman = new ThreadSafeEventManager();
-			ConsoleView view = new ConsoleView(model, new ConsoleWorldView((TileWorld)model.World,xe => xe is Ghost), new ConsoleViewFactory(evtman), evtman);
+			ThreadSafeEventManager evtman1 = new ThreadSafeEventManager();
+			ConsoleView view1 = new ConsoleView(model,new Point(0,0), new ConsoleWorldView((TileWorld)model.World,xe => xe is Ghost), new ConsoleViewFactory(evtman1), evtman1);
 
+            ThreadSafeEventManager evtman2 = new ThreadSafeEventManager();
+            ConsoleView view2 = new ConsoleView(model, new Point(0,23), new ConsoleWorldView((TileWorld)model.World), new ConsoleViewFactory(evtman2), evtman2);
 
 			StreamWriter sw = File.CreateText("error.log");
 
@@ -39,8 +42,8 @@ namespace ConsoleXmasImplementation
 			var loggerevtman = new ThreadSafeEventManager();
 			var logger = new Logger(sw, DebugLevel.Info);
 			views.Add(new ConsoleLoggerView(model,new LoggerViewFactory(loggerevtman,logger),loggerevtman,logger));
-			views.Add(view);
-			
+			views.Add(view1);
+            views.Add(view2);
 
 			//Controller construction
 			var listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 44444);

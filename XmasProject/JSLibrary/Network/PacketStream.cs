@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace JSLibrary.Network
 {
@@ -22,9 +23,13 @@ namespace JSLibrary.Network
 		{
 			int mustRead = 4;
 			byte[] packetLengthArray = new byte[mustRead];
-			while(mustRead>0)
-				mustRead-= input.Read(packetLengthArray, 0, mustRead);
-
+            while (mustRead > 0)
+            {
+                mustRead -= input.Read(packetLengthArray, 0, mustRead);
+                if (mustRead > 0)
+                    break;
+                Thread.Sleep(200);
+            }
             Array.Reverse(packetLengthArray);
 
 			int packetLength = BitConverter.ToInt32(packetLengthArray, 0);

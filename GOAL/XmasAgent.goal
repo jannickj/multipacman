@@ -1,7 +1,10 @@
 init module {
 	knowledge{
-		findWall(L1, [ on(Xx,Yy, contains(HL)) |T]) :- findall(Y, (member(X, HL), X = entity(wall), Y = on(Xx,Yy, X)), Tmp), findWall(L2, T), append(Tmp, L2, L1). 
-		findWall([], []).
+		findStreet(SL, L) :-findall(Z,((member(M,L), M = on(X,Y, contains(HL)), Z=(X,Y), (HL = []; member(entity(E),HL), E\=wall, E\=impassablewall))),SL).
+
+
+		
+			
 		
 		
 	}
@@ -36,7 +39,7 @@ event module{
 	program{
 		if bel( percept(speed(X)) ) then insert ( myspeed(X) ).
 		
-		if bel (percept(vision(X)), findWall(Ws,X) ) then insert (saw(Ws)).
+		forall bel (percept(vision(V)), findStreet(Ws,V), member(W,Ws), W = (X,Y)  ) do insert (street(X,Y)).
 	}
 }
 

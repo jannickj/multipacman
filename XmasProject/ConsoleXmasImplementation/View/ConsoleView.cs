@@ -9,6 +9,7 @@ using XmasEngineModel;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
 using XmasEngineView;
+using JSLibrary;
 
 namespace ConsoleXmasImplementation.View
 {
@@ -21,16 +22,18 @@ namespace ConsoleXmasImplementation.View
 		private ThreadSafeEventQueue eventqueue;
 		private ThreadSafeEventManager evtmanager;
 		private ConsoleWorldView viewWorld;
+        private Point drawPos;
 
-		public ConsoleView(XmasModel model, ConsoleWorldView viewWorld, ConsoleViewFactory entityFactory, ThreadSafeEventManager evtmanager)
+		public ConsoleView(XmasModel model, Point drawPos, ConsoleWorldView viewWorld, ConsoleViewFactory entityFactory, ThreadSafeEventManager evtmanager)
 		{
 			this.viewWorld = viewWorld;
 			this.entityFactory = entityFactory;
-
+            this.drawPos = drawPos;
 			this.evtmanager = evtmanager;
 			eventqueue = model.EventManager.ConstructEventQueue();
 			evtmanager.AddEventQueue(eventqueue);
 			eventqueue.Register(new Trigger<EntityAddedEvent>(Model_EntityAdded));
+
 		}
 
 		public void Setup()
@@ -39,9 +42,11 @@ namespace ConsoleXmasImplementation.View
 
 		private void Draw()
 		{
-			
-			Console.SetCursorPosition(0, 1);
-			Console.Write(Area());
+            lock (ExtendedConsole.ConsoleWriterLock)
+            {
+                Console.SetCursorPosition(drawPos.X, drawPos.Y+1);
+                Console.Write(Area());
+            }
 		}
 
 		public Char[] Area()
@@ -74,6 +79,7 @@ namespace ConsoleXmasImplementation.View
 
 		private void Update()
 		{
+            long slept = 0;
 			DateTime start = DateTime.Now;
 			Draw();
 
@@ -89,16 +95,30 @@ namespace ConsoleXmasImplementation.View
 				var ticksLeft = remainingTicks();
 				if(ticksLeft < 0)
 					break;
-				evtmanager.ExecuteNextWhenReady(new TimeSpan(ticksLeft));
+                long sleptNow;
+				evtmanager.ExecuteNextWhenReady(new TimeSpan(ticksLeft),out sleptNow);
+                slept += sleptNow;
 			}
-			long sleeptime = UPDATE_DELAY - ((DateTime.Now.Ticks - start.Ticks) / 100);
-			Console.SetCursorPosition(0, 0);
-			long pct = remainPct();
+            DateTime after = DateTime.Now;
+            long timespent =  ((after.Ticks - start.Ticks) / 10000L);
+			long sleeptime = UPDATE_DELAY - timespent;
+			
+			
 
-			Console.Write ("LOAD: {0,3}%\t\t\t", pct);
+			
 //			Console.Write("\rLOAD: " + pct + "%\t\t\t");
-			if (sleeptime > 0)
-				Thread.Sleep((int)sleeptime);
+            if (sleeptime > 0)
+            {
+                Thread.Sleep((int)sleeptime);
+                slept += sleeptime * 10000;
+            }
+            lock (ExtendedConsole.ConsoleWriterLock)
+            {
+                Console.SetCursorPosition(drawPos.X, drawPos.Y);
+                long uticks = UPDATE_DELAY * 10000;
+                long pct = (uticks - slept) / (updateDelayTicks / 100); 
+                Console.Write("\rLOAD: " + pct + "%\t\t\t");
+            }
 
 		}
 

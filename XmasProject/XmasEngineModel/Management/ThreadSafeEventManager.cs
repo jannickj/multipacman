@@ -48,5 +48,13 @@ namespace XmasEngineModel.Management
 			waitForItemEvent.WaitOne (ts);
 			ExecuteNext ();
 		}
+
+        public void ExecuteNextWhenReady(TimeSpan ts, out long slept)
+        {
+            DateTime start = DateTime.Now;
+            waitForItemEvent.WaitOne(ts);
+            slept = DateTime.Now.Ticks - start.Ticks;
+            ExecuteNext();
+        }
 	}
 }

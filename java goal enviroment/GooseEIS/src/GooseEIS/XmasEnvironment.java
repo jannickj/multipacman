@@ -55,8 +55,8 @@ public class XmasEnvironment extends EIDefaultImpl
 	private OutputPacketStream outputStream;
 	private XMLReader xmlreader;
 	private String Name;
+	private int debuglevel = 0;
 	
-
 	
 	public XmasEnvironment()
 	{
@@ -92,7 +92,6 @@ public class XmasEnvironment extends EIDefaultImpl
 	@Override
 	public void init(Map<String, Parameter> parameters)
 			throws ManagementException {
-		System.out.println("init");
 		super.init(parameters);
 		
 		Identifier nameId;
@@ -107,7 +106,7 @@ public class XmasEnvironment extends EIDefaultImpl
 					);
 		
 		System.out.println("Agent name = " + Name);
-		printDebugMsg("Connecting to socket on port " + port);
+		printDebugMsg("Connecting to socket on port " + port, 0);
 		
 		try {
 			socket = new Socket("localhost", port);
@@ -119,9 +118,8 @@ public class XmasEnvironment extends EIDefaultImpl
 			e.printStackTrace();
 		}
 		
-		printDebugMsg("Connected to socket, sending handshake");
+		printDebugMsg("Connected to socket, sending handshake", 0);
 		
-		System.out.println("WRITING: "+nameId.toXML());
 		try {
 			outputStream.SendPacket(nameId.toXML());
 		} catch (IOException e1) {
@@ -140,9 +138,10 @@ public class XmasEnvironment extends EIDefaultImpl
 		setState(EnvironmentState.PAUSED);
 	}
 	
-	private void printDebugMsg(String str)
+	private void printDebugMsg(String str, int debuglevel)
 	{
-		System.out.println(Name + ":: " + str);
+		if(debuglevel<=this.debuglevel)
+			System.out.println(str);
 	}
 
 	@Override
@@ -151,7 +150,6 @@ public class XmasEnvironment extends EIDefaultImpl
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("main");
 		new XmasEnvironment();
 	}
 	
@@ -165,7 +163,6 @@ public class XmasEnvironment extends EIDefaultImpl
 			throws PerceiveException, NoEnvironmentException 
 	{
 		Action action = new Action ("getAllPercepts");
-		System.out.println("WRITING: "+action.toXML());
 //		sockwriter.print (action.toXML());
 		try {
 			outputStream.SendPacket(action.toXML());
@@ -193,10 +190,7 @@ public class XmasEnvironment extends EIDefaultImpl
 		}
 		
 		LinkedList<Percept> percepts = handler.<LinkedList<Percept>>getElementAs();
-		for (Percept p : percepts) {
-			System.out.println(p);
-		}
-		
+
 		return handler.<LinkedList<Percept>>getElementAs();
 	}
 	
@@ -204,7 +198,7 @@ public class XmasEnvironment extends EIDefaultImpl
 	protected Percept performEntityAction(String arg0, Action action)
 			throws ActException 
 	{
-		System.out.println("WRITING: "+action.toXML());
+
 //		sockwriter.print (action.toXML());
 		try {
 			outputStream.SendPacket(action.toXML());
