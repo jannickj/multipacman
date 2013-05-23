@@ -1,7 +1,6 @@
-using System;
 using XmasEngineExtensions.TileExtension.Modules;
 
-namespace ConsoleXmasImplementation.Model
+namespace ConsoleXmasImplementation.Model.Entities
 {
 	public class GrabberAgent : ConsoleAgent
 	{

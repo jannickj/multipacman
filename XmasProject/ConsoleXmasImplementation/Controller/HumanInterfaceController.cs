@@ -8,6 +8,7 @@ using XmasEngineController.AI;
 using XmasEngineExtensions.TileExtension.Actions;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
+using XmasEngineModel.Management.Actions;
 
 namespace ConsoleXmasImplementation.Controller
 {
@@ -52,6 +53,7 @@ namespace ConsoleXmasImplementation.Controller
 					currentAction = this.actionMap[key.KeyChar];
 
 				this.performAction(currentAction);
+				this.performAction(new GetAllPerceptsAction());
 			}
 		}
 	}

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using XmasEngineExtensions.TileExtension.Modules;
+﻿using XmasEngineExtensions.TileExtension.Modules;
 using XmasEngineModel.EntityLib;
-using XmasEngineModel.EntityLib.Module;
 
-namespace ConsoleXmasImplementation.Model
+namespace ConsoleXmasImplementation.Model.Entities
 {
 	public abstract class ConsoleAgent : Agent
 	{

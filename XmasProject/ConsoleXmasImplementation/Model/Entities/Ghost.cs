@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using XmasEngineExtensions.TileExtension.Modules;
-using XmasEngineModel.EntityLib;
+﻿using XmasEngineExtensions.TileExtension.Modules;
+using XmasEngineModel.EntityLib.Module;
 
-namespace ConsoleXmasImplementation.Model
+namespace ConsoleXmasImplementation.Model.Entities
 {
 	public class Ghost : ConsoleAgent
 	{
@@ -13,6 +9,7 @@ namespace ConsoleXmasImplementation.Model
 		{
 			this.RegisterModule(new VisionModule());
 			this.RegisterModule(new VisionRangeModule(5));
+			this.RegisterModule(new PositionModule());
 		}
 
 		protected override SpeedModule ConstructSpeedModule()

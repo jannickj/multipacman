@@ -11,6 +11,7 @@ namespace XmasEngineExtensions.TileEisExtension
 			this.AddConverter(new EISVisionSerializer());
 			this.AddConverter(new MoveUnitActionConverter());
 			this.AddConverter(new EISTileSerializer());
+			this.AddConverter(new EisPositionSerializer());
 		}
 	}
 }

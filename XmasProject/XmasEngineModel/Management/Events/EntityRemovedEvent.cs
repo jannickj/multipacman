@@ -1,8 +1,6 @@
-using System;
-using XmasEngineModel.Management;
 using XmasEngineModel.EntityLib;
 
-namespace XmasEngineModel
+namespace XmasEngineModel.Management.Events
 {
 	public class EntityRemovedEvent : XmasEvent
 	{
