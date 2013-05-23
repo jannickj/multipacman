@@ -38,7 +38,7 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 
         private void controller_AgentDisconnected(EisAgentDisconnectedEvent evt)
         {
-            log.LogStringWithTimeStamp(string.Format("{{{0}}}'s Controller was disconnected", evt.Agent), DebugLevel.Error);
+            log.LogStringWithTimeStamp(string.Format("{{{0}}}'s Controller was disconnected ( {1} )", evt.Agent,evt.Exception.Message), DebugLevel.Error);
         }
 
 		private void model_EntityAdded(EntityAddedEvent evt)

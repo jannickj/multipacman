@@ -5,12 +5,17 @@ namespace XmasEngineModel.Exceptions
 	public class UnconvertableException : Exception
 	{
 		private object gobj;
+	
 
-
-		public UnconvertableException(object gobj)
-			: base("Conversion for object of type: " + gobj.GetType().Name + " Was not possible")
+		public UnconvertableException(object gobj) : this(gobj,null)
+			
 		{
-			this.gobj = gobj;
+		}
+
+		public UnconvertableException(object gobj, Exception inner)
+			: base("Conversion for object of type: " + gobj.GetType().Name + " Was not possible",inner)
+		{
+
 		}
 
 		public object ConvertingObject

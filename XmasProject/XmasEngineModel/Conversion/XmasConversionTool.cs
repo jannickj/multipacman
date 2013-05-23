@@ -41,21 +41,29 @@ namespace XmasEngineModel.Conversion
 			Type original = gobj.GetType();
 			Type gt = original;
 			XmasConverter converter;
-			while (true)
+			try
 			{
-				if (gooseLookup.TryGetValue(gt, out converter))
+				while (true)
 				{
-					if (gt != original)
+					if (gooseLookup.TryGetValue(gt, out converter))
 					{
-						SleekConverter sleek = new SleekConverter(converter.BeginUnsafeConversionToForeign,
-						                                          converter.BeginUnsafeConversionToXmas);
-						gooseLookup.Add(original, sleek);
+						if (gt != original)
+						{
+							SleekConverter sleek = new SleekConverter(converter.BeginUnsafeConversionToForeign,
+																	  converter.BeginUnsafeConversionToXmas);
+							gooseLookup.Add(original, sleek);
+						}
+						return (ForeignType)converter.BeginUnsafeConversionToForeign(gobj);
 					}
-					return (ForeignType) converter.BeginUnsafeConversionToForeign(gobj);
+					else
+						gt = gt.BaseType;
 				}
-				else
-					gt = gt.BaseType;
 			}
+			catch (Exception inner)
+			{
+				throw new UnconvertableException(gobj, inner);
+			}
+			
 		}
 
 
@@ -72,12 +80,21 @@ namespace XmasEngineModel.Conversion
 		public XmasObject ConvertToXmas(ForeignType foreign)
 		{
 			XmasConverter converter;
-			Type ft = foreign.GetType();
-			if (foreignLookup.TryGetValue(ft, out converter))
+			try
 			{
-				return converter.BeginUnsafeConversionToXmas(foreign);
+				Type ft = foreign.GetType();
+				if (foreignLookup.TryGetValue(ft, out converter))
+				{
+					return converter.BeginUnsafeConversionToXmas(foreign);
+				}
+				throw new KeyNotFoundException("Converter not found for "+foreign.GetType().Name);
 			}
-			throw new UnconvertableException(foreign);
+			catch (Exception inner)
+			{
+				throw new UnconvertableException(foreign, inner);
+				
+			}
+			
 		}
 
 

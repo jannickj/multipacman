@@ -78,9 +78,9 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
                     update();
                 }
             }
-            catch
+            catch(Exception e)
             {
-                this.actman.Queue(new SimpleAction(sa => sa.EventManager.Raise(new EisAgentDisconnectedEvent(this.Agent))));
+                this.actman.Queue(new SimpleAction(sa => sa.EventManager.Raise(new EisAgentDisconnectedEvent(this.Agent,e))));
             }
 		}
 
