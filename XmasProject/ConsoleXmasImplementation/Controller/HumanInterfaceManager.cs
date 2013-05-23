@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using ConsoleXmasImplementation.Model;
+using ConsoleXmasImplementation.Model.Entities;
 using XmasEngineController.AI;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;

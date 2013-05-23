@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using ConsoleXmasImplementation.ConsoleLogger;
 using ConsoleXmasImplementation.Controller;
 using ConsoleXmasImplementation.Model;
+using ConsoleXmasImplementation.Model.Entities;
 using ConsoleXmasImplementation.View;
 using XmasEngine;
 using XmasEngineController;
@@ -31,7 +32,7 @@ namespace ConsoleXmasImplementation
 
 			//View construction
 			ThreadSafeEventManager evtman1 = new ThreadSafeEventManager();
-			ConsoleView view1 = new ConsoleView(model,new Point(0,0), new ConsoleWorldView((TileWorld)model.World,xe => xe is Ghost), new ConsoleViewFactory(evtman1), evtman1);
+			ConsoleView view1 = new ConsoleView(model,new Point(0,0), new ConsoleWorldView((TileWorld)model.World,xe => xe is Player), new ConsoleViewFactory(evtman1), evtman1);
 
             ThreadSafeEventManager evtman2 = new ThreadSafeEventManager();
             ConsoleView view2 = new ConsoleView(model, new Point(0,23), new ConsoleWorldView((TileWorld)model.World), new ConsoleViewFactory(evtman2), evtman2);

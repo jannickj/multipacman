@@ -45,6 +45,7 @@
     <Compile Include="Conversion\XmasConverterToForeign.cs" />
     <Compile Include="Conversion\XmasConverterToXmas.cs" />
     <Compile Include="EntityLib\Module\EntityModule.cs" />
+    <Compile Include="EntityLib\Module\PositionModule.cs" />
     <Compile Include="EntityLib\Module\RuleBasedModule.cs" />
     <Compile Include="EntityLib\Agent.cs" />
     <Compile Include="EntityLib\XmasEntity.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Management\Trigger.cs" />
     <Compile Include="Management\TriggerManager.cs" />
     <Compile Include="Management\Actions\AddEntityAction.cs" />
+    <Compile Include="Percepts\PositionPercept.cs" />
     <Compile Include="World\EntitySpawnInformation.cs" />
     <Compile Include="World\XmasPosition.cs" />
     <Compile Include="XmasObject.cs" />

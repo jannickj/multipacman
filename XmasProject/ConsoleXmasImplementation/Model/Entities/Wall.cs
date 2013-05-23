@@ -1,7 +1,6 @@
 ﻿using XmasEngineExtensions.TileExtension.Modules;
-using XmasEngineModel.EntityLib;
 
-namespace ConsoleXmasImplementation.Model
+namespace ConsoleXmasImplementation.Model.Entities
 {
 	public class Wall : ConsoleEntity
 	{

@@ -1,4 +1,5 @@
 using System;
+using ConsoleXmasImplementation.Model.Entities;
 using XmasEngineModel.Management;
 using XmasEngineModel.EntityLib;
 

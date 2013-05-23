@@ -1,5 +1,6 @@
 using System;
 using ConsoleXmasImplementation.Model;
+using ConsoleXmasImplementation.Model.Entities;
 using ConsoleXmasImplementation.View.EntityViews;
 using XmasEngineExtensions.TileExtension.Entities;
 using XmasEngineModel.EntityLib;

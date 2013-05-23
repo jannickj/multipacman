@@ -1,15 +1,13 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using XmasEngineExtensions.TileExtension.Events;
+using ConsoleXmasImplementation.Model.Entities;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Actions;
-using ConsoleXmasImplementation.Model;
 using ConsoleXmasImplementation.Model.Events;
 using ConsoleXmasImplementation.Model.Modules;
 
-namespace XmasEngineExtensions.TileExtension.Actions
+namespace ConsoleXmasImplementation.Model.Actions
 {
 	public class GrabPackageAction : EntityXmasAction<Agent>
 	{

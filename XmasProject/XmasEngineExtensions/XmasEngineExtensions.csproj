@@ -45,6 +45,7 @@
     <Compile Include="EisExtension\Model\Events\EisAgentDisconnectedEvent.cs" />
     <Compile Include="LoggerExtension\LoggerView.cs" />
     <Compile Include="TileEisExtension\ActionTypes\EISMoveUnit.cs" />
+    <Compile Include="TileEisExtension\Conversion\EisPositionSerializer.cs" />
     <Compile Include="TileEisExtension\Conversion\MoveUnitActionConverter.cs" />
     <Compile Include="TileEisExtension\Conversion\EISTileSerializer.cs" />
     <Compile Include="TileEisExtension\Conversion\EISVisionSerializer.cs" />

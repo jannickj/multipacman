@@ -1,12 +1,7 @@
 init module {
 	knowledge{
 		findStreet(SL, L) :-findall(Z,((member(M,L), M = on(X,Y, contains(HL)), Z=(X,Y), (HL = []; member(entity(E),HL), E\=wall, E\=impassablewall))),SL).
-
-
-		
-			
-		
-		
+	
 	}
 	
 	beliefs{
@@ -37,7 +32,9 @@ main module{
 
 event module{
 	program{
-		if bel( percept(speed(X)) ) then insert ( myspeed(X) ).
+		if bel( percept(position(_,_)), position(X,Y)) then delete ( position(X,Y) ).
+		if bel( percept(position(X,Y)) ) then insert ( position(X,Y) ).
+		if bel( percept(speed(X)) ) then insert ( myspeed(X) ).	
 		
 		forall bel (percept(vision(V)), findStreet(Ws,V), member(W,Ws), W = (X,Y)  ) do insert (street(X,Y)).
 	}
