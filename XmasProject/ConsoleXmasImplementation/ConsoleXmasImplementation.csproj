@@ -43,11 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\KeyboardSettings.cs" />
-    <Compile Include="Model\ConsoleAgent.cs" />
-    <Compile Include="Model\ConsoleEntity.cs" />
-    <Compile Include="Model\Ghost.cs" />
-    <Compile Include="Model\Player.cs" />
-    <Compile Include="Model\Wall.cs" />
     <Compile Include="View\ConsoleEntityView.cs" />
     <Compile Include="View\ConsoleViewFactory.cs" />
     <Compile Include="View\ConsoleWorldView.cs" />
@@ -66,6 +61,18 @@
     <Compile Include="ConsoleLogger\LoggerViewFactory.cs" />
     <Compile Include="ConsoleLogger\LoggerEntityView.cs" />
     <Compile Include="ConsoleLogger\ConsoleLoggerView.cs" />
+    <Compile Include="View\EntityViews\ConsolePackageView.cs" />
+    <Compile Include="View\EntityViews\ConsoleGrabberView.cs" />
+    <Compile Include="Model\Entities\ConsoleAgent.cs" />
+    <Compile Include="Model\Entities\ConsoleEntity.cs" />
+    <Compile Include="Model\Entities\Ghost.cs" />
+    <Compile Include="Model\Entities\GrabberAgent.cs" />
+    <Compile Include="Model\Entities\Package.cs" />
+    <Compile Include="Model\Entities\Player.cs" />
+    <Compile Include="Model\Entities\Wall.cs" />
+    <Compile Include="Model\Actions\GrabPackageAction.cs" />
+    <Compile Include="Model\Events\PackageGrabbedEvent.cs" />
+    <Compile Include="Model\Modules\PackageGrabbingModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -107,5 +114,9 @@
   -->
   <ItemGroup>
     <Folder Include="ConsoleLogger\" />
+    <Folder Include="Model\Entities\" />
+    <Folder Include="Model\Actions\" />
+    <Folder Include="Model\Events\" />
+    <Folder Include="Model\Modules\" />
   </ItemGroup>
 </Project>

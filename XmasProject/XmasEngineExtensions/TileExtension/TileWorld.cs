@@ -89,24 +89,16 @@ namespace XmasEngineExtensions.TileExtension
 			return true;
 		}
 
+		public override ICollection<XmasEntity> GetEntities (XmasPosition pos)
+		{
+			Point p = ((TilePosition)pos).Point;
+			return map [p].Entities;
+		}
 
-//
-//		internal void SetEntityLocation(Point loc, XmasEntity XmasEntity)
-//		{
-//			map[loc.X, loc.Y].AddEntity(XmasEntity);
-//		}
-
-//		public XmasEntity[] RemoveAllEntities()
-//		{
-//			XmasEntity[] ents = this.entlocs.Keys.ToArray();
-//			foreach (var XmasEntity in ents)
-//			{
-//				this.RemoveEntity(XmasEntity);
-//			}
-//			return ents;
-//		}
-
-//
-
+		protected override void RemoveEntity (XmasEntity entity)
+		{
+			map [entlocs [entity]].RemoveEntity (entity);
+			entlocs.Remove (entity);
+		}
 	}
 }

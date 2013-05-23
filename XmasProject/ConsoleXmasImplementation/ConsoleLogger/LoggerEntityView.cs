@@ -9,6 +9,7 @@ using JSLibrary.Data;
 using System.IO;
 using XmasEngineExtensions.LoggerExtension;
 using XmasEngineExtensions;
+using ConsoleXmasImplementation.Model.Events;
 
 namespace ConsoleXmasImplementation.ConsoleLogger
 {
@@ -24,11 +25,12 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 		{
 			this.logstream = logstream;
 			Position = model.Position;
-			eventqueue.Register (new Trigger<UnitMovePostEvent> (loggerEntityView_UnitMovePostEvent));
-			eventqueue.Register (new Trigger<UnitMovePreEvent> (loggerEntityView_UnitMovePreEvent));
+			eventqueue.Register (new Trigger<UnitMovePostEvent> (entity_UnitMovePostEvent));
+			eventqueue.Register (new Trigger<UnitMovePreEvent> (entity_UnitMovePreEvent));
+			eventqueue.Register (new Trigger<PackageGrabbedEvent> (entity_PackageGrabbedEvent));
 		}
 
-		private void loggerEntityView_UnitMovePostEvent (UnitMovePostEvent evt)
+		private void entity_UnitMovePostEvent (UnitMovePostEvent evt)
 		{
 			if (pos.Equals (evt.NewPos))
 				return;
@@ -38,13 +40,16 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 			pos = evt.NewPos;
 		}
 
-		private void loggerEntityView_UnitMovePreEvent (UnitMovePreEvent evt)
+		private void entity_UnitMovePreEvent (UnitMovePreEvent evt)
 		{
-			if (pos.Equals (evt.NewPos))
-				return;
-
 			string info = String.Format("{{{0}}} started moving from {1} to {2}", model, pos, evt.NewPos);
 			logstream.LogStringWithTimeStamp (info, DebugLevel.All);
+		}
+
+		private void entity_PackageGrabbedEvent(PackageGrabbedEvent evt)
+		{
+			string info = String.Format ("{{{0}}} grabbed the package {{{1}}}", model, evt.GrabbedPackage);
+			logstream.LogStringWithTimeStamp (info, DebugLevel.Info);
 		}
 
 		#region implemented abstract members of EntityView

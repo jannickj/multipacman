@@ -39,7 +39,20 @@ namespace XmasEngineModel
 			return entityadded;
 		}
 
+		internal void FullRemoveEntity(XmasEntity entity)
+		{
+			if (entity is Agent) {
+				Agent agent = entity as Agent;
+
+				agentLookup.Remove(agent.Name);
+			}
+
+			entityLookup.Remove (entity.Id);
+		}
+
 		protected abstract bool AddEntity(XmasEntity xmasEntity, EntitySpawnInformation info);
+
+		protected abstract void RemoveEntity(XmasEntity entity);
 
 		public abstract XmasPosition GetEntityPosition(XmasEntity xmasEntity);
 
@@ -49,5 +62,7 @@ namespace XmasEngineModel
 		{
 			return this.agentLookup.TryGetValue(name, out agent);
 		}
+
+		public abstract ICollection<XmasEntity> GetEntities (XmasPosition pos);
 	}
 }

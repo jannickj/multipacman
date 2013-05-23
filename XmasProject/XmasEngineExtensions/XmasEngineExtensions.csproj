@@ -64,7 +64,6 @@
     <Compile Include="TileExtension\Modules\VisionBlockingModule.cs" />
     <Compile Include="TileExtension\Modules\MovementBlockingModule.cs" />
     <Compile Include="TileExtension\Modules\RuleBasedMovementBlockingModule.cs" />
-    <Compile Include="TileExtension\TilePoint.cs" />
     <Compile Include="TileExtension\TileWorld.cs" />
     <Compile Include="TileExtension\TileWorldBuilder.cs" />
     <Compile Include="TileExtension\TileMap.cs" />
@@ -84,6 +83,7 @@
     <Compile Include="EisExtension\Model\EISConversionTool.cs" />
     <Compile Include="LoggerExtension\Logger.cs" />
     <Compile Include="LoggerExtension\DebugLevel.cs" />
+    <Compile Include="TileExtension\TilePosition.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
