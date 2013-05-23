@@ -1,0 +1,17 @@
+environment{
+	% insert a proper environment reference on the next line.
+	env = "XmasEnvironment.jar" .
+	% insert proper initialization parameters and values on the next line, or remove it.
+	init = [ agentName = "grabber"].
+}
+
+agentfiles{
+	% insert (list of) agent file references below.
+	"GrabberAgent.goal" [name = filename] .
+}
+
+launchpolicy{
+	% insert appropriate launch rules for your environment and agents below.
+	when entity@env do launch agentName : filename .
+}
+

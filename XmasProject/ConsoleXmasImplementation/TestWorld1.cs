@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using ConsoleXmasImplementation.Model;
-using ConsoleXmasImplementation.Model.Entities;
+﻿using ConsoleXmasImplementation.Model.Entities;
 using JSLibrary.Data;
+using System;
+using System.Collections.Generic;
 using XmasEngineExtensions.TileExtension;
-using XmasEngineExtensions.TileExtension.Entities;
 using XmasEngineModel.EntityLib;
-using ConsoleXmasImplementation.Model.Entities;
 
 namespace ConsoleXmasImplementation
 {
@@ -53,7 +50,7 @@ namespace ConsoleXmasImplementation
 			this.AddEntity(new Player(), new Point(-10, -10));
             this.AddEntity(new Ghost("testname"), new Point(-10, 10));
 			this.AddEntity(new Package(), new Point(10, 10));
-			this.AddEntity(new GrabberAgent("grabber"), new Point(10, 9));
+			this.AddEntity(new GrabberAgent("grabber"), new Point(10, 10));
 			this.AddEntity(new DropZone(), new Point(9, 10));
 		}
 

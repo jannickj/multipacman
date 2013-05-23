@@ -1,3 +1,4 @@
+using ConsoleXmasImplementation.Model.Actions;
 using XmasEngineExtensions.EisExtension.Model.ActionTypes;
 using XmasEngineExtensions.EisExtension.Model.Conversion.IiLang;
 using XmasEngineExtensions.TileExtension.Actions;

@@ -1,12 +1,10 @@
-using System;
-using ConsoleXmasImplementation.Model;
 using ConsoleXmasImplementation.Model.Entities;
 using ConsoleXmasImplementation.View.EntityViews;
+using System;
 using XmasEngineExtensions.TileExtension.Entities;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
 using XmasEngineView;
-using ConsoleXmasImplementation.Model.Entities;
 
 namespace ConsoleXmasImplementation.View
 {

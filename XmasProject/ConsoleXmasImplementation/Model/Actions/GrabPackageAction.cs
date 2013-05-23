@@ -1,12 +1,11 @@
+using ConsoleXmasImplementation.Model.Entities;
+using ConsoleXmasImplementation.Model.Events;
+using ConsoleXmasImplementation.Model.Modules;
 using System.Collections.Generic;
 using System.Linq;
-using ConsoleXmasImplementation.Model.Entities;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Actions;
-using ConsoleXmasImplementation.Model.Events;
-using ConsoleXmasImplementation.Model.Modules;
-using ConsoleXmasImplementation.Model.Entities;
 
 namespace ConsoleXmasImplementation.Model.Actions
 {
