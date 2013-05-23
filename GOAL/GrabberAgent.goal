@@ -1,0 +1,46 @@
+init module {
+	knowledge{
+		findStreet(SL, L) :-findall(Z,((member(M,L), M = on(X,Y, contains(HL)), Z=(X,Y), (HL = []; member(entity(E),HL), E\=wall, E\=impassablewall))),SL).
+	
+	}
+	
+	beliefs{
+		% insert initial beliefs here, if any, or remove section.
+	}
+	
+	goals{
+		% insert initial goals here, if any, or remove section.
+	}
+	
+	program {
+        % insert one-time rules here, or remove section
+    }
+	
+	actionspec {
+		move(X,Y) {
+			pre { true }
+			post { true }
+		}
+		
+		grab {
+			pre { true }
+			post { true }
+		}
+	}
+}
+	
+main module{
+	program {
+		if true then move(0,0).
+	}
+}
+
+event module{
+	program{
+		if bel( percept(position(_,_)), position(X,Y)) then delete ( position(X,Y) ).
+		if bel( percept(position(X,Y)) ) then insert ( position(X,Y) ).
+		if bel( percept(speed(X)) ) then insert ( myspeed(X) ).	
+		
+		forall bel (percept(vision(V)), findStreet(Ws,V), member(W,Ws), W = (X,Y)  ) do insert (street(X,Y)).
+	}
+}

@@ -1,7 +1,6 @@
-using System;
-using ConsoleXmasImplementation.Model;
 using ConsoleXmasImplementation.Model.Entities;
 using ConsoleXmasImplementation.View.EntityViews;
+using System;
 using XmasEngineExtensions.TileExtension.Entities;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
@@ -22,6 +21,9 @@ namespace ConsoleXmasImplementation.View
 			AddTypeLink<Wall, ConsoleWallView>();
 			AddTypeLink<Player, ConsolePlayerView>();
 			AddTypeLink<ImpassableWall, ConsoleImpassableWallView>();
+			AddTypeLink<GrabberAgent, ConsoleGrabberView>();
+			AddTypeLink<Package, ConsolePackageView>();
+			AddTypeLink<DropZone, ConsoleDropZoneView>();
 		}
 
 		public override EntityView ConstructEntityView(XmasEntity model)

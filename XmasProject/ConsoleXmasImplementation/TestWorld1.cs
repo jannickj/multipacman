@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using ConsoleXmasImplementation.Model;
-using ConsoleXmasImplementation.Model.Entities;
+﻿using ConsoleXmasImplementation.Model.Entities;
 using JSLibrary.Data;
+using System;
+using System.Collections.Generic;
 using XmasEngineExtensions.TileExtension;
-using XmasEngineExtensions.TileExtension.Entities;
 using XmasEngineModel.EntityLib;
 
 namespace ConsoleXmasImplementation
@@ -46,14 +44,14 @@ namespace ConsoleXmasImplementation
 					O, O, O, W, O, O, O, O, O, O, O, W, O, O, O, O, O, O, O, O, O
 
 				};
-
 			
 			this.AddMapOfEntities(map,21,21);
 
-
 			this.AddEntity(new Player(), new Point(-10, -10));
             this.AddEntity(new Ghost("testname"), new Point(-10, 10));
-			
+			this.AddEntity(new Package(), new Point(10, 10));
+			this.AddEntity(new GrabberAgent("grabber"), new Point(10, 10));
+			this.AddEntity(new DropZone(), new Point(9, 10));
 		}
 
 		public IEnumerable<int> AlternateRange(int start, int end, int inc)
@@ -96,7 +94,5 @@ namespace ConsoleXmasImplementation
 		{
 			this.AddChunkExcept(() => new Wall(), new Point(sx, sy), new Point(ex, ey), except);
 		}
-
-
 	}
 }

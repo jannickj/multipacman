@@ -43,6 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\KeyboardSettings.cs" />
+    <Compile Include="Model\Conversion\ConsoleConversionTool.cs" />
+    <Compile Include="Model\Conversion\EISGrabAction.cs" />
+    <Compile Include="Model\Conversion\EISGrabActionConverter.cs" />
+    <Compile Include="Model\Conversion\GetAllPerceptsActionConverter.cs" />
     <Compile Include="View\ConsoleEntityView.cs" />
     <Compile Include="View\ConsoleViewFactory.cs" />
     <Compile Include="View\ConsoleWorldView.cs" />
@@ -105,7 +109,9 @@
       <Name>XmasEngine</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Model\Percepts\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -114,13 +120,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Folder Include="ConsoleLogger\" />
-    <Folder Include="Model\Entities\" />
-    <Folder Include="Model\Actions\" />
-    <Folder Include="Model\Events\" />
-    <Folder Include="Model\Modules\" />
-    <Folder Include="Model\Percepts\" />
-    <Folder Include="Model\Conversion\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

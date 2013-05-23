@@ -4,7 +4,7 @@ using XmasEngineModel.Percepts;
 
 namespace XmasEngineExtensions.EisExtension.Model.Conversion.IiLang.Percepts
 {
-	public class EISEmptyNamedePerceptSerializer : EISPerceptConverter<EmptyNamedPercept>
+	public class EISEmptyNamedPerceptSerializer : EISPerceptConverter<EmptyNamedPercept>
 	{
 		public override IilPercept BeginConversionToForeign(EmptyNamedPercept gobj)
 		{
