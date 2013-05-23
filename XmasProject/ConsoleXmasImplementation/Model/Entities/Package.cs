@@ -1,6 +1,6 @@
 using System;
 
-namespace ConsoleXmasImplementation.Model
+namespace ConsoleXmasImplementation.Model.Entities
 {
 	public class Package : ConsoleEntity 
 	{

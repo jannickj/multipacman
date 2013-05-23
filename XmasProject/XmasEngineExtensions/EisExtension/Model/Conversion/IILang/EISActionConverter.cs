@@ -7,5 +7,6 @@ namespace XmasEngineExtensions.EisExtension.Model.Conversion.IiLang
 		where ActionType : EntityXmasAction
 		where EISActionType : EISAction
 	{
+		
 	}
 }

@@ -8,6 +8,7 @@ using XmasEngineModel.Management.Actions;
 using ConsoleXmasImplementation.Model;
 using ConsoleXmasImplementation.Model.Events;
 using ConsoleXmasImplementation.Model.Modules;
+using ConsoleXmasImplementation.Model.Entities;
 
 namespace XmasEngineExtensions.TileExtension.Actions
 {

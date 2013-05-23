@@ -5,6 +5,7 @@ using XmasEngineExtensions.TileExtension.Entities;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
 using XmasEngineView;
+using ConsoleXmasImplementation.Model.Entities;
 
 namespace ConsoleXmasImplementation.View
 {
@@ -21,6 +22,9 @@ namespace ConsoleXmasImplementation.View
 			AddTypeLink<Wall, ConsoleWallView>();
 			AddTypeLink<Player, ConsolePlayerView>();
 			AddTypeLink<ImpassableWall, ConsoleImpassableWallView>();
+			AddTypeLink<GrabberAgent, ConsoleGrabberView>();
+			AddTypeLink<Package, ConsolePackageView>();
+			AddTypeLink<DropZone, ConsoleDropZoneView>();
 		}
 
 		public override EntityView ConstructEntityView(XmasEntity model)

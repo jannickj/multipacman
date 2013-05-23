@@ -1,6 +1,7 @@
 using System;
 using XmasEngineModel.Management;
 using XmasEngineModel.EntityLib;
+using ConsoleXmasImplementation.Model.Entities;
 
 namespace ConsoleXmasImplementation.Model.Events
 {
