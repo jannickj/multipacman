@@ -18,6 +18,7 @@ using XmasEngineModel;
 using XmasEngineModel.Management;
 using XmasEngineView;
 using JSLibrary.Data;
+using ConsoleXmasImplementation.Model.Conversion;
 
 namespace ConsoleXmasImplementation
 {
@@ -48,8 +49,8 @@ namespace ConsoleXmasImplementation
 
 			//Controller construction
 			var listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 44444);
-			var eisConverter = new TileEisConversionTool();
-			var iilParser = new TileIilActionParser();
+			var eisConverter = new ConsoleEisConversionTool();
+			var iilParser = new ConsoleIilActionParser();
 			var eisserver = new EISAgentServer(listener, eisConverter, iilParser);
 
 
@@ -65,9 +66,5 @@ namespace ConsoleXmasImplementation
 
 			engine.StartEngine(model,views,controllers);
 		}
-
-
-		
-
 	}
 }

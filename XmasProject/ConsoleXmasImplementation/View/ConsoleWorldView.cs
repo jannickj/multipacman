@@ -74,11 +74,15 @@ namespace ConsoleXmasImplementation.View
 						if(viewlookup.TryGetValue(ent,out vent))
 							locs.Add(transp, vent);
 					}
-					
 				}
-				
 			}
 			return locs;
+		}
+
+		internal void RemoveEntity(XmasEntity entity)
+		{
+			viewlookup[entity].Dispose();
+			viewlookup.Remove(entity);
 		}
 	}
 }

@@ -48,6 +48,8 @@ namespace XmasEngineModel
 			}
 
 			entityLookup.Remove (entity.Id);
+
+			RemoveEntity(entity);
 		}
 
 		protected abstract bool AddEntity(XmasEntity xmasEntity, EntitySpawnInformation info);

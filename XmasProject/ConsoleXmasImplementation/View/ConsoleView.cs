@@ -33,7 +33,12 @@ namespace ConsoleXmasImplementation.View
 			eventqueue = model.EventManager.ConstructEventQueue();
 			evtmanager.AddEventQueue(eventqueue);
 			eventqueue.Register(new Trigger<EntityAddedEvent>(Model_EntityAdded));
+			eventqueue.Register(new Trigger<EntityRemovedEvent>(model_EntityRemoved));
+		}
 
+		private void model_EntityRemoved(EntityRemovedEvent evt)
+		{
+			viewWorld.RemoveEntity(evt.RemovedXmasEntity);
 		}
 
 		public void Setup()

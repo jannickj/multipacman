@@ -15,8 +15,8 @@ namespace XmasEngineModel.Management.Actions
 		
 		protected override void Execute()
 		{
-			World.FullRemoveEntity (ent);
-			//TODO: Raise an EntityRemovedEvent
+			World.FullRemoveEntity(ent);
+			EventManager.Raise(new EntityRemovedEvent(ent));
 			Complete ();
 			
 		}

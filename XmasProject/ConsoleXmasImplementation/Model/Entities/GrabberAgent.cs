@@ -1,3 +1,4 @@
+using ConsoleXmasImplementation.Model.Modules;
 using XmasEngineExtensions.TileExtension.Modules;
 
 namespace ConsoleXmasImplementation.Model.Entities
@@ -6,6 +7,7 @@ namespace ConsoleXmasImplementation.Model.Entities
 	{
 		public GrabberAgent (string name) : base(name)
 		{
+			RegisterModule(new PackageGrabbingModule(false));
 		}
 
 		protected override SpeedModule ConstructSpeedModule ()

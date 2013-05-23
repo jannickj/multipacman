@@ -4,7 +4,7 @@ using JSLibrary.Data.GenericEvents;
 
 namespace XmasEngineModel.Management
 {
-	public class ThreadSafeEventQueue
+	public class ThreadSafeEventQueue : IDisposable
 	{
 		private TriggerManager foreignTriggermanager;
 		private ConcurrentQueue<XmasEvent> queue = new ConcurrentQueue<XmasEvent>();
@@ -43,6 +43,11 @@ namespace XmasEngineModel.Management
 
 			if (buffer != null)
 				buffer(this, new EventArgs());
+		}
+
+		public void Dispose()
+		{
+			foreignTriggermanager.EventRaised -= foreignTriggermanager_EventRaised;
 		}
 	}
 }

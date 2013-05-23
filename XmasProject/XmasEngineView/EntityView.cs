@@ -1,10 +1,11 @@
-﻿using XmasEngineModel.EntityLib;
+﻿using System;
+using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
 using XmasEngineModel.World;
 
 namespace XmasEngineView
 {
-	public abstract class EntityView
+	public abstract class EntityView : IDisposable
 	{
 		protected ThreadSafeEventQueue eventqueue;
 		protected XmasEntity model;
@@ -27,5 +28,10 @@ namespace XmasEngineView
 		}
 
 		public abstract XmasPosition Position { get; protected set; }
+
+		public virtual void Dispose()
+		{
+			eventqueue.Dispose();
+		}
 	}
 }

@@ -100,10 +100,17 @@ namespace XmasEngineModel.EntityLib
 			return new ThreadSafeEventQueue(triggers);
 		}
 
-		public override string ToString ()
+		public override string ToString()
 		{
-			return string.Format ("{0} [{1}] at {2}", GetType().Name, Id, Position);
+			string basestr = string.Format("{0} [{1}]", GetType().Name, Id);
+			try
+			{
+				return string.Format("{0} at {1}", basestr, Position);
+			}
+			catch
+			{
+				return basestr;
+			}
 		}
-
 	}
 }

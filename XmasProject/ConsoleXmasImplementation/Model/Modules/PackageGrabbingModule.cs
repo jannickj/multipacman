@@ -10,6 +10,11 @@ namespace ConsoleXmasImplementation.Model.Modules
 	{
 		public bool PackageGrabbed { get; set; }
 
+		public PackageGrabbingModule()
+		{
+			PackageGrabbed = false;
+		}
+
 		public PackageGrabbingModule (bool packageGrabbed)
 		{
 			PackageGrabbed = packageGrabbed;

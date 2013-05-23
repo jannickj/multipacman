@@ -13,9 +13,7 @@ namespace XmasEngineExtensions.EisExtension.Model
 			this.AddConverter(new GetAllPerceptsActionConverter());
 			this.AddConverter(new EISPerceptCollectionSerializer());
 			this.AddConverter(new EISSingleNumeralSerializer());
-			
-			
-
+			AddConverter(new EISEmptyNamedPerceptSerializer());
 		}
 	}
 }
