@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using JSLibrary.Data;
+using JSLibrary.IiLang;
 using JSLibrary.IiLang.DataContainers;
 using JSLibrary.IiLang.Parameters;
 using XmasEngineExtensions.EisExtension.Model.Conversion.IiLang;
@@ -12,6 +13,7 @@ namespace XmasEngineExtensions.TileEisExtension.Conversion
 	{
 		public override IilPercept BeginConversionToForeign(Vision gobj)
 		{
+			IilParameterList pl = new IilParameterList();
 			IilPercept percept = new IilPercept("vision");
 
 			foreach (KeyValuePair<Point, Tile> kvp in gobj.VisibleTiles)
@@ -19,10 +21,11 @@ namespace XmasEngineExtensions.TileEisExtension.Conversion
 				IilFunction fun = new IilFunction("on",
 				                                  new IilNumeral(kvp.Key.X),
 				                                  new IilNumeral(kvp.Key.Y),
-				                                  new IilIdentifier(kvp.Value.ToString())
+												  (IilParameter)this.ConvertToForeign(kvp.Value)
 					);
-				percept.addParameter(fun);
+				pl.AddParameter(fun);
 			}
+			percept.addParameter(pl);
 
 			return percept;
 		}

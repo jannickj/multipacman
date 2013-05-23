@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using ConsoleXmasImplementation.ConsoleLogger;
 using ConsoleXmasImplementation.Controller;
+using ConsoleXmasImplementation.Model;
 using ConsoleXmasImplementation.View;
 using XmasEngine;
 using XmasEngineController;
@@ -29,7 +30,7 @@ namespace ConsoleXmasImplementation
 
 			//View construction
 			ThreadSafeEventManager evtman = new ThreadSafeEventManager();
-			ConsoleView view = new ConsoleView(model, new ConsoleWorldView((TileWorld)model.World), new ConsoleViewFactory(evtman), evtman);
+			ConsoleView view = new ConsoleView(model, new ConsoleWorldView((TileWorld)model.World,xe => xe is Ghost), new ConsoleViewFactory(evtman), evtman);
 
 
 			StreamWriter sw = File.CreateText("error.log");

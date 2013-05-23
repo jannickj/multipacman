@@ -12,9 +12,10 @@ namespace XmasEngineExtensions.TileEisExtension.Conversion
 		{
 			IilParameterList pl = new IilParameterList();
 			foreach (XmasEntity ent in t.Entities)
-				pl.AddParameter((IilParameter) ConvertToForeign(ent));
+				pl.AddParameter(new IilFunction("entity",new IilIdentifier(ent.GetType().Name.ToLower())));
 
-			return pl;
+			
+			return new IilFunction("contains",pl); 
 		}
 	}
 }

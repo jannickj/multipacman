@@ -12,6 +12,7 @@ namespace XmasEngineModel.EntityLib
 	{
 		private TriggerManager triggers = new TriggerManager();
 		internal Dictionary<Type, EntityModule> moduleMap = new Dictionary<Type, EntityModule>();
+		
 
 		public XmasEntity()
 		{
@@ -26,6 +27,15 @@ namespace XmasEngineModel.EntityLib
 				throw new MissingModuleException(this,typeof(TModule));
 			}	
 		}
+
+		public TAlias ModuleAs<TModule, TAlias>()
+			where TModule : EntityModule
+			where TAlias : TModule
+		{
+			return (TAlias) Module<TModule>();
+		}
+
+
 
 		public virtual EntityModule RegisterModule(EntityModule module)
 		{

@@ -9,11 +9,19 @@ namespace ConsoleXmasImplementation.Model
 {
 	public abstract class ConsoleEntity : XmasEntity
 	{
+	
+
 		public ConsoleEntity()
 		{
-			this.RegisterModule(new RuleBasedMovementModule());
-			RuleBasedMovementModule module = (RuleBasedMovementModule)this.Module<MovementBlockingModule>();
-			module.AddNewRuleLayer<ConsoleEntity>();
+			this.RegisterModule(new RuleBasedMovementBlockingModule());
+			RuleBasedMovementBlockingModule blockingModule = (RuleBasedMovementBlockingModule)this.Module<MovementBlockingModule>();
+			blockingModule.AddNewRuleLayer<ConsoleEntity>();
+			this.RegisterModule(new RuleBasedVisionBlockingModule());
+
+			var mod = this.ModuleAs<VisionBlockingModule, RuleBasedVisionBlockingModule>();
+
+			mod.AddNewRuleLayer<ConsoleEntity>();
+			mod.AddWillBlockRule<ConsoleEntity>(_ => true);
 		}
 
 	}

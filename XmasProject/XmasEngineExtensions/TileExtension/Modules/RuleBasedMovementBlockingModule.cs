@@ -5,12 +5,12 @@ using XmasEngineModel.Rule;
 
 namespace XmasEngineExtensions.TileExtension.Modules
 {
-	public class RuleBasedMovementModule: MovementBlockingModule
+	public class RuleBasedMovementBlockingModule: MovementBlockingModule
 	{
 		private BlockingModule<XmasEntity> block = new BlockingModule<XmasEntity>();
 		
 		
-		public RuleBasedMovementModule()
+		public RuleBasedMovementBlockingModule()
 		{
 			
 		}

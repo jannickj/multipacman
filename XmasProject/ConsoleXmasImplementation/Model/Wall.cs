@@ -7,9 +7,9 @@ namespace ConsoleXmasImplementation.Model
 	{
 		public Wall()
 		{
-			RuleBasedMovementModule module = (RuleBasedMovementModule)this.Module<MovementBlockingModule>();
-			module.AddNewRuleLayer<Wall>();
-			module.AddWillBlockRule<Wall>(_ => true);
+			RuleBasedMovementBlockingModule blockingModule = (RuleBasedMovementBlockingModule)this.Module<MovementBlockingModule>();
+			blockingModule.AddNewRuleLayer<Wall>();
+			blockingModule.AddWillBlockRule<Wall>(_ => true);
 		}
 	}
 }

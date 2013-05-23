@@ -10,6 +10,11 @@ namespace XmasEngineExtensions.TileExtension
 	{
 		private Size size;
 
+		public Size Size
+		{
+			get { return size; }
+		}
+
 		public void AddEntity(XmasEntity entity, Point p)
 		{
 			this.AddEntity(entity, new TileSpawnInformation(new TilePosition(p)));
@@ -24,7 +29,7 @@ namespace XmasEngineExtensions.TileExtension
 
 		protected override XmasWorld ConstructWorld ()
 		{
-			return new TileWorld (size);
+			return new TileWorld (Size);
 		}
 
 		#endregion

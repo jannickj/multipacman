@@ -60,9 +60,10 @@
     <Compile Include="TileExtension\Events\UnitMovePostEvent.cs" />
     <Compile Include="TileExtension\Events\UnitMovePreEvent.cs" />
     <Compile Include="TileExtension\Modules\BlockingModule.cs" />
+    <Compile Include="TileExtension\Modules\RuleBasedVisionBlockingModule.cs" />
     <Compile Include="TileExtension\Modules\VisionBlockingModule.cs" />
     <Compile Include="TileExtension\Modules\MovementBlockingModule.cs" />
-    <Compile Include="TileExtension\Modules\RuleBasedMovementModule.cs" />
+    <Compile Include="TileExtension\Modules\RuleBasedMovementBlockingModule.cs" />
     <Compile Include="TileExtension\TilePoint.cs" />
     <Compile Include="TileExtension\TileWorld.cs" />
     <Compile Include="TileExtension\TileWorldBuilder.cs" />

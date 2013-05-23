@@ -11,8 +11,8 @@ namespace ConsoleXmasImplementation.Model
 	{
 		public Ghost(string name) : base(name)
 		{
-			//this.RegisterModule(new VisionModule());
-			//this.RegisterModule(new VisionRangeModule(1));
+			this.RegisterModule(new VisionModule());
+			this.RegisterModule(new VisionRangeModule(5));
 		}
 
 		protected override SpeedModule ConstructSpeedModule()

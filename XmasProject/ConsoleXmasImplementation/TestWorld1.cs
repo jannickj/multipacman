@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ConsoleXmasImplementation.Model;
 using JSLibrary.Data;
 using XmasEngineExtensions.TileExtension;
@@ -9,55 +10,48 @@ namespace ConsoleXmasImplementation
 {
 	public class TestWorld1 : TileWorldBuilder
 	{
-		public TestWorld1() : base(new Size(6, 6))
+		public TestWorld1() : base(new Size(10, 10))
 		{
 			BuildMap();
 		}
 
 		private void BuildMap()
 		{
-			/*	Map to be built:
-			 * 
-			 * IIIIIIIIIIIIIII
-			 * I W   W   W   I 
-			 * I W W W W W W I
-			 * I W W W W W W I
-			 * I W W W W W W I 
-			 * I W W W W W W I 
-			 * I W W W W W W I 
-			 * I W W WPW W W I 
-			 * I W W W W W W I 
-			 * I W W W W W W I 
-			 * I W W W W W W I 
-			 * I W W W W W W I 
-			 * I W W W W W W I 
-			 * I   W   W   W I 
-			 * IIIIIIIIIIIIIII
-			 * 
-			 * Legend:
-			 * 	 'I' = Impassable Wall
-			 *   'W' = Wall
-			 *   'P' = Player
-			 *   ' ' = Empty Tile
-			 * 
-			 */
+			Func<XmasEntity> W = () => new Wall();
+			Func<XmasEntity> O = null;
 
-			int start = 6;
-			int stop = -5;
-			int factor = 1;
+			Func<XmasEntity>[] map =
+				{
+					O, O, O, O, O, O, O, W, O, O, O, O, O, W, O, O, O, W, O, O, O,
+					O, W, W, W, W, O, W, W, W, W, W, W, O, W, O, W, O, W, O, W, O,
+					O, W, O, O, O, O, O, W, O, O, O, W, O, W, W, W, O, W, O, W, O,
+					O, W, O, W, W, W, O, W, O, W, O, O, O, W, O, O, O, W, O, W, O,
+					O, W, O, O, O, W, O, O, O, W, W, W, O, W, O, W, O, O, O, W, O,
+					O, W, W, W, O, W, W, W, W, W, O, W, O, W, O, W, W, W, W, W, O,
+					O, W, O, O, O, W, O, O, O, O, O, W, O, O, O, O, O, O, O, O, O,
+					O, O, O, W, O, O, O, W, W, O, W, W, O, W, W, W, W, W, O, W, W,
+					O, W, O, W, O, W, O, W, O, O, O, W, O, W, O, O, O, W, O, W, O,
+					O, W, W, W, W, W, O, W, O, W, O, O, O, O, O, W, O, W, O, W, O,
+					O, W, O, O, O, O, O, W, O, W, W, W, W, W, O, W, O, W, O, W, O,
+					O, W, W, W, O, W, W, W, O, W, O, W, O, W, O, W, O, W, O, O, O,
+					O, O, O, W, O, W, O, O, O, O, O, O, O, W, W, W, O, W, W, W, W,
+					O, W, W, W, O, W, W, W, W, W, W, W, O, O, W, O, O, O, O, O, O,
+					O, W, O, W, O, W, O, O, O, O, O, W, W, O, W, O, W, W, W, W, O,
+					O, W, O, W, O, W, O, W, W, W, O, W, O, O, W, O, O, O, O, W, O,
+					O, O, O, O, O, O, O, W, O, W, O, O, O, W, W, O, W, W, O, W, O,
+					W, W, W, W, W, W, O, W, O, W, O, W, O, W, O, O, O, W, O, W, W,
+					O, W, O, O, O, W, O, O, O, W, O, W, O, W, O, W, O, W, O, O, O,
+					O, W, O, W, O, W, W, W, W, W, O, W, O, W, W, W, O, W, W, W, O,
+					O, O, O, W, O, O, O, O, O, O, O, W, O, O, O, O, O, O, O, O, O
 
-			foreach (int idx in AlternateRange(-5, 5, 2))
-			{
-				AddChunk(() => new Wall(), new Point(idx, start * factor), new Point(idx, stop * factor));
-				factor *= -1;
-			}
+				};
 
-//			AddChunk (() => new Wall (), new Point (-1, -1), new Point (-2, -2));
+			
+			this.AddMapOfEntities(map,21,21);
 
-//			this.AddEntity(new Wall(), new Point(0, 1));
-//			this.AddEntity(new Wall(), new Point(1, 1));
-			this.AddEntity(new Player(), new Point(0, 0));
-            this.AddEntity(new Ghost("testname"), new Point(0, 1));
+
+			this.AddEntity(new Player(), new Point(-10, -10));
+            this.AddEntity(new Ghost("testname"), new Point(-10, 10));
 			
 		}
 
@@ -68,5 +62,40 @@ namespace ConsoleXmasImplementation
 				yield return i;
 			}
 		}
+
+		public void AddMapOfEntities(Func<XmasEntity>[] ctormap, int width, int height)
+		{
+			int offx = this.Size.Width;
+			int offy = this.Size.Height;
+			for (int x = 0; x < width; x++)
+			{
+				for (int y = 0; y < height; y++)
+				{
+					Func<XmasEntity> c = ctormap[x + y*width];
+
+					int realx = x - offx;
+					int realy =offy - y;
+					if(c!=null)
+						this.AddEntity(c(), new Point(realx,realy));
+				}
+			}
+		}
+
+		public void AddWall(int x, int y)
+		{
+			this.AddEntity(new Wall(), new Point(x, y));
+		}
+
+		public void AddWall(int sx, int sy, int ex, int ey)
+		{
+			this.AddChunk(() => new Wall(), new Point(sx,sy), new Point(ex,ey) );
+		}
+
+		public void AddWall(int sx, int sy, int ex, int ey, params  Point[] except)
+		{
+			this.AddChunkExcept(() => new Wall(), new Point(sx, sy), new Point(ex, ey), except);
+		}
+
+
 	}
 }

@@ -13,11 +13,18 @@ namespace ConsoleXmasImplementation.Model
 		public ConsoleAgent(string name) : base(name)
 		{
 			this.RegisterModule(ConstructSpeedModule());
-			this.RegisterModule(new RuleBasedMovementModule());
+			this.RegisterModule(new RuleBasedMovementBlockingModule());
 
-			RuleBasedMovementModule module = (RuleBasedMovementModule)this.Module<MovementBlockingModule>();
-			module.AddNewRuleLayer<ConsoleAgent>();
-			module.AddWillBlockRule<ConsoleAgent>(entity => entity is Agent);
+			RuleBasedMovementBlockingModule blockingModule = (RuleBasedMovementBlockingModule)this.Module<MovementBlockingModule>();
+			blockingModule.AddNewRuleLayer<ConsoleAgent>();
+			blockingModule.AddWillBlockRule<ConsoleAgent>(entity => entity is Agent);
+
+			this.RegisterModule(new RuleBasedVisionBlockingModule());
+
+			var mod = this.ModuleAs<VisionBlockingModule, RuleBasedVisionBlockingModule>();
+
+			mod.AddNewRuleLayer<ConsoleAgent>();
+			mod.AddWillNotBLockRule<ConsoleAgent>(_ => true);
 		}
 
 		

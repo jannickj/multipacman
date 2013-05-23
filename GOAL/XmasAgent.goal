@@ -1,6 +1,9 @@
 init module {
 	knowledge{
-		% insert knowledge here, if any, or remove section.
+		findWall(L1, [ on(Xx,Yy, contains(HL)) |T]) :- findall(Y, (member(X, HL), X = entity(wall), Y = on(Xx,Yy, X)), Tmp), findWall(L2, T), append(Tmp, L2, L1). 
+		findWall([], []).
+		
+		
 	}
 	
 	beliefs{
@@ -25,14 +28,16 @@ init module {
 	
 main module{
 	program {
-		if true then move(0,1).
+		if true then move(0,0).
 	}
 }
 
-%event module{
-%	program{
-		% insert action rules here.
-%	}
-%}
+event module{
+	program{
+		if bel( percept(speed(X)) ) then insert ( myspeed(X) ).
+		
+		if bel (percept(vision(X)), findWall(Ws,X) ) then insert (saw(Ws)).
+	}
+}
 
 % insert additional modules, if any, here.

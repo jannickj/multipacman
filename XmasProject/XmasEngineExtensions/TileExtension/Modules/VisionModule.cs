@@ -29,29 +29,36 @@ namespace XmasEngineExtensions.TileExtension.Modules
 		public override IEnumerable<Percept> Percepts {
 			get {
 				UpdateVision();
-				return new Percept[] { vision };
+				return new Percept[] { Vision };
 			}
+		}
+
+		public Vision Vision
+		{
+			get { return vision; }
 		}
 
 		public void UpdateVision()
 		{
-			Vision newVision = this.WorldAs<TileWorld>().View(this.EntityHost);
-			IEnumerable<Tile> oldTiles = vision.VisibleTiles.Values;
-			IEnumerable<Tile> newTiles = newVision.VisibleTiles.Values;
+			vision = this.WorldAs<TileWorld>().View(this.EntityHost);
 
-			IEnumerable<Tile> persistentTiles = oldTiles.Intersect (newTiles);
+			//Vision newVision = this.WorldAs<TileWorld>().View(this.EntityHost);
+			//IEnumerable<Tile> oldTiles = vision.VisibleTiles.Values;
+			//IEnumerable<Tile> newTiles = newVision.VisibleTiles.Values;
+
+			//IEnumerable<Tile> persistentTiles = oldTiles.Intersect (newTiles);
 
 			//TODO: disable listening to event on tile
 			//foreach (Tile tile in oldTiles.Except(persistentTiles)) {
-				
+
 			//}
 
 			//TODO: listen to event on tile
 			//foreach (Tile tile in newTiles.Except(persistentTiles)) {
-				
+
 			//}
 
-			vision = newVision;
+			//vision = newVision;
 		}
 
 		private void xmasEntity_UnitMovedPost(UnitMovePostEvent evt)
