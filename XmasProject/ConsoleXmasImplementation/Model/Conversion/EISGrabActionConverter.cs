@@ -10,7 +10,6 @@ namespace ConsoleXmasImplementation.Model.Conversion
 {
 	class EISGrabActionConverter : EISActionConverter<GrabPackageAction, EISGrabAction>
 	{
-
 		public override GrabPackageAction BeginConversionToXmas(EISGrabAction fobj)
 		{
 			return new GrabPackageAction ();
