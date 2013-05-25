@@ -5,13 +5,60 @@ init module {
 		
 		visionContainsAt(vision(X,Y,L), Entity, Tx, Ty) :- transpose((X,Y),(Tx,Ty)), member(Entity,L).
 		
-		nextStreet(X,Y,Nx,Ny) :- Nnx is X + 1, street(Nnx, Y).
-		nextStreet(X,Y,Nx,Ny) :- Nnx is X - 1, street(Nnx, Y).
-		nextStreet(X,Y,Nx,Ny) :- Nny is Y + 1, street(X, Nny).
-		nextStreet(X,Y,Nx,Ny) :- Nny is Y - 1, street(X, Nny).
+		% straight line distance between two points
+		sld(FromX, FromY, ToX, ToY, Result)
+			:- A is abs(FromX - ToX)
+			, B is abs(FromY - ToY)
+			, sqrt(abs((A ** 2) + (B ** 2)), Result).
 		
-		goToFromUsing(Tx, Ty, GoalX, GoalY, L) :- nextStreet(Tx, Ty, Nx, Ny), goToFromUsing(Nx,Ny,GoalX,GoalY,[(Nx,Ny)|L]). 
-		goToFromUsing(Gx,Gy,Gx,Gy,_).
+		% Insert an element into a sorted list. (sorted lowest to highest)
+		insertSorted(Element, [], [Element]) :- !.
+		insertSorted(Element, [H|T], [Element,H|T]) :- Element @=< H, !.
+		insertSorted(Element, [H|T], [H|L2]) :- insertSorted(Element, T, L2).
+		
+		% insert each member of a list into a sorted list.
+		insertSeveralSorted([], L, L).
+		insertSeveralSorted([H|T], L1, L2) :- insertSorted(H, L1, Ltmp), insertSeveralSorted(T, Ltmp, L2).
+		
+		% find the streets immediateley adjacent to a given postition
+		nextStreet(X,Y,Nx,Y) :- Nx is X + 1, street(Nx, Y).
+		nextStreet(X,Y,Nx,Y) :- Nx is X - 1, street(Nx, Y).
+		nextStreet(X,Y,X,Ny) :- Ny is Y + 1, street(X, Ny).
+		nextStreet(X,Y,X,Ny) :- Ny is Y - 1, street(X, Ny).
+		
+		% convienience function, call this from userspace
+		goToFromUsing(Tx, Ty, GoalX, GoalY, FinalPath) 
+			:- goToFromUsingHelper(GoalX, GoalY, [(Tx,Ty)], [(0,0,[(Tx,Ty)])], Path)
+			, reverse(Path, FinalPath)
+			, !.
+
+		goToFromUsingHelper(_,_,_,[],[]).
+		goToFromUsingHelper(Gx, Gy, _, [(_,_,[(Gx,Gy)|Path])|_], [(Gx,Gy)|Path]).
+		goToFromUsingHelper(GoalX, GoalY, Explored, [(_,PathCost,[(PopX,PopY)|PopPath])|Frontier], FinalPath) 
+			:- NewPathCost is PathCost + 1
+			% build a list containing all the tiles adjacent to this one, and store their f-cost
+			, findall(
+				(	Cost,(Nx,Ny))
+				, (nextStreet(PopX, PopY, Nx, Ny), sld(Nx,Ny,GoalX,GoalY,Heuristic)
+					, Cost is Heuristic + NewPathCost)
+				, Children)
+			, findall(
+				( ChildCost,ChildPoint)
+				, (member((ChildCost,ChildPoint), Children), \+ member(ChildPoint, Explored))
+				, ChildrenNotInExplored)
+			, findall(Point, member((_,Point), ChildrenNotInExplored), ChildrenPointsNotInExplored)
+			, append(Explored, ChildrenPointsNotInExplored, NewExplored) 
+			% insert all children not already in explored or frontier with lower cost into frontier (we should remove duplicates)
+			, findall(
+				( TmpCost1, NewPathCost, [(TmpX,TmpY),(PopX,PopY)|PopPath])
+				, (member((TmpCost1,(TmpX,TmpY)),ChildrenNotInExplored)
+					, \+ 
+						( member((TmpX,TmpY), Explored)
+						, member((TmpCost2,_,[(TmpX,TmpY)|_]), Frontier)
+						, TmpCost1 > TmpCost2))
+				, ChildrenNotInFrontier)
+			, insertSeveralSorted(ChildrenNotInFrontier, Frontier, NewFrontier)
+			, goToFromUsingHelper(GoalX, GoalY, NewExplored, NewFrontier, FinalPath).
 	}
 	
 	beliefs{
