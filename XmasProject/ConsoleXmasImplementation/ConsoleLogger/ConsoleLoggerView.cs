@@ -46,7 +46,7 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 		private void model_EntityAdded(EntityAddedEvent evt)
 		{
 			log.LogStringWithTimeStamp(String.Format("{{{0}}} was added to the world", evt.AddedXmasEntity), DebugLevel.Info);
-			viewlookup.Add(evt.AddedXmasEntity, (LoggerEntityView)entityFactory.ConstructEntityView(evt.AddedXmasEntity));
+			viewlookup.Add(evt.AddedXmasEntity, (LoggerEntityView)entityFactory.ConstructEntityView(evt.AddedXmasEntity, evt.AddedPosition));
 		}
 
 		private void model_EntityRemoved(EntityRemovedEvent evt)

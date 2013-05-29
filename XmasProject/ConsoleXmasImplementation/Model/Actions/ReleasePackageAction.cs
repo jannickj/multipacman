@@ -9,26 +9,25 @@ using XmasEngineModel.Management.Actions;
 
 namespace ConsoleXmasImplementation.Model.Actions
 {
-	public class GrabPackageAction : EntityXmasAction<Agent>
+	public class ReleasePackageAction : EntityXmasAction<Agent>
 	{
-		public GrabPackageAction ()
+		public ReleasePackageAction ()
 		{
 		}
 
 		protected override void Execute ()
 		{
-			ICollection<XmasEntity> entities = World.GetEntities (World.GetEntityPosition (Source));
-
-			Package package = entities.OfType<Package>().FirstOrDefault();
-			if (package == null) {
-				Fail ();
-			}
-
-            Source.Module<PackageGrabbingModule>().Grab(package);
 
 
-            Source.Raise(new PackageGrabbedEvent(package));
+            Package dropped = Source.Module<PackageGrabbingModule>().Drop();
+
+            if (dropped == null)
+                this.Fail();
+			
+
+            Source.Raise(new PackageReleasedEvent(dropped));
 			Complete ();
+			
 		}
 	}
 }

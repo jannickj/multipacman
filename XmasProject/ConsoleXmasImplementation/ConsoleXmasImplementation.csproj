@@ -43,11 +43,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\KeyboardSettings.cs" />
+    <Compile Include="Model\Actions\ReleasePackageAction.cs" />
     <Compile Include="Model\Conversion\ConsoleEisConversionTool.cs" />
+    <Compile Include="Model\Conversion\EISReleaseActionConverter.cs" />
+    <Compile Include="Model\Conversion\EISReleaseAction.cs" />
     <Compile Include="Model\Conversion\EISGrabAction.cs" />
     <Compile Include="Model\Conversion\EISGrabActionConverter.cs" />
     <Compile Include="Model\Conversion\GetAllPerceptsActionConverter.cs" />
     <Compile Include="Model\Conversion\ConsoleIilActionParser.cs" />
+    <Compile Include="Model\Events\PackageReleasedEvent.cs" />
     <Compile Include="View\ConsoleEntityView.cs" />
     <Compile Include="View\ConsoleViewFactory.cs" />
     <Compile Include="View\ConsoleWorldView.cs" />

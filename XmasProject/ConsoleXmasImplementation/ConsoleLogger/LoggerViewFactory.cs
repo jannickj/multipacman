@@ -3,6 +3,7 @@ using XmasEngineView;
 using XmasEngineModel.Management;
 using XmasEngineModel.EntityLib;
 using XmasEngineExtensions.LoggerExtension;
+using XmasEngineModel.World;
 
 namespace ConsoleXmasImplementation.ConsoleLogger
 {
@@ -19,9 +20,9 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 
 		#region implemented abstract members of ViewFactory
 
-		public override EntityView ConstructEntityView (XmasEntity model)
+        public override EntityView ConstructEntityView(XmasEntity model, XmasPosition position)
 		{
-			return new LoggerEntityView(model, evtman, logstream);
+			return new LoggerEntityView(model, position, evtman, logstream);
 		}
 
 		#endregion

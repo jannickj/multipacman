@@ -11,12 +11,12 @@ namespace ConsoleXmasImplementation.Model.Entities
 			this.RegisterModule(new VisionModule());
 			this.RegisterModule(new VisionRangeModule(5));
 			this.RegisterModule(new PositionModule());
-			this.RegisterModule(new PackageGrabbingModule(false));
+			this.RegisterModule(new PackageGrabbingModule());
 		}
 
 		protected override SpeedModule ConstructSpeedModule ()
 		{
-			return new SpeedModule (200);
+			return new SpeedModule (50);
 		}
 	}
 }

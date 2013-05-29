@@ -49,7 +49,7 @@ namespace ConsoleXmasImplementation.View
 		{
             lock (ExtendedConsole.ConsoleWriterLock)
             {
-                Console.SetCursorPosition(drawPos.X, drawPos.Y);
+                Console.SetCursorPosition(drawPos.X, drawPos.Y+1);
                 Console.Write(Area());
             }
 		}
@@ -139,7 +139,8 @@ namespace ConsoleXmasImplementation.View
 
 		private void Model_EntityAdded(EntityAddedEvent evt)
 		{
-			viewWorld.AddEntity((ConsoleEntityView)entityFactory.ConstructEntityView(evt.AddedXmasEntity));
+            
+			viewWorld.AddEntity((ConsoleEntityView)entityFactory.ConstructEntityView(evt.AddedXmasEntity,evt.AddedPosition));
 		}
 	}
 }

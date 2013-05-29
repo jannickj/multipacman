@@ -1,12 +1,13 @@
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
+using XmasEngineModel.World;
 
 namespace ConsoleXmasImplementation.View.EntityViews
 {
 	public class ConsoleGhostView : ConsoleEntityView
 	{
-		public ConsoleGhostView(XmasEntity model, ThreadSafeEventManager evtman)
-			: base(model, evtman)
+		public ConsoleGhostView(XmasEntity model, XmasPosition position, ThreadSafeEventManager evtman)
+            : base(model, position, evtman)
 		{
 		}
 

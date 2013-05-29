@@ -4,6 +4,7 @@ using System;
 using XmasEngineExtensions.TileExtension.Entities;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
+using XmasEngineModel.World;
 using XmasEngineView;
 
 namespace ConsoleXmasImplementation.View
@@ -26,9 +27,10 @@ namespace ConsoleXmasImplementation.View
 			AddTypeLink<DropZone, ConsoleDropZoneView>();
 		}
 
-		public override EntityView ConstructEntityView(XmasEntity model)
+		public override EntityView ConstructEntityView(XmasEntity model, XmasPosition position)
 		{
-			ConsoleEntityView retval = (ConsoleEntityView) Activator.CreateInstance(typeDict[model.GetType()], model, evtman);
+			ConsoleEntityView retval = (ConsoleEntityView) Activator.CreateInstance(typeDict[model.GetType()], model, position, evtman);
+           
 			return retval;
 		}
 

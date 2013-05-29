@@ -21,5 +21,10 @@ namespace XmasEngineExtensions.TileExtension
 		{
 			return Point.ToString();
 		}
+
+        public override EntitySpawnInformation GenerateSpawn()
+        {
+            return new TileSpawnInformation(new TilePosition(point));
+        }
 	}
 }

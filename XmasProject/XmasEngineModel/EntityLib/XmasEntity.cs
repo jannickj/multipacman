@@ -10,6 +10,7 @@ namespace XmasEngineModel.EntityLib
 {
 	public abstract class XmasEntity : XmasActor
 	{
+        private bool loaded = false;
 		private TriggerManager triggers = new TriggerManager();
 		internal Dictionary<Type, EntityModule> moduleMap = new Dictionary<Type, EntityModule>();
 		
@@ -17,6 +18,30 @@ namespace XmasEngineModel.EntityLib
 		public XmasEntity()
 		{
 		}
+
+        internal void Load()
+        {
+            if (loaded == true)
+                return;
+
+            loaded = true;
+            OnLoad();
+        }
+
+        public virtual void OnLoad()
+        {
+
+        }
+
+        public virtual void OnEnterWorld()
+        {
+
+        }
+
+        public virtual void OnLeaveWorld()
+        {
+
+        }
 
 		public TModule Module<TModule> ()
 			where TModule : EntityModule

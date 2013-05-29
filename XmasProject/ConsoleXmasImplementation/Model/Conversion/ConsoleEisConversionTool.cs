@@ -12,6 +12,7 @@ namespace ConsoleXmasImplementation.Model.Conversion
 			: base()
 		{
 			this.AddConverter(new EISGrabActionConverter());
+            this.AddConverter(new EISReleaseActionConverter());
 		}
 	}
 }

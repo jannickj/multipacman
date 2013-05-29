@@ -1,3 +1,4 @@
+using System;
 namespace JSLibrary.Data
 {
 	public struct Point
@@ -25,6 +26,26 @@ namespace JSLibrary.Data
 		{
 			get { return y; }
 		}
+
+        public override bool Equals(Object obj)
+        {
+            return obj is Point && this == (Point)obj;
+        }
+
+        public override int GetHashCode()
+        {
+            return x.GetHashCode() ^ y.GetHashCode();
+        }
+
+        public static bool operator ==(Point p1, Point p2)
+        {
+            return p1.x == p2.x && p1.y == p2.y;
+        }
+
+        public static bool operator !=(Point p1, Point p2)
+        {
+            return !(p1 == p2);
+        }
 
 		public static Point operator +(Point p1, Point p2)
 		{

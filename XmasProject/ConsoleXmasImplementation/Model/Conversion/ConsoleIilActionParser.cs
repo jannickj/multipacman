@@ -9,6 +9,7 @@ namespace XmasEngineExtensions.TileEisExtension
 		public ConsoleIilActionParser()
 		{
 			this.Add<EISGrabAction>("grab");
+            this.Add<EISReleaseAction>("release");
 		}
 	}
 }

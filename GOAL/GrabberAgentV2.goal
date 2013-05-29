@@ -1,0 +1,159 @@
+init module {
+	knowledge{
+		findStreet(M) :- M = vision(X,Y, HL), Z=(X,Y), (HL = []; member(E,HL), E\=wall, E\=impassablewall).
+		transpose( (X, Y), (Nx, Ny)) :- position(Px,Py), Nx is X + Px, Ny is Y + Py.
+		
+		visionContainsAt(vision(X,Y,L), Entity, Tx, Ty) :- transpose((X,Y),(Tx,Ty)), member(Entity,L).
+
+		adjSquare(X,Y,Nx,Y) :- Nx is X + 1.
+		adjSquare(X,Y,Nx,Y) :- Nx is X - 1.
+		adjSquare(X,Y,X,Ny) :- Ny is Y + 1.
+		adjSquare(X,Y,X,Ny) :- Ny is Y - 1.
+
+		isSquareExplored(X,Y,VisibleTiles):-
+			setof((OX,OY),(adjSquare(X,Y,OX,OY)),OL),
+			setof((NX,NY),(member((NX,NY),OL),(street(NX,NY);member((NX,NY),VisibleTiles))),OL).
+	
+		
+		% find the streets immediateley adjacent to a given postition
+		nextStreet(X,Y,Nx,Y) :- Nx is X + 1, street(Nx, Y).
+		nextStreet(X,Y,Nx,Y) :- Nx is X - 1, street(Nx, Y).
+		nextStreet(X,Y,X,Ny) :- Ny is Y + 1, street(X, Ny).
+		nextStreet(X,Y,X,Ny) :- Ny is Y - 1, street(X, Ny).
+		
+		isNotGoingInCircle(_,node(_,'root',_)).
+		isNotGoingInCircle(Value,node((Value),_,_)):-!,fail.
+		isNotGoingInCircle(Value,node(_,Parent,_)):-isNotGoingInCircle(Value,Parent).
+
+		delMember(_, [], []) :- !.
+		delMember(X, [X|Xs], Y) :- !, delMember(X, Xs, Y).
+		delMember(X, [T|Xs], Y) :- !, delMember(X, Xs, Y2), append([T], Y2, Y).
+
+		unWrapHeu(HN,N):-HN=(_,N).
+		unWrapHeu(N,N).
+
+		isBestOnList(HN,L):-unWrapHeu(HN,N),N=node(street(X,Y),_,SCost), member(OtherNode,L), OtherNode = node(street(X,Y),_,OCost),SCost < OCost.
+		isBestOnList(HN,L):-unWrapHeu(HN,N),\+ member(N,L).
+
+		calcHeu(node(street(X,Y),_,_),node(street(TX,TY),_,_),H):-H is sqrt((TX-X)^2+(TY-Y)^2).
+
+		%Open,Closed,NOpen,NClosed,NodeCurrent,NodeSuccessor
+		asSuc(Open,Closed,NOpen,NClosed,NodeCurrent,NodeSuccussorValue,Goal):-
+			NodeCurrent = node(street(_,_),_,Cost),
+			NodeSuccussorValue = street(SX,SY),
+			isNotGoingInCircle(NodeSuccussorValue ,NodeCurrent),
+			NodeSuccussor = node(NodeSuccussorValue,NodeCurrent,SCost),
+			SCost is Cost+1,
+			isBestOnList(NodeSuccussor,Open),
+			isBestOnList(NodeSuccussor,Closed),
+			delMember((_,node(street(SX,SY),_,_)),Open,AlmostNewOpen),
+			delMember(node(street(SX,SY),_,_),Closed,NClosed),
+			calcHeu(NodeSuccussor,Goal,Heu),
+			HeuCost is Heu+SCost,
+			NOpenNonSort = [(HeuCost,NodeSuccussor)|AlmostNewOpen],
+			msort(NOpenNonSort,NOpen).
+		
+		asLoopSuc(_,[],O,C,O,C,_).
+		asLoopSuc(NodeCurrent,[Suc|Successors],Open,Closed,FinalOpen,FinalClosed,Goal):-
+			asSuc(Open,Closed,NOpen,NClosed,NodeCurrent,Suc,Goal),
+			asLoopSuc(NodeCurrent,Successors,NOpen,NClosed,FinalOpen,FinalClosed,Goal).
+		
+		
+		asCur([(_,NodeCurrent)|_],_,_,_,NodeCurrent).
+		asCur([(_,NodeCurrent)|Open],Closed,FinalOpen,FinalClosed,Goal):-
+			\+ (NodeCurrent = Goal),
+			NodeCurrent = node(street(X,Y),Parent,_),
+			findall(Suc,(nextStreet(X,Y,SX,SY),\+ (Parent = node(street(SX,SY),_,_)),Suc=street(SX,SY)),SL),
+			asLoopSuc(NodeCurrent,SL,Open,Closed,NOpen,AlmostClosed,Goal),
+			NClosed = [NodeCurrent|AlmostClosed],
+			asCur(NOpen,NClosed,FinalOpen,FinalClosed,Goal).
+			
+		unWrapPath(node(_,'root',_),[]).
+		unWrapPath(node(street(X,Y),P,_),L):-unWrapPath(P,NL),append(NL,[(X,Y)],L).
+		
+		aStarSearchOnStreet((FX,FY),(TX,TY),Path,Cost):-
+			EndNode = node(street(TX,TY),_,Cost),
+			asCur([(0,node(street(FX,FY),'root',0))],[],_,_,EndNode),
+			unWrapPath(EndNode,Path).
+			
+		%Transpose Vision percept
+		transposedVision(vision(X,Y,Ents),vision(TX,TY,Ents)):- transpose((X,Y),(TX,TY)).
+
+		%Calc move Vector
+		calcMoveVector((TX,TY),(VX,VY)):- position(X,Y),VX is TX - X, VY is TY - Y.
+		
+		%closest unexplored
+		closestUnexplored(ShortPath) :-
+			findall((Cost,Path),( street(ToX,ToY),( \+ explored(ToX,ToY) ), ( \+ position(ToX,ToY) ), position(FX,FY), aStarSearchOnStreet((FX,FY),(ToX,ToY),Path,Cost)),UnexloredList),
+			sort(UnexloredList,S),
+			S = [(_,ShortPath)|_].
+	}
+	
+	beliefs{
+		% insert initial beliefs here, if any, or remove section.
+		
+	}
+	
+	goals{
+		% insert initial goals here, if any, or remove section.
+	}
+	
+	program {
+        % insert one-time rules here, or remove section
+    }
+	
+	actionspec {
+		move(X,Y) {
+			pre { route([(MX,MY)|L]) }
+			post { not( route([(MX,MY)|L])), route(L)  }
+		}
+		
+		release {
+			pre { true }
+			post { true }
+		}
+		
+		grab {
+			pre { true }
+			post { true }
+		}
+		
+		
+	}
+}
+	
+main module{
+	program {
+		if bel(position(Tx,Ty), on(Tx,Ty,dropzone), percept(holdingPackage) ) then release.
+		if bel(position(Tx,Ty), on(Tx,Ty,package), not( percept(holdingPackage) )) then grab.
+		if bel( route([(X,Y)|_]), calcMoveVector((X,Y),(VX,VY))) then move(VX,VY).
+	}
+}
+
+event module{
+	program{
+		if bel( percept(position(_,_)), position(X,Y)) then delete ( position(X,Y) ).
+		if bel( percept(position(X,Y)) ) then insert ( position(X,Y) ).
+		if bel( percept(speed(X)) ) then insert ( speed(X) ).
+		
+		
+		if bel( V = vision(_,_,_), percept(V), visionContainsAt(V, package, Tx, Ty) ) then insert (on(Tx, Ty, package)).
+		if bel( on(Tx,Ty,package), percept(vision(X, Y, L)), transpose((X, Y), (Tx, Ty)), \+ member(package,L) ) then delete (on(Tx,Ty,package)).
+		if bel( V = vision(_,_,_), percept(V), visionContainsAt(V, dropzone, Tx, Ty) ) then insert (on(Tx, Ty, dropzone)).
+		
+		
+		forall bel (percept(V), V = vision(X,Y,Ents), findStreet(V), transpose( (X,Y),(Nx,Ny)) ) do insert (street(Nx,Ny)).
+		
+		forall bel ( V = vision(_,_,_), percept(V), findStreet(V), transposedVision(V,vision(X,Y,_)), not( explored(X,Y) ), findall((AX,AY),(adjSquare(X,Y,AX,AY), AdjVision = vision(_,_,_), percept(AdjVision), transposedVision(AdjVision,vision(AX,AY,_))) , VT), isSquareExplored(X,Y,VT) ) do insert ( explored(X,Y) ).
+		
+		forall bel ( route([]) ) do delete ( route([]) ).
+		
+		if bel ( not(route(_)), percept(holdingPackage), on(X,Y, dropzone), position(PX,PY), aStarSearchOnStreet((PX,PY),(X,Y),Path,_) ) then insert ( route(Path) ).
+		
+		if bel ( not(route(_)), not ( percept(holdingPackage) ), on(X,Y, package), position(PX,PY), aStarSearchOnStreet((PX,PY),(X,Y),Path,_) ) then insert ( route(Path) ).
+		
+		if bel ( not(route(_)), closestUnexplored(Path) ) then insert ( route(Path) ).
+		
+		
+	}
+}

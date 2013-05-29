@@ -10,9 +10,10 @@ namespace XmasEngineView
 		protected ThreadSafeEventQueue eventqueue;
 		protected XmasEntity model;
 
-		public EntityView(XmasEntity model, ThreadSafeEventManager tman)
+        public EntityView(XmasEntity model, XmasPosition position, ThreadSafeEventManager tman)
 		{
 			this.model = model;
+            this.Position = position;
 			eventqueue = model.ConstructEventQueue();
 			tman.AddEventQueue(eventqueue);
 		}

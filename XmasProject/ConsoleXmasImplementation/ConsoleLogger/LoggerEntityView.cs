@@ -18,13 +18,13 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 		private Point pos;
 		private Logger logstream;
 
-		public LoggerEntityView (XmasEntity model 
+		public LoggerEntityView (XmasEntity model
+                               , XmasPosition position
 		                       , ThreadSafeEventManager evtman 
 		                       , Logger logstream
-		) : base(model, evtman)
+		) : base(model, position, evtman)
 		{
 			this.logstream = logstream;
-			Position = model.Position;
 			eventqueue.Register (new Trigger<UnitMovePostEvent> (entity_UnitMovePostEvent));
 			eventqueue.Register (new Trigger<UnitMovePreEvent> (entity_UnitMovePreEvent));
 			eventqueue.Register (new Trigger<PackageGrabbedEvent> (entity_PackageGrabbedEvent));

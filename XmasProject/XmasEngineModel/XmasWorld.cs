@@ -22,6 +22,7 @@ namespace XmasEngineModel
 
 		public bool AddEntity(XmasEntity xmasEntity, EntitySpawnInformation info)
 		{
+            xmasEntity.Load();
 			if (xmasEntity is Agent)
 			{
 				Agent agent = xmasEntity as Agent;
@@ -41,17 +42,22 @@ namespace XmasEngineModel
 			bool entityadded = OnAddEntity(xmasEntity, info);
 			if (entityadded)
 			{
+          
+
 				xmasEntity.Id = nextId;
 				this.entityLookup.Add(xmasEntity.Id,xmasEntity);
 				nextId++;
 
-				evtman.Raise(new EntityAddedEvent(xmasEntity));
+				evtman.Raise(new EntityAddedEvent(xmasEntity,info.Position));
+
+                this.evtman.AddEntity(xmasEntity);
+                xmasEntity.OnEnterWorld();
 			}
 
 			return entityadded;
 		}
 
-		internal void RemoveEntity(XmasEntity entity)
+		public void RemoveEntity(XmasEntity entity)
 		{
 			if (entity is Agent) {
 				Agent agent = entity as Agent;
@@ -64,6 +70,9 @@ namespace XmasEngineModel
 			OnRemoveEntity(entity);
 
 			evtman.Raise(new EntityRemovedEvent(entity));
+
+            this.evtman.RemoveEntity(entity);
+            entity.OnLeaveWorld();
 
 		}
 

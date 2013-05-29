@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using XmasEngineModel.EntityLib;
+using XmasEngineModel.World;
 
 namespace XmasEngineView
 {
@@ -15,6 +16,6 @@ namespace XmasEngineView
 			typeDict.Add(typeof (TModel), typeof (TView));
 		}
 
-		public abstract EntityView ConstructEntityView(XmasEntity model);
+        public abstract EntityView ConstructEntityView(XmasEntity model, XmasPosition position);
 	}
 }

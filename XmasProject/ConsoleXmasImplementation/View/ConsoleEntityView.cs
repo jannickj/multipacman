@@ -11,11 +11,12 @@ namespace ConsoleXmasImplementation.View
 {
 	public abstract class ConsoleEntityView : EntityView
 	{
-		private Point pos;
+		private Point pos = new Point();
 
-		public ConsoleEntityView(XmasEntity model, ThreadSafeEventManager evtman) : base(model,evtman)
+        public ConsoleEntityView(XmasEntity model, XmasPosition position, ThreadSafeEventManager evtman)
+            : base(model, position, evtman)
 		{
-			this.Position = model.Position;
+
 			eventqueue.Register(new Trigger<UnitMovePostEvent>(entityView_UnitMovePostEvent));
 		}
 

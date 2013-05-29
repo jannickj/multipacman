@@ -18,15 +18,17 @@ namespace ConsoleXmasImplementation
 		{
 			Func<XmasEntity> W = () => new Wall();
 			Func<XmasEntity> O = null;
+            Func<XmasEntity> D = () => new DropZone();
+            Func<XmasEntity> X = () => new Package();
 
 			Func<XmasEntity>[] map =
 				{
-					O, O, O, O, O, O, O, W, O, O, O, O, O, W, O, O, O, W, O, O, O,
-					O, W, W, W, W, O, W, W, W, W, W, W, O, W, O, W, O, W, O, W, O,
-					O, W, O, O, O, O, O, W, O, O, O, W, O, W, W, W, O, W, O, W, O,
+					O, O, O, O, O, O, O, W, O, O, O, O, O, W, O, O, O, W, O, D, O,
+					O, W, W, W, W, O, W, W, W, W, W, W, O, W, O, W, O, W, O, W, X,
+					O, W, O, X, O, O, O, W, O, O, O, W, O, W, W, W, O, W, O, W, O,
 					O, W, O, W, W, W, O, W, O, W, O, O, O, W, O, O, O, W, O, W, O,
 					O, W, O, O, O, W, O, O, O, W, W, W, O, W, O, W, O, O, O, W, O,
-					O, W, W, W, O, W, W, W, W, W, O, W, O, W, O, W, W, W, W, W, O,
+					O, W, W, W, O, W, W, W, W, W, O, W, O, W, O, W, W, W, W, W, X,
 					O, W, O, O, O, W, O, O, O, O, O, W, O, O, O, O, O, O, O, O, O,
 					O, O, O, W, O, O, O, W, W, O, W, W, O, W, W, W, W, W, O, W, W,
 					O, W, O, W, O, W, O, W, O, O, O, W, O, W, O, O, O, W, O, W, O,
@@ -38,20 +40,20 @@ namespace ConsoleXmasImplementation
 					O, W, O, W, O, W, O, O, O, O, O, W, W, O, W, O, W, W, W, W, O,
 					O, W, O, W, O, W, O, W, W, W, O, W, O, O, W, O, O, O, O, W, O,
 					O, O, O, O, O, O, O, W, O, W, O, O, O, W, W, O, W, W, O, W, O,
-					W, W, W, W, W, W, O, W, O, W, O, W, O, W, O, O, O, W, O, W, W,
-					O, W, O, O, O, W, O, O, O, W, O, W, O, W, O, W, O, W, O, O, O,
+					W, W, W, W, W, W, O, W, O, W, O, W, O, W, O, X, O, W, O, W, W,
+					O, W, O, O, O, W, O, O, O, W, O, W, O, W, O, W, O, W, O, X, O,
 					O, W, O, W, O, W, W, W, W, W, O, W, O, W, W, W, O, W, W, W, O,
-					O, O, O, W, O, O, O, O, O, O, O, W, O, O, O, O, O, O, O, O, O
+					O, O, O, W, O, O, O, X, O, O, O, W, O, O, O, O, O, O, O, O, O
 
 				};
 			
 			this.AddMapOfEntities(map,21,21);
 
 			this.AddEntity(new Player(), new Point(-10, -10));
-            this.AddEntity(new Ghost("testname"), new Point(10, 9));
-			this.AddEntity(new Package(), new Point(10, 10));
+            //this.AddEntity(new Ghost("testname"), new Point(10, 9));
+			//this.AddEntity(new Package(), new Point(10, 10));
 			this.AddEntity(new GrabberAgent("grabber"), new Point(10, 10));
-			this.AddEntity(new DropZone(), new Point(9, 10));
+			//this.AddEntity(new DropZone(), new Point(9, 10));
 		}
 
 		public IEnumerable<int> AlternateRange(int start, int end, int inc)

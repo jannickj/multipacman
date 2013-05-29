@@ -33,10 +33,10 @@ namespace ConsoleXmasImplementation
 
 			//View construction
 			ThreadSafeEventManager evtman1 = new ThreadSafeEventManager();
-			ConsoleView view1 = new ConsoleView(model,new Point(0,0), new ConsoleWorldView((TileWorld)model.World,xe => xe is Player), new ConsoleViewFactory(evtman1), evtman1);
+			ConsoleView view1 = new ConsoleView(model,new Point(0,0), new ConsoleWorldView((TileWorld)model.World,xe => xe is GrabberAgent), new ConsoleViewFactory(evtman1), evtman1);
 
             ThreadSafeEventManager evtman2 = new ThreadSafeEventManager();
-            ConsoleView view2 = new ConsoleView(model, new Point(0,23), new ConsoleWorldView((TileWorld)model.World), new ConsoleViewFactory(evtman2), evtman2);
+            ConsoleView view2 = new ConsoleView(model, new Point(0,24), new ConsoleWorldView((TileWorld)model.World), new ConsoleViewFactory(evtman2), evtman2);
 
 			StreamWriter sw = File.CreateText("error.log");
 

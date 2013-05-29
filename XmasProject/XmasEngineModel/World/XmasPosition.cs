@@ -2,5 +2,6 @@
 {
 	public abstract class XmasPosition
 	{
-	}
+        public abstract EntitySpawnInformation GenerateSpawn();
+    }
 }
