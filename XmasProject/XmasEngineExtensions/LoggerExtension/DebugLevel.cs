@@ -8,6 +8,7 @@ namespace XmasEngineExtensions.LoggerExtension
 		Critical,
 		Error,
 		Info,
+		Timing,
 		All
 	};
 }

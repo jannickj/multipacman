@@ -7,9 +7,9 @@ init module {
 		
 		% straight line distance between two points
 		sld(FromX, FromY, ToX, ToY, Result)
-			:- A is abs(FromX - ToX)
-			, B is abs(FromY - ToY)
-			, sqrt(abs((A ** 2) + (B ** 2)), Result).
+			:- A is FromX - ToX
+			, B is FromY - ToY
+			, sqrt((A ^ 2) + (B ^ 2), Result).
 		
 		% Insert an element into a sorted list. (sorted lowest to highest)
 		insertSorted(Element, [], [Element]) :- !.

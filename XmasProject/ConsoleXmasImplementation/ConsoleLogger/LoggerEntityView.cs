@@ -10,6 +10,7 @@ using System.IO;
 using XmasEngineExtensions.LoggerExtension;
 using XmasEngineExtensions;
 using ConsoleXmasImplementation.Model.Events;
+using XmasEngineExtensions.EisExtension.Model.Events;
 
 namespace ConsoleXmasImplementation.ConsoleLogger
 {
