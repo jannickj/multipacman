@@ -16,11 +16,16 @@ using System;
 using System.Threading;
 using System.Net.Sockets;
 using XmasEngineModel.Management.Actions;
+using System.Diagnostics;
 
 namespace XmasEngineExtensions.EisExtension.Controller.AI
 {
 	public class EISAgentController : AgentController
 	{
+		#region DEBUG
+		private DateTime dt = DateTime.Now;
+		#endregion
+
 		private IILActionParser actionparser;
 		private XmlSerializer deserializer = new XmlSerializer(typeof (IilAction));
 		private XmlSerializer serializer = new XmlSerializer(typeof (IilPerceptCollection));
@@ -47,23 +52,19 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 
 		private void update()
 		{
-            //IilAction iilaction = null;
+			Stopwatch sw = new Stopwatch();
 
-            //while (iilaction == null)
-            //{
-				
-
-            //    if (iilaction == null)
-            //        xreader.ReadEndElement();
-            //}
             packetstream.ReadNextPackage();
-            //Parallel.ExecuteWithPollingCheck(packetstream.ReadNextPackage, 5000, () => !client.Connected);
 
-            //string action = sreader.ReadToEnd();
-            IilAction iilaction = (IilAction)deserializer.Deserialize(sreader);
-			
+			IilAction iilaction = (IilAction)deserializer.Deserialize(sreader);
+
+			sw.Start();
 			EISAction eisaction = actionparser.parseIILAction(iilaction);
 			EntityXmasAction gameaction = (EntityXmasAction) tool.ConvertToXmas(eisaction);
+			sw.Stop();
+
+			string description = String.Format("Received socket package with action: {0}", gameaction);
+			actman.Queue(new SimpleAction(sa => sa.EventManager.Raise(new EisAgentTimingEvent(Agent, description, sw.Elapsed))));
 			performAction(gameaction);
 		}
 
@@ -93,6 +94,9 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 			IilPerceptCollection perceptcollection = (IilPerceptCollection) tool.ConvertToForeign(evt.Value);
 			serializer.Serialize(swriter, perceptcollection);
 			swriter.Flush();
+			DateTime now = DateTime.Now;
+			long diff = now.Ticks - dt.Ticks;
+			dt = now;
 		}
 
 		#endregion

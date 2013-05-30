@@ -36,6 +36,7 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 			evtqueue.Register (new Trigger<ActionFailedEvent> (engine_ActionFailed));
             evtqueue.Register(new Trigger<EisAgentDisconnectedEvent>(controller_AgentDisconnected));
 			evtqueue.Register(new Trigger<EntityRemovedEvent>(model_EntityRemoved));
+			evtqueue.Register(new Trigger<EisAgentTimingEvent>(entity_TimerElapsedEvent));
 		}
 
         private void controller_AgentDisconnected(EisAgentDisconnectedEvent evt)
@@ -59,6 +60,12 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 		private void engine_ActionFailed(ActionFailedEvent evt)
 		{
 			log.LogStringWithTimeStamp (evt.ActionException.Message, DebugLevel.Error);
+		}
+
+		private void entity_TimerElapsedEvent(EisAgentTimingEvent evt)
+		{
+			string info = String.Format("{{{0}}} {1} took {2}", evt.Agent, evt.Description, evt.TimeSpan);
+			log.LogStringWithTimeStamp(info, DebugLevel.Info);
 		}
 
 		#region implemented abstract members of XmasView

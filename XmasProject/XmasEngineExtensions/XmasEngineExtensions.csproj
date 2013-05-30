@@ -43,6 +43,7 @@
     <Compile Include="EisExtension\Controller\AI\EISAgentServer.cs" />
     <Compile Include="EisExtension\Model\ActionTypes\EISGetAllPercepts.cs" />
     <Compile Include="EisExtension\Model\Events\EisAgentDisconnectedEvent.cs" />
+    <Compile Include="EisExtension\Model\Events\EisAgentTimingEvent.cs" />
     <Compile Include="LoggerExtension\LoggerView.cs" />
     <Compile Include="TileEisExtension\ActionTypes\EISMoveUnit.cs" />
     <Compile Include="TileEisExtension\Conversion\EisPositionSerializer.cs" />

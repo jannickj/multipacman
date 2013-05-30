@@ -42,7 +42,7 @@ namespace ConsoleXmasImplementation
 
 			List<XmasView> views = new List<XmasView>();
 			var loggerevtman = new ThreadSafeEventManager();
-			var logger = new Logger(sw, DebugLevel.Info);
+			var logger = new Logger(sw, DebugLevel.Timing);
 			views.Add(new ConsoleLoggerView(model,new LoggerViewFactory(loggerevtman,logger),loggerevtman,logger));
 			views.Add(view1);
             views.Add(view2);
