@@ -1,0 +1,39 @@
+init module {
+	knowledge{
+		% insert knowledge here, if any, or remove section.
+	}
+	
+	beliefs{
+		% insert initial beliefs here, if any, or remove section.
+	}
+	
+	goals{
+		% insert initial goals here, if any, or remove section.
+	}
+	
+	program {
+        % insert one-time rules here, or remove section
+    }
+	
+	actionspec{
+		debug 
+		{ 
+			pre { true }
+			post { true }
+		}
+	}
+}
+	
+main module{
+	program{
+		if true then debug.
+	}
+}
+
+event module{
+	program{
+		if bel ( false ) then insert ( nothing(1) ).
+	}
+}
+
+% insert additional modules, if any, here.
