@@ -77,6 +77,11 @@ namespace JSLibrary.Data
 			return p - v;
 		}
 
+		public static Point operator *(Point p, Vector v)
+		{
+			return new Point (p.X * v.X, p.Y * v.Y);
+		}
+
 		public override string ToString()
 		{
 			return string.Format("({0},{1})", X, Y);
