@@ -31,7 +31,7 @@ namespace XmasEngineModel.EntityLib
 			string basestr = string.Format("{0} '{1}' [{2}]", GetType().Name, name, Id);
 			try
 			{
-				return string.Format("{0} at {1}", GetType().Name, Position);
+				return string.Format("{0} at {1}", basestr, Position);
 			}
 			catch
 			{
