@@ -91,7 +91,7 @@ init module {
 	
 	beliefs{
 		% insert initial beliefs here, if any, or remove section.
-		
+		route([]).
 	}
 	
 	goals{

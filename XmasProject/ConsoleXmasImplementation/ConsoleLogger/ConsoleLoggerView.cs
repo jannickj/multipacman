@@ -16,21 +16,20 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 		private Dictionary<XmasEntity,LoggerEntityView> viewlookup = new Dictionary<XmasEntity,LoggerEntityView> ();
 		private Logger log;
 		private LoggerViewFactory entityFactory;
-		private ThreadSafeEventManager evtman;
 		private ThreadSafeEventQueue evtqueue;
 
 		public ConsoleLoggerView ( XmasModel model
 		                         , LoggerViewFactory entityFactory
 		                         , ThreadSafeEventManager evtman
 		                         , Logger log
-		                         )
+		                         ) : base(evtman)
 		{
 			this.entityFactory = entityFactory;
 			this.log = log;
-			this.evtman = evtman;
+	
 
 			evtqueue = model.EventManager.ConstructEventQueue();
-			evtman.AddEventQueue(evtqueue);
+			ThreadSafeEventManager.AddEventQueue(evtqueue);
 
 			evtqueue.Register (new Trigger<EntityAddedEvent> (model_EntityAdded));
 			evtqueue.Register (new Trigger<ActionFailedEvent> (engine_ActionFailed));
@@ -64,7 +63,7 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 
 		private void entity_TimerElapsedEvent(EisAgentTimingEvent evt)
 		{
-			string info = String.Format("{{{0}}} {1} took {2}", evt.Agent, evt.Description, evt.TimeSpan);
+			string info = String.Format("{{{0}}} {1} took {2}", evt.Agent, evt.Description, evt.TimeSpan.TotalMilliseconds);
 			log.LogStringWithTimeStamp(info, DebugLevel.Info);
 		}
 
@@ -73,7 +72,7 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 		public override void Start ()
 		{
 			while (true)
-				evtman.ExecuteNextWhenReady();
+				ThreadSafeEventManager.ExecuteNextWhenReady();
 		}
 
 		#endregion

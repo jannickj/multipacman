@@ -47,13 +47,15 @@ namespace ConsoleXmasImplementation.Controller
 						keyread = true;
 					}
 
-				} 
+				}
 
 				if (keyread == true)
 					currentAction = this.actionMap[key.KeyChar];
 
 				this.performAction(currentAction);
+				
 				this.performAction(new GetAllPerceptsAction());
+				
 			}
 		}
 	}

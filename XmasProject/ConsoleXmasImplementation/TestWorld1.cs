@@ -53,7 +53,7 @@ namespace ConsoleXmasImplementation
             //this.AddEntity(new Ghost("testname"), new Point(10, 9));
 			//this.AddEntity(new Package(), new Point(10, 10));
 			this.AddEntity(new GrabberAgent("grabber"), new Point(10, 10));
-			this.AddEntity(new GrabberAgent("grabber2"), new Point(-10, -10));
+			//this.AddEntity(new GrabberAgent("grabber2"), new Point(-10, -10));
 			//this.AddEntity(new DropZone(), new Point(9, 10));
 		}
 

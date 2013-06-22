@@ -20,16 +20,14 @@ namespace ConsoleXmasImplementation.View
 
 		private ConsoleViewFactory entityFactory;
 		private ThreadSafeEventQueue eventqueue;
-		private ThreadSafeEventManager evtmanager;
 		private ConsoleWorldView viewWorld;
         private Point drawPos;
 
-		public ConsoleView(XmasModel model, Point drawPos, ConsoleWorldView viewWorld, ConsoleViewFactory entityFactory, ThreadSafeEventManager evtmanager)
+		public ConsoleView(XmasModel model, Point drawPos, ConsoleWorldView viewWorld, ConsoleViewFactory entityFactory, ThreadSafeEventManager evtmanager) : base(evtmanager)
 		{
 			this.viewWorld = viewWorld;
 			this.entityFactory = entityFactory;
             this.drawPos = drawPos;
-			this.evtmanager = evtmanager;
 			eventqueue = model.EventManager.ConstructEventQueue();
 			evtmanager.AddEventQueue(eventqueue);
 			eventqueue.Register(new Trigger<EntityAddedEvent>(Model_EntityAdded));
@@ -101,7 +99,7 @@ namespace ConsoleXmasImplementation.View
 				if(ticksLeft < 0)
 					break;
                 long sleptNow;
-				evtmanager.ExecuteNextWhenReady(new TimeSpan(ticksLeft),out sleptNow);
+				this.ThreadSafeEventManager.ExecuteNextWhenReady(new TimeSpan(ticksLeft),out sleptNow);
                 slept += sleptNow;
 			}
             DateTime after = DateTime.Now;

@@ -9,6 +9,8 @@ using XmasEngineModel.Management.Events;
 using XmasEngineExtensions.TileExtension.Percepts;
 using JSLibrary.Data;
 using System.Linq;
+using System.Diagnostics;
+using XmasEngineModel.Management.Actions;
 
 namespace XmasEngineExtensions.TileExtension.Modules
 {
@@ -28,8 +30,11 @@ namespace XmasEngineExtensions.TileExtension.Modules
 
 		public override IEnumerable<Percept> Percepts {
 			get {
+				
 				UpdateVision();
+				
 				return vision.VisibleTiles.Select(kv => new TileVisionPercept(kv.Key, kv.Value)).ToArray();
+				
 			}
 		}
 

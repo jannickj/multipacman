@@ -13,23 +13,21 @@ namespace XmasEngineExtensions.LoggerExtension
 {
 	public class LoggerView : XmasView
 	{
-		private ThreadSafeEventManager evtman;
 		private ThreadSafeEventQueue evtq;
 		private Logger log;
 
-		public LoggerView(XmasModel model, Logger log)
+		public LoggerView(XmasModel model, Logger log) : base(new ThreadSafeEventManager())
 		{
 			this.log = log;
-			this.evtman = new ThreadSafeEventManager();
 			this.evtq = model.EventManager.ConstructEventQueue();
-			this.evtman.AddEventQueue(evtq);
+			this.ThreadSafeEventManager.AddEventQueue(evtq);
 			this.evtq.Register(new Trigger<ActionFailedEvent>(engine_ActionFailed));
 		}
 
 		public override void Start()
 		{
 			while (true)
-				evtman.ExecuteNextWhenReady();
+				ThreadSafeEventManager.ExecuteNextWhenReady();
 		}
 
 		private void engine_ActionFailed(ActionFailedEvent evt)

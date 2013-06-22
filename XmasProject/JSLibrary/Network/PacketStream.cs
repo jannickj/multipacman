@@ -26,7 +26,7 @@ namespace JSLibrary.Network
             while (mustRead > 0)
             {
                 mustRead -= input.Read(packetLengthArray, 0, mustRead);
-                if (mustRead > 0)
+                if (mustRead == 0)
                     break;
                 Thread.Sleep(200);
             }

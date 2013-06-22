@@ -14,7 +14,7 @@ namespace ConsoleXmasImplementation.Model.Entities
 
 		protected override SpeedModule ConstructSpeedModule()
 		{
-			return new SpeedModule(100);
+			return new SpeedModule(200);
 		}
 	}
 }

@@ -37,19 +37,35 @@ namespace XmasEngineExtensions.TileExtension.Actions
 			UnitMovePreEvent before = new UnitMovePreEvent(newloc);
 
 			Source.Raise(before);
+			if (before.IsStopped)
+			{
+				Complete();
+				return;
+			}
 			time = Source.Module<SpeedModule>().Speed;
-			XmasTimer gt = Factory.CreateTimer(this,() =>
-				{
-					if(World.SetEntityPosition(Source, new TilePosition(newloc)))
-						Source.Raise(new UnitMovePostEvent(newloc));
-					else
-						Source.Raise(new UnitMovePostEvent(tile.Point));
+			if (time == 0)
+			{
+				if (World.SetEntityPosition(Source, new TilePosition(newloc)))
+					Source.Raise(new UnitMovePostEvent(newloc));
+				else
+					Source.Raise(new UnitMovePostEvent(tile.Point));
+				Complete();
+			}
+			else
+			{
+				XmasTimer gt = Factory.CreateTimer(this, () =>
+					{
+						if (World.SetEntityPosition(Source, new TilePosition(newloc)))
+							Source.Raise(new UnitMovePostEvent(newloc));
+						else
+							Source.Raise(new UnitMovePostEvent(tile.Point));
 
-					Complete();
-				});
+						Complete();
+					});
 
-			if (!before.IsStopped)
-				gt.StartSingle(time);
+				
+					gt.StartSingle(time);
+			}
 		}
 	}
 }

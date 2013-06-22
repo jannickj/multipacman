@@ -55,8 +55,7 @@ public class XmasEnvironment extends EIDefaultImpl
 	private OutputPacketStream outputStream;
 	private XMLReader xmlreader;
 	private String Name;
-	private int debuglevel = 1;
-	private long last = 0;
+	private int debuglevel = 0;
 	
 	public XmasEnvironment()
 	{
@@ -163,7 +162,10 @@ public class XmasEnvironment extends EIDefaultImpl
 			throws PerceiveException, NoEnvironmentException 
 	{
 		Action action = new Action ("getAllPercepts");
-//		sockwriter.print (action.toXML());
+		
+		
+		
+		
 		try {
 			outputStream.SendPacket(action.toXML());
 		} catch (IOException e2) {
@@ -174,8 +176,12 @@ public class XmasEnvironment extends EIDefaultImpl
 		PerceptCollectionHandler handler = new PerceptCollectionHandler(xmlreader);
 		xmlreader.setContentHandler (handler);
 		
+		
+		
 		try {
-			xmlreader.parse(new InputSource(this.inputStream.getPacketStream()));
+			InputStream ins = this.inputStream.getPacketStream();
+			
+			xmlreader.parse(new InputSource(ins));
 			
 			
 		} catch (IOException | SAXException e) {
@@ -189,8 +195,10 @@ public class XmasEnvironment extends EIDefaultImpl
 			e.printStackTrace();
 		}
 		
+		
+		
+		
 		LinkedList<Percept> percepts = handler.<LinkedList<Percept>>getElementAs();
-		this.last = System.nanoTime();
 		return handler.<LinkedList<Percept>>getElementAs();
 	}
 	
@@ -198,10 +206,7 @@ public class XmasEnvironment extends EIDefaultImpl
 	protected Percept performEntityAction(String arg0, Action action)
 			throws ActException 
 	{
-		long now = System.nanoTime();
-		long current = (now - last)/1000000L;
-		this.printDebugMsg("Timed: "+current, 1);
-		last = System.nanoTime();
+		
 		try {
 			outputStream.SendPacket(action.toXML());
 		} catch (IOException e) {

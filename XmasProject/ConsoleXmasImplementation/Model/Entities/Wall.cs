@@ -1,4 +1,6 @@
-﻿using XmasEngineExtensions.TileExtension.Modules;
+﻿using XmasEngineExtensions.TileExtension.Events;
+using XmasEngineExtensions.TileExtension.Modules;
+using XmasEngineModel.Management;
 
 namespace ConsoleXmasImplementation.Model.Entities
 {

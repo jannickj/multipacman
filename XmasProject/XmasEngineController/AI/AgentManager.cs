@@ -11,7 +11,7 @@ namespace XmasEngineController.AI
 {
 	public abstract class AgentManager : XmasController, IStartable
 	{
-
+		
 
 		public AgentManager()
 		{

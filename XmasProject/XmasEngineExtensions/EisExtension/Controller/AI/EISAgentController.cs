@@ -36,6 +36,8 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
         private ActionManager actman;
         private TcpClient client;
 
+		Stopwatch sw = new Stopwatch();
+
 		public EISAgentController(Agent agent, TcpClient client, ActionManager actman, PacketStream packetstream, StreamReader sreader, StreamWriter swriter, EisConversionTool tool,
 		                          IILActionParser actionparser)
 			: base(agent)
@@ -52,19 +54,18 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 
 		private void update()
 		{
-			Stopwatch sw = new Stopwatch();
+			
 
             packetstream.ReadNextPackage();
 
 			IilAction iilaction = (IilAction)deserializer.Deserialize(sreader);
 
-			sw.Start();
+			
 			EISAction eisaction = actionparser.parseIILAction(iilaction);
 			EntityXmasAction gameaction = (EntityXmasAction) tool.ConvertToXmas(eisaction);
-			sw.Stop();
+			
 
-			string description = String.Format("Received socket package with action: {0}", gameaction);
-			actman.Queue(new SimpleAction(sa => sa.EventManager.Raise(new EisAgentTimingEvent(Agent, description, sw.Elapsed))));
+			
 			performAction(gameaction);
 		}
 
@@ -91,12 +92,17 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 
 		private void EISAgentController_PerceptsRecieved(object sender, UnaryValueEvent<PerceptCollection> evt)
 		{
+			
 			IilPerceptCollection perceptcollection = (IilPerceptCollection) tool.ConvertToForeign(evt.Value);
 			serializer.Serialize(swriter, perceptcollection);
 			swriter.Flush();
-			DateTime now = DateTime.Now;
-			long diff = now.Ticks - dt.Ticks;
-			dt = now;
+			string description = String.Format("cycle completed");
+			sw.Stop();
+			TimeSpan elapsed = sw.Elapsed;
+			//actman.Queue(new SimpleAction(sa => sa.EventManager.Raise(new EisAgentTimingEvent(Agent, description, elapsed))));
+			sw.Reset();
+			sw.Start();
+			
 		}
 
 		#endregion
