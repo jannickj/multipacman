@@ -9,6 +9,17 @@ namespace XmasEngineExtensions.TileExtension.Percepts
 {
 	public class Vision : Percept
 	{
+		private class TileCollection
+		{
+			private Point[] points;
+			public Point[] Points { get { return points; } }
+
+			public TileCollection (params Point[] points)
+			{
+				this.points = points;
+			}
+		}
+
 		private Grid<Tile> grid;
 		private XmasEntity owner;
 //		private List<KeyValuePair<Point, Tile>> visibleTiles = new List<KeyValuePair<Point, Tile>>();
@@ -103,34 +114,49 @@ namespace XmasEngineExtensions.TileExtension.Percepts
 		private bool connectCorner(Point origin, Point destination)
 		{
 			Vector v = new Vector(origin, destination);
-			foreach (Point p in walkAlongVector(v))
+			foreach (Point[] ps in walkAlongVector(v))
 			{
-				Point transp = origin + p;
-				if (grid[transp.X, transp.Y].IsVisionBlocking(owner))
-					return false;
+				foreach (Point p in ps)
+				{
+					Point transp = origin + p;
+					if (grid[transp.X, transp.Y].IsVisionBlocking(owner))
+						return false;
+				}
 			}
 
 			return true;
 		}
 
-		private IEnumerable<Point> walkAlongVector(Vector v)
+		private IEnumerable<IEnumerable<Point>> walkAlongVector(Vector v)
 		{
-			double linepiece = Math.Abs(v.Y/(double) v.X);
-			for (int i = 0; i < Math.Abs(v.X); i++)
-			{
-				int start = (int) Math.Floor(i*linepiece);
-				int stop = (int) Math.Ceiling((i + 1)*linepiece);
-				for (int j = start; j < stop; j++)
-				{
-					int x = i, y = j;
+			if (v.X == 0 || v.Y == 0) { 
+				for (int i = 0; i < Math.Max (v.X, v.Y); i++) {
+					yield return new Point[] { 
+						new Point (i, i) * v.Direction,
+						new Point (i, i) * v.Direction - (new Point(1,1) - v.Direction)
+					};
+				}
+			} else {
+				double linepiece;
+				if (v.X == 0 || v.Y == 0)
+					linepiece = 1.0;
+				else 
+					linepiece = Math.Abs (v.Y/(double) v.X);
+		
+				for (int i = 0; i < Math.Abs(v.X); i++) {
+					int start = (int)Math.Floor (i*linepiece);
+					int stop = (int)Math.Ceiling ((i + 1)*linepiece);
+					for (int j = start; j < stop; j++) {
+						int x = i, y = j;
 
-					// if any of the vector's coordinates are negative, offsets change:
-					if (v.X < 0)
-						x = (-1*x) - 1;
-					if (v.Y < 0)
-						y = (-1*y) - 1;
+						// if any of the vector's coordinates are negative, offsets change:
+						if (v.X < 0)
+							x = (-1 * x) - 1;
+						if (v.Y < 0)
+							y = (-1 * y) - 1;
 
-					yield return new Point(x, y);
+						yield return new Point[] { new Point(x, y) };
+					}
 				}
 			}
 		}

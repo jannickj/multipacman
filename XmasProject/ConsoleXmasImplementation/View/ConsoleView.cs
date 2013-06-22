@@ -47,7 +47,8 @@ namespace ConsoleXmasImplementation.View
 		{
             lock (ExtendedConsole.ConsoleWriterLock)
             {
-                Console.SetCursorPosition(drawPos.X, drawPos.Y+1);
+				if (drawPos.Y == 0)
+                Console.SetCursorPosition(drawPos.X, drawPos.Y);
                 Console.Write(Area());
             }
 		}
@@ -117,10 +118,10 @@ namespace ConsoleXmasImplementation.View
             }
             lock (ExtendedConsole.ConsoleWriterLock)
             {
-                Console.SetCursorPosition(drawPos.X, drawPos.Y);
+//                Console.SetCursorPosition(drawPos.X, drawPos.Y);
                 long uticks = UPDATE_DELAY * 10000;
                 long pct = (uticks - slept) / (updateDelayTicks / 100); 
-                Console.Write("\rLOAD: " + pct + "%\t\t\t");
+//                Console.Write("\rLOAD: " + pct + "%\t\t\t");
             }
 
 		}
