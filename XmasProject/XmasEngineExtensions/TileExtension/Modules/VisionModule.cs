@@ -22,7 +22,7 @@ namespace XmasEngineExtensions.TileExtension.Modules
 		{
 		}
 
-		public override void AttachToEntity (XmasEntity entityHost, EntityModule replacedModule)
+		protected override void AttachToEntity (XmasEntity entityHost, EntityModule replacedModule)
 		{
 			base.AttachToEntity (entityHost, replacedModule);
 			//entityHost.Register (new Trigger<UnitMovePostEvent> (xmasEntity_UnitMovedPost));

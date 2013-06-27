@@ -17,6 +17,7 @@ using System.Threading;
 using System.Net.Sockets;
 using XmasEngineModel.Management.Actions;
 using System.Diagnostics;
+using XmasEngineModel.EntityLib.Module;
 
 namespace XmasEngineExtensions.EisExtension.Controller.AI
 {
@@ -64,7 +65,6 @@ namespace XmasEngineExtensions.EisExtension.Controller.AI
 			EISAction eisaction = actionparser.parseIILAction(iilaction);
 			EntityXmasAction gameaction = (EntityXmasAction) tool.ConvertToXmas(eisaction);
 			
-
 			
 			performAction(gameaction);
 		}

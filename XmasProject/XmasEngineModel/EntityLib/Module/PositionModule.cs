@@ -6,6 +6,10 @@ using XmasEngineModel.Percepts;
 
 namespace XmasEngineModel.EntityLib.Module
 {
+
+	/// <summary>
+	/// A module for giving the entity a Position percept
+	/// </summary>
 	public class PositionModule : EntityModule
 	{
 		public override Type ModuleType

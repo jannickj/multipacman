@@ -20,11 +20,11 @@ namespace ConsoleXmasImplementation.Model.Entities
 			blockingModule.AddWillNotBlockRule<DropZone>(_ => true);
 		}
 
-        public override void OnLoad()
-        {
+		protected override void OnLoad()
+		{
             this.EventManager.Register(new Trigger<PackageReleasedEvent>(world_packageReleased));
-            
-        }
+		}
+
 
         private void world_packageReleased(PackageReleasedEvent evt)
         {

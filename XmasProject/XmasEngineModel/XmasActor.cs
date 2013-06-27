@@ -10,6 +10,9 @@ namespace XmasEngineModel
 		private XmasFactory factory;
 		private XmasWorld world;
 
+		/// <summary>
+		/// Gets the world of the engine the Xmas actor is currently part of
+		/// </summary>
 		public virtual XmasWorld World
 		{
 			get {
@@ -78,6 +81,7 @@ namespace XmasEngineModel
 		public override string ToString()
 		{
 			return this.GetType().Name;
-		}
+		}
+
 	}
 }
