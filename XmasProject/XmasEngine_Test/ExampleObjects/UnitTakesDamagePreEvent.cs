@@ -1,4 +1,5 @@
 ﻿using System;
+using XmasEngine_Test.ExampleObjects;
 using XmasEngineModel.EntityLib;
 
 namespace XmasEngineModel.Management.Events
@@ -9,10 +10,10 @@ namespace XmasEngineModel.Management.Events
 		private double dmgMultiplier = 1;
 		private int dmgPostMultiplier;
 		private int dmgPreMultiplier;
-		private Agent source;
-		private Agent target;
+		private Unit source;
+		private Unit target;
 
-		public UnitTakesDamagePreEvent(Agent source, Agent target, int dmg)
+		public UnitTakesDamagePreEvent(Unit source, Unit target, int dmg)
 		{
 			this.source = source;
 			this.target = target;
@@ -50,6 +51,16 @@ namespace XmasEngineModel.Management.Events
 		public void ModDmgMultiplier(double p)
 		{
 			dmgMultiplier *= p;
+		}
+
+		public Unit Source
+		{
+			get { return source; }
+		}
+
+		public Unit Target
+		{
+			get { return target; }
 		}
 	}
 }

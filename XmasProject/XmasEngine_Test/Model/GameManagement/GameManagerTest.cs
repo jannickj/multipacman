@@ -1,7 +1,8 @@
 ﻿using NUnit.Framework;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
-using XmasEngine_Test.ExampleActions;
+using XmasEngine_Test.ExampleObjects;
+using XmasEngineModel.EntityLib;
 
 namespace XmasEngine_Test.Model.GameManagement
 {
@@ -13,7 +14,7 @@ namespace XmasEngine_Test.Model.GameManagement
 		{
 			EventManager gem = new EventManager();
 
-			Agent A = new Agent();
+			Unit A = new Unit();
 
 			gem.AddEntity(A);
 
@@ -36,10 +37,10 @@ namespace XmasEngine_Test.Model.GameManagement
 		public void AddTrigger_triggerIsAddedToUnitAfterItIsAddedToManagger_EventFired()
 		{
 			EventManager gem = new EventManager();
-			ActionManager actman = new ActionManager();
+			ActionManager actman = new ActionManager(gem);
 
-			Agent A = new Agent();
-			Agent B = new Agent();
+			Unit A = new Unit();
+			Unit B = new Unit();
 
 			A.ActionManager = actman;
 			B.ActionManager = actman;
@@ -65,10 +66,10 @@ namespace XmasEngine_Test.Model.GameManagement
 		public void ExecuteActionWithGlobalTrigger_UnitDealsDamageToAnotherUnitWithDamage_EventsWasFiredOnBothActions()
 		{
 			EventManager gem = new EventManager();
-			ActionManager actman = new ActionManager();
+			ActionManager actman = new ActionManager(gem);
 
-			Agent A = new Agent();
-			Agent B = new Agent();
+			Unit A = new Unit();
+			Unit B = new Unit();
 
 			A.ActionManager = actman;
 			B.ActionManager = actman;
@@ -101,10 +102,10 @@ namespace XmasEngine_Test.Model.GameManagement
 			()
 		{
 			EventManager gem = new EventManager();
-			ActionManager actman = new ActionManager();
+			ActionManager actman = new ActionManager(gem);
 
-			Agent expectedDealer = new Agent();
-			Agent expectedTaker = new Agent();
+			Unit expectedDealer = new Unit();
+			Unit expectedTaker = new Unit();
 
 			expectedDealer.ActionManager = actman;
 			expectedTaker.ActionManager = actman;
@@ -144,11 +145,11 @@ namespace XmasEngine_Test.Model.GameManagement
 		public void ExecuteActionWithSpecificTargetEvent_UnitDealsDamageToAnotherUnit_TheOtherUnitTakesDamage()
 		{
 			EventManager gem = new EventManager();
-			ActionManager actman = new ActionManager();
+			ActionManager actman = new ActionManager(gem);
 
 
-			Agent expectedDealer = new Agent();
-			Agent expectedTaker = new Agent();
+			Unit expectedDealer = new Unit();
+			Unit expectedTaker = new Unit();
 
 			expectedDealer.ActionManager = actman;
 			expectedTaker.ActionManager = actman;
@@ -183,7 +184,7 @@ namespace XmasEngine_Test.Model.GameManagement
 		{
 			EventManager gem = new EventManager();
 
-			Agent A = new Agent();
+			Unit A = new Unit();
 
 			gem.AddEntity(A);
 
@@ -207,10 +208,10 @@ namespace XmasEngine_Test.Model.GameManagement
 		public void RemoveTrigger_simpleGlobalTrigger_NoEventFired()
 		{
 			EventManager gem = new EventManager();
-			ActionManager actman = new ActionManager();
+			ActionManager actman = new ActionManager(gem);
 
-			Agent A = new Agent();
-			Agent B = new Agent();
+			Unit A = new Unit();
+			Unit B = new Unit();
 
 			A.ActionManager = actman;
 			B.ActionManager = actman;
@@ -236,10 +237,10 @@ namespace XmasEngine_Test.Model.GameManagement
 		public void RemoveTrigger_triggerIsRemovedFromUnit_NoEventFired()
 		{
 			EventManager gem = new EventManager();
-			ActionManager actman = new ActionManager();
+			ActionManager actman = new ActionManager(gem);
 
-			Agent A = new Agent();
-			Agent B = new Agent();
+			Unit A = new Unit();
+			Unit B = new Unit();
 
 			A.ActionManager = actman;
 			B.ActionManager = actman;

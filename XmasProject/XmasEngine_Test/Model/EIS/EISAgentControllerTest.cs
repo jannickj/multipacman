@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Xml;
 using JSLibrary.Data;
+using JSLibrary.Network;
 using NUnit.Framework;
 using XmasEngineExtensions.EisExtension.Controller.AI;
 using XmasEngineExtensions.EisExtension.Model;
@@ -18,7 +19,9 @@ using XmasEngineModel.Management;
 
 namespace XmasEngineExtensions_Test.EisExtension.AI
 {
-	[TestFixture]
+	//Scenario Test
+
+	//[TestFixture]
 	public class EISAgentControllerTest
 	{
 		private bool lock1 = true;
@@ -43,14 +46,14 @@ namespace XmasEngineExtensions_Test.EisExtension.AI
 			controller.Start();
 		}
 
-		[Test]
+		//[Test]
 		public void SingleUpdate_RecievedGetAllPercepts_PickUpPerceptsAndReturnThemThroughWriter()
 		{
-			ActionManager manager = new ActionManager();
+			ActionManager manager = new ActionManager(new EventManager());
 			TileWorldBuilder worldBuilder = new TileWorldBuilder(new Size(4, 4));
 			
 			
-			Agent agent = new Agent();
+			Agent agent = new Agent("testagent");
 			worldBuilder.AddEntity(agent, new TileSpawnInformation(new TilePosition(new Point(0, 0))));
 
 			XmasFactory fact = new XmasFactory(manager);
@@ -89,7 +92,7 @@ namespace XmasEngineExtensions_Test.EisExtension.AI
 			XmlWriterSettings wset = new XmlWriterSettings();
 			wset.OmitXmlDeclaration = true;
 			XmlWriter xwriter = XmlWriter.Create(sb, wset);
-			controller = new EISAgentController(agent, xreader, xwriter, ctool, parser);
+			controller = new EISAgentController(agent, client, manager, new PacketStream(stream), new StreamReader(stream), new StreamWriter(stream), ctool, parser);
 
 
 			Thread thread2 = new Thread(test1);

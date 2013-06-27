@@ -1,4 +1,5 @@
-﻿using XmasEngineModel.EntityLib;
+﻿using XmasEngine_Test.ExampleObjects;
+using XmasEngineModel.EntityLib;
 
 namespace XmasEngineModel.Management.Events
 {
@@ -6,10 +7,10 @@ namespace XmasEngineModel.Management.Events
 	{
 		private int actualDmg;
 		private int dmg;
-		private Agent source;
-		private Agent target;
+		private Unit source;
+		private Unit target;
 
-		public UnitTakesDamagePostEvent(Agent source, Agent target, int dmg, int actualDmg)
+		public UnitTakesDamagePostEvent(Unit source, Unit target, int dmg, int actualDmg)
 		{
 			this.source = source;
 			this.target = target;
@@ -29,12 +30,12 @@ namespace XmasEngineModel.Management.Events
 			get { return actualDmg; }
 		}
 
-		public Agent Source
+		public Unit Source
 		{
 			get { return source; }
 		}
 
-		public Agent Target
+		public Unit Target
 		{
 			get { return target; }
 		}

@@ -16,7 +16,12 @@ namespace XmasEngineModel
 
 		public EventManager EventManager
 		{
-			get { return evtman; }
+			get 
+			{
+				if (evtman == null)
+					throw new PropertyIsNullException("EventManager", this);
+				return evtman; 
+			}
 			internal set { evtman = value; }
 		}
 
@@ -48,7 +53,7 @@ namespace XmasEngineModel
 				this.entityLookup.Add(xmasEntity.Id,xmasEntity);
 				nextId++;
 
-				evtman.Raise(new EntityAddedEvent(xmasEntity,info.Position));
+				EventManager.Raise(new EntityAddedEvent(xmasEntity,info.Position));
 
                 this.evtman.AddEntity(xmasEntity);
                 xmasEntity.OnEnterWorld();
@@ -69,7 +74,7 @@ namespace XmasEngineModel
 
 			OnRemoveEntity(entity);
 
-			evtman.Raise(new EntityRemovedEvent(entity));
+			EventManager.Raise(new EntityRemovedEvent(entity));
 
             this.evtman.RemoveEntity(entity);
             entity.OnLeaveWorld();
@@ -90,5 +95,10 @@ namespace XmasEngineModel
 		}
 
 		public abstract ICollection<XmasEntity> GetEntities (XmasPosition pos);
+
+		public override string ToString()
+		{
+			return this.GetType().Name;
+		}
 	}
 }

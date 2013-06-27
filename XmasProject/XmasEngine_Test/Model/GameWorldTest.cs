@@ -1,6 +1,9 @@
 using JSLibrary.Data;
 using NUnit.Framework;
+using XmasEngine_Test.ExampleObjects;
 using XmasEngineExtensions.TileExtension;
+using XmasEngineModel.EntityLib;
+using XmasEngineModel.Management;
 
 namespace XmasEngine_Test.Model
 {
@@ -10,11 +13,12 @@ namespace XmasEngine_Test.Model
 		[Test]
 		public void GetEntityPosition_OneAgentInWorld_ReturnThatAgentPosition()
 		{
-			TileMap map = new TileMap(new Size(2, 2));
-			TileWorld world = new TileWorld(map);
+			EventManager evtman = new EventManager();
+			TileWorld world = new TileWorld(new Size(2, 2));
+			world.EventManager = evtman;
 
-			Agent agent = new Agent();
-			world.AddEntity(new Point(1, 2), agent);
+			Agent agent = new Unit();
+			world.AddEntity(agent,new TileSpawnInformation(new TilePosition(new Point(1, 2))));
 
 			Point expected = new Point(1, 2);
 			Point actual = ((TilePosition) world.GetEntityPosition(agent)).Point;

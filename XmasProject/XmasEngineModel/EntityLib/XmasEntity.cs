@@ -43,6 +43,11 @@ namespace XmasEngineModel.EntityLib
 
         }
 
+		public bool HasModule<TModule>() where TModule : EntityModule
+		{
+			return moduleMap.ContainsKey(typeof(TModule));
+		}
+
 		public TModule Module<TModule> ()
 			where TModule : EntityModule
 		{

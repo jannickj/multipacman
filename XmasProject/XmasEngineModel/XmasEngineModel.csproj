@@ -52,6 +52,7 @@
     <Compile Include="Exceptions\AgentAlreadyExistsException.cs" />
     <Compile Include="Exceptions\AgentHasNoNameException.cs" />
     <Compile Include="Exceptions\EntityException.cs" />
+    <Compile Include="Exceptions\PropertyIsNullException.cs" />
     <Compile Include="Exceptions\ForceStopEngineException.cs" />
     <Compile Include="Exceptions\MissingModuleException.cs" />
     <Compile Include="Exceptions\UnableToConvertException.cs" />
@@ -72,8 +73,6 @@
     <Compile Include="Management\Events\EngineCloseEvent.cs" />
     <Compile Include="Management\Events\EntityAddedEvent.cs" />
     <Compile Include="Management\Events\RetreivePerceptsEvent.cs" />
-    <Compile Include="Management\Events\UnitTakesDamagePostEvent.cs" />
-    <Compile Include="Management\Events\UnitTakesDamagePreEvent.cs" />
     <Compile Include="Management\XmasAction.cs" />
     <Compile Include="Management\XmasEvent.cs" />
     <Compile Include="Management\XmasTimer.cs" />

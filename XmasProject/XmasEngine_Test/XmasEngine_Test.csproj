@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -42,26 +43,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExampleActions\DamageUnitTargetAction.cs">
+    <Compile Include="ExampleObjects\Unit.cs" />
+    <Compile Include="ExampleObjects\DamageUnitTargetAction.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\AgentTest.cs" />
+    <Compile Include="ExampleObjects\Player.cs" />
+    <Compile Include="ExampleObjects\PowerUp.cs" />
+    <Compile Include="ExampleObjects\UnitTakesDamagePostEvent.cs" />
+    <Compile Include="ExampleObjects\UnitTakesDamagePreEvent.cs" />
+    <Compile Include="ExampleObjects\Wall.cs" />
     <Compile Include="Model\Conversion\GooseConversionToolTest.cs" />
     <Compile Include="Model\Data\PointTest.cs" />
+    <Compile Include="Model\EIS\EISAgentControllerTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Model\Entities\MapEntities\TileTest.cs" />
-    <Compile Include="Model\GameEngineTest.cs" />
     <Compile Include="Model\GameManagement\GameManagerTest.cs" />
     <Compile Include="Model\GameManagement\TriggerManagerTest.cs" />
     <Compile Include="Model\GameMapTest.cs" />
     <Compile Include="Model\GameWorldTest.cs" />
+    <Compile Include="Model\Percepts\VisionTest.cs" />
     <Compile Include="Model\Rule\RuleHierarchyTest.cs" />
     <Compile Include="Model\Rule\TransformationRuleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\Conversion\EIS\" />
-    <Folder Include="Model\EIS\" />
-    <Folder Include="Model\Percepts\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">

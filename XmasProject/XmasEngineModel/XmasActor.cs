@@ -1,3 +1,4 @@
+using XmasEngineModel.Exceptions;
 using XmasEngineModel.Management;
 
 namespace XmasEngineModel
@@ -11,8 +12,11 @@ namespace XmasEngineModel
 
 		public virtual XmasWorld World
 		{
-			get { return world; }
-			internal protected set { world = value; }
+			get {
+				if (world == null)
+					throw new PropertyIsNullException("World", this);
+				return world; }
+			set { world = value; }
 		}
 
 		public TWorld WorldAs<TWorld>() where TWorld : XmasWorld
@@ -22,9 +26,15 @@ namespace XmasEngineModel
 
 		public virtual XmasFactory Factory
 		{
-			get { return factory; }
+			get 
+			{
+				if (factory == null)
+					throw new PropertyIsNullException("Factory", this);
 
-			internal protected set { factory = value; }
+				return factory; 
+			}
+
+			set { factory = value; }
 		}
 
 		public TFactory FactoryAs<TFactory>() where TFactory : XmasFactory
@@ -35,8 +45,13 @@ namespace XmasEngineModel
 
 		public virtual EventManager EventManager
 		{
-			get { return evtman; }
-			internal protected set { evtman = value; }
+			get 
+			{
+				if (evtman == null)
+					throw new PropertyIsNullException("EventManager", this);
+				return evtman; 
+			}
+			set { evtman = value; }
 		}
 
 		public TEvtman EventManagerAs<TEvtman>() where TEvtman : EventManager
@@ -46,13 +61,23 @@ namespace XmasEngineModel
 
 		public virtual ActionManager ActionManager
 		{
-			get { return actman; }
-			internal protected set { actman = value; }
+			get
+			{
+				if (actman == null)
+					throw new PropertyIsNullException("ActionManager", this);
+				return actman; 
+			}
+			set { actman = value; }
 		}
 
 		public TActman ActionManagerAs<TActman>() where TActman : ActionManager
 		{
 			return (TActman)ActionManager;
 		}
+
+		public override string ToString()
+		{
+			return this.GetType().Name;
+		}
 	}
 }

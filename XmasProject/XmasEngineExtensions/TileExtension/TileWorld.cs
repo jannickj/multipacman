@@ -19,6 +19,11 @@ namespace XmasEngineExtensions.TileExtension
 			this.map = new TileMap(burstSize);			
 		}
 
+		public TileWorld(TileMap map)
+		{
+			this.map = map;
+		}
+
 		public Size Size
 		{
 			get { return map.Size; }

@@ -1,5 +1,10 @@
 ﻿using NUnit.Framework;
+using XmasEngine_Test.ExampleObjects;
+using XmasEngineExtensions.TileExtension;
 using XmasEngineExtensions.TileExtension.Entities;
+using XmasEngineModel.EntityLib;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace XmasEngine_Test.Model.Entities.MapEntities
 {
@@ -9,7 +14,7 @@ namespace XmasEngine_Test.Model.Entities.MapEntities
 		[Test]
 		public void CanContain_TerrainWithPowerUp_Returnstrue()
 		{
-			Agent a = new Agent();
+			Unit a = new Unit();
 			PowerUp p = new PowerUp();
 			PowerUp p2 = new PowerUp();
 			Tile t = new Tile();
@@ -21,9 +26,9 @@ namespace XmasEngine_Test.Model.Entities.MapEntities
 		[Test]
 		public void CanContain_aWall_ReturnsFalse()
 		{
-			Agent a = new Agent();
+			Unit a = new Unit();
 			Tile t = new Tile();
-			Wall wall = new Wall();
+			ImpassableWall wall = new ImpassableWall();
 			t.AddEntity(wall);
 			Assert.IsFalse(t.CanContain(a));
 		}
@@ -31,16 +36,16 @@ namespace XmasEngine_Test.Model.Entities.MapEntities
 		[Test]
 		public void CanContain_emptyTerrain_Returnstrue()
 		{
-			Agent a = new Agent();
+			Unit a = new Unit();
 			Tile t = new Tile();
 			Assert.IsTrue(t.CanContain(a));
 		}
 
 		[Test]
-		public void CanContain_terrainWithAnAgent_Returnsfalse()
+		public void CanContain_terrainWithAnUnit_Returnsfalse()
 		{
-			Agent a = new Agent();
-			Agent b = new Agent();
+			Unit a = new Unit();
+			Unit b = new Unit();
 			PowerUp p = new PowerUp();
 			Tile t = new Tile();
 			t.AddEntity(a);
@@ -49,14 +54,14 @@ namespace XmasEngine_Test.Model.Entities.MapEntities
 		}
 
 		[Test]
-		public void GetEntities_tileWithAnAgent_ReturnThatAgent()
+		public void GetEntities_tileWithAnUnit_ReturnThatAgent()
 		{
-			Agent a = new Agent();
+			Unit a = new Unit();
 			Tile t = new Tile();
 			t.AddEntity(a);
 
-			Agent expected = a;
-			Agent actual = t.Entities.OfType<Agent>().First();
+			Unit expected = a;
+			Unit actual = t.Entities.OfType<Unit>().First();
 			Assert.AreEqual(expected, actual);
 		}
 	}

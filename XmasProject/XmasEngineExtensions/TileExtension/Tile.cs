@@ -29,7 +29,7 @@ namespace XmasEngineExtensions.TileExtension
 		{
 			foreach (XmasEntity xent in entities)
 			{
-				if (xent.Module<MovementBlockingModule>().IsMovementBlocking(xmasEntity))
+				if (xent.HasModule<MovementBlockingModule>() && xent.Module<MovementBlockingModule>().IsMovementBlocking(xmasEntity))
 					return false;
 			}
 			return true;
@@ -37,7 +37,7 @@ namespace XmasEngineExtensions.TileExtension
 
 		public bool IsVisionBlocking(XmasEntity xmasEntity)
 		{
-			return entities.Any(e => e.Module<VisionBlockingModule>().IsVisionBlocking(xmasEntity));
+			return entities.Any(e => e.HasModule<VisionBlockingModule>() && e.Module<VisionBlockingModule>().IsVisionBlocking(xmasEntity));
 		}
 	}
 }
