@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmasEngineExtensions", "Xma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleXmasImplementation", "ConsoleXmasImplementation\ConsoleXmasImplementation.csproj", "{709E5D7B-4895-452C-B59E-F23132415D64}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VacuumCleanerWorldExample", "VacuumCleanerWorldExample\VacuumCleanerWorldExample.csproj", "{1EEAB943-1C65-4547-80F0-065A2A5D9D47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{709E5D7B-4895-452C-B59E-F23132415D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{709E5D7B-4895-452C-B59E-F23132415D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{709E5D7B-4895-452C-B59E-F23132415D64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EEAB943-1C65-4547-80F0-065A2A5D9D47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EEAB943-1C65-4547-80F0-065A2A5D9D47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EEAB943-1C65-4547-80F0-065A2A5D9D47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EEAB943-1C65-4547-80F0-065A2A5D9D47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

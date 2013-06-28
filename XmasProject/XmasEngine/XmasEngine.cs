@@ -58,6 +58,8 @@ namespace XmasEngine
 			modelt.Name = "Model Thread";
 			modelThread = modelt;
 
+			model.ActionManager.ExecuteActions();
+
 			modelt.Start();
 			foreach (var viewThread in viewThreads)
 			{
