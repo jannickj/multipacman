@@ -7,23 +7,35 @@ using XmasEngineModel.Management.Events;
 
 namespace XmasEngineModel.Management
 {
+    /// <summary>
+    /// ActionManager controls the flow of actions being executed in the engine
+    /// </summary>
 	public class ActionManager
 	{
 		private Queue<XmasAction> awaitingActions = new Queue<XmasAction>();
 		private HashSet<XmasAction> runningActions = new HashSet<XmasAction>();
 		private EventManager evtman;
 
+        /// <summary>
+        /// Instantiates a new ActionManager
+        /// </summary>
+        /// <param name="evtman">The eventmanager used in the same engine instantiation</param>
 		public ActionManager(EventManager evtman)
 		{
 			this.evtman = evtman;
 		}
 
-
+        /// <summary>
+        /// Gets all actions currently running the action manager
+        /// </summary>
 		public ICollection<XmasAction> RunningActions
 		{
 			get { return runningActions.ToArray(); }
 		}
 
+        /// <summary>
+        /// Gets all actions queued to the action manager
+        /// </summary>
 		public ICollection<XmasAction> QueuedActions
 		{
 			get { return awaitingActions.ToArray(); }
@@ -44,6 +56,10 @@ namespace XmasEngineModel.Management
 		internal event UnaryValueHandler<XmasAction> ActionQueued;
 
 
+        /// <summary>
+        /// Executes all actions queued to the action manager
+        /// </summary>
+        /// <returns>the number of actions succesfully executed</returns>
 		public int ExecuteActions()
 		{
 			int actionsExecuted = 0;
@@ -86,6 +102,11 @@ namespace XmasEngineModel.Management
 			return actionsExecuted;
 		}
 
+
+        /// <summary>
+        /// Queues an action to the ActionManager. This method is threadsafe.
+        /// </summary>
+        /// <param name="action">The action to be queued.</param>
 		public void Queue(EnvironmentAction action)
 		{
 			QueueAction(action);

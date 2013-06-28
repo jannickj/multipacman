@@ -36,7 +36,7 @@ namespace XmasEngineModel.EntityLib
 		{
 			get 
 			{ 
-				return moduleMap.Values.SelectMany(m => m.Percepts).ToList();
+				return moduleMap.Values.SelectMany(m => m.Percepts).ToArray();
 			}
 		}
 

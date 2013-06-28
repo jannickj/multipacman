@@ -194,7 +194,7 @@ namespace XmasEngineModel.EntityLib
 		/// <summary>
 		/// Creates a threadsafe event queue, this queue recieves all events the entity raises and stores them in a queue
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>The ThreadSafe EventQueue</returns>
 		public ThreadSafeEventQueue ConstructEventQueue()
 		{
 			return new ThreadSafeEventQueue(triggers);

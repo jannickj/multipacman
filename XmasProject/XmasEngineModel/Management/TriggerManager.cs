@@ -5,7 +5,8 @@ using JSLibrary.Data.GenericEvents;
 
 namespace XmasEngineModel.Management
 {
-	public class TriggerManager
+
+	internal class TriggerManager
 	{
 		private DictionaryList<Type, Trigger> triggers = new DictionaryList<Type, Trigger>();
 

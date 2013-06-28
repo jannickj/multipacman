@@ -5,6 +5,10 @@ using JSLibrary.Data.GenericEvents;
 
 namespace XmasEngineModel.Management
 {
+
+    /// <summary>
+    /// A trigger meant to contain multiple events, conditions and actions at a time
+    /// </summary>
 	public class MultiTrigger : Trigger
 	{
 		private Dictionary<object, Action<XmasEvent>> actionDictionary = new Dictionary<object, Action<XmasEvent>>();
@@ -13,16 +17,25 @@ namespace XmasEngineModel.Management
 		private HashSet<Predicate<XmasEvent>> conditions = new HashSet<Predicate<XmasEvent>>();
 		private HashSet<Type> eventtypes = new HashSet<Type>();
 
+        /// <summary>
+        /// Gets a collection of event type that the trigger is triggered by
+        /// </summary>
 		public override ICollection<Type> Events
 		{
 			get { return eventtypes.ToArray(); }
 		}
 
+        /// <summary>
+        /// Gets all the predicates that must be satisfied for the trigger to fire
+        /// </summary>
 		public ICollection<Predicate<XmasEvent>> Conditions
 		{
 			get { return conditions.ToArray(); }
 		}
 
+        /// <summary>
+        /// Gets all actions meant to be fired by the trigger
+        /// </summary>
 		public ICollection<Action<XmasEvent>> Actions
 		{
 			get { return actions.ToArray(); }
@@ -31,6 +44,10 @@ namespace XmasEngineModel.Management
 		internal event UnaryValueHandler<Type> RegisteredEvent;
 		internal event UnaryValueHandler<Type> DeregisteredEvent;
 
+        /// <summary>
+        /// Registers a type of event that the trigger is triggered by
+        /// </summary>
+        /// <typeparam name="T">The event type that triggers the trigger</typeparam>
 		public void RegisterEvent<T>() where T : XmasEvent
 		{
 			Type type = typeof (T);
@@ -39,7 +56,10 @@ namespace XmasEngineModel.Management
 				RegisteredEvent(this, new UnaryValueEvent<Type>(type));
 		}
 
-
+        /// <summary>
+        /// Deregisters an event from the trigger, so that the trigger is no longer triggered by that event
+        /// </summary>
+        /// <typeparam name="T">The event type that is deregistered</typeparam>
 		public void DeregisterEvent<T>() where T : XmasEvent
 		{
 			Type type = typeof (T);
@@ -85,12 +105,12 @@ namespace XmasEngineModel.Management
 			list.Remove(wrapper);
 		}
 
-		internal override bool CheckCondition(XmasEvent evt)
+        internal protected override bool CheckCondition(XmasEvent evt)
 		{
 			return Conditions.All(C => C(evt));
 		}
 
-		internal override void Execute(XmasEvent evt)
+		internal protected override void Execute(XmasEvent evt)
 		{
 			foreach (Action<XmasEvent> A in Actions)
 			{
