@@ -16,6 +16,12 @@ namespace XmasEngineExtensions.LoggerExtension
 		private ThreadSafeEventQueue evtq;
 		private Logger log;
 
+		protected Logger Log
+		{
+			get { return log; }
+		
+		}
+
 		public LoggerView(XmasModel model, Logger log) : base(new ThreadSafeEventManager())
 		{
 			this.log = log;

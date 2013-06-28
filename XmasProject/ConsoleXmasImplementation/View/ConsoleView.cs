@@ -47,7 +47,6 @@ namespace ConsoleXmasImplementation.View
 		{
             lock (ExtendedConsole.ConsoleWriterLock)
             {
-				if (drawPos.Y == 0)
                 Console.SetCursorPosition(drawPos.X, drawPos.Y);
                 Console.Write(Area());
             }
