@@ -1,7 +1,7 @@
 init module {
 	knowledge{
 		% Determines if a vision M, that is a tile on the map, contains no wall types
-		findStreet(+M)
+		% findStreet(+M)
 		findStreet(M) :- M = vision(X,Y, HL), Z=(X,Y), (HL = []; member(E,HL), E\=wall, E\=impassablewall).
 		
 		% Transposes the cordinate X, Y by the position of the agent and returns them as Nx, Ny
