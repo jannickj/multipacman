@@ -8,6 +8,11 @@ namespace JSLibrary
 {
 	public class ExtendedString
 	{
+        /// <summary>
+        /// Converts a string to a stream
+        /// </summary>
+        /// <param name="str">The string to be converted</param>
+        /// <returns></returns>
 		public static Stream ToStream(string str)
 		{
 			MemoryStream stream = new MemoryStream();

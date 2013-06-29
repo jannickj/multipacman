@@ -4,6 +4,10 @@ using XmasEngineModel.Management.Actions;
 
 namespace XmasEngineModel.Management
 {
+
+    /// <summary>
+    /// A timer that queues its action to the engine when it expires
+    /// </summary>
 	public class XmasTimer
 	{
 		private Action action;
@@ -13,6 +17,12 @@ namespace XmasEngineModel.Management
 		private Timer timer = new Timer();
 		private XmasAction owner;
 
+        /// <summary>
+        /// Instantiates a XmasTimer
+        /// </summary>
+        /// <param name="actman">The ActionManager of the engine</param>
+        /// <param name="owner">The XmasAction that owns the timer</param>
+        /// <param name="action">The action that is queued onto the engine when the timer expires</param>
 		public XmasTimer(ActionManager actman, XmasAction owner, Action action)
 		{
 			this.owner = owner;
@@ -47,18 +57,29 @@ namespace XmasEngineModel.Management
 			timer.Start();
 		}
 
+        /// <summary>
+        /// Starts the timer to run until the timer has expired
+        /// </summary>
+        /// <param name="milisec">The time in milli seconds that the timer runs for</param>
 		public void StartSingle(double milisec)
 		{
 			single = true;
 			start(milisec);
 		}
 
+        /// <summary>
+        /// Starts the timer to run periodically, will queue an action to the engine for each time
+        /// </summary>
+        /// <param name="milisec">The time in milli seconds one periodic loop takes</param>
 		public void StartPeriodic(double milisec)
 		{
 			single = false;
 			start(milisec);
 		}
 
+        /// <summary>
+        /// Stops the timer
+        /// </summary>
 		public void Stop()
 		{
 			stopped = DateTime.Now;
