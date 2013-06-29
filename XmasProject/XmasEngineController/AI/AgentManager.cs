@@ -9,16 +9,16 @@ using XmasEngineModel.Interfaces;
 
 namespace XmasEngineController.AI
 {
+
+    /// <summary>
+    /// A manager for handling multiple agent controllers, this is responsible for creating new instances of AgentControllers and give them their own thread
+    /// </summary>
 	public abstract class AgentManager : XmasController, IStartable
 	{
-		
 
-		public AgentManager()
-		{
-		
-		}
-
-
+        /// <summary>
+        /// The main method of the AgentManager, by default this will repeatably without stop attempt to generate new controllers
+        /// </summary>
 		public override void Start()
 		{
 			while (true)
@@ -30,7 +30,10 @@ namespace XmasEngineController.AI
 			}
 		}
 
-
+        /// <summary>
+        /// Override this method for an implementation of the AgentManager to control how its AgentControllers are constructed.
+        /// </summary>
+        /// <returns>An explaination of how to construct the controller</returns>
 		protected abstract Func<KeyValuePair<string, AgentController>> AquireAgentControllerContructor();
 
 
@@ -56,6 +59,11 @@ namespace XmasEngineController.AI
 			}
 		}
 
+        /// <summary>
+        /// The agent controller attempts to locate an agent in the world
+        /// </summary>
+        /// <param name="name">name of the agent that is being located</param>
+        /// <returns>The agent with the given name</returns>
 		public Agent TakeControlOf(string name)
 		{
 			lock (this)
@@ -70,6 +78,9 @@ namespace XmasEngineController.AI
 			}
 		}
 
+        /// <summary>
+        /// Maximum time for AgentController to construct. If timeout is 0 the time is infinitely. Default is 0.
+        /// </summary>
 		public virtual int AgentControllerConstructionTimeOut
 		{
 			get

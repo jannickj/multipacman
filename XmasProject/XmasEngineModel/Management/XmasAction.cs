@@ -2,6 +2,8 @@
 
 namespace XmasEngineModel.Management
 {
+
+
 	public abstract class XmasAction : XmasActor
 	{
 		public event EventHandler Completed;
@@ -9,6 +11,9 @@ namespace XmasEngineModel.Management
 		public event EventHandler Resolved;
 		private bool actionfailed = false;
 
+        /// <summary>
+        /// gets whether or not the action failed
+        /// </summary>
 		public bool ActionFailed
 		{
 			get { return actionfailed; }
@@ -19,8 +24,14 @@ namespace XmasEngineModel.Management
 			Execute();
 		}
 
+        /// <summary>
+        /// Override this method to provide the ability for the action to execute
+        /// </summary>
 		protected abstract void Execute();
 
+        /// <summary>
+        /// Calling this indicates to the engine that the action has completed, this method should only be called once and only when the action is truly completed
+        /// </summary>
 		protected void Complete()
 		{
 			EventHandler buffer = Completed;
@@ -31,6 +42,9 @@ namespace XmasEngineModel.Management
 
 		}
 
+        /// <summary>
+        /// Calling this indicates to the engine that the action has failed.
+        /// </summary>
 		public void Fail()
 		{
 			this.actionfailed = true;

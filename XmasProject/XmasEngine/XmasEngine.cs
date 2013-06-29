@@ -8,6 +8,9 @@ using XmasEngineView;
 
 namespace XmasEngine
 {
+    /// <summary>
+    /// The engine manager, this is responsible for starting up the model and all its views and controllers
+    /// </summary>
 	public class XmasEngineManager
 	{
 		private XmasModelFactory factory;
@@ -16,11 +19,22 @@ namespace XmasEngine
 		private List<Thread> viewThreads = new List<Thread>();
 		private List<Thread> controllerThreads = new List<Thread>();
 
+        /// <summary>
+        /// Instantiates a Manager for the engine
+        /// </summary>
+        /// <param name="factory">The Model Factory that can create major components</param>
 		public XmasEngineManager(XmasModelFactory factory)
 		{
 			this.factory = factory;
 		}
 
+        /// <summary>
+        /// Starts the engine by providing the model and all its view and controllers with each their own thread.
+        /// All actions queued to the engine is executed before the threads are started.
+        /// </summary>
+        /// <param name="model">The model of the engine</param>
+        /// <param name="views">The views of the engine</param>
+        /// <param name="controllers">The controllers of the engine</param>
 		public void StartEngine(XmasModel model,ICollection<XmasView> views, ICollection<XmasController> controllers)
 		{
 			if (modelThread != null)

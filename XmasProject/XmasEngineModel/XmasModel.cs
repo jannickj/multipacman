@@ -8,6 +8,9 @@ using XmasEngineModel.Management.Events;
 
 namespace XmasEngineModel
 {
+    /// <summary>
+    /// The core of the engine, this is responsible for starting all other components used within the model
+    /// </summary>
 	public class XmasModel : IStartable
 	{
 		private AutoResetEvent actionRecieved = new AutoResetEvent(false);
@@ -38,10 +41,16 @@ namespace XmasEngineModel
 		}
 
 
+        /// <summary>
+        /// Initialization of the model of the engine
+        /// </summary>
 		public void Initialize()
 		{
 		}
 
+        /// <summary>
+        /// The main method of the model of the engine
+        /// </summary>
 		public void Start()
 		{
 			try
@@ -68,7 +77,11 @@ namespace XmasEngineModel
 			}
 		}
 
-
+        /// <summary>
+        /// Checks if the engine has momentarily creashed
+        /// </summary>
+        /// <param name="exception">The exception that caused the crash</param>
+        /// <returns>Whether or not the engine crashed</returns>
 		public bool EngineCrashed(out Exception exception)
 		{
 			if (engineCrash != null)
@@ -81,6 +94,10 @@ namespace XmasEngineModel
 			return false;
 		}
 
+        /// <summary>
+        /// Makes an actor part of the engine, by providing it with all necessary tools
+        /// </summary>
+        /// <param name="actor">The actor to be made part of the engine</param>
 		public void AddActor(XmasActor actor)
 		{
 			actor.ActionManager = ActionManager;

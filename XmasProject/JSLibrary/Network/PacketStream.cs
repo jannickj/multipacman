@@ -7,6 +7,9 @@ using System.Threading;
 
 namespace JSLibrary.Network
 {
+    /// <summary>
+    /// A stream designed specially for sending and recieving data in forms of packages
+    /// </summary>
 	public class PacketStream : Stream
 	{
 		private Stream input;
@@ -19,6 +22,9 @@ namespace JSLibrary.Network
 			this.input = input;
 		}
 
+        /// <summary>
+        /// Causes the stream to read the next package on the stream
+        /// </summary>
 		public void ReadNextPackage()
 		{
 			int mustRead = 4;
@@ -53,6 +59,9 @@ namespace JSLibrary.Network
 
 		}
 
+        /// <summary>
+        /// causes the stream to send out the data stored as a package
+        /// </summary>
 		public override void Flush()
 		{
             if (memsOut.Length == 0)

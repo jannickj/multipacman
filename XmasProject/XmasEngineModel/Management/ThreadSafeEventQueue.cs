@@ -4,13 +4,17 @@ using JSLibrary.Data.GenericEvents;
 
 namespace XmasEngineModel.Management
 {
+    /// <summary>
+    /// A ThreadSafe EventQueue meant to store events raises on entities and the EventManager 
+    /// </summary>
 	public class ThreadSafeEventQueue : IDisposable
 	{
 		private TriggerManager foreignTriggermanager;
 		private ConcurrentQueue<XmasEvent> queue = new ConcurrentQueue<XmasEvent>();
 		private TriggerManager triggerManager = new TriggerManager();
 
-		public ThreadSafeEventQueue(TriggerManager unsafeTriggers)
+       
+		internal ThreadSafeEventQueue(TriggerManager unsafeTriggers)
 		{
 			foreignTriggermanager = unsafeTriggers;
 			foreignTriggermanager.EventRaised += foreignTriggermanager_EventRaised;
@@ -19,7 +23,7 @@ namespace XmasEngineModel.Management
 		internal event EventHandler EventRecieved;
 
 
-		public bool ExecuteNext()
+		internal bool ExecuteNext()
 		{
 			XmasEvent res;
 			if (queue.TryDequeue(out res))
@@ -30,7 +34,10 @@ namespace XmasEngineModel.Management
 			return false;
 		}
 
-
+        /// <summary>
+        /// Registers a trigger to the Threadsafe Eventqueue
+        /// </summary>
+        /// <param name="trigger">The trigger registered</param>
 		public void Register(Trigger trigger)
 		{
 			triggerManager.Register(trigger);
@@ -44,6 +51,7 @@ namespace XmasEngineModel.Management
 			if (buffer != null)
 				buffer(this, new EventArgs());
 		}
+
 
 		public void Dispose()
 		{

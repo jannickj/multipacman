@@ -7,6 +7,7 @@ using XmasEngineModel.EntityLib;
 
 namespace VacuumCleanerWorldExample
 {
+    //Here we define a dirt entity
 	public class DirtEntity : XmasEntity
 	{
 	}

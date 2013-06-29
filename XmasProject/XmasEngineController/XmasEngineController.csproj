@@ -39,7 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgentFactory.cs" />
     <Compile Include="AI\AgentController.cs" />
     <Compile Include="AI\AgentManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
