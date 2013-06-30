@@ -12,6 +12,7 @@ namespace VacuumCleanerWorldExample.Percepts
 	{
 		//Property that tells if dirt is located at the vacuum cleaner's position
 		public bool ContainsDirt { get; set; }
+
 		//Property that tells the position of the vacuum cleaner
 		public VacuumPosition VacuumCleanerPosition {get; set;}
 
