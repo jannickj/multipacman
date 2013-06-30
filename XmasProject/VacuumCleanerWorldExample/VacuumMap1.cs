@@ -10,7 +10,7 @@ namespace VacuumCleanerWorldExample
 	{
 		public VacuumMap1()
 		{
-			//This is explains to the engine how to generate one instantiation of the map
+			//This explains to the engine how to generate one instantiation of the map
 			//if the user wishes to make multiple different map then it would be need to make new classes
 			//that extends the VacuumWorldBuilder
 			this.AddEntity(new VacuumCleanerAgent("vacuum_cleaner"),new VacuumSpawnInformation(0));

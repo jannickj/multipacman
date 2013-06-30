@@ -72,8 +72,6 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 				map[i, 2].AddEntity(new ImpassableWall());
 			}
 
-			map[-3, 0].AddEntity(new ImpassableWall());
-
 			TileWorld world = new TileWorld(map);
 			Vision vision = world.View(new Point(0, 0), 3, new Player());
 
@@ -120,7 +118,7 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 			{
 				for (int y = -3; y <= 3; y++)
 				{
-					if ((x < -1 || x > 1) && (y < -1 || y > 1))
+					if (Math.Abs(x) > 1 || Math.Abs(y) > 1)
 						map[x, y].AddEntity(new ImpassableWall());
 				}
 			}
@@ -194,11 +192,11 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 			 * (X): Visible tiles
 			 * (S): Invisible tiles
 			 * 
-			 * SSXSS
-			 * SWXWS
+			 * SXXXS
+			 * XWXWX
 			 * XXPXX
-			 * SWXWS
-			 * SSXSS
+			 * XWXWX
+			 * SXXXS
 			 */
 
 			TileMap map = new TileMap(new Size(2, 2));
@@ -214,17 +212,9 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 			List<Point> unlistedTiles = new List<Point>
 				{
 					new Point(-2, -2),
-					new Point(-1, -2),
-					new Point(-2, -1),
-					new Point(1, -2),
 					new Point(2, -2),
-					new Point(2, -1),
-					new Point(-2, 1),
 					new Point(-2, 2),
-					new Point(-1, 2),
-					new Point(1, 2),
-					new Point(2, 2),
-					new Point(2, 1)
+					new Point(2, 2)
 				};
 
 			RemoveAllFromDictionary(expected,kv => unlistedTiles.Contains(kv.Key));
@@ -241,9 +231,9 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 			 * (X): Visible tiles
 			 * (S): Invisible tiles
 			 * 
-			 * SSXXXXX
-			 * SSSXXXX
-			 * XSWXXXX
+			 * SXXXXXX
+			 * XSXXXXX
+			 * XXWXXXX
 			 * XXXPXXX
 			 * XXXXXXX
 			 * XXXXXXX
@@ -251,20 +241,16 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 			 */
 
 			TileMap map = new TileMap(new Size(3, 3));
-			map[-1, -1].AddEntity(new Wall());
+			map[-1, -1].AddEntity(new ImpassableWall());
 
 			TileWorld world = new TileWorld(map);
-			Vision vision = world.View(new Point(0, 0), 2, new Player());
+			Vision vision = world.View(new Point(0, 0), 3, new Player());
 
 			Dictionary<Point, Tile> expected = vision.AllTiles();
 			List<Point> unlistedTiles = new List<Point>
 				{
-					new Point(-2, -1),
 					new Point(-2, -2),
-					new Point(-1, -2),
-					new Point(-3, -2),
-					new Point(-3, -3),
-					new Point(-2, -3)
+					new Point(-3, -3)
 				};
 
 			RemoveAllFromDictionary(expected,kv => unlistedTiles.Contains(kv.Key));
@@ -290,10 +276,10 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 			 */
 
 			TileMap map = new TileMap(new Size(2, 2));
-			map[-1, 0].AddEntity(new Wall());
-			map[1, 0].AddEntity(new Wall());
-			map[0, -1].AddEntity(new Wall());
-			map[0, 1].AddEntity(new Wall());
+			map[-1, 0].AddEntity(new ImpassableWall());
+			map[1, 0].AddEntity(new ImpassableWall());
+			map[0, -1].AddEntity(new ImpassableWall());
+			map[0, 1].AddEntity(new ImpassableWall());
 
 			TileWorld world = new TileWorld(map);
 			Vision vision = world.View(new Point(0, 0), 2, new Player());

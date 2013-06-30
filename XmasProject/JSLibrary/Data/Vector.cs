@@ -40,6 +40,12 @@ namespace JSLibrary.Data
 				return new Vector(newX, newY);
 			}
 		}
+
+		public Vector Abs
+		{
+			get { return new Vector(Math.Abs(x), Math.Abs(y)); }
+		}
+
 		public override string ToString ()
 		{
 			return string.Format ("<{0},{1}>", X, Y);

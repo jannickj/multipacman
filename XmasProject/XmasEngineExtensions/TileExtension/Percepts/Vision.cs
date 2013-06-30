@@ -22,7 +22,6 @@ namespace XmasEngineExtensions.TileExtension.Percepts
 
 		private Grid<Tile> grid;
 		private XmasEntity owner;
-//		private List<KeyValuePair<Point, Tile>> visibleTiles = new List<KeyValuePair<Point, Tile>>();
 		private Dictionary<Point, Tile> visibleTiles = new Dictionary<Point, Tile> ();
 
 		public Vision(Grid<Tile> grid, XmasEntity owner)
@@ -72,7 +71,6 @@ namespace XmasEngineExtensions.TileExtension.Percepts
 			for (int x = 0; x < grid.Size.Width; x++)
 				for (int y = 0; y < grid.Size.Height; y++)
 					if (isTileVisible (new Point (x, y)))
-//						visibleTiles.Add(new KeyValuePair<Point, Tile>(new Point(x, y) - grid.Center, grid[x, y]));
 						visibleTiles [new Point (x, y) - grid.Center] = grid [x, y];
 		}
 
@@ -96,32 +94,47 @@ namespace XmasEngineExtensions.TileExtension.Percepts
 				};
 
 			IEnumerable<Point> centerCorners = cornerize.Select(corner => corner + grid.Center);
-			// should be done only once for efficiency
 			IEnumerable<Point> tileCorners = cornerize.Select(corner => corner + tile);
 
 			if (grid[tile.X, tile.Y].IsVisionBlocking(owner))
 			{
-				// if the destination tile is vision blocking, we check if ANY corner of the center tile connects to any two corners of the destination tile
+				//bool[,] test = new bool[4,4];
+
+				//for (int i = 0; i < 4; i++)
+				//	for (int j = 0; j < 4; j++)
+				//		test[i,j] = connectCorner(cornerize[i] + grid.Center, cornerize[j] + new Point(6,1));
+
+				//bool[,] visiontest = new bool[grid.Size.Width, grid.Size.Height];
+
+				//for (int i = 0; i < grid.Size.Width; i++)
+				//	for (int j = 0; j < grid.Size.Height; j++)
+				//		visiontest[i,j] = grid[i, j].IsVisionBlocking(owner);
+
+				//var testtiles = walkAlongVector(new Vector(3, -1)).ToArray();
+				//bool test2 = grid[5, 2].IsVisionBlocking(owner);
+
+				// if the destination tile is vision blocking, we check if ANY corner of the center tile connects to any TWO corners of the destination tile
 				return centerCorners.Any(cc => tileCorners.Count(tc => connectCorner(cc, tc)) >= 2);
 			}
 			else
 			{
-				// otherwise, check if ANY corner of the center tile connects to ALL corners of the destination tile
-				return centerCorners.Any(cc => tileCorners.All(tc => connectCorner(cc, tc)));
+				// otherwise, check if ANY corner of the center tile connects to any THREE corners of the destination tile
+				return centerCorners.Any(cc => tileCorners.Count(tc => connectCorner(cc, tc)) >= 3);
 			}
 		}
 
 		private bool connectCorner(Point origin, Point destination)
 		{
 			Vector v = new Vector(origin, destination);
+
+			var testt = walkAlongVector(v).ToArray();
+
 			foreach (Point[] ps in walkAlongVector(v))
 			{
-				foreach (Point p in ps)
-				{
-					Point transp = origin + p;
-					if (grid[transp.X, transp.Y].IsVisionBlocking(owner))
-						return false;
-				}
+				Point[] transp = ps.Select(p => origin + p).ToArray();
+				bool test = transp.All(p => grid[p.X, p.Y].IsVisionBlocking(owner));
+				if (transp.All(p => grid[p.X, p.Y].IsVisionBlocking(owner)))
+					return false;
 			}
 
 			return true;
@@ -130,18 +143,16 @@ namespace XmasEngineExtensions.TileExtension.Percepts
 		private IEnumerable<IEnumerable<Point>> walkAlongVector(Vector v)
 		{
 			if (v.X == 0 || v.Y == 0) { 
-				for (int i = 0; i < Math.Max (v.X, v.Y); i++) {
-					yield return new Point[] { 
+				for (int i = 0; i < Math.Max (Math.Abs(v.X), Math.Abs(v.Y)); i++) {
+					Point[] retpoint = new Point[] { 
 						new Point (i, i) * v.Direction,
-						new Point (i, i) * v.Direction - (new Point(1,1) - v.Direction)
+						new Point (i, i) * v.Direction - (new Point(1,1) - v.Direction.Abs)
 					};
+					yield return retpoint;
 				}
 			} else {
 				double linepiece;
-				if (v.X == 0 || v.Y == 0)
-					linepiece = 1.0;
-				else 
-					linepiece = Math.Abs (v.Y/(double) v.X);
+				linepiece = Math.Abs (v.Y/(double) v.X);
 		
 				for (int i = 0; i < Math.Abs(v.X); i++) {
 					int start = (int)Math.Floor (i*linepiece);
