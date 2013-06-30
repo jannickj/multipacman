@@ -11,7 +11,6 @@ namespace VacuumCleanerWorldExample
 {
 	public class VacuumAgentManager : AgentManager
 	{
-		private int constructedAgents = 0;
 		private string name;
 
 		//Provide the manager with the name of the agent it wishes to construct an agentcontroller for
@@ -23,14 +22,8 @@ namespace VacuumCleanerWorldExample
 		//Override this method which will be called repeatably once the engine starts
 		protected override Func<KeyValuePair<string, AgentController>> AquireAgentControllerContructor()
 		{
-			//Stop the AgentManager thread once the vacuum cleaner constroller has been constructed
-			if (constructedAgents > 0)
-				Thread.Sleep(Timeout.InfiniteTimeSpan);
-			constructedAgents++;
 
 			//The name of the agent the manager will try to locate
-			
-
 			Agent agent = this.TakeControlOf(name);
 
 			//Lambda function that constructs new agent controllers, this constructor will be called in the agent controller's own thread
@@ -40,5 +33,15 @@ namespace VacuumCleanerWorldExample
 			
 			return LambdaConstructor;
 		}
+
+        //Override this method to change how the manager business logic works, since we only want to start one agent controlller we use the manager's thread instead
+        public override void Start()
+        {
+            //Construct the agent controller
+            var con = this.AquireAgentControllerContructor()();
+
+            //Run the agent controller's start method
+            con.Value.Start();
+        }
 	}
 }

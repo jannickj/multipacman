@@ -49,8 +49,10 @@ namespace ConsoleXmasImplementation.Controller
 
 				}
 
-				if (keyread == true)
-					currentAction = this.actionMap[key.KeyChar];
+                if (keyread == true)
+                    currentAction = this.actionMap[key.KeyChar];
+                else
+                    continue;
 
 				this.performAction(currentAction);
 				
