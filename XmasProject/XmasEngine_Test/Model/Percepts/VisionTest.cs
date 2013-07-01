@@ -14,32 +14,6 @@ namespace XmasEngineExtensions_Test.TileExtension.Percepts
 	[TestFixture]
 	public class VisionTest
 	{
-		[Test]
-		public void Vision_AgentRequests7by7VisionInEmpty3by3World_Return5by5TilesWithImpassableWallsAtEdges()
-		{
-			
-			TileWorld world = new TileWorld(new Size(1, 1));
-			Vision vision = world.View(new Point(0, 0), 3, new Player());
-
-			Dictionary<Point, Tile> expected = vision.AllTiles();
-			List<Point> unlistedTiles = new List<Point>
-				{
-					new Point(-2, -1),
-					new Point(-2, -2),
-					new Point(-1, -2),
-					new Point(-3, -2),
-					new Point(-3, -3),
-					new Point(-2, -3)
-				};
-
-			
-			RemoveAllFromDictionary(expected,kv => unlistedTiles.Contains(kv.Key));
-
-			Dictionary<Point, Tile> actual = vision.VisibleTiles;
-	
-
-			Assert.AreEqual(expected, actual);
-		}
 
 		[Test]
 		public void Vision_AgentWithSecondRingFilledByWalls7By7Grid_CorrectVisionObject()
