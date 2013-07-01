@@ -45,7 +45,6 @@ namespace XmasEngineExtensions.TileExtension.Percepts
 		{
 			HashSet<Point> explored = new HashSet<Point>();
 			HashSet<Point> frontier = new HashSet<Point>();
-//			Point current = grid.Center;
 			frontier.Add(grid.Center);
 
 			foreach (Point f in frontier)
@@ -98,21 +97,6 @@ namespace XmasEngineExtensions.TileExtension.Percepts
 
 			if (grid[tile.X, tile.Y].IsVisionBlocking(owner))
 			{
-				//bool[,] test = new bool[4,4];
-
-				//for (int i = 0; i < 4; i++)
-				//	for (int j = 0; j < 4; j++)
-				//		test[i,j] = connectCorner(cornerize[i] + grid.Center, cornerize[j] + new Point(6,1));
-
-				//bool[,] visiontest = new bool[grid.Size.Width, grid.Size.Height];
-
-				//for (int i = 0; i < grid.Size.Width; i++)
-				//	for (int j = 0; j < grid.Size.Height; j++)
-				//		visiontest[i,j] = grid[i, j].IsVisionBlocking(owner);
-
-				//var testtiles = walkAlongVector(new Vector(3, -1)).ToArray();
-				//bool test2 = grid[5, 2].IsVisionBlocking(owner);
-
 				// if the destination tile is vision blocking, we check if ANY corner of the center tile connects to any TWO corners of the destination tile
 				return centerCorners.Any(cc => tileCorners.Count(tc => connectCorner(cc, tc)) >= 2);
 			}
