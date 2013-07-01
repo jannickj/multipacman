@@ -37,11 +37,14 @@ namespace VacuumCleanerWorldExample
         //Override this method to change how the manager business logic works, since we only want to start one agent controlller we use the manager's thread instead
         public override void Start()
         {
-            //Construct the agent controller
-            var con = this.AquireAgentControllerContructor()();
+            //Aquire constructor(in form of a lambda function) for the agent controller
+			Func<KeyValuePair<string, AgentController>> con = this.AquireAgentControllerContructor();
+
+			//Construct the agent controller
+			KeyValuePair<string,AgentController> agentcontroller = con();
 
             //Run the agent controller's start method
-            con.Value.Start();
+			agentcontroller.Value.Start();
         }
 	}
 }
