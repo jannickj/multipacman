@@ -3,11 +3,25 @@ using System.Linq;
 using XmasEngineModel;
 using XmasEngineModel.EntityLib;
 using XmasEngineExtensions.TileExtension.Modules;
+using System;
 
 namespace XmasEngineExtensions.TileExtension
 {
-	public class Tile : XmasObject
+	public class Tile : XmasObject, ICloneable
 	{
+
+		public Tile()
+		{
+
+		}
+
+		private Tile(ulong id) : base(id)
+		{
+
+		}
+
+
+
 		private LinkedList<XmasEntity> entities = new LinkedList<XmasEntity>();
 
 		public ICollection<XmasEntity> Entities
@@ -38,6 +52,16 @@ namespace XmasEngineExtensions.TileExtension
 		public bool IsVisionBlocking(XmasEntity xmasEntity)
 		{
 			return entities.Any(e => e.HasModule<VisionBlockingModule>() && e.Module<VisionBlockingModule>().IsVisionBlocking(xmasEntity));
+		}
+
+		public object Clone()
+		{
+			Tile clone = new Tile(this.Id);
+
+			foreach(XmasEntity ent in this.entities)
+				clone.entities.AddLast(ent);
+			
+			return clone;
 		}
 	}
 }

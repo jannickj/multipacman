@@ -51,6 +51,7 @@ namespace XmasEngineExtensions.TileExtension
 				{
 					return outofmaptile;
 				}
+
 				return tiles[center.X + x, center.Y - y];
 			}
 			internal set
@@ -80,7 +81,7 @@ namespace XmasEngineExtensions.TileExtension
 				{
 					for (int j = 0; j < rsize; j++)
 					{
-						r[i, j] = this[i + startx, j + starty];
+						r[i, j] = (Tile)this[i + startx, j + starty].Clone();
 					}
 				}
 

@@ -1,10 +1,20 @@
-﻿namespace XmasEngineModel
+﻿using System;
+namespace XmasEngineModel
 {
     /// <summary>
     /// The most basic form of an object used by the engine
     /// </summary>
-	public class XmasObject
+	public class XmasObject 
 	{
+		public XmasObject()
+		{
+
+		}
+		public XmasObject(ulong id)
+		{
+			this.id = id;
+		}
+
 		private ulong id = 0;
 
         /// <summary>
@@ -15,5 +25,7 @@
 			get { return id; }
 			internal set { id = value; }
 		}
+
+		
 	}
 }
